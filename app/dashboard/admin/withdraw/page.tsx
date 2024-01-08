@@ -1,3 +1,53 @@
+"use client"
+import Pagination from "@/components/Pagination";
+import ViewButton from "@/components/ViewButton";
+import { Avatar, CardBody, CardHeader, Card } from "@nextui-org/react";
+
 export default function Page() {
-  return <h1>Admin, Withdraw Page!</h1>;
+  return <div>
+    <div className="grid grid-cols-2 gap-4 mb-6">
+      <Card className="p-5">
+        <p>Total Requests</p>
+        <h3 className="text-4xl font-semibold my-2">25</h3>
+      </Card>
+      <Card className="p-5">
+        <p>Total Withdraw</p>
+        <h3 className="text-4xl font-semibold my-2">25</h3>
+      </Card>
+    </div>
+    <Card className="mb-6">
+            <CardHeader className="border-b border-stroke py-5">
+              <h2>Withdraw Requests</h2>
+            </CardHeader>
+            <CardBody>
+            <table className="table-fixed">
+            <thead className="bg-primary h-7 text-white">
+              <tr>
+                <th>Requested By</th>
+                <th>Withdraw ID</th>
+                <th>BTC</th>
+                <th>Bank</th>
+                <th>Amount</th>
+                <th>Requested Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="h-12 text-md">
+                <td>Invoice-0019</td>
+                <td>$292</td>
+                <td>1961</td>
+                <td>1961</td>
+                <td>1961</td>
+                <td>1961</td>
+                <td>
+                  <ViewButton />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+            </CardBody>
+          </Card> 
+          <Pagination />
+  </div>;
 }

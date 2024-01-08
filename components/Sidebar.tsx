@@ -2,8 +2,6 @@
 import Image from "next/image";
 import logo from "../public/logo.png";
 import Link from "next/link";
-import DashboardIcon from "../public/dashboardicon.png";
-import { FaRegUser } from "react-icons/fa6";
 import { Avatar, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
@@ -37,6 +35,11 @@ export default function Sidebar() {
       icon: <Icon icon="ri:currency-fill" />,
     },
     {
+      path: "/dashboard/admin/order",
+      name: "Order",
+      icon: <Icon icon="akar-icons:cart" />,
+    },
+    {
       path: "/dashboard/admin/vendor",
       name: "Vendor",
       icon: <Icon icon="iconoir:bank" />,
@@ -57,7 +60,7 @@ export default function Sidebar() {
               <Link
                 href={item.path}
                 className={`py-2 px-3 flex justify-start rounded-lg my-3 text-xl 
-                ${pathname === item.path ? "bg-primary text-white" : ""}`}
+                ${pathname.toString().includes(item.path.toString())  ? "bg-primary text-white" : ""}`}
               >
                 <span className="text-2xl mr-3">{item.icon}</span>
                 {item.name}
