@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 import NextAuthProvider from "@/context/AuthProvider";
+import { NextUIProvider } from "@nextui-org/react";
+import { Providers } from "./providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const nunito = Nunito({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-nunito",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,9 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <NextAuthProvider>{children}</NextAuthProvider>
+    <html lang="en" className={`${nunito.variable} light`}>
+      <body>
+        <Providers>
+          <NextAuthProvider>{children}</NextAuthProvider>
+        </Providers>
       </body>
     </html>
   );
