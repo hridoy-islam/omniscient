@@ -60,7 +60,11 @@ export default function Sidebar() {
               <Link
                 href={item.path}
                 className={`py-2 px-3 flex justify-start rounded-lg my-3 text-xl 
-                ${pathname.toString().includes(item.path.toString())  ? "bg-primary text-white" : ""}`}
+                ${
+                  pathname.toString().includes(item.path.toString())
+                    ? "bg-primary text-white"
+                    : ""
+                }`}
               >
                 <span className="text-2xl mr-3">{item.icon}</span>
                 {item.name}
