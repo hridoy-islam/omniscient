@@ -28,6 +28,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+
+  @apply font-nunito;
 }
 .roboinput {
   @apply border border-primary p-1.5 my-2 rounded-lg;

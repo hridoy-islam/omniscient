@@ -39,6 +39,7 @@ const config: any = {
             red: "#D00000",
             stroke: "#EBEBEB",
             primaryLight: "#e3eeef",
+            textlight: "#6B7280",
           },
         },
       },
