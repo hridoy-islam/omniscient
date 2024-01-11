@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
-import NextAuthProvider from "@/context/AuthProvider";
-import { NextUIProvider } from "@nextui-org/react";
 import { Providers } from "./providers";
+import MainContext from "@/context/MainContext";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -24,9 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${nunito.variable} light`}>
       <body>
-        <Providers>
-          <NextAuthProvider>{children}</NextAuthProvider>
-        </Providers>
+        <MainContext>
+          <Providers>{children}</Providers>
+        </MainContext>
       </body>
     </html>
   );

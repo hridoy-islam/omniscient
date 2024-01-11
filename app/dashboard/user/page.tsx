@@ -1,3 +1,16 @@
+"use client";
+import { UserDashBalance } from "@/components/UserDashBalance";
+import { UserPayoutsTable } from "@/components/UserPayoutsTable";
+import UserRigsTable from "@/components/UserRigsTable";
+import { WelcomeBanner } from "@/components/WelcomeBanner";
+
 export default function Page() {
-  return <h1>User, Dashboard Page!</h1>;
+  return (
+    <div>
+      <WelcomeBanner />
+      <UserDashBalance />
+      <UserRigsTable />
+      <UserPayoutsTable />
+    </div>
+  );
 }

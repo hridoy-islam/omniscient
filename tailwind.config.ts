@@ -40,6 +40,7 @@ const config: any = {
             stroke: "#EBEBEB",
             primaryLight: "#e3eeef",
             textlight: "#6B7280",
+            lightYellow: "#FFF7E9",
           },
         },
       },

@@ -6,48 +6,44 @@ import { Avatar, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
 
-export default function Sidebar() {
+export default function UserSidebar() {
   const pathname = usePathname();
   const sidebarmenu = [
     {
-      path: "/dashboard/admin",
+      path: "/dashboard/user",
       name: "Dashboard",
       icon: <Icon icon="solar:pie-chart-outline" />,
     },
     {
-      path: "/dashboard/admin/user",
-      name: "User",
-      icon: <Icon icon="solar:user-linear" />,
+      path: "/dashboard/user/mining",
+      name: "Mining",
+      icon: <Icon icon="solar:layers-linear" />,
     },
     {
-      path: "/dashboard/admin/withdraw",
+      path: "/dashboard/user/rigs",
+      name: "Rigs",
+      icon: <Icon icon="solar:user-id-outline" />,
+    },
+    {
+      path: "/dashboard/user/withdraw",
       name: "Withdraw",
-      icon: <Icon icon="solar:banknote-2-linear" />,
-    },
-    {
-      path: "/dashboard/admin/product",
-      name: "Product",
-      icon: <Icon icon="solar:bag-heart-linear" />,
-    },
-    {
-      path: "/dashboard/admin/invoice",
-      name: "Invoice",
       icon: <Icon icon="ri:currency-fill" />,
     },
     {
-      path: "/dashboard/admin/order",
-      name: "Order",
-      icon: <Icon icon="akar-icons:cart" />,
-    },
-    {
-      path: "/dashboard/admin/vendor",
-      name: "Vendor",
-      icon: <Icon icon="iconoir:bank" />,
-    },
-    {
-      path: "/dashboard/admin/settings",
+      path: "/dashboard/user/settings",
       name: "Settings",
       icon: <Icon icon="solar:settings-linear" />,
+    },
+    {
+      path: "/dashboard/user/invoice",
+      name: "Invoice",
+      icon: <Icon icon="basil:invoice-outline" />,
+    },
+
+    {
+      path: "/dashboard/user/product",
+      name: "Product",
+      icon: <Icon icon="solar:bag-heart-linear" />,
     },
   ];
   return (

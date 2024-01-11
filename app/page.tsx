@@ -4,6 +4,9 @@ import Image from "next/image";
 import logintriangle from "../public/logintriangle.png";
 import roboxfxicon from "../public/robofxicon.png";
 import Link from "next/link";
+import axios from "axios";
+import { useContext } from "react";
+const jwt = require("jsonwebtoken");
 
 type TLogInput = {
   email: string;
@@ -11,14 +14,35 @@ type TLogInput = {
 };
 
 export default function Home() {
+  // const { tokenDetails, token, setToken, setTokenDetails } =
+  //   useContext(userContext);
+  // const tokenDecoded = jwt.decode(token);
+  // const role = tokenDecoded?.data?.role;
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<TLogInput>();
 
-  const onSubmit: SubmitHandler<TLogInput> = (data) => console.log(data);
+  ("use server");
+  const onSubmit = async (data: TLogInput) => {
+    const response = await fetch("http://localhost:3000/api/auth/login", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+        "Cache-Control": "no-cache",
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
+
+    console.log(response);
+  };
 
   return (
     <div className="bg-[url('../public/login_bg.png')]">
@@ -32,9 +56,9 @@ export default function Home() {
                 alt="loginarrow"
                 className="w-8 h-8 mt-3 mr-2 space-x-2"
               />
-              <h2 className="text-white font-semibold text-6xl">Transform</h2>
+              <h2 className="text-white font-semibold text-4xl">Transform</h2>
             </div>
-            <h2 className="text-white font-semibold text-6xl mb-6">
+            <h2 className="text-white font-semibold text-4xl mb-6">
               your business <br /> with digital{" "}
               <span className="text-secondary">branding.</span>
             </h2>
@@ -60,7 +84,7 @@ export default function Home() {
               <label htmlFor="">Email</label>
               <input
                 className="w-full border border-stroke rounded-lg h-12 px-2 bg-[#F1F5F9] focus:border-primary focus:ring-0 focus:outline-none"
-                {...register("email")}
+                {...register("email", { required: true })}
               />
             </div>
             <div>
