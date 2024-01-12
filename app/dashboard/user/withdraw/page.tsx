@@ -1,3 +1,9 @@
+import Pagination from "@/components/Pagination";
+
 export default function Page() {
-  return <h1>User, Withdraw Page!</h1>;
+  return (
+    <>
+      <Pagination />
+    </>
+  );
 }

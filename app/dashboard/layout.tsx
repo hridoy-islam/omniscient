@@ -9,8 +9,12 @@ export default function DashboardLayout({
 }) {
   return (
     <section className="flex">
-      {/* <Sidebar /> */}
-      <UserSidebar />
+      {/* 
+      if admin it works*/}
+      <Sidebar />
+
+      {/* sidebar for user
+      <UserSidebar />*/}
       <div className="w-4/5 h-screen">
         <NavBar />
         <div className="p-6">{children}</div>

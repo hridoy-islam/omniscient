@@ -1,5 +1,5 @@
 import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 type Inputs = {
   email: string;
@@ -7,13 +7,6 @@ type Inputs = {
 };
 
 export default function Page() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
   return (
     <Card>
       <CardHeader>
@@ -26,7 +19,7 @@ export default function Page() {
             <input
               type="email"
               className="roboinput"
-              {...register("email", { required: true })}
+              // {...register("email", { required: true })}
             />
           </div>
           <div className="flex flex-col">
@@ -35,7 +28,7 @@ export default function Page() {
               type="password"
               className="roboinput"
               id=""
-              {...register("password", { required: true })}
+              // {...register("password", { required: true })}
             />
           </div>
         </div>
