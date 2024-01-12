@@ -4,20 +4,30 @@ import Image from "next/image";
 import logintriangle from "../public/logintriangle.png";
 import roboxfxicon from "../public/robofxicon.png";
 import Link from "next/link";
-import axios from "axios";
 import { useContext } from "react";
-const jwt = require("jsonwebtoken");
+import axios from "@/utils/axios";
+import toast from "react-hot-toast";
+import jwt from "jsonwebtoken";
+import { useRouter } from "next/navigation";
 
 type TLogInput = {
   email: string;
   password: string;
 };
 
+export interface DecodedToken {
+  id: string;
+  iat: number;
+  exp: number;
+  role: string;
+}
+
 export default function Home() {
   // const { tokenDetails, token, setToken, setTokenDetails } =
   //   useContext(userContext);
   // const tokenDecoded = jwt.decode(token);
   // const role = tokenDecoded?.data?.role;
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -26,29 +36,38 @@ export default function Home() {
 
   ("use server");
   const onSubmit = async (data: TLogInput) => {
-    const response = await fetch("http://localhost:3000/api/auth/login", {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache",
-      },
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
-    });
+    axios
+      .post("/auth/login", data)
+      .then((res) => {
+        console.log("here is the response", res);
+        toast.success(res?.data?.message);
+        const accessToken = res?.data?.data?.accessToken;
 
-    console.log(response);
+        // Decode the token
+        const decodedToken = jwt.decode(accessToken) as DecodedToken | null;
+        const role = decodedToken?.role;
+        // console.log("Decoded Token", role);
+
+        setTimeout(() => {
+          if (role === "admin") {
+            router.push("/dashboard/admin");
+          } else if (role === "user") {
+            router.push("/dashboard/user");
+          }
+        }, 1000);
+      })
+      .catch((err) => {
+        // console.log("the error", err);
+        toast.error(err?.response?.data?.message);
+      });
   };
 
   return (
     <div className="bg-[url('../public/login_bg.png')]">
-      <div className="grid grid-cols-2 gap-16">
+      {/* <div className="grid grid-cols-2 gap-16"> */}
+      <div className="flex flex-col md:flex-row gap-5 md:gap-16">
         {/* left side */}
-        <div className="py-8 px-16 ml-20 flex flex-col justify-center">
+        <div className="md:w-[55%] py-8 md:px-16 md:ml-20 px-4 flex flex-col justify-center">
           <div className="bg-primary px-16 py-10 shadow-2xl">
             <div className="flex">
               <Image
@@ -71,7 +90,7 @@ export default function Home() {
         </div>
 
         {/* Right side */}
-        <div className="bg-white py-8 px-20 h-screen flex flex-col justify-center">
+        <div className="w-full md:w-[45%] bg-white py-8 px-4 md:px-20 md:h-screen flex flex-col justify-center">
           <Image src={roboxfxicon} alt="Robofx" className="mb-3" />
           <h1 className="font-semiBold text-3xl my-2">Hey, hello 👋</h1>
           <p className="font-bold text-sm text-textlight mb-5">
@@ -116,7 +135,7 @@ export default function Home() {
             <input
               type="submit"
               value={`login`}
-              className="bg-primary text-white w-full font-semiBold text-lg h-12 rounded-lg"
+              className="bg-primary text-white w-full font-semiBold text-lg h-12 rounded-lg cursor-pointer"
             />
           </form>
         </div>
