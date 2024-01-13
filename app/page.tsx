@@ -9,6 +9,7 @@ import axios from "@/utils/axios";
 import toast from "react-hot-toast";
 import jwt from "jsonwebtoken";
 import { useRouter } from "next/navigation";
+import Cookies from "universal-cookie";
 
 type TLogInput = {
   email: string;
@@ -27,6 +28,8 @@ export default function Home() {
   //   useContext(userContext);
   // const tokenDecoded = jwt.decode(token);
   // const role = tokenDecoded?.data?.role;
+  const cookies = new Cookies();
+
   const router = useRouter();
   const {
     register,
@@ -47,6 +50,10 @@ export default function Home() {
         const decodedToken = jwt.decode(accessToken) as DecodedToken | null;
         const role = decodedToken?.role;
         // console.log("Decoded Token", role);
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + 90);
+        cookies.set("jwt", accessToken);
+        // localStorage.setItem("jwt", accessToken);
 
         setTimeout(() => {
           if (role === "admin") {
