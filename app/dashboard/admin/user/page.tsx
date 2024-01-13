@@ -1,22 +1,27 @@
 "use client";
-import { Avatar, Card, CardBody, CardHeader, Link } from "@nextui-org/react";
+import { Avatar, Card, CardBody, CardHeader } from "@nextui-org/react";
 import EditButton from "@/components/EditButton";
 import DeleteButton from "@/components/DeleteButton";
 import ViewButton from "@/components/ViewButton";
+import { Icon } from "@iconify/react";
+import Link from "next/link";
 export default function Page() {
   return (
     <div>
       <Card>
-        <CardHeader className="flex justify-between">
-            <h2>All User</h2>
-            
-            <Link className="text-white bg-primary px-4 py-2 rounded-xl" href="/dashboard/admin/user/create">Add User</Link>
-              
+        <CardHeader className="flex justify-between tableHeader">
+          <h2>All User</h2>
 
+          <Link
+            className="text-white bg-primary px-3 py-2 rounded-md flex"
+            href="/dashboard/admin/user/create"
+          >
+            <Icon icon="ic:round-plus" width={24} /> Add User
+          </Link>
         </CardHeader>
         <CardBody>
           <table className="table-fixed">
-            <thead className="bg-primary h-7 text-white">
+            <thead>
               <tr>
                 <th>Name</th>
                 <th>Phone</th>
@@ -27,7 +32,7 @@ export default function Page() {
               </tr>
             </thead>
             <tbody>
-              <tr className="h-12 text-md">
+              <tr>
                 <td>
                   <div className="flex items-center">
                     <Avatar
@@ -43,7 +48,7 @@ export default function Page() {
                 <td>1961</td>
                 <td>
                   <EditButton />
-                  <ViewButton  />
+                  <ViewButton />
                   <DeleteButton />
                 </td>
               </tr>

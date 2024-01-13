@@ -1,33 +1,52 @@
-"use client"
+"use client";
 import React from "react";
-import { Tabs, Tab, Card, CardBody, CardHeader, Avatar, Button } from "@nextui-org/react";
+import {
+  Tabs,
+  Tab,
+  Card,
+  CardBody,
+  CardHeader,
+  Avatar,
+  Button,
+} from "@nextui-org/react";
 import ViewButton from "@/components/ViewButton";
 import EditButton from "@/components/EditButton";
 import Pagination from "@/components/Pagination";
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 
 export default function Page() {
   return (
     <div>
-      <Card className="p-2 my-2">
-        <Link href="/dashboard/admin/invoice/create"><Button className="btn-basic">Create Invoice</Button></Link>
-      </Card>
       <div className="flex w-full flex-col">
-        <Tabs aria-label="Options" color="primary" variant="bordered"
+        <Tabs
+          aria-label="Options"
+          color="primary"
+          variant="bordered"
           classNames={{
             tabList: "bg-white p-0 rounded-0 text-white",
             cursor: "w-full bg-primary",
             tab: "max-w-fit px-8 h-10",
             // tabContent: "group-data-[selected=true]:text-[#06b6d4]"
-          }}>
-          <Tab key="bill" title="Bill Invoices" >
+          }}
+        >
+          <Tab key="bill" title="Bill Invoices">
             <Card>
-              <CardHeader className="border-b border-stroke py-5">
-                <h2>All Bill Invoices</h2>
+              <CardHeader className="tableHeader">
+                <div>
+                  <h2>All Bill Invoices</h2>
+                </div>
+                <div>
+                  <Link href="/dashboard/admin/invoice/create">
+                    <Button className="btn-basic rounded-md">
+                      <Icon icon="ic:round-plus" width={24} /> Create Invoice
+                    </Button>
+                  </Link>
+                </div>
               </CardHeader>
               <CardBody>
                 <table className="table-fixed">
-                  <thead className="bg-primary h-7 text-white">
+                  <thead>
                     <tr>
                       <th>Invoice Number</th>
                       <th>Amount</th>
@@ -37,7 +56,7 @@ export default function Page() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="h-12 text-md">
+                    <tr>
                       <td>Invoice-0019</td>
                       <td>$292</td>
                       <td>
@@ -62,12 +81,21 @@ export default function Page() {
           </Tab>
           <Tab key="addon" title="Add-ons Invoice">
             <Card>
-              <CardHeader className="border-b border-stroke py-5">
-                <h2>Add On Invoices</h2>
+              <CardHeader className="tableHeader">
+                <div>
+                  <h2>Add On Invoices</h2>
+                </div>
+                <div>
+                  <Link href="/dashboard/admin/invoice/create">
+                    <Button className="btn-basic rounded-md">
+                      <Icon icon="ic:round-plus" width={24} /> Create Invoice
+                    </Button>
+                  </Link>
+                </div>
               </CardHeader>
               <CardBody>
                 <table className="table-fixed">
-                  <thead className="bg-primary h-7 text-white">
+                  <thead>
                     <tr>
                       <th>Invoice Number</th>
                       <th>Amount</th>
@@ -77,7 +105,7 @@ export default function Page() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="h-12 text-md">
+                    <tr>
                       <td>Invoice-0019</td>
                       <td>$292</td>
                       <td>
@@ -102,12 +130,21 @@ export default function Page() {
           </Tab>
           <Tab key="rigs" title="Rigs Invoice">
             <Card>
-              <CardHeader className="border-b border-stroke py-5">
-                <h2>Rigs Invoices</h2>
+              <CardHeader className="tableHeader">
+                <div>
+                  <h2>Rigs Invoices</h2>
+                </div>
+                <div>
+                  <Link href="/dashboard/admin/invoice/create">
+                    <Button className="btn-basic rounded-md">
+                      <Icon icon="ic:round-plus" width={24} /> Create Invoice
+                    </Button>
+                  </Link>
+                </div>
               </CardHeader>
               <CardBody>
                 <table className="table-fixed">
-                  <thead className="bg-primary h-7 text-white">
+                  <thead>
                     <tr>
                       <th>Invoice Number</th>
                       <th>Amount</th>
@@ -117,7 +154,7 @@ export default function Page() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="h-12 text-md">
+                    <tr>
                       <td>Invoice-0019</td>
                       <td>$292</td>
                       <td>

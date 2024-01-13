@@ -50,3 +50,16 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 40px white inset !important;
 }
+
+th {
+  @apply p-1 border-b border-stroke;
+}
+td{
+  @apply p-2;
+}
+tr{
+  @apply last:border-b-0 border-b border-stroke;
+}
+.tableHeader {
+  @apply flex justify-between border-b border-stroke;
+}
