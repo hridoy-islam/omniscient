@@ -16,12 +16,12 @@ export default function Page() {
       </Card>
     </div>
     <Card className="mb-6">
-            <CardHeader className="border-b border-stroke py-5">
+            <CardHeader className="tableHeader">
               <h2>Withdraw Requests</h2>
             </CardHeader>
             <CardBody>
-            <table className="table-fixed">
-            <thead className="bg-primary h-7 text-white">
+            <table className="table-auto">
+            <thead>
               <tr>
                 <th>Requested By</th>
                 <th>Withdraw ID</th>
@@ -33,7 +33,7 @@ export default function Page() {
               </tr>
             </thead>
             <tbody>
-              <tr className="h-12 text-md">
+              <tr>
                 <td>Invoice-0019</td>
                 <td>$292</td>
                 <td>1961</td>

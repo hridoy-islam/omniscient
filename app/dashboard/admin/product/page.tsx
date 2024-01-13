@@ -21,8 +21,8 @@ export default function Page() {
         </div>
       </CardHeader>
       <CardBody>
-        <table className="table-fixed">
-          <thead className="bg-primary h-7 text-white">
+        <table className="table-auto">
+          <thead>
             <tr>
               <th>Product ID</th>
               <th>Name</th>
@@ -31,13 +31,13 @@ export default function Page() {
             </tr>
           </thead>
           <tbody>
-            <tr className="h-12 text-md">
+            <tr>
               <td>Invoice-0019</td>
               <td>Something Product</td>
               <td>$292</td>
               <td>
-                <EditButton />
-                <ViewButton />
+              <Link href="/dashboard/admin/product/edit/1"><EditButton /></Link>
+                <Link href="/dashboard/admin/product/1"><ViewButton /></Link>
                 <DeleteButton />
               </td>
             </tr>
