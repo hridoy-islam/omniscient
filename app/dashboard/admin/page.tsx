@@ -1,23 +1,65 @@
 "use client";
 import ViewButton from "@/components/ViewButton";
 import { Avatar, Button, Card, CardBody, CardHeader } from "@nextui-org/react";
-import axios from "axios";
+import Cookies from "universal-cookie";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+// async function getUserData() {
+//   // try {
+//   //   const res = await axios.get(`${process.env.API_URL}/users`);
+//   //   const user = res.data;
+//   //   return { user };
+//   // } catch (error) {
+//   //   return { error };
+//   // }
+//   async function getData() {
+//     const options = { credentials: true };
+//     const res = await fetch(`http://localhost:3000/api/users`, options);
 
-async function getUserData() {
-  // async function getData() {
-  //   const options = { credentials: true };
-  //   const res = await fetch(`http://localhost:3000/api/users`, options);
-  //   if (!res.ok) {
-  //     // This will activate the closest `error.js` Error Boundary
-  //     throw new Error("Failed to fetch data");
-  //   }
-  //   return res.json();
+//     if (!res.ok) {
+//       // This will activate the closest `error.js` Error Boundary
+//       throw new Error("Failed to fetch data");
+//     }
+
+//     return res.json();
+//   }
+// }
+
+export default function Page() {
+  const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+  console.log("is Client", isClient);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const cookies = new Cookies();
+  const token = cookies.get("jwt");
+
+  // let token;
+  // if (isClient) {
+  //   token = localStorage.getItem("jwt");
   // }
-}
 
-export default async function Page() {
-  const data = await getUserData();
-  console.log(data);
+  // const token = localStorage.getItem("jwt");
+
+  // console.log("token", token);
+
+  let isAuthenticated;
+  if (token) {
+    isAuthenticated = true;
+  } else {
+    isAuthenticated = false;
+  }
+
+  if (isAuthenticated) {
+    console.log("");
+  } else {
+    router.push("/");
+  }
+
+  // console.log("here is the cookie", cookies.get("jwt"));
   return (
     <div>
       <div className="grid grid-cols-3 gap-3">
