@@ -5,12 +5,12 @@ import ViewButton from "./ViewButton";
 export const UserPayoutsTable = () => {
   return (
     <Card className="my-6">
-      <CardHeader className="border-b border-stroke py-5">
+      <CardHeader className="tableHeader">
         <h2>Payouts</h2>
       </CardHeader>
       <CardBody>
         <table className="table-fixed">
-          <thead className="bg-primary h-7 text-white">
+          <thead>
             <tr>
               <th>Withdraw ID</th>
               <th>Ammount</th>
@@ -23,7 +23,7 @@ export const UserPayoutsTable = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="h-12 text-md">
+            <tr>
               <td>Invoice-0019</td>
               <td>Something</td>
               <td>$292</td>
