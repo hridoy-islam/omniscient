@@ -1,7 +1,7 @@
 import { Button, Card, Chip } from "@nextui-org/react";
 import React from "react";
 
-export const page = () => {
+export default function page() {
   return (
     <div className="grid grid-cols-2 gap-3">
       <Card className="p-4">
@@ -16,6 +16,4 @@ export const page = () => {
       </Card>
     </div>
   );
-};
-
-export default page;
+}

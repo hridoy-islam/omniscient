@@ -109,6 +109,7 @@ export default function Home() {
             <div>
               <label htmlFor="">Email</label>
               <input
+                type="email"
                 className="w-full border border-stroke rounded-lg h-12 px-2 bg-[#F1F5F9] focus:border-primary focus:ring-0 focus:outline-none"
                 {...register("email", { required: true })}
               />
@@ -117,6 +118,7 @@ export default function Home() {
               <label htmlFor="">Password</label>
               {/* include validation with required or other standard HTML validation rules */}
               <input
+                type="password"
                 className="w-full border border-stroke rounded-lg h-12 px-2 bg-[#F1F5F9] focus:border-primary focus:ring-0 focus:outline-none"
                 {...register("password", { required: true })}
               />

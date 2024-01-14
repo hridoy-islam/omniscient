@@ -1,6 +1,6 @@
 import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 
-export const page = () => {
+export default function page() {
   return (
     <>
       <Card className="mx-20">
@@ -58,6 +58,4 @@ export const page = () => {
       </Card>
     </>
   );
-};
-
-export default page;
+}
