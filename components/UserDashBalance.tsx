@@ -18,9 +18,9 @@ export const UserDashBalance = () => {
         <h2 className="text-primary font-bold text-center my-3 text-xl">
           Current Actual Profitability
         </h2>
-        <div className="bg-lightYellow flex items-center justify-between rounded-xl px-10 py-2 my-2 mx-6">
+        <div className="bg-lightYellow flex items-center justify-between rounded-xl px-3 py-2 my-2 mx-6">
           <Image src={btc} alt="btc" />
-          <p className="text-2xl font-semibold">0.0019603242 BTC</p>
+          <p className="text-lg font-semibold">0.0019603242 BTC</p>
         </div>
         <p className="text-center">Last 24hr</p>
       </Card>

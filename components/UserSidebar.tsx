@@ -71,6 +71,7 @@ export default function UserSidebar() {
       </div>
 
       <div className="">
+        <Link href='/dashboard/user/profile'>
         <Button className="flex w-full justify-start border-stroke rounded-lg">
           <Avatar
             className="w-7 h-7 rounded-full"
@@ -78,6 +79,7 @@ export default function UserSidebar() {
           />
           <span>Easter Howard</span>
         </Button>
+        </Link>
       </div>
     </div>
   );
