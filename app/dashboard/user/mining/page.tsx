@@ -43,11 +43,11 @@ export default function page() {
       <Card className="p-6 space-y-3">
         <h2>Current Mining Balance</h2>
         <h3 className="text-4xl font-bold">0.000434 BTC</h3>
-        <div>
-          <Button>
+        <div className="flex justify-between">
+          <Button className="bg-primaryLight">
             <Icon icon="ph:play-fill" /> Start All Rigs
           </Button>
-          <Button>Stop All Rigs</Button>
+          <Button className="bg-[#f9e5e5]"> <Icon icon="solar:pause-bold" />Stop All Rigs</Button>
         </div>
       </Card>
       <Card className="p-6 space-y-3">
