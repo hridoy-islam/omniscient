@@ -14,8 +14,6 @@ export default function Page() {
   const { register, handleSubmit, reset } = useForm<Inputs>();
 
   const onSubmit = async (data: Inputs) => {
-    // console.log("Here is the data", data);
-    // Make an API call using axios
     const response = await Axios.post("/auth/create-user", data)
       .then((res) => {
         // console.log("API response:", res.data);
@@ -23,7 +21,7 @@ export default function Page() {
         reset();
       })
       .catch((err) => {
-        console.log("the err", err);
+        // console.log("the err", err);
         toast.error(err?.response?.data?.message);
       });
   };
