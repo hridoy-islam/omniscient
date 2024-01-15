@@ -5,8 +5,13 @@ import Link from "next/link";
 import { Avatar, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
+import { UserData } from "@/utils/interfaces";
 
-export default function UserSidebar() {
+interface UserSidebarProps {
+  currentUser: UserData;
+}
+
+export default function UserSidebar({ currentUser }: UserSidebarProps) {
   const pathname = usePathname();
   const sidebarmenu = [
     {
@@ -71,14 +76,17 @@ export default function UserSidebar() {
       </div>
 
       <div className="">
-        <Link href='/dashboard/user/profile'>
-        <Button className="flex w-full justify-start border-stroke rounded-lg">
-          <Avatar
-            className="w-7 h-7 rounded-full"
-            src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-          />
-          <span>Easter Howard</span>
-        </Button>
+        <Link href="/dashboard/user/profile">
+          <Button className="flex w-full justify-start border-stroke rounded-lg">
+            <Avatar
+              className="w-7 h-7 rounded-full"
+              src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+            />
+            <span>
+              {currentUser?.personal_information?.firstName}{" "}
+              {currentUser?.personal_information?.lastName}
+            </span>
+          </Button>
         </Link>
       </div>
     </div>

@@ -56,7 +56,7 @@ export default function NavBar() {
         </NavbarContent>
 
         <NavbarMenu>
-          {menuItems.map((item, index) => (
+          {menuItems?.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 className="w-full"

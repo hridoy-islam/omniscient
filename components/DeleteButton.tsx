@@ -16,21 +16,25 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import toast from "react-hot-toast";
 import axios from "@/utils/axios";
 
-interface DeleteButtonWithConfirmationProps {
+interface DeleteButtonProps {
   id?: string;
   label?: string;
 }
 
-const DeleteButton: React.FC<DeleteButtonWithConfirmationProps> = ({
-  id,
-  label,
-}) => {
+const DeleteButton: React.FC<DeleteButtonProps> = ({ id, label }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
   const handleDelete = async () => {
     try {
       const apiUrl = `/${label}/${id}`;
-      const response = await axios.delete(apiUrl);
+      let response;
+      if (label === "users") {
+        response = await axios.patch(apiUrl, {
+          isDeleted: true,
+        });
+      } else {
+        response = await axios.delete(apiUrl);
+      }
       toast.success(response?.data?.message);
       router.refresh();
       onOpenChange();
@@ -58,7 +62,7 @@ const DeleteButton: React.FC<DeleteButtonWithConfirmationProps> = ({
                 <p></p>
               </ModalHeader>
               <ModalBody>
-                <h3>Are you sure you want to delete this exchange?</h3>
+                <h3>Are you sure you want to delete this?</h3>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>

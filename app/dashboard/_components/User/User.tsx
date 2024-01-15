@@ -66,14 +66,14 @@ export default function User({ allUsers }: UserProps) {
                       <span>The Sliding</span>
                     </div>
                   </td>
-                  <td>Malcolm Lockyer</td>
+                  <td>+987438438</td>
                   <td>{user?.email}</td>
-                  <td>1961</td>
-                  <td>1961</td>
+                  <td></td>
+                  <td></td>
                   <td>
                     <EditButton userId={user?._id} />
-                    <ViewButton />
-                    <DeleteButton />
+                    <ViewButton userId={user?._id}  />
+                    <DeleteButton label="users" id={user?._id} />
                   </td>
                 </tr>
               </tbody>

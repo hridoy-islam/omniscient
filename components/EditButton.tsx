@@ -13,9 +13,9 @@ export default function EditButton({ userId }: EditButonPorps) {
   // console.log("consoling from edit button", userId);
   const router = useRouter();
 
-  const handleClick = () => {
-    router.push("/");
-  };
+  // const handleClick = () => {
+  //   router.push("/");
+  // };
 
   return (
     <Link href={`/dashboard/admin/user/edit/${userId}`}>

@@ -8,7 +8,11 @@ import BillingInfo from "./BillingInfo";
 import Agreement from "./Agreement";
 import Rigs from "./Rigs";
 
-const Edit = () => {
+interface EditProps {
+  id: string;
+}
+
+const Edit = ({ id }: EditProps) => {
   return (
     <Tabs
       aria-label="Options"
@@ -22,13 +26,13 @@ const Edit = () => {
       }}
     >
       <Tab key="personal" title="Personal Info">
-        <PersonalInfo />
+        <PersonalInfo id={id} />
       </Tab>
       <Tab key="contact" title="Contact Info">
-        <ContactInfo />
+        <ContactInfo id={id} />
       </Tab>
       <Tab key="bill" title="Billing Info">
-        <BillingInfo />
+        <BillingInfo id={id}/>
       </Tab>
       <Tab key="agreement" title="Agreement">
         <Agreement />
