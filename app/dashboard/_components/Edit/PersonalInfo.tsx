@@ -22,7 +22,11 @@ interface UserData {
   phone: string;
 }
 
-const PersonalInfo: React.FC = () => {
+interface PersonalInfoProps {
+  id: string;
+}
+
+const PersonalInfo: React.FC<PersonalInfoProps> = ({ id }) => {
   const [userData, setUserData] = useState<UserData>({
     firstName: "",
     lastName: "",
@@ -31,14 +35,14 @@ const PersonalInfo: React.FC = () => {
     phone: "",
   });
 
-  const cookie = new Cookies();
-  const token = cookie.get("jwt");
-  const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
+  // const cookie = new Cookies();
+  // const token = cookie.get("jwt");
+  // const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
   //   console.log("token", decoded);
 
   useEffect(() => {
     axios
-      .get(`/users/${decoded?.id}`)
+      .get(`/users/${id}`)
       .then((response) => {
         // console.log("response", response?.data?.data);
         if (response?.data?.data?.personal_information) {
@@ -49,8 +53,8 @@ const PersonalInfo: React.FC = () => {
   }, []);
 
   const handleSave = () => {
-    const userId = decoded?.id;
-    if (!userId) {
+    // const userId = decoded?.id;
+    if (!id) {
       console.error("User ID not available");
       return;
     }
@@ -64,7 +68,7 @@ const PersonalInfo: React.FC = () => {
       },
     };
 
-    const url = `/users/${userId}`;
+    const url = `/users/${id}`;
 
     axios
       .patch(url, formattedData)

@@ -14,10 +14,14 @@ import { DecodedToken } from "@/utils/interfaces";
 import { jwtDecode } from "jwt-decode";
 import toast from "react-hot-toast";
 
-const ContactInfo = () => {
-  const cookie = new Cookies();
-  const token = cookie.get("jwt");
-  const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
+interface ContactInfoProps {
+  id: string;
+}
+
+const ContactInfo = ({ id }: ContactInfoProps) => {
+  // const cookie = new Cookies();
+  // const token = cookie.get("jwt");
+  // const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
 
   const [contactData, setContactData] = useState({
     address: "",
@@ -29,7 +33,7 @@ const ContactInfo = () => {
 
   useEffect(() => {
     axios
-      .get(`/users/${decoded?.id}`)
+      .get(`/users/${id}`)
       .then((response) => {
         // console.log("response", response?.data?.data);
         if (response?.data?.data?.contact_information) {
@@ -40,8 +44,8 @@ const ContactInfo = () => {
   }, []);
 
   const handleSave = () => {
-    const userId = decoded?.id;
-    if (!userId) {
+    // const userId = decoded?.id;
+    if (!id) {
       console.error("User ID not available");
       return;
     }
@@ -56,7 +60,7 @@ const ContactInfo = () => {
       },
     };
 
-    const url = `/users/${userId}`;
+    const url = `/users/${id}`;
 
     axios
       .patch(url, formattedData)

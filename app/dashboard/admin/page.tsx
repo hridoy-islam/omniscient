@@ -4,60 +4,18 @@ import { Avatar, Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-// async function getUserData() {
-//   // try {
-//   //   const res = await axios.get(`${process.env.API_URL}/users`);
-//   //   const user = res.data;
-//   //   return { user };
-//   // } catch (error) {
-//   //   return { error };
-//   // }
-//   async function getData() {
-//     const options = { credentials: true };
-//     const res = await fetch(`http://localhost:3000/api/users`, options);
-
-//     if (!res.ok) {
-//       // This will activate the closest `error.js` Error Boundary
-//       throw new Error("Failed to fetch data");
-//     }
-
-//     return res.json();
-//   }
-// }
 
 export default function Page() {
   const router = useRouter();
-  const [isClient, setIsClient] = useState(false);
-  console.log("is Client", isClient);
+  // const [isClient, setIsClient] = useState(false);
+  // console.log("is Client", isClient);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsClient(true);
+  // }, []);
 
-  const cookies = new Cookies();
-  const token = cookies.get("jwt");
-
-  // let token;
-  // if (isClient) {
-  //   token = localStorage.getItem("jwt");
-  // }
-
-  // const token = localStorage.getItem("jwt");
-
-  // console.log("token", token);
-
-  let isAuthenticated;
-  if (token) {
-    isAuthenticated = true;
-  } else {
-    isAuthenticated = false;
-  }
-
-  if (isAuthenticated) {
-    console.log("");
-  } else {
-    router.push("/");
-  }
+  // const cookies = new Cookies();
+  // const token = cookies.get("jwt");
 
   // console.log("here is the cookie", cookies.get("jwt"));
   return (

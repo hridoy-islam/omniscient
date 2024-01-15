@@ -2,7 +2,8 @@ import axios, { AxiosInstance } from "axios";
 // import cookie from "js-cookie";
 
 // const API_URL = process.env.NEXT_PUBLIC_API;
-const API_URL = "https://robofxbackend.onrender.com/api";
+// const API_URL = "http://217.196.50.52:5000/api";
+const API_URL = "http://localhost:3001/api";
 
 const Axios: AxiosInstance = axios.create({
   baseURL: API_URL,

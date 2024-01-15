@@ -22,10 +22,14 @@ interface BillingInfoData {
   zipcode: string;
 }
 
-const BillingInfo: React.FC = () => {
-  const cookie = new Cookies();
-  const token = cookie.get("jwt");
-  const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
+interface BillingInfoProps {
+  id: string;
+}
+
+const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
+  // const cookie = new Cookies();
+  // const token = cookie.get("jwt");
+  // const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
 
   const [billingInfo, setBillingInfo] = useState<BillingInfoData>({
     address: "",
@@ -37,7 +41,7 @@ const BillingInfo: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get(`/users/${decoded?.id}`)
+      .get(`/users/${id}`)
       .then((response) => {
         // console.log("response", response?.data?.data);
         if (response?.data?.data?.billing_information) {
@@ -48,8 +52,8 @@ const BillingInfo: React.FC = () => {
   }, []);
 
   const handleSave = () => {
-    const userId = decoded?.id;
-    if (!userId) {
+    // const userId = decoded?.id;
+    if (!id) {
       console.error("User ID not available");
       return;
     }
@@ -64,7 +68,7 @@ const BillingInfo: React.FC = () => {
       },
     };
 
-    const url = `/users/${userId}`;
+    const url = `/users/${id}`;
 
     axios
       .patch(url, formattedData)

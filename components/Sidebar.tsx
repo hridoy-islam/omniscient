@@ -5,8 +5,11 @@ import Link from "next/link";
 import { Avatar, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
-
-export default function Sidebar() {
+import { UserData } from "@/utils/interfaces";
+interface UserSidebarProps {
+  currentUser: UserData;
+}
+export default function Sidebar({ currentUser }: UserSidebarProps) {
   const pathname = usePathname();
   const sidebarmenu = [
     {
@@ -80,7 +83,10 @@ export default function Sidebar() {
             className="w-7 h-7 rounded-full"
             src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
           />
-          <span>Easter Howard</span>
+          <span>
+            {currentUser?.personal_information?.firstName}{" "}
+            {currentUser?.personal_information?.lastName}
+          </span>
         </Button>
       </div>
     </div>
