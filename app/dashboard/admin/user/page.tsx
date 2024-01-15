@@ -4,7 +4,6 @@ import getAllUsers from "@/app/actions/getAllUsers";
 
 const page = async () => {
   const allUsers = await getAllUsers();
-  // console.log("All users", allUsers?.data);
   return (
     <div>
       <User allUsers={allUsers?.data} />

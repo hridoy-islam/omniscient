@@ -1,8 +1,8 @@
 import Axios from "@/utils/axios";
 
-export default async function getAllUsers() {
+export default async function getAllWallets() {
   try {
-    const res = await Axios.get(`/users?role=user`);
+    const res = await Axios.get(`/wallet`);
     return res.data;
   } catch (error) {
     console.error("");

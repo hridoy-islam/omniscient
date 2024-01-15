@@ -28,7 +28,7 @@ interface UserProps {
 
 export default function User({ allUsers }: UserProps) {
   const usersList = allUsers?.result;
-  // console.log("All users data", allUsers?.result);
+  // console.log("user id", allUsers?.result);
   return (
     <div>
       <Card>
@@ -71,7 +71,7 @@ export default function User({ allUsers }: UserProps) {
                   <td>1961</td>
                   <td>1961</td>
                   <td>
-                    <EditButton />
+                    <EditButton userId={user?._id} />
                     <ViewButton />
                     <DeleteButton />
                   </td>

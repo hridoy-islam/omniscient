@@ -1,101 +1,26 @@
-"use client";
-import DeleteButton from "@/components/DeleteButton";
-import EditButton from "@/components/EditButton";
-import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
+import AddExchange from "../../_components/Vendor/AddExchange";
+import ExchangesDisplay from "../../_components/Vendor/ExchangesDisplay";
+import AddWallet from "../../_components/Vendor/AddWallet";
+import WalletDisplay from "../../_components/Vendor/WalletDisplay";
+import getAllExchanges from "@/app/actions/getAllExchanges";
+import getAllWallets from "@/app/actions/getAllWallets";
 
-export default function Page() {
+const page = async () => {
+  const allExchanges = await getAllExchanges();
+  const allWallet = await getAllWallets();
+  // console.log("all allWallet", allWallet?.data);
   return (
     <div>
       <div className="grid grid-cols-2 gap-3">
-        <Card>
-          <CardHeader>
-            <h2>Add Exchange</h2>
-          </CardHeader>
-          <CardBody className="border border-t border-stroke bg-primaryLight">
-            <input type="text" className="roboinput" />
-            <Button className="btn-basic w-5">Save</Button>
-          </CardBody>
-        </Card>
-        <Card className="shadow-xl">
-          <CardHeader>
-            <h2>Exchange Names</h2>
-          </CardHeader>
-          <CardBody>
-            <table className="table-fixed">
-              <thead>
-                <tr>
-                  <th>SN</th>
-                  <th>Name</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="">
-                  <td>1</td>
-                  <td>Bitfinex</td>
-                  <td>
-                    <EditButton />
-                    <DeleteButton />
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Bitfinex</td>
-                  <td>
-                    <EditButton />
-                    <DeleteButton />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </CardBody>
-        </Card>
+        <AddExchange />
+        <ExchangesDisplay exchanges={allExchanges?.data} />
       </div>
       <div className="grid grid-cols-2 gap-3 my-10">
-        <Card>
-          <CardHeader>
-            <h2>Add Wallet</h2>
-          </CardHeader>
-          <CardBody className="border border-t border-stroke bg-primaryLight">
-            <input type="text" className="roboinput" />
-            <Button className="btn-basic w-5">Save</Button>
-          </CardBody>
-        </Card>
-        <Card className="shadow-xl">
-          <CardHeader>
-            <h2>Wallet Names</h2>
-          </CardHeader>
-          <CardBody>
-            <table className="table-fixed">
-              <thead>
-                <tr>
-                  <th>SN</th>
-                  <th>Name</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="">
-                  <td>1</td>
-                  <td>Bitfinex</td>
-                  <td>
-                    <EditButton />
-                    <DeleteButton />
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Bitfinex</td>
-                  <td>
-                    <EditButton />
-                    <DeleteButton />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </CardBody>
-        </Card>
+        <AddWallet />
+        <WalletDisplay wallets={allWallet?.data} />
       </div>
     </div>
   );
-}
+};
+
+export default page;

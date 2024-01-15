@@ -1,10 +1,9 @@
 "use client";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Image from "next/image";
 import logintriangle from "../public/logintriangle.png";
 import roboxfxicon from "../public/robofxicon.png";
 import Link from "next/link";
-import { useContext } from "react";
 import axios from "@/utils/axios";
 import toast from "react-hot-toast";
 import jwt from "jsonwebtoken";
