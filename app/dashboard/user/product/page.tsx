@@ -11,6 +11,9 @@ import {
 } from "@nextui-org/react";
 import ViewButton from "@/components/ViewButton";
 import Link from "next/link";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import Image from "next/image";
+import intel from "../../../../public/intel.png";
 
 export default function Page() {
   return (
@@ -28,31 +31,339 @@ export default function Page() {
           }}
         >
           <Tab key="items" title="Items">
-            <div className="grid grid-cols-2 gap-2">
-            <Card className="p-4 space-y-3">
-             <Chip className="bg-primaryLight text-primary">Basic Mining</Chip>
+            <div className="grid grid-cols-2 gap-6">
+              {/* Loop start */}
+              <Card className="p-4 space-y-3">
+                <Chip className="bg-primaryLight text-primary">
+                  Basic Mining
+                </Chip>
 
-             <div className="bg-primaryLight rounded-xl p-4 flex justify-between">
-              <p className="text-3xl font-bold">$500</p>
-              <div>
-                <p className="text-sm">Powerd By</p>
-              </div>
-             </div>
+                <div className="bg-primaryLight rounded-xl p-4 flex justify-between items-center">
+                  <p className="text-5xl font-bold">$500</p>
+                  <div>
+                    <p className="text-sm">Powerd By</p>
+                    <Image src={intel} alt="powerdby" />
+                  </div>
+                </div>
 
-             <Button className="btn-basic w-full rounded-md">Add To Cart</Button>
-            </Card>
-            <Card className="p-4 space-y-3">
-            <Chip className="bg-primaryLight text-primary">Basic Mining</Chip>
-            <div className="bg-primaryLight rounded-xl p-4 flex justify-between">
-              <p className="text-3xl font-bold">$750</p>
-              <div>
-                <p className="text-sm">Powerd By</p>
-              </div>
-              </div>
-              <Button className="btn-basic w-full rounded-md">Add To Cart</Button>
-            </Card>
+                <div className="productview">
+                  <table className="w-full">
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Processor</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Ram</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                  </table>
+                </div>
+
+                <Button className="btn-basic w-full rounded-md">
+                  Add To Cart
+                </Button>
+              </Card>
+
+              {/* Loop End */}
+              <Card className="p-4 space-y-3">
+                <Chip className="bg-primaryLight text-primary">
+                  Basic Mining
+                </Chip>
+
+                <div className="bg-primaryLight rounded-xl p-4 flex justify-between items-center">
+                  <p className="text-5xl font-bold">$500</p>
+                  <div>
+                    <p className="text-sm">Powerd By</p>
+                    <Image src={intel} alt="powerdby" />
+                  </div>
+                </div>
+
+                <div className="productview">
+                  <table className="w-full">
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Processor</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Ram</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                  </table>
+                </div>
+
+                <Button className="btn-basic w-full rounded-md">
+                  Add To Cart
+                </Button>
+              </Card>
+              <Card className="p-4 space-y-3">
+                <Chip className="bg-primaryLight text-primary">
+                  Basic Mining
+                </Chip>
+
+                <div className="bg-primaryLight rounded-xl p-4 flex justify-between items-center">
+                  <p className="text-5xl font-bold">$500</p>
+                  <div>
+                    <p className="text-sm">Powerd By</p>
+                    <Image src={intel} alt="powerdby" />
+                  </div>
+                </div>
+
+                <div className="productview">
+                  <table className="w-full">
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Processor</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Ram</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                  </table>
+                </div>
+
+                <Button className="btn-basic w-full rounded-md">
+                  Add To Cart
+                </Button>
+              </Card>
+              <Card className="p-4 space-y-3">
+                <Chip className="bg-primaryLight text-primary">
+                  Basic Mining
+                </Chip>
+
+                <div className="bg-primaryLight rounded-xl p-4 flex justify-between items-center">
+                  <p className="text-5xl font-bold">$500</p>
+                  <div>
+                    <p className="text-sm">Powerd By</p>
+                    <Image src={intel} alt="powerdby" />
+                  </div>
+                </div>
+
+                <div className="productview">
+                  <table className="w-full">
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Processor</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Ram</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                    <tr>
+                      <td className="w-12">
+                        <Icon
+                          icon="mdi:check-bold"
+                          className="bg-stroke rounded-full h-6 w-6 p-1 text-primary"
+                        />
+                      </td>
+                      <td className="w-30">Motherboard</td>
+                      <td>TUF GAMING Z590-PLUS</td>
+                    </tr>
+                  </table>
+                </div>
+
+                <Button className="btn-basic w-full rounded-md">
+                  Add To Cart
+                </Button>
+              </Card>
             </div>
-              
           </Tab>
           <Tab key="orders" title="Orders">
             <Card>
@@ -60,7 +371,6 @@ export default function Page() {
                 <div>
                   <h2>Orders</h2>
                 </div>
-
               </CardHeader>
               <CardBody>
                 <table className="table-fixed">
@@ -83,9 +393,8 @@ export default function Page() {
                       <td>$292</td>
                       <td>
                         <Link href="/dashboard/user/order/1">
-                        <ViewButton />
+                          <ViewButton />
                         </Link>
-
                       </td>
                     </tr>
                   </tbody>

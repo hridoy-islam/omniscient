@@ -4,6 +4,7 @@ import { Avatar, Card, CardBody, CardHeader } from "@nextui-org/react";
 import ViewButton from "@/components/ViewButton";
 import EditButton from "@/components/EditButton";
 import DeleteButton from "@/components/DeleteButton";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -41,8 +42,9 @@ export default function Page() {
               <td>Approved</td>
               <td>1912</td>
               <td>
-                <EditButton />
-                <ViewButton />
+                <Link href={"/dashboard/admin/order/1"}>
+                  <ViewButton />
+                </Link>
                 <DeleteButton />
               </td>
             </tr>

@@ -1,10 +1,18 @@
 "use client";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
-import intel from "../../../../../public/intel.png";
-import Image from "next/image";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Chip,
+  Select,
+  SelectItem,
+} from "@nextui-org/react";
 
 export default function Page() {
+  const status = ["pending", "approve", "decline"];
+
   return (
     <div className="flex gap-8">
       <div className="w-9/12">
@@ -123,6 +131,22 @@ export default function Page() {
               <h2>Total</h2>
               <p>$500</p>
             </div>
+          </CardBody>
+        </Card>
+
+        <Card className="mt-6 p-3">
+          <CardHeader>
+            <p>Change Order Status</p>
+          </CardHeader>
+          <CardBody>
+            <Select placeholder="Change Status">
+              {status.map((status) => (
+                <SelectItem key={status} value={status}>
+                  {status}
+                </SelectItem>
+              ))}
+            </Select>
+            <Button className="btn-basic w-16 rounded-lg my-4">Update</Button>
           </CardBody>
         </Card>
       </div>

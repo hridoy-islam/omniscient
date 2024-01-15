@@ -63,3 +63,7 @@ tr{
 .tableHeader {
   @apply flex justify-between border-b border-stroke;
 }
+
+.productview tr {
+  @apply border-0 !important;
+}

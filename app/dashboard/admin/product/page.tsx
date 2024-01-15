@@ -5,7 +5,10 @@ import ViewButton from "@/components/ViewButton";
 import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import { usePathname, useRouter } from "next/navigation";
 export default function Page() {
+  const router = useRouter();
+  const pathName = usePathname();
   return (
     <Card>
       <CardHeader className="tableHeader">
@@ -24,20 +27,33 @@ export default function Page() {
         <table className="table-auto">
           <thead>
             <tr>
-              <th>Product ID</th>
               <th>Name</th>
               <th>Price</th>
+              <th>Powerd By</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Invoice-0019</td>
               <td>Something Product</td>
               <td>$292</td>
+              <td>Intel</td>
               <td>
-              <Link href="/dashboard/admin/product/edit/1"><EditButton /></Link>
-                <Link href="/dashboard/admin/product/1"><ViewButton /></Link>
+                <Button
+                  className="bg-primary text-white text-md"
+                  onClick={() => router.push(`${pathName}/edit/1`)}
+                >
+                  <Icon icon="uil:edit" className="text-lg" />
+                  <span>Edit</span>
+                </Button>
+
+                <Button
+                  onClick={() => router.push(`${pathName}/1`)}
+                  className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
+                >
+                  <Icon icon="solar:eye-linear" className="text-lg" />
+                  <span>View</span>
+                </Button>
                 <DeleteButton />
               </td>
             </tr>
