@@ -1,13 +1,14 @@
 "use client";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Image from "next/image";
 import logintriangle from "../public/logintriangle.png";
 import roboxfxicon from "../public/robofxicon.png";
 import Link from "next/link";
-import { useContext } from "react";
-import Cookies from "universal-cookie";
+import axios from "@/utils/axios";
+import toast from "react-hot-toast";
+import jwt from "jsonwebtoken";
 import { useRouter } from "next/navigation";
-const jwt = require("jsonwebtoken");
+import Cookies from "universal-cookie";
 
 type TLogInput = {
   email: string;
@@ -37,22 +38,34 @@ export default function Home() {
 
   ("use server");
   const onSubmit = async (data: TLogInput) => {
-    const response = await fetch("http://localhost:3000/api/auth/login", {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache",
-      },
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
-    });
+    axios
+      .post("/auth/login", data)
+      .then((res) => {
+        console.log("here is the response", res);
+        toast.success(res?.data?.message);
+        const accessToken = res?.data?.data?.accessToken;
 
-    // console.log(response);
+        // Decode the token
+        const decodedToken = jwt.decode(accessToken) as DecodedToken | null;
+        const role = decodedToken?.role;
+        // console.log("Decoded Token", role);
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + 90);
+        cookies.set("jwt", accessToken);
+        // localStorage.setItem("jwt", accessToken);
+
+        setTimeout(() => {
+          if (role === "admin") {
+            router.push("/dashboard/admin");
+          } else if (role === "user") {
+            router.push("/dashboard/user");
+          }
+        }, 1000);
+      })
+      .catch((err) => {
+        // console.log("the error", err);
+        toast.error(err?.response?.data?.message);
+      });
   };
 
   return (
