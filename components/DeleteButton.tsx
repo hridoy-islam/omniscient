@@ -32,6 +32,10 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ id, label }) => {
         response = await axios.patch(apiUrl, {
           isDeleted: true,
         });
+      } else if (label === "products") {
+        response = await axios.patch(apiUrl, {
+          isDeleted: true,
+        });
       } else {
         response = await axios.delete(apiUrl);
       }

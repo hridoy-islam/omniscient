@@ -41,7 +41,7 @@ export default function Home() {
     axios
       .post("/auth/login", data)
       .then((res) => {
-        console.log("here is the response", res);
+        // console.log("here is the response", res);
         toast.success(res?.data?.message);
         const accessToken = res?.data?.data?.accessToken;
 
