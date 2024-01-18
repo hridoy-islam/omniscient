@@ -5,6 +5,6 @@ export default async function getAllWallets() {
     const res = await Axios.get(`/wallet`);
     return res.data;
   } catch (error) {
-    console.error("");
+    console.log("errors", error);
   }
 }

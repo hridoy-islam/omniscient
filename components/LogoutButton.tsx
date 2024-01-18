@@ -8,10 +8,12 @@ export default function LogoutButton() {
   const router = useRouter();
   const handleLogout = () => {
     cookies.remove("jwt");
-    router.refresh();
+    setTimeout(() => {
+      router.refresh();
+    }, 1000 / 10);
     setTimeout(() => {
       router.push("/");
-    }, 1000 / 10);
+    }, 1000 / 5);
   };
   return (
     <Button

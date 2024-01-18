@@ -27,6 +27,14 @@ export interface UserData {
     state: string;
     zipcode: string;
   };
+  wallets: [
+    {
+      exchange: string;
+      wallet: string;
+      account: string;
+      _id: string;
+    }
+  ];
   _id: string;
   email: string;
   role: string;
@@ -75,4 +83,9 @@ export interface Order {
   status: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Wallet {
+  _id: string;
+  name: string;
 }

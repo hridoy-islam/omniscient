@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import {
   Button,
   Card,
@@ -13,6 +14,7 @@ import Cookies from "universal-cookie";
 import { DecodedToken } from "@/utils/interfaces";
 import { jwtDecode } from "jwt-decode";
 import toast from "react-hot-toast";
+import { countries } from "@/utils/constants";
 
 interface ContactInfoProps {
   id: string;
@@ -111,21 +113,20 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
 
         <div className="grid grid-cols-2 gap-2 items-center">
           <div>
-            <div className="flex flex-col">
+            <div className="flex flex-col mb-0.5">
               <label htmlFor="state">State</label>
-              <select
+              <input
                 name="state"
                 id="state"
                 className="roboinput"
                 value={contactData.state}
                 onChange={(e) => handleChange("state", e.target.value)}
-              >
-                <option>Dhaka</option>
-                <option>Other State</option>
-              </select>
+              />
+                
+              
             </div>
-            <div className="flex flex-col">
-              <label htmlFor="country">Country</label>
+            <div className="">
+              {/* <label htmlFor="country">Country</label>
               <select
                 name="country"
                 id="country"
@@ -135,7 +136,23 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
               >
                 <option>Country 1</option>
                 <option>Country 2</option>
-              </select>
+              </select> */}
+              <label htmlFor="country">
+                Country
+              </label>
+              <Autocomplete
+                defaultItems={countries}
+                label=""
+                placeholder="Search a country"
+                className="mt-1.5 border rounded-xl border-primary focus:outline-none target:border-none h-[38px] flex items-center shadow-none"
+                variant="bordered"
+              >
+                {(country) => (
+                  <AutocompleteItem key={country?.code}>
+                    {country?.name}
+                  </AutocompleteItem>
+                )}
+              </Autocomplete>
             </div>
           </div>
           <div>

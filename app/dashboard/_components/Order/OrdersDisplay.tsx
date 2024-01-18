@@ -36,13 +36,13 @@ const OrdersDisplay: React.FC<OrdersDisplayProps> = ({ allOrders }) => {
           <tbody>
             {allOrders?.map((order) => (
               <tr key={order._id}>
-                <td>{order.productid._id}</td>
-                <td>{order.productid.title}</td>
-                <td>{order.userid.email}</td>
+                <td>{order?.productid?._id}</td>
+                <td>{order?.productid?.title}</td>
+                <td>{order?.userid?.email}</td>
                 {/* Add more fields based on your order structure */}
                 {/* <td>{order.createdAt}</td> */}
                 {/* <td>Render payment info</td> */}
-                <td>{order.status}</td>
+                <td>{order?.status}</td>
                 <td>
                   <Link href={`/dashboard/admin/order/${order?._id}`}>
                     <Button className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md">
