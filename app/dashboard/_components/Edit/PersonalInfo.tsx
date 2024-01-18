@@ -13,6 +13,7 @@ import { jwtDecode } from "jwt-decode";
 import { DecodedToken } from "@/utils/interfaces";
 import axios from "@/utils/axios";
 import toast from "react-hot-toast";
+import ImageUpload from "@/components/ImageUpload";
 
 interface UserData {
   firstName: string;
@@ -65,10 +66,12 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ id }) => {
         lastName: userData.lastName,
         email: userData.email,
         phone: userData.phone,
+        photo: userData.photo
       },
     };
 
     const url = `/users/${id}`;
+    console.log(userData)
 
     axios
       .patch(url, formattedData)
@@ -87,7 +90,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ id }) => {
       firstName: "",
       lastName: "",
       email: "",
-      photo: null,
+      photo: "",
       phone: "",
     });
   };
@@ -146,14 +149,18 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ id }) => {
           <div>
             <div className="flex flex-col">
               <label htmlFor="photo">Upload Photo</label>
-              <input
+              <ImageUpload
+                value={userData.photo}
+                onChange={(value) => handleChange("photo", value)}
+              />
+              {/* <input
                 type="file"
                 name="photo"
                 className="roboinput"
                 id="photo"
                 value={userData.photo || ""}
                 onChange={(e) => handleChange("photo", e.target.value)}
-              />
+              /> */}
             </div>
             <div className="flex flex-col">
               <label htmlFor="phone">Phone Number</label>

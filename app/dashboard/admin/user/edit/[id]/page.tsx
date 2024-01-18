@@ -8,10 +8,10 @@ interface PageProps {
 }
 
 const page = ({ params }: PageProps) => {
-  console.log("here is the id", params?.id);
+  // console.log("here is the id", params?.id);
   return (
     <div>
-      <Edit id={params?.id}/>
+      <Edit id={params?.id} />
     </div>
   );
 };
