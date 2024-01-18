@@ -1,5 +1,3 @@
-"use client";
-
 import axios, { AxiosInstance } from "axios";
 import Cookies from "universal-cookie";
 // import { cookies } from "next/headers";

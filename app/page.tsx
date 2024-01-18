@@ -41,18 +41,15 @@ export default function Home() {
     axios
       .post("/auth/login", data)
       .then((res) => {
-        // console.log("here is the response", res);
         toast.success(res?.data?.message);
         const accessToken = res?.data?.data?.accessToken;
 
         // Decode the token
         const decodedToken = jwt.decode(accessToken) as DecodedToken | null;
         const role = decodedToken?.role;
-        // console.log("Decoded Token", role);
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + 90);
         cookies.set("jwt", accessToken);
-        // localStorage.setItem("jwt", accessToken);
 
         setTimeout(() => {
           if (role === "admin") {
@@ -60,7 +57,7 @@ export default function Home() {
           } else if (role === "user") {
             router.push("/dashboard/user");
           }
-        }, 1000);
+        }, 1000 / 10);
       })
       .catch((err) => {
         // console.log("the error", err);

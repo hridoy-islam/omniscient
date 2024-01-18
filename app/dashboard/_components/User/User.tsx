@@ -3,14 +3,8 @@ import { Avatar, Card, CardBody, CardHeader, Link } from "@nextui-org/react";
 import EditButton from "@/components/EditButton";
 import DeleteButton from "@/components/DeleteButton";
 import ViewButton from "@/components/ViewButton";
-
-interface User {
-  _id: string;
-  email: string;
-  isDeleted: boolean;
-  role: string;
-  status: string;
-}
+import { UserData } from "@/utils/interfaces";
+import {Autocomplete, AutocompleteItem} from "@nextui-org/react";
 
 interface ApiResponse {
   meta: {
@@ -19,7 +13,7 @@ interface ApiResponse {
     total: number;
     totalPage: number;
   };
-  result: User[];
+  result: UserData[];
 }
 
 interface UserProps {
@@ -63,16 +57,19 @@ export default function User({ allUsers }: UserProps) {
                         className="w-6 h-6"
                         src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
                       />
-                      <span>The Sliding</span>
+                      <span>
+                        {user?.personal_information?.firstName}{" "}
+                        {user?.personal_information?.lastName}
+                      </span>
                     </div>
                   </td>
                   <td>+987438438</td>
                   <td>{user?.email}</td>
-                  <td></td>
-                  <td></td>
+                  <td>{user?.contact_information?.city}</td>
+                  <td>{user?.contact_information?.country}</td>
                   <td>
                     <EditButton userId={user?._id} />
-                    <ViewButton userId={user?._id}  />
+                    <ViewButton userId={user?._id} />
                     <DeleteButton label="users" id={user?._id} />
                   </td>
                 </tr>
