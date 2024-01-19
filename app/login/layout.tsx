@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
-import "./globals.css";
-import { Providers } from "./providers";
-import Header from "@/components/public/Header";
+import "../globals.css";
+import { Toaster } from "react-hot-toast";
+import MainContext from "@/context/MainContext";
+import { Providers } from "../providers";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -23,10 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${nunito.variable} light`}>
       <body>
-        <Providers>
-          <Header></Header>
-          {children}
-        </Providers>
+        <MainContext>
+          <Providers>{children}</Providers>
+          <Toaster />
+        </MainContext>
       </body>
     </html>
   );

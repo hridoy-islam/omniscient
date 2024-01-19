@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 import axios from "@/utils/axios";
 import Cookies from "universal-cookie";
-import { DecodedToken } from "@/app/page";
+import { DecodedToken } from "@/app/login/page";
 import { jwtDecode } from "jwt-decode";
 import toast from "react-hot-toast";
 
