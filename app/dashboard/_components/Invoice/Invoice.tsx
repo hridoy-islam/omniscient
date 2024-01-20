@@ -14,7 +14,74 @@ import EditButton from "@/components/EditButton";
 import Pagination from "@/components/Pagination";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-const Invoice = () => {
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/react";
+
+interface Invoice {
+  _id: string;
+  invoiceId: string;
+  category: string;
+  userid: string;
+  information: Information[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface Information {
+  item: string;
+  quantity: number;
+  rate: string;
+  tax: string;
+  amount: string;
+}
+
+interface AllInvoicesResponse {
+  success: boolean;
+  message: string;
+  data: {
+    meta: {
+      page: number;
+      limit: number;
+      total: number;
+      totalPage: number;
+    };
+    result: Invoice[];
+  };
+}
+
+interface InvoiceProps {
+  allInvoices: AllInvoicesResponse;
+}
+
+const calculateTotalAmount = (information: Information[]) => {
+  return information
+    .reduce((total, info) => total + parseFloat(info.amount), 0)
+    .toFixed(2);
+};
+
+const Invoice = ({ allInvoices }: InvoiceProps) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const invoices = allInvoices?.data?.result;
+
+  // Separate invoices based on categories
+  const billInvoices = invoices?.filter(
+    (invoice) => invoice.category === "bill"
+  );
+  const addonInvoices = invoices?.filter(
+    (invoice) => invoice.category === "addon"
+  );
+  const rigsInvoices = invoices?.filter(
+    (invoice) => invoice.category === "rigs"
+  );
+  // console.log("bill", billInvoices);
+  // console.log("addon", addonInvoices);
+  // console.log("rigs", rigsInvoices);
   return (
     <div className="flex w-full flex-col">
       <Tabs
@@ -54,24 +121,32 @@ const Invoice = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Invoice-0019</td>
-                    <td>$292</td>
-                    <td>
-                      <div className="flex items-center">
-                        <Avatar
-                          className="w-6 h-6"
-                          src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                        />
-                        <span>The Sliding</span>
-                      </div>
-                    </td>
-                    <td>1961</td>
-                    <td>
-                      <EditButton />
-                      <ViewButton />
-                    </td>
-                  </tr>
+                  {billInvoices?.map((invoice, index) => (
+                    <tr key={index}>
+                      <td>{invoice?.invoiceId}</td>
+                      <td>{calculateTotalAmount(invoice?.information || 0)}</td>
+                      <td>
+                        <div className="flex items-center gap-2">
+                          <Avatar
+                            className="w-6 h-6"
+                            src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                          />
+                          <span>The Sliding</span>
+                        </div>
+                      </td>
+                      <td>{invoice?.createdAt}</td>
+                      <td>
+                        <EditButton />
+                        <Button
+                          onPress={onOpen}
+                          className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
+                        >
+                          <Icon icon="solar:eye-linear" className="text-lg" />
+                          <span>View</span>
+                        </Button>{" "}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </CardBody>
@@ -103,24 +178,32 @@ const Invoice = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Invoice-0019</td>
-                    <td>$292</td>
-                    <td>
-                      <div className="flex items-center">
-                        <Avatar
-                          className="w-6 h-6"
-                          src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                        />
-                        <span>The Sliding</span>
-                      </div>
-                    </td>
-                    <td>1961</td>
-                    <td>
-                      <EditButton />
-                      <ViewButton />
-                    </td>
-                  </tr>
+                  {addonInvoices?.map((invoice, index) => (
+                    <tr key={index}>
+                      <td>{invoice?.invoiceId}</td>
+                      <td>{calculateTotalAmount(invoice?.information || 0)}</td>
+                      <td>
+                        <div className="flex items-center gap-2">
+                          <Avatar
+                            className="w-6 h-6"
+                            src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                          />
+                          <span>The Sliding</span>
+                        </div>
+                      </td>
+                      <td>{invoice?.createdAt}</td>
+                      <td>
+                        <EditButton />
+                        <Button
+                          onPress={onOpen}
+                          className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
+                        >
+                          <Icon icon="solar:eye-linear" className="text-lg" />
+                          <span>View</span>
+                        </Button>{" "}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </CardBody>
@@ -152,31 +235,77 @@ const Invoice = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Invoice-0019</td>
-                    <td>$292</td>
-                    <td>
-                      <div className="flex items-center">
-                        <Avatar
-                          className="w-6 h-6"
-                          src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                        />
-                        <span>The Sliding</span>
-                      </div>
-                    </td>
-                    <td>1961</td>
-                    <td>
-                      <EditButton />
-                      <ViewButton />
-                    </td>
-                  </tr>
+                  {rigsInvoices?.map((invoice, index) => (
+                    <tr key={index}>
+                      <td>{invoice?.invoiceId}</td>
+                      <td>{calculateTotalAmount(invoice?.information || 0)}</td>
+                      <td>
+                        <div className="flex items-center gap-2">
+                          <Avatar
+                            className="w-6 h-6"
+                            src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                          />
+                          <span>The Sliding</span>
+                        </div>
+                      </td>
+                      <td>{invoice?.createdAt}</td>
+                      <td>
+                        <EditButton />
+                        <Button
+                          onPress={onOpen}
+                          className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
+                        >
+                          <Icon icon="solar:eye-linear" className="text-lg" />
+                          <span>View</span>
+                        </Button>{" "}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </CardBody>
           </Card>
         </Tab>
       </Tabs>
-
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Modal Title
+              </ModalHeader>
+              <ModalBody>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam pulvinar risus non risus hendrerit venenatis.
+                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam pulvinar risus non risus hendrerit venenatis.
+                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                </p>
+                <p>
+                  Magna exercitation reprehenderit magna aute tempor cupidatat
+                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
+                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
+                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
+                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
+                  eiusmod et. Culpa deserunt nostrud ad veniam.
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  Action
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
       <Pagination />
     </div>
   );

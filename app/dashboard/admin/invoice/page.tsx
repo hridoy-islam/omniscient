@@ -1,9 +1,14 @@
+import getAllInvoices from "@/app/actions/getAllInvoices";
 import Invoice from "../../_components/Invoice/Invoice";
 
-export default function Page() {
+const Page = async () => {
+  const allInvoices = await getAllInvoices();
+  // console.log("all invoices", allInvoices?.data?.result);
   return (
     <div>
-      <Invoice />
+      <Invoice allInvoices={allInvoices} />
     </div>
   );
-}
+};
+
+export default Page;

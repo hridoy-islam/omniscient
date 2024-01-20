@@ -10,7 +10,8 @@ import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import { UserData } from "@/utils/interfaces";
 import Axios from "@/utils/axios";
-
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 interface InvoiceCrationFromProps {
   allUsers: UserData[];
 }
@@ -19,33 +20,39 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
   const [informations, setInformations] = useState([
     {
       item: "",
-      quantity: "",
+      quantity: 0,
       rate: "",
       tax: "",
-      amount: "",
+      amount: 0,
     },
   ]);
+  const router = useRouter();
 
   const [discountAmount, setDiscountAmount] = useState(0);
   const [discountType, setDiscountType] = useState("");
-  const [discountedAmount, setDiscountedAmount] = useState("");
-
+  const [discountedAmount, setDiscountedAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [selectedUser, setSelectedUser] = useState("");
+  const [invoiceType, setInvoiceType] = useState("");
+  // console.log("selected user", selectedUser);
+  // console.log("selected invoice type", invoiceType);
+  // console.log("discounted type", discountType);
   const addClick = () => {
     const newInfo = {
       item: "",
-      quantity: "",
+      quantity: 0,
       rate: "",
       tax: "",
-      amount: "",
+      amount: 0,
     };
 
     setInformations((prevInformations: any) => {
       const newInfo = {
         item: "",
-        quantity: "",
+        quantity: 0,
         rate: "",
         tax: "",
-        amount: "",
+        amount: 0,
       };
       return [...prevInformations, newInfo];
     });
@@ -65,16 +72,30 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
     // Update the specific field in the current information object
     info[index] = { ...info[index], [name]: value };
 
+    // Convert quantity to a number
+    if (name === "quantity") {
+      info[index] = { ...info[index], [name]: Number(value) };
+    }
+    if (name === "rate") {
+      info[index] = { ...info[index], [name]: Number(value) };
+    }
+    if (name === "tax") {
+      info[index] = { ...info[index], [name]: Number(value) };
+    }
+
     // Calculate amount based on rate, quantity, and tax
     const rate = parseFloat(info[index].rate) || 0;
-    const quantity = parseFloat(info[index].quantity) || 0;
+    const quantity = Number(info[index].quantity) || 0;
     const tax = parseFloat(info[index].tax) || 0;
 
     // Calculate amount with tax included
-    const amount = ((rate * quantity * (100 + tax)) / 100).toFixed(2);
+    const amount = parseFloat(
+      ((rate * quantity * (100 + tax)) / 100).toFixed(2)
+    );
 
     // Update the amount field in the current information object
     info[index] = { ...info[index], amount: amount };
+    // console.log("info", info);
 
     // Update the state with the modified information
     setInformations(info);
@@ -85,27 +106,21 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
     let totalAmount = 0;
 
     informations.forEach((info) => {
-      totalAmount += parseFloat(info.amount) || 0;
+      totalAmount += info.amount || 0;
     });
 
     return totalAmount.toFixed(2);
   };
 
   // Calculate discounted amount based on discountType and discountAmount
-  const calculateDiscountedAmount = (totalAmount: string) => {
+  const calculateDiscountedAmount = (totalAmount: number) => {
     let discountedAmount = totalAmount;
     // console.log('type of discounted amount', typeof discountAmount)
 
     if (discountType === "percentage") {
-      discountedAmount = (
-        (parseFloat(totalAmount) *
-          (100 - parseFloat(String(discountedAmount)))) /
-        100
-      ).toFixed(2);
+      discountedAmount = totalAmount - totalAmount * (discountAmount / 100);
     } else if (discountType === "raw_amount") {
-      discountedAmount = (
-        parseFloat(totalAmount) - parseFloat(String(discountedAmount))
-      ).toFixed(2);
+      discountedAmount = totalAmount - discountAmount;
     }
 
     return discountedAmount;
@@ -113,11 +128,37 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
 
   useEffect(() => {
     const totalAmount = calculateTotalAmount();
-    const newDiscountedAmount = calculateDiscountedAmount(String(totalAmount));
-    console.log("total amount", totalAmount);
-    console.log("new discountedAmount", newDiscountedAmount);
+    const newDiscountedAmount = calculateDiscountedAmount(Number(totalAmount));
+    // console.log("total amount", totalAmount);
+    // console.log("new discountedAmount", newDiscountedAmount);
+    setTotalAmount(Number(totalAmount));
     setDiscountedAmount(newDiscountedAmount);
   }, [discountType, discountAmount, informations]);
+
+  const handleCreate = async () => {
+    if (!invoiceType || !selectedUser || !informations)
+      return toast.error("Provide all the informations!");
+
+    const formattedData = {
+      category: invoiceType,
+      userid: selectedUser,
+      information: informations,
+    };
+
+    // console.log(formattedData);
+
+    try {
+      const response = await Axios.post("/invoices", formattedData);
+      toast.success(response?.data?.message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+      // console.log("here is the response", response);
+    } catch (error) {
+      toast.error("Something went wrong!");
+      // console.log("here is the error", error);
+    }
+  };
 
   return (
     <div>
@@ -129,10 +170,15 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
           <h2 className="mb-4">User Information</h2>
           <div className="flex flex-col">
             <label htmlFor="">User Name</label>
-            <select name="" className="roboinput" id="">
+            <select
+              onChange={(e) => setSelectedUser(e.target.value)}
+              name=""
+              className="roboinput"
+              id=""
+            >
               <option>Select User</option>{" "}
               {allUsers?.map((user, index) => (
-                <option>
+                <option key={index} value={user._id}>
                   {user?.personal_information?.firstName}{" "}
                   {user?.personal_information?.lastName}
                 </option>
@@ -142,10 +188,16 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
 
           <div className="flex flex-col">
             <label htmlFor="">Invoice Type</label>
-            <select name="" className="roboinput" id="">
-              <option>Bill Invoice</option>
-              <option>Add On Invoice</option>
-              <option>Rig Invoice</option>
+            <select
+              onChange={(e) => setInvoiceType(e.target.value)}
+              name=""
+              className="roboinput"
+              id=""
+            >
+              <option>Select Invoice Type</option>
+              <option value="bill">Bill Invoice</option>
+              <option value="addon">Add On Invoice</option>
+              <option value="rigs">Rig Invoice</option>
             </select>
           </div>
           <h2 className="border-b border-stroke my-6">Informations</h2>
@@ -199,12 +251,12 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
                 <div>
                   <div className="flex flex-col">
                     <label htmlFor="">Quantity</label>
+
                     <input
-                      type="text"
+                      type="number"
                       name="quantity"
+                      value={element.quantity}
                       className="roboinput"
-                      id=""
-                      value={element.quantity || ""}
                       onChange={(e) => handleChange(index, e)}
                     />
                   </div>
@@ -264,11 +316,11 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
                   type="text"
                   className="roboinput"
                   name="item"
-                  //   value={element.item || ""}
-                  //   onChange={(e) => handleChange(index, e)}
+                  value={totalAmount}
+                  onChange={(e) => {}}
                 />
               </div>
-              <div className="flex flex-col w-full">
+              {/* <div className="flex flex-col w-full">
                 <label htmlFor="" className="text-primary">
                   Discount
                 </label>
@@ -276,10 +328,10 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
                   type="text"
                   className="roboinput"
                   name="item"
-                  //   value={element.item || ""}
-                  //   onChange={(e) => handleChange(index, e)}
+                  value={discountedAmount}
+                  onChange={(e) => {}}
                 />
-              </div>
+              </div> */}
               <div className="flex flex-col w-full">
                 <label htmlFor="" className="text-primary">
                   Sub-Total
@@ -288,8 +340,8 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
                   type="text"
                   className="roboinput"
                   name="item"
-                  //   value={element.item || ""}
-                  //   onChange={(e) => handleChange(index, e)}
+                  value={discountedAmount}
+                  onChange={(e) => {}}
                 />
               </div>
             </div>
@@ -297,7 +349,9 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
         </CardBody>
 
         <CardFooter className="w-full flex flex-row-reverse gap-3">
-          <Button className="btn-basic rounded-md">Create</Button>
+          <Button onClick={handleCreate} className="btn-basic rounded-md">
+            Create
+          </Button>
           <Button className="bg-white border border-stroke rounded-md shadow-sm">
             Clear
           </Button>
