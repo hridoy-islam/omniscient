@@ -80,7 +80,7 @@ const ExchangesDisplay: React.FC<ExchangesDisplayProps> = ({ exchanges }) => {
               <tr key={exchange._id}>
                 <td>{index + 1}</td>
                 <td>{exchange.name}</td>
-                <td>
+                <td className="flex">
                   <Button
                     onPress={() => handleEdit(exchange)}
                     className="bg-primary text-white text-md"

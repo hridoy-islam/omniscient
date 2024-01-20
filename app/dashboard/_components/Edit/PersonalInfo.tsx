@@ -66,12 +66,12 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ id }) => {
         lastName: userData.lastName,
         email: userData.email,
         phone: userData.phone,
-        photo: userData.photo
+        photo: userData.photo,
       },
     };
 
     const url = `/users/${id}`;
-    console.log(userData)
+    console.log(userData);
 
     axios
       .patch(url, formattedData)
@@ -153,14 +153,6 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ id }) => {
                 value={userData.photo}
                 onChange={(value) => handleChange("photo", value)}
               />
-              {/* <input
-                type="file"
-                name="photo"
-                className="roboinput"
-                id="photo"
-                value={userData.photo || ""}
-                onChange={(e) => handleChange("photo", e.target.value)}
-              /> */}
             </div>
             <div className="flex flex-col">
               <label htmlFor="phone">Phone Number</label>

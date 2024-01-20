@@ -18,7 +18,7 @@ export const RigDetails = () => {
               <Icon icon="solar:pause-bold" /> <span>Pause Mining</span>
             </Button>
           </div>
-          <div className="grid grid-cols-3 gap-3 my-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-2">
             <Card className="p-4 border border-stroke">
               <div className="rounded-lg w-14 text-3xl text-primary bg-[#F5F8FD] p-3 my-3">
                 <Icon icon="ic:outline-energy-savings-leaf" />

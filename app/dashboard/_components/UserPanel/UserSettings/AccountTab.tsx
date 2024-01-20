@@ -20,7 +20,7 @@ const AccountTab = () => {
         </div>
       </CardHeader>
       <CardBody>
-        <div className="grid grid-cols-2 gap-4 border-b-2 border-stroke pb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b-2 border-stroke pb-6">
           <div className="flex items-center">
             <h2 className="rounded-lg rounded-r-none bg-primary p-2 w-1/3 text-white text-center">
               Exchange
@@ -56,7 +56,7 @@ const AccountTab = () => {
             </select>
           </div>
         </div>
-        <div className="flex justify-between py-6 items-center">
+        <div className="flex flex-col md:flex-row justify-between py-6 items-center">
           <div className="flex flex-col">
             <label htmlFor="" className="text-xl font-semobold">
               Currency Type

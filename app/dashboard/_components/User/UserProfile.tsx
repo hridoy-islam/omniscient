@@ -4,6 +4,7 @@ import { Avatar, Card } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { UserData } from "@/utils/interfaces";
+import EditButton from "@/components/EditButton";
 
 interface UserProfileProps {
   user: UserData;
@@ -23,13 +24,16 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
           <Avatar
             className="w-20 h-20"
             radius="sm"
-            src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
+            src={user?.personal_information?.photo}
           />
         </div>
         <div className="flex flex-col justify-between w-full">
           <div className="flex flex-row justify-between">
-            <h1 className="text-3xl font-semibold">{`${user?.personal_information?.firstName} ${user?.personal_information?.lastName}`}</h1>
-            <Link href="/" className="flex items-center gap-1 text-primary">
+            <h1 className="text-xl md:text-3xl font-semibold">{`${user?.personal_information?.firstName} ${user?.personal_information?.lastName}`}</h1>
+            <Link
+              href={`/dashboard/admin/user/edit/${user?._id}`}
+              className="flex items-center gap-1 text-primary"
+            >
               <Icon icon="basil:edit-outline" />
               <span>Edit</span>
             </Link>
@@ -51,7 +55,10 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
       <Card className="p-6 my-6">
         <div className="flex flex-row justify-between">
           <h2 className="text-lg font-semibold">Basic Informaion</h2>
-          <Link href="/" className="flex items-center gap-1 text-primary">
+          <Link
+            href={`/dashboard/admin/user/edit/${user?._id}`}
+            className="flex items-center gap-1 text-primary"
+          >
             <Icon icon="basil:edit-outline" />
             <span>Edit</span>
           </Link>
@@ -80,7 +87,10 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
       <Card className="p-6 my-6">
         <div className="flex flex-row justify-between">
           <h2 className="text-lg font-semibold">Contact Informaion</h2>
-          <Link href="/" className="flex items-center gap-1 text-primary">
+          <Link
+            href={`/dashboard/admin/user/edit/${user?._id}`}
+            className="flex items-center gap-1 text-primary"
+          >
             <Icon icon="basil:edit-outline" />
             <span>Edit</span>
           </Link>
@@ -107,7 +117,10 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
       <Card className="p-6 my-6">
         <div className="flex flex-row justify-between">
           <h2 className="text-lg font-semibold">Billing Informaion</h2>
-          <Link href="/" className="flex items-center gap-1 text-primary">
+          <Link
+            href={`/dashboard/admin/user/edit/${user?._id}`}
+            className="flex items-center gap-1 text-primary"
+          >
             <Icon icon="basil:edit-outline" />
             <span>Edit</span>
           </Link>

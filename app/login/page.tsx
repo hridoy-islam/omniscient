@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import logintriangle from "../../public/logintriangle.png";
@@ -23,10 +24,9 @@ export interface DecodedToken {
 }
 
 export default function Home() {
-  // const { tokenDetails, token, setToken, setTokenDetails } =
-  //   useContext(userContext);
-  // const tokenDecoded = jwt.decode(token);
-  // const role = tokenDecoded?.data?.role;
+  const [isRedirecting, setRedirecting] = useState(false);
+  const [decodedToken, setDecodedToken] = useState<DecodedToken | null>(null);
+
   const cookies = new Cookies();
 
   const router = useRouter();
@@ -46,24 +46,34 @@ export default function Home() {
 
         // Decode the token
         const decodedToken = jwt.decode(accessToken) as DecodedToken | null;
+        setDecodedToken(decodedToken);
+
         const role = decodedToken?.role;
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + 90);
-        cookies.set("jwt", accessToken);
+        cookies.set("jwt", accessToken, { expires: expirationDate });
 
-        setTimeout(() => {
-          if (role === "admin") {
-            router.push("/dashboard/admin");
-          } else if (role === "user") {
-            router.push("/dashboard/user");
-          }
-        }, 1000 / 10);
+        // Set the redirecting state to trigger a re-render
+        setRedirecting(true);
       })
       .catch((err) => {
         // console.log("the error", err);
         toast.error(err?.response?.data?.message);
       });
   };
+
+  // Use useEffect to navigate after the state is updated
+  useEffect(() => {
+    if (isRedirecting && decodedToken) {
+      const role = decodedToken.role;
+
+      if (role === "admin") {
+        router.push("/dashboard/admin");
+      } else if (role === "user") {
+        router.push("/dashboard/user");
+      }
+    }
+  }, [isRedirecting, decodedToken]);
 
   return (
     <div className="bg-[url('../public/login_bg.png')]">

@@ -11,11 +11,11 @@ const page = async () => {
   // console.log("all allWallet", allWallet?.data);
   return (
     <div>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <AddExchange />
         <ExchangesDisplay exchanges={allExchanges?.data} />
       </div>
-      <div className="grid grid-cols-2 gap-3 my-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-10">
         <AddWallet />
         <WalletDisplay wallets={allWallet?.data} />
       </div>

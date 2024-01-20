@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Tabs,
   Tab,
@@ -22,6 +22,9 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
+import Image from "next/image";
+import Logo from "/public/logo.png";
+import moment from "moment";
 
 interface Invoice {
   _id: string;
@@ -82,6 +85,16 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
   // console.log("bill", billInvoices);
   // console.log("addon", addonInvoices);
   // console.log("rigs", rigsInvoices);
+
+  // State variables for the selected invoice
+  const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
+
+  // Function to open the modal and set the selected invoice
+  const openModal = (invoice: Invoice) => {
+    setSelectedInvoice(invoice);
+    onOpen();
+  };
+
   return (
     <div className="flex w-full flex-col">
       <Tabs
@@ -134,11 +147,12 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                           <span>The Sliding</span>
                         </div>
                       </td>
-                      <td>{invoice?.createdAt}</td>
+                      <td>{moment(invoice?.createdAt).format("LL")}</td>
+
                       <td>
                         <EditButton />
                         <Button
-                          onPress={onOpen}
+                          onPress={() => openModal(invoice)}
                           className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
                         >
                           <Icon icon="solar:eye-linear" className="text-lg" />
@@ -191,11 +205,11 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                           <span>The Sliding</span>
                         </div>
                       </td>
-                      <td>{invoice?.createdAt}</td>
+                      <td>{moment(invoice?.createdAt).format("LL")}</td>
                       <td>
                         <EditButton />
                         <Button
-                          onPress={onOpen}
+                          onPress={() => openModal(invoice)}
                           className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
                         >
                           <Icon icon="solar:eye-linear" className="text-lg" />
@@ -248,11 +262,11 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                           <span>The Sliding</span>
                         </div>
                       </td>
-                      <td>{invoice?.createdAt}</td>
-                      <td>
+                      <td>{moment(invoice?.createdAt).format("LL")}</td>
+                      <td className="flex">
                         <EditButton />
                         <Button
-                          onPress={onOpen}
+                          onPress={() => openModal(invoice)}
                           className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
                         >
                           <Icon icon="solar:eye-linear" className="text-lg" />
@@ -267,46 +281,266 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
           </Card>
         </Tab>
       </Tabs>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+
+      <Pagination />
+      <Modal
+        size="3xl"
+        className="mt-[300px]"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
+              <ModalHeader className="flex flex-col gap-1 ">
                 Modal Title
               </ModalHeader>
               <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
-                  eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
+                <div
+                  className="p-6 bg-white rounded shadow-sm my-6 "
+                  id="invoice"
+                >
+                  <div className="grid grid-cols-2 items-center">
+                    <div>
+                      <Image
+                        src={Logo}
+                        alt="company-logo"
+                        className="h-auto w-24"
+                        width={100}
+                        height={100}
+                      />
+                    </div>
+
+                    <div className="text-right">
+                      <p>Tailwind Inc.</p>
+                      <p className="text-gray-500 text-sm">
+                        sales@tailwindcss.com
+                      </p>
+                      <p className="text-gray-500 text-sm mt-1">
+                        +41-442341232
+                      </p>
+                      <p className="text-gray-500 text-sm mt-1">
+                        VAT: 8657671212
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* <!-- Client info --> */}
+                  <div className="grid grid-cols-2 items-center mt-8">
+                    <div>
+                      <p className="font-bold text-gray-800">Bill to :</p>
+                      <p className="text-gray-500">
+                        Laravel LLC.
+                        <br />
+                        102, San-Fransico, CA, USA
+                      </p>
+                      <p className="text-gray-500">info@laravel.com</p>
+                    </div>
+
+                    <div className="text-right">
+                      <p className="">
+                        Invoice number:
+                        <span className="text-gray-500">INV-2023786123</span>
+                      </p>
+                      <p>
+                        Invoice date:{" "}
+                        <span className="text-gray-500">03/07/2023</span>
+                        <br />
+                        Due date:
+                        <span className="text-gray-500">31/07/2023</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* <!-- Invoice Items --> */}
+                  <div className="-mx-4 mt-8 flow-root sm:mx-0">
+                    <table className="min-w-full">
+                      <colgroup>
+                        <col className="w-full sm:w-1/2" />
+                        <col className="sm:w-1/6" />
+                        <col className="sm:w-1/6" />
+                        <col className="sm:w-1/6" />
+                      </colgroup>
+                      <thead className="border-b border-gray-300 text-gray-900">
+                        <tr>
+                          <th
+                            scope="col"
+                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                          >
+                            Items
+                          </th>
+                          <th
+                            scope="col"
+                            className="hidden px-3 py-3.5 text-right text-sm font-semibold text-gray-900 sm:table-cell"
+                          >
+                            Qty
+                          </th>
+                          <th
+                            scope="col"
+                            className="hidden px-3 py-3.5 text-right text-sm font-semibold text-gray-900 sm:table-cell"
+                          >
+                            Rate
+                          </th>
+                          <th
+                            scope="col"
+                            className="py-3.5 pl-3 pr-4 text-right text-sm font-semibold text-gray-900 sm:pr-0"
+                          >
+                            Tax
+                          </th>
+                          <th
+                            scope="col"
+                            className="py-3.5 pl-3 pr-4 text-right text-sm font-semibold text-gray-900 sm:pr-0"
+                          >
+                            Amount
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {selectedInvoice?.information?.map(
+                          (invoice: any, index: number) => (
+                            <tr
+                              key={index}
+                              className="border-b border-gray-200"
+                            >
+                              <td className="max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0">
+                                <div className="font-medium text-gray-900">
+                                  {invoice?.item}
+                                </div>
+                              </td>
+                              <td className="hidden px-3 py-5 text-right text-sm text-gray-500 sm:table-cell">
+                                {invoice?.quantity}
+                              </td>
+                              <td className="hidden px-3 py-5 text-right text-sm text-gray-500 sm:table-cell">
+                                ${invoice?.rate}
+                              </td>
+                              <td className="py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0">
+                                {invoice?.tax}%
+                              </td>
+                              <td className="py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0">
+                                ${invoice?.amount}
+                              </td>
+                            </tr>
+                          )
+                        )}
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th
+                            scope="row"
+                            colSpan={4}
+                            className="hidden pl-4 pr-3 pt-6 text-right text-sm font-normal text-gray-500 sm:table-cell sm:pl-0"
+                          >
+                            Sub - total
+                          </th>
+                          <th
+                            scope="row"
+                            className="pl-6 pr-3 pt-6 text-left text-sm font-normal text-gray-500 sm:hidden"
+                          >
+                            Subtotal
+                          </th>
+                          <td className="pl-3 pr-6 pt-6 text-right text-sm text-gray-500 sm:pr-0">
+                            $10,500.00
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <th
+                            scope="row"
+                            colSpan={4}
+                            className="hidden pl-4 pr-3 pt-4 text-right text-sm font-normal text-gray-500 sm:table-cell sm:pl-0"
+                          >
+                            Discount
+                          </th>
+                          <th
+                            scope="row"
+                            className="pl-6 pr-3 pt-4 text-left text-sm font-normal text-gray-500 sm:hidden"
+                          >
+                            Discount
+                          </th>
+                          <td className="pl-3 pr-6 pt-4 text-right text-sm text-gray-500 sm:pr-0">
+                            - 10%
+                          </td>
+                        </tr>
+                        <tr>
+                          <th
+                            scope="row"
+                            colSpan={4}
+                            className="hidden pl-4 pr-3 pt-4 text-right text-sm font-semibold text-gray-900 sm:table-cell sm:pl-0"
+                          >
+                            Total
+                          </th>
+                          <th
+                            scope="row"
+                            className="pl-6 pr-3 pt-4 text-left text-sm font-semibold text-gray-900 sm:hidden"
+                          >
+                            Total
+                          </th>
+                          <td className="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 sm:pr-0">
+                            $11,550.00
+                          </td>
+                        </tr>
+                        <tr>
+                          <th
+                            scope="row"
+                            colSpan={4}
+                            className="hidden pl-4 pr-3 pt-4 text-right text-sm font-semibold text-gray-900 sm:table-cell sm:pl-0"
+                          >
+                            Total Payment
+                          </th>
+                          <th
+                            scope="row"
+                            className="pl-6 pr-3 pt-4 text-left text-sm font-semibold text-gray-900 sm:hidden"
+                          >
+                            Total
+                          </th>
+                          <td className="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 sm:pr-0">
+                            $11,550.00
+                          </td>
+                        </tr>
+                        <tr>
+                          <th
+                            scope="row"
+                            colSpan={4}
+                            className="hidden pl-4 pr-3 pt-4 text-right text-sm font-semibold text-gray-900 sm:table-cell sm:pl-0"
+                          >
+                            Total Due
+                          </th>
+                          <th
+                            scope="row"
+                            className="pl-6 pr-3 pt-4 text-left text-sm font-semibold text-gray-900 sm:hidden"
+                          >
+                            Total
+                          </th>
+                          <td className="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 sm:pr-0">
+                            $11,550.00
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+
+                  {/* <!--  Footer  --> */}
+                  <div className="border-t-2 pt-4 text-xs text-gray-500 text-center mt-16">
+                    Please pay the invoice before the due date. You can pay the
+                    invoice by logging in to your account from our client
+                    portal.
+                  </div>
+                </div>
+
+                {/* <!-- <button type="button" id="btn" className="">Print</button> --> */}
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+                {/* <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
                 <Button color="primary" onPress={onClose}>
                   Action
-                </Button>
+                </Button> */}
               </ModalFooter>
             </>
           )}
         </ModalContent>
       </Modal>
-      <Pagination />
     </div>
   );
 };

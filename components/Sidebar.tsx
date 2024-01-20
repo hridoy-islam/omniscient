@@ -6,6 +6,7 @@ import { Avatar, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
 import { UserData } from "@/utils/interfaces";
+
 interface UserSidebarProps {
   currentUser: UserData;
 }
@@ -54,7 +55,7 @@ export default function Sidebar({ currentUser }: UserSidebarProps) {
     },
   ];
   return (
-    <div className="w-1/5 flex flex-col justify-between h-screen bg-white border border-stroke p-4">
+    <div className="hidden w-1/5 md:flex flex-col justify-between h-screen bg-white border border-stroke p-4">
       <div>
         <Image src={logo} alt="robofx" className="mb-6" />
         <ul>

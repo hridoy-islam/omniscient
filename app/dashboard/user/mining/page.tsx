@@ -3,7 +3,7 @@ import { Button, Card, Progress } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 export default function page() {
   return (
-    <div className="grid grid-cols-3 gap-3 my-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-6">
       <Card className="p-6 space-y-3">
         <h2>Active</h2>
         <p className="text-3xl font-bold">

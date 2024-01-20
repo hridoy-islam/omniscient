@@ -67,7 +67,7 @@ export default function User({ allUsers }: UserProps) {
                   <td>{user?.email}</td>
                   <td>{user?.contact_information?.city}</td>
                   <td>{user?.contact_information?.country}</td>
-                  <td>
+                  <td className="flex">
                     <EditButton userId={user?._id} />
                     <ViewButton userId={user?._id} />
                     <DeleteButton label="users" id={user?._id} />

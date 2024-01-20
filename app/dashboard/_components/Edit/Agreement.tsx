@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -6,16 +7,22 @@ import {
   CardFooter,
   CardHeader,
 } from "@nextui-org/react";
+import ImageUpload from "@/components/ImageUpload";
 const Agreement = () => {
+  const [agreementFile, setAgreementFile] = useState("");
+
   return (
     <Card>
       <CardHeader>
         <h2>Agreement</h2>
       </CardHeader>
       <CardBody>
-        <div className="flex flex-col w-1/2">
-          <label htmlFor="">Upload Agreement</label>
-          <input type="file" name="" className="roboinput" id="" />
+        <div className="flex flex-col">
+          <label htmlFor="photo">Upload Photo</label>
+          <ImageUpload
+            value={agreementFile}
+            onChange={(value) => setAgreementFile(value)}
+          />
         </div>
       </CardBody>
       <CardFooter className="w-full flex flex-row-reverse gap-3">
