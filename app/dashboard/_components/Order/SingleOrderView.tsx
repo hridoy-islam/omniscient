@@ -14,6 +14,7 @@ import {
 import { Product, UserData } from "@/utils/interfaces";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
+import moment from "moment";
 
 interface SingleOrderViewProps {
   order: {
@@ -72,12 +73,15 @@ const SingleOrderView = ({ order }: SingleOrderViewProps) => {
                   <tr>
                     <td>Date</td>
                     <td>:</td>
-                    <td>{createdAt}</td>
+                    <td>{moment(createdAt).format("LL")}</td>
                   </tr>
                   <tr>
                     <td>Status</td>
                     <td>:</td>
-                    <td>{status}</td>
+                    <td>
+                      {" "}
+                      <Chip color="primary" className="text-white">{status.toLocaleUpperCase()}</Chip>
+                    </td>
                   </tr>
                 </tbody>
               </table>

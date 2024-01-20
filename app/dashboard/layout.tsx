@@ -1,9 +1,10 @@
-import NavBar from "@/components/NavBar";
 import Sidebar from "@/components/Sidebar";
 import UserSidebar from "@/components/UserSidebar";
 import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
 import getUser from "../actions/getUser";
+import AdminNavbar from "@/components/AdminNavbar";
+import UserNavbar from "@/components/UserNavbar";
 
 export interface DecodedToken {
   id: string;
@@ -26,9 +27,14 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   }
   return (
     <section className="flex">
-      {role === "admin" ? <Sidebar currentUser={currentUser?.data} /> : <UserSidebar currentUser={currentUser?.data} />}
-      <div className="w-4/5 h-screen">
-        <NavBar />
+      {role === "admin" ? (
+        <Sidebar currentUser={currentUser?.data} />
+      ) : (
+        <UserSidebar currentUser={currentUser?.data} />
+      )}
+      <div className="w-full md:w-4/5 h-screen">
+        {role === "admin" ? <AdminNavbar /> : <UserNavbar />}
+
         <div className="p-6">{children}</div>
       </div>
     </section>

@@ -5,7 +5,7 @@ import btc from "../public/btc.png";
 
 export const UserDashBalance = () => {
   return (
-    <div className="grid grid-cols-3 gap-3 my-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-6">
       <Card className="p-6">
         <h2>Live Balance</h2>
       </Card>

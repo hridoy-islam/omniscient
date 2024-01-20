@@ -12,6 +12,7 @@ export interface UserData {
     firstName: string;
     lastName: string;
     phone: string;
+    photo: string;
   };
   contact_information: {
     address: string;

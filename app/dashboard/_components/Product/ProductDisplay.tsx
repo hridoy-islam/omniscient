@@ -56,7 +56,7 @@ const ProductDisplay: React.FC<ProductDisplayProps> = ({ allProducts }) => {
                 <td>{product.ram}</td>
                 <td>{product.smps}</td>
                 <td>{product.graphicscard}</td> */}
-                <td>
+                <td className="flex">
                   <Button
                     className="bg-primary text-white text-md"
                     onClick={() =>

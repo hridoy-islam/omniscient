@@ -68,7 +68,7 @@ tr {
   @apply border-0 !important;
 }
 
-.relative.w-full.inline-flex.tap-highlight-transparent.shadow-sm.px-3.border-medium.border-default-200.data-\[hover\=true\]\:border-default-400.group-data-\[focus\=true\]\:border-default-foreground.min-h-unit-10.rounded-medium.flex-col.items-start.justify-center.gap-0.transition-background.\!duration-150.transition-colors.motion-reduce\:transition-none.h-14.py-2{
+.relative.w-full.inline-flex.tap-highlight-transparent.shadow-sm.px-3.border-medium.border-default-200.data-\[hover\=true\]\:border-default-400.group-data-\[focus\=true\]\:border-default-foreground.min-h-unit-10.rounded-medium.flex-col.items-start.justify-center.gap-0.transition-background.\!duration-150.transition-colors.motion-reduce\:transition-none.h-14.py-2 {
   border-width: 0px;
   box-shadow: none;
 }

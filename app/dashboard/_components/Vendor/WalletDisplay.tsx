@@ -78,7 +78,7 @@ const WalletDisplay: React.FC<WalletDisplayProps> = ({ wallets }) => {
               <tr key={wallet._id}>
                 <td>{index + 1}</td>
                 <td>{wallet.name}</td>
-                <td>
+                <td className="flex">
                   <Button
                     onPress={() => handleEdit(wallet)}
                     className="bg-primary text-white text-md"

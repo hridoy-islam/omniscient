@@ -52,7 +52,7 @@ export default function UserSidebar({ currentUser }: UserSidebarProps) {
     },
   ];
   return (
-    <div className="w-1/5 flex flex-col justify-between h-screen bg-white border border-stroke p-4">
+    <div className="hidden w-1/5 md:flex flex-col justify-between h-screen bg-white border border-stroke p-4">
       <div>
         <Image src={logo} alt="robofx" className="mb-6" />
         <ul>
@@ -80,7 +80,7 @@ export default function UserSidebar({ currentUser }: UserSidebarProps) {
           <Button className="flex w-full justify-start border-stroke rounded-lg">
             <Avatar
               className="w-7 h-7 rounded-full"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+              src={currentUser?.personal_information?.photo}
             />
             <span>
               {currentUser?.personal_information?.firstName}{" "}

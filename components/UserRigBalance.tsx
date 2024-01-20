@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 export const UserRigBalance = () => {
   return (
-    <div className="grid grid-cols-4 gap-3 my-6">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
       <Card className="p-6 space-y-2 border border-green">
         <h1>Rigs Mining</h1>
         <h2 className="text-3xl font-bold text-green">13</h2>

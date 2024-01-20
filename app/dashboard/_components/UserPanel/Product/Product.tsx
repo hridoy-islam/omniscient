@@ -11,7 +11,6 @@ interface ProductInterface {
 }
 
 const Product = ({ products }: ProductInterface) => {
-//   console.log("orducts", products);
   return (
     <div>
       {/* <SingleProductView /> */}
@@ -28,7 +27,7 @@ const Product = ({ products }: ProductInterface) => {
           }}
         >
           <Tab key="items" title="Items">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {products?.map((product, index) => (
                 <SingleProductView key={index} product={product} />
               ))}

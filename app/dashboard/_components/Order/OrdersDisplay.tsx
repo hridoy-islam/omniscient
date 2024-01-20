@@ -43,7 +43,7 @@ const OrdersDisplay: React.FC<OrdersDisplayProps> = ({ allOrders }) => {
                 {/* <td>{order.createdAt}</td> */}
                 {/* <td>Render payment info</td> */}
                 <td>{order?.status}</td>
-                <td>
+                <td className="flex">
                   <Link href={`/dashboard/admin/order/${order?._id}`}>
                     <Button className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md">
                       <Icon icon="solar:eye-linear" className="text-lg" />
