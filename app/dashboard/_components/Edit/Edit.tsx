@@ -35,10 +35,10 @@ const Edit = ({ id }: EditProps) => {
         <BillingInfo id={id}/>
       </Tab>
       <Tab key="agreement" title="Agreement">
-        <Agreement />
+        <Agreement id={id} />
       </Tab>
       <Tab key="rigs" title="Rigs">
-        <Rigs />
+        <Rigs id={id} />
       </Tab>
     </Tabs>
   );

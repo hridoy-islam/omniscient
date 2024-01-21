@@ -9,7 +9,7 @@ const page = async () => {
   const allWallets = await getAllWallets();
   const allExchanges = await getAllExchanges();
   const currentUser = await getUserUsingCookie();
-  console.log("all exchanges", currentUser?.data);
+  // console.log("all exchanges", currentUser?.data);
   return (
     <UserSettings
       allWallets={allWallets?.data}
