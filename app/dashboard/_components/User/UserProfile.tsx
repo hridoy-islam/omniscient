@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Avatar, Card } from "@nextui-org/react";
+import { Avatar, Button, Card } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { UserData } from "@/utils/interfaces";
@@ -50,6 +50,10 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
               {user?.contact_information?.country}
             </p>
           </div>
+          <Button className="border border-primary bg-transparent text-primary w-64 flex items-center mt-3">
+            <Icon icon="material-symbols-light:download" width={26} />
+            Download Agreenment
+          </Button>
         </div>
       </Card>
       <Card className="p-6 my-6">

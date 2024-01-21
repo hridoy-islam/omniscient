@@ -46,6 +46,7 @@ const config: any = {
             orange: "#EC8153",
             purple: "#6647BF",
             black: "#181818",
+            yellow: "#FFAB1F",
           },
         },
       },

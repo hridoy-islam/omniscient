@@ -47,7 +47,11 @@ export default function page() {
           <Button className="bg-primaryLight">
             <Icon icon="ph:play-fill" /> Start All Rigs
           </Button>
-          <Button className="bg-[#f9e5e5]"> <Icon icon="solar:pause-bold" />Stop All Rigs</Button>
+          <Button className="bg-[#f9e5e5]">
+            {" "}
+            <Icon icon="solar:pause-bold" />
+            Stop All Rigs
+          </Button>
         </div>
       </Card>
       <Card className="p-6 space-y-3">

@@ -1,10 +1,17 @@
 "use client";
-import { Avatar, Card, CardBody, CardHeader, Link } from "@nextui-org/react";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Link,
+} from "@nextui-org/react";
 import EditButton from "@/components/EditButton";
 import DeleteButton from "@/components/DeleteButton";
 import ViewButton from "@/components/ViewButton";
 import { UserData } from "@/utils/interfaces";
-import {Autocomplete, AutocompleteItem} from "@nextui-org/react";
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 
 interface ApiResponse {
   meta: {
@@ -26,7 +33,7 @@ export default function User({ allUsers }: UserProps) {
   return (
     <div>
       <Card>
-        <CardHeader className="flex justify-between">
+        <CardHeader className="tableHeader">
           <h2>All User</h2>
 
           <Link
@@ -38,7 +45,7 @@ export default function User({ allUsers }: UserProps) {
         </CardHeader>
         <CardBody>
           <table className="table-fixed">
-            <thead className="bg-primary h-7 text-white">
+            <thead>
               <tr>
                 <th>Name</th>
                 <th>Phone</th>
@@ -50,7 +57,7 @@ export default function User({ allUsers }: UserProps) {
             </thead>
             {usersList?.map((user, id) => (
               <tbody key={id}>
-                <tr className="h-12 text-md">
+                <tr>
                   <td>
                     <div className="flex items-center gap-2">
                       <Avatar
@@ -71,6 +78,9 @@ export default function User({ allUsers }: UserProps) {
                     <EditButton userId={user?._id} />
                     <ViewButton userId={user?._id} />
                     <DeleteButton label="users" id={user?._id} />
+                    <Button className="bg-secondary border border-black text-white mx-2">
+                      View Rigs
+                    </Button>
                   </td>
                 </tr>
               </tbody>

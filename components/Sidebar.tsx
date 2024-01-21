@@ -12,6 +12,7 @@ interface UserSidebarProps {
 }
 export default function Sidebar({ currentUser }: UserSidebarProps) {
   const pathname = usePathname();
+  console.log(pathname);
   const sidebarmenu = [
     {
       path: "/dashboard/admin",
@@ -65,7 +66,7 @@ export default function Sidebar({ currentUser }: UserSidebarProps) {
                 href={item.path}
                 className={`py-2 px-3 flex justify-start rounded-lg my-3 text-xl 
               ${
-                pathname.toString().includes(item.path.toString())
+                item.path.toString() === pathname.toString()
                   ? "bg-primary text-white"
                   : ""
               }`}

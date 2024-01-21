@@ -3,13 +3,13 @@ import UserProfile from "@/app/dashboard/_components/User/UserProfile";
 import React from "react";
 
 interface pageProps {
-  params: {id: string};
+  params: { id: string };
 }
 
 const page = async ({ params }: pageProps) => {
   // console.log("here is the params", params?.id);
   const currentUser = await getUser(params?.id);
-  
+
   //   console.log('current user', currentUser?.data)
   return (
     <div>

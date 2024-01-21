@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import LogoutButton from "./LogoutButton";
 import Link from "next/link";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
 
 export default function UserNavbar() {
@@ -65,21 +65,36 @@ export default function UserNavbar() {
 
         <NavbarContent className="sm:hidden pr-3" justify="center">
           <NavbarBrand>
-            <p className="font-bold text-inherit">Dashboard</p>
+            <p className="font-bold text-inherit">User Email</p>
           </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent className="hidden sm:flex gap-4" justify="end">
           <NavbarBrand>
-            <p className="font-bold text-inherit">Dashboard</p>
+            <p className="font-bold text-inherit">User Email</p>
           </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent justify="end">
           <NavbarItem>
-            <Button color="warning" className="text-white border">
-              BTC
-            </Button>
+            <div>
+              <Button className="text-white bg-yellow rounded-e-none mr-1">
+                0.581285 BTC
+              </Button>
+              <Button className="text-white bg-yellow rounded-l-none">
+                Gross <Icon icon="solar:dollar-linear" width={18} />
+              </Button>
+            </div>
+          </NavbarItem>
+          <NavbarItem>
+            <div>
+              <Button className="text-white bg-green rounded-e-none mr-1">
+                0.581285 BTC
+              </Button>
+              <Button className="text-white bg-green rounded-l-none">
+                Live <Icon icon="solar:dollar-linear" width={18} />
+              </Button>
+            </div>
           </NavbarItem>
           <NavbarItem>
             <LogoutButton />

@@ -14,6 +14,7 @@ interface SettingsProps {
     inr: number;
     btc: number;
     euro: number;
+    profit: number;
   }[];
 }
 
@@ -100,6 +101,16 @@ const Settings: React.FC<SettingsProps> = ({ settingsData }) => {
               className="roboinput"
               value={updatedSettings.inr}
               onChange={(e) => handleInputChange(e, "inr")}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="">Profit</label>
+            <input
+              type="text"
+              name="profit"
+              className="roboinput"
+              value={updatedSettings.profit}
+              onChange={(e) => handleInputChange(e, "profit")}
             />
           </div>
         </div>

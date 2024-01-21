@@ -32,7 +32,7 @@ const Edit = ({ id }: EditProps) => {
         <ContactInfo id={id} />
       </Tab>
       <Tab key="bill" title="Billing Info">
-        <BillingInfo id={id}/>
+        <BillingInfo id={id} />
       </Tab>
       <Tab key="agreement" title="Agreement">
         <Agreement id={id} />

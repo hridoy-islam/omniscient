@@ -12,6 +12,7 @@ import ViewButton from "@/components/ViewButton";
 import DeleteButton from "@/components/DeleteButton";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 interface RigsProps {
   id: string;
@@ -158,7 +159,17 @@ const Rigs = ({ id }: RigsProps) => {
 
       <Card className="my-6">
         <CardHeader className="tableHeader">
-          <h2>Assigned Rigs</h2>
+          <h2>Assigned Rigs to username@example.com </h2>
+          <div className="flex justify-between">
+            <Button className="bg-primaryLight mr-3">
+              <Icon icon="ph:play-fill" /> Start All Rigs
+            </Button>
+            <Button className="bg-[#f9e5e5]">
+              {" "}
+              <Icon icon="solar:pause-bold" />
+              Stop All Rigs
+            </Button>
+          </div>
         </CardHeader>
         <CardBody>
           <table className="table-fixed">

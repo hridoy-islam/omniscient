@@ -69,22 +69,17 @@ export default function AdminNavbar() {
 
         <NavbarContent className="sm:hidden pr-3" justify="center">
           <NavbarBrand>
-            <p className="font-bold text-inherit">Dashboard</p>
+            <p className="font-bold text-inherit">Admin Email</p>
           </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent className="hidden sm:flex gap-4" justify="end">
           <NavbarBrand>
-            <p className="font-bold text-inherit">Dashboard</p>
+            <p className="font-bold text-inherit">Admin Email</p>
           </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent justify="end">
-          <NavbarItem>
-            <Button color="warning" className="text-white border">
-              BTC
-            </Button>
-          </NavbarItem>
           <NavbarItem>
             <LogoutButton />
           </NavbarItem>
