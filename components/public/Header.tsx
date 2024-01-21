@@ -19,7 +19,8 @@ export default function Header() {
     <Navbar>
       <NavbarBrand>
         <div>
-          <Image src={robofxicon} alt="Robofx" />
+          <Link href={'/'}>
+          <Image src={robofxicon} alt="Robofx" /></Link>
         </div>
       </NavbarBrand>
       <NavbarContent justify="end">

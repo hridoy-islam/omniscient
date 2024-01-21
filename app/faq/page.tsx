@@ -1,3 +1,11 @@
+import Faq from "@/components/public/Faq";
+import Footer from "@/components/public/Footer";
+import Header from "@/components/public/Header";
+
 export default function page() {
-  return <h1>FAQ</h1>;
+  return <div>
+    <Header />
+    <Faq />
+    <Footer />
+    </div>;
 }

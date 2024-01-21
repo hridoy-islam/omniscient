@@ -45,6 +45,7 @@ const config: any = {
             blue: "#4A8CDA",
             orange: "#EC8153",
             purple: "#6647BF",
+            black: "#181818",
           },
         },
       },
