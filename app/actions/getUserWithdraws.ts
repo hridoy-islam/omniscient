@@ -3,7 +3,7 @@ import { DecodedToken } from "@/utils/interfaces";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 
-export default async function getInvoiceById() {
+export default async function getUserWithdraws() {
   const nextCookies = cookies();
   const tokenData = nextCookies.get("jwt");
   const token = tokenData?.value;
@@ -14,10 +14,10 @@ export default async function getInvoiceById() {
     decoded = jwtDecode(token) as DecodedToken;
   }
 
-  console.log(decoded)
+  console.log(decoded);
 
   try {
-    const res = await Axios.get(`/invoices?userid=${decoded?.id}`);
+    const res = await Axios.get(`/withdraws?userid=${decoded?.id}`);
     return res.data;
   } catch (error) {
     console.error("");

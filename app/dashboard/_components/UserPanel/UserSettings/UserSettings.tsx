@@ -31,7 +31,7 @@ const UserSettings = ({
           }}
         >
           <Tab key="account" title="Account Settings">
-            <AccountTab />
+            <AccountTab currentUser={currentUser} />
           </Tab>
           <Tab key="walltet" title="Wallet">
             <WalletTab

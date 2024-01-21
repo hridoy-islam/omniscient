@@ -37,6 +37,8 @@ export interface UserData {
     }
   ];
   _id: string;
+  currency: string;
+  primary_account: string;
   email: string;
   role: string;
   status: string;
@@ -90,3 +92,4 @@ export interface Wallet {
   _id: string;
   name: string;
 }
+

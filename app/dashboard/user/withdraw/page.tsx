@@ -1,57 +1,12 @@
-"use client"
-import Pagination from "@/components/Pagination";
-import ViewButton from "@/components/ViewButton";
-import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
-import Link from "next/link";
+import React from "react";
+import Withdraw from "../../_components/UserPanel/Withdraw/Withdraw";
+import getUserWithdraws from "@/app/actions/getUserWithdraws";
 
-export default function Page() {
-  return (
-    <>
+const page = async () => {
+  const withdraw = await getUserWithdraws();
+  console.log(withdraw);
 
-      <Card className="mb-6">
-        <CardHeader className="tableHeader">
+  return <Withdraw />;
+};
 
-          <div>
-            <h2>Recent Withdraw</h2>
-          </div>
-          <div>
-            <Link href="/dashboard/admin/invoice/create">
-              <Button className="bg-white text-primary border border-primary rounded-md">
-                Request Withdraw
-              </Button>
-            </Link>
-          </div>
-        </CardHeader>
-        <CardBody>
-          <table className="table-auto">
-            <thead>
-              <tr>
-                <th>Requested By</th>
-                <th>Withdraw ID</th>
-                <th>BTC</th>
-                <th>Bank</th>
-                <th>Amount</th>
-                <th>Requested Date</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Invoice-0019</td>
-                <td>$292</td>
-                <td>1961</td>
-                <td>1961</td>
-                <td>1961</td>
-                <td>1961</td>
-                <td>
-                  <ViewButton />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </CardBody>
-      </Card>
-      <Pagination />
-    </>
-  );
-}
+export default page;

@@ -25,12 +25,13 @@ import {
 import Image from "next/image";
 import Logo from "/public/logo.png";
 import moment from "moment";
+import { UserData } from "@/utils/interfaces";
 
 interface Invoice {
   _id: string;
   invoiceId: string;
   category: string;
-  userid: string;
+  userid: UserData;
   information: Information[];
   createdAt: string;
   updatedAt: string;
@@ -82,7 +83,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
   const rigsInvoices = invoices?.filter(
     (invoice) => invoice.category === "rigs"
   );
-  // console.log("bill", billInvoices);
+  console.log("bill", billInvoices);
   // console.log("addon", addonInvoices);
   // console.log("rigs", rigsInvoices);
 
@@ -137,26 +138,40 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                   {billInvoices?.map((invoice, index) => (
                     <tr key={index}>
                       <td>{invoice?.invoiceId}</td>
-                      <td>{calculateTotalAmount(invoice?.information || 0)}</td>
+                      <td>
+                        ${calculateTotalAmount(invoice?.information || 0)}
+                      </td>
                       <td>
                         <div className="flex items-center gap-2">
                           <Avatar
                             className="w-6 h-6"
-                            src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                            src={invoice?.userid?.personal_information?.photo}
                           />
-                          <span>The Sliding</span>
+                          <span>
+                            {invoice?.userid?.personal_information?.firstName}{" "}
+                            {invoice?.userid?.personal_information?.lastName}
+                          </span>
                         </div>
                       </td>
                       <td>{moment(invoice?.createdAt).format("LL")}</td>
 
                       <td>
-                        <EditButton />
                         <Button
                           onPress={() => openModal(invoice)}
                           className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
                         >
                           <Icon icon="solar:eye-linear" className="text-lg" />
                           <span>View</span>
+                        </Button>{" "}
+                        <Button
+                          onPress={() => openModal(invoice)}
+                          className="text-purple border-purple border-1 bg-white ml-2 px-3 text-md"
+                        >
+                          <Icon
+                            icon="eva:download-outline"
+                            className="text-lg"
+                          />
+                          <span>Download</span>
                         </Button>{" "}
                       </td>
                     </tr>
@@ -195,25 +210,40 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                   {addonInvoices?.map((invoice, index) => (
                     <tr key={index}>
                       <td>{invoice?.invoiceId}</td>
-                      <td>{calculateTotalAmount(invoice?.information || 0)}</td>
+                      <td>
+                        ${calculateTotalAmount(invoice?.information || 0)}
+                      </td>
                       <td>
                         <div className="flex items-center gap-2">
                           <Avatar
                             className="w-6 h-6"
-                            src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                            src={invoice?.userid?.personal_information?.photo}
                           />
-                          <span>The Sliding</span>
+                          <span>
+                            {invoice?.userid?.personal_information?.firstName}{" "}
+                            {invoice?.userid?.personal_information?.lastName}
+                          </span>
                         </div>
                       </td>
                       <td>{moment(invoice?.createdAt).format("LL")}</td>
+
                       <td>
-                        <EditButton />
                         <Button
                           onPress={() => openModal(invoice)}
                           className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
                         >
                           <Icon icon="solar:eye-linear" className="text-lg" />
                           <span>View</span>
+                        </Button>{" "}
+                        <Button
+                          onPress={() => openModal(invoice)}
+                          className="text-purple border-purple border-1 bg-white ml-2 px-3 text-md"
+                        >
+                          <Icon
+                            icon="eva:download-outline"
+                            className="text-lg"
+                          />
+                          <span>Download</span>
                         </Button>{" "}
                       </td>
                     </tr>
@@ -252,25 +282,40 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                   {rigsInvoices?.map((invoice, index) => (
                     <tr key={index}>
                       <td>{invoice?.invoiceId}</td>
-                      <td>{calculateTotalAmount(invoice?.information || 0)}</td>
+                      <td>
+                        ${calculateTotalAmount(invoice?.information || 0)}
+                      </td>
                       <td>
                         <div className="flex items-center gap-2">
                           <Avatar
                             className="w-6 h-6"
-                            src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                            src={invoice?.userid?.personal_information?.photo}
                           />
-                          <span>The Sliding</span>
+                          <span>
+                            {invoice?.userid?.personal_information?.firstName}{" "}
+                            {invoice?.userid?.personal_information?.lastName}
+                          </span>
                         </div>
                       </td>
                       <td>{moment(invoice?.createdAt).format("LL")}</td>
-                      <td className="flex">
-                        <EditButton />
+
+                      <td>
                         <Button
                           onPress={() => openModal(invoice)}
                           className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
                         >
                           <Icon icon="solar:eye-linear" className="text-lg" />
                           <span>View</span>
+                        </Button>{" "}
+                        <Button
+                          onPress={() => openModal(invoice)}
+                          className="text-purple border-purple border-1 bg-white ml-2 px-3 text-md"
+                        >
+                          <Icon
+                            icon="eva:download-outline"
+                            className="text-lg"
+                          />
+                          <span>Download</span>
                         </Button>{" "}
                       </td>
                     </tr>
@@ -282,7 +327,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
         </Tab>
       </Tabs>
 
-      <Pagination />
+      {/* <Pagination /> */}
       <Modal
         size="3xl"
         className="mt-[300px]"
@@ -292,62 +337,69 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 ">
-                Modal Title
-              </ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 "></ModalHeader>
               <ModalBody>
                 <div
                   className="p-6 bg-white rounded shadow-sm my-6 "
                   id="invoice"
                 >
-                  <div className="grid grid-cols-2 items-center">
+                  <div className="grid grid-cols-1 md:grid-cols-2 items-center">
                     <div>
                       <Image
                         src={Logo}
                         alt="company-logo"
-                        className="h-auto w-24"
+                        className="h-auto w-40 object-cover"
                         width={100}
                         height={100}
                       />
                     </div>
 
-                    <div className="text-right">
-                      <p>Tailwind Inc.</p>
-                      <p className="text-gray-500 text-sm">
-                        sales@tailwindcss.com
-                      </p>
-                      <p className="text-gray-500 text-sm mt-1">
-                        +41-442341232
-                      </p>
-                      <p className="text-gray-500 text-sm mt-1">
-                        VAT: 8657671212
-                      </p>
+                    <div className="mt-6 md:mt-0">
+                      <div className="flex md:justify-end gap-8">
+                        <div className="border-r-2 border-primary pr-6">
+                          <p>Date</p>
+                          {moment(selectedInvoice?.createdAt).format("LL")}
+                        </div>
+
+                        <div>
+                          <p>Invoice</p>
+                          <p>INV - {selectedInvoice?.invoiceId}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
                   {/* <!-- Client info --> */}
-                  <div className="grid grid-cols-2 items-center mt-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 items-center mt-8">
                     <div>
-                      <p className="font-bold text-gray-800">Bill to :</p>
+                      <p className="font-bold text-gray-800">Street Name</p>
                       <p className="text-gray-500">
                         Laravel LLC.
                         <br />
                         102, San-Fransico, CA, USA
                       </p>
-                      <p className="text-gray-500">info@laravel.com</p>
                     </div>
 
-                    <div className="text-right">
-                      <p className="">
-                        Invoice number:
-                        <span className="text-gray-500">INV-2023786123</span>
+                    <div className="md:text-right mt-5 md:mt-0">
+                      <p className="">User Info</p>
+                      <p className="font-normal text-gray-400">
+                        {
+                          selectedInvoice?.userid?.personal_information
+                            ?.firstName
+                        }{" "}
+                        {
+                          selectedInvoice?.userid?.personal_information
+                            ?.lastName
+                        }
                       </p>
-                      <p>
-                        Invoice date:{" "}
-                        <span className="text-gray-500">03/07/2023</span>
-                        <br />
-                        Due date:
-                        <span className="text-gray-500">31/07/2023</span>
+                      <p className="font-normal text-gray-400">
+                        {selectedInvoice?.userid?.contact_information?.address},
+                        {selectedInvoice?.userid?.contact_information?.city},
+                        {selectedInvoice?.userid?.contact_information?.country}
+                      </p>
+                      <p className="font-normal text-gray-400">
+                        Phone:{" "}
+                        {selectedInvoice?.userid?.personal_information?.phone}
                       </p>
                     </div>
                   </div>
@@ -439,11 +491,15 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                             Subtotal
                           </th>
                           <td className="pl-3 pr-6 pt-6 text-right text-sm text-gray-500 sm:pr-0">
-                            $10,500.00
+                            $
+                            {selectedInvoice &&
+                              calculateTotalAmount(
+                                selectedInvoice?.information
+                              )}
                           </td>
                         </tr>
 
-                        <tr>
+                        {/* <tr>
                           <th
                             scope="row"
                             colSpan={4}
@@ -478,7 +534,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                           <td className="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 sm:pr-0">
                             $11,550.00
                           </td>
-                        </tr>
+                        </tr> */}
                         <tr>
                           <th
                             scope="row"
@@ -494,7 +550,11 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                             Total
                           </th>
                           <td className="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 sm:pr-0">
-                            $11,550.00
+                            $
+                            {selectedInvoice &&
+                              calculateTotalAmount(
+                                selectedInvoice?.information
+                              )}
                           </td>
                         </tr>
                         <tr>
@@ -512,7 +572,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                             Total
                           </th>
                           <td className="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 sm:pr-0">
-                            $11,550.00
+                            $0
                           </td>
                         </tr>
                       </tfoot>
@@ -520,10 +580,21 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                   </div>
 
                   {/* <!--  Footer  --> */}
-                  <div className="border-t-2 pt-4 text-xs text-gray-500 text-center mt-16">
-                    Please pay the invoice before the due date. You can pay the
-                    invoice by logging in to your account from our client
-                    portal.
+                  <div className="border-t pt-4 flex justify-between items-center mt-16">
+                    <div>
+                      {" "}
+                      <Image
+                        src={Logo}
+                        alt="company-logo"
+                        className="h-auto w-24 object-cover"
+                        width={100}
+                        height={100}
+                      />
+                    </div>
+                    <div className="flex flex-col md:flex-row gap-4">
+                      <div className="md:border-r md:pr-4">mail@robofx.com</div>
+                      <div>+1 000 0000000000</div>
+                    </div>
                   </div>
                 </div>
 

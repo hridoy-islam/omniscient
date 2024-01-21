@@ -4,7 +4,7 @@ import getAllOrders from "@/app/actions/getAllOrders";
 
 const page = async () => {
   const allOrders = await getAllOrders();
-  console.log("all orders", allOrders?.data);
+  // console.log("all orders", allOrders?.data);
   return <OrdersDisplay allOrders={allOrders?.data?.result} />;
 };
 
