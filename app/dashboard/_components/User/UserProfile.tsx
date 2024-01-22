@@ -4,7 +4,6 @@ import { Avatar, Button, Card } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { UserData } from "@/utils/interfaces";
-import EditButton from "@/components/EditButton";
 
 interface UserProfileProps {
   user: UserData;

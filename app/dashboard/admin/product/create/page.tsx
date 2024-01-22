@@ -107,7 +107,7 @@ export default function Page() {
 
   return (
     <>
-      <Card className="mx-20">
+      <Card className="md:mx-20">
         <CardHeader className="tableHeader">
           <h3>Add New Product</h3>
         </CardHeader>

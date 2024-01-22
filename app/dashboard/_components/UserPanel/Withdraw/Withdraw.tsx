@@ -2,7 +2,8 @@
 import Pagination from "@/components/Pagination";
 import ViewButton from "@/components/ViewButton";
 import Axios from "@/utils/axios";
-import { DecodedToken } from "@/utils/interfaces";
+import { DecodedToken, UserData } from "@/utils/interfaces";
+import { Icon } from "@iconify/react/dist/iconify.js";
 import {
   Button,
   Card,
@@ -14,6 +15,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Chip,
 } from "@nextui-org/react";
 import { jwtDecode } from "jwt-decode";
 import moment from "moment";
@@ -21,7 +23,40 @@ import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
-const Withdraw = () => {
+
+interface WithdrawObject {
+  _id: string;
+  amount: number;
+  btc: string;
+  requestDate: string;
+  status: string;
+  userid: UserData;
+}
+
+interface WithdrawData {
+  success: boolean;
+  message: string;
+  data: WithdrawDataDetails;
+}
+
+interface WithdrawDataDetails {
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPage: number;
+  };
+  result: WithdrawObject[];
+}
+
+interface WithdrawProps {
+  withdrawsData: WithdrawData;
+}
+
+const Withdraw = ({ withdrawsData }: WithdrawProps) => {
+  const withdrawData = withdrawsData?.data?.result;
+  // console.log(withdrawData);
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [btc, setBtc] = useState("");
   const [amount, setAmount] = useState(0);
@@ -53,18 +88,6 @@ const Withdraw = () => {
     }
   };
 
-  // const withdrawSchema = new Schema<TWithdraw>({
-  //   userid: { type: Schema.Types.ObjectId, required: true }, //
-  //   btc: { type: String, required: [true, 'BTC is required'] }, //
-  //   amount: { type: Number, required: [true, 'amount is required'] }, //
-  //   bank: { type: String },
-  //   speed: { type: String },
-  //   requestDate: { type: String }, //
-  //   status: { type: String, default: 'pending' },
-  //   efficiency: { type: String },
-  //   message: { type: String },
-  // });
-
   return (
     <>
       <Card className="mb-6">
@@ -85,27 +108,36 @@ const Withdraw = () => {
           <table className="table-auto">
             <thead>
               <tr>
-                <th>Requested By</th>
                 <th>Withdraw ID</th>
+                <th>Status</th>
                 <th>BTC</th>
-                <th>Bank</th>
                 <th>Amount</th>
                 <th>Requested Date</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Invoice-0019</td>
-                <td>$292</td>
-                <td>1961</td>
-                <td>1961</td>
-                <td>1961</td>
-                <td>1961</td>
-                <td>
-                  <ViewButton />
-                </td>
-              </tr>
+              {withdrawData?.map((withdraw, index) => (
+                <tr key={index}>
+                  <td>{withdraw?._id}</td>
+                  <td>
+                    <Chip color="primary" className="text-white uppercase">
+                      {withdraw?.status}
+                    </Chip>
+                  </td>
+                  <td>{withdraw?.btc}</td>
+                  <td>${withdraw?.amount}</td>
+                  <td>{withdraw?.requestDate}</td>
+                  <td>
+                    <Link href={`/dashboard/admin/withdraw/1`}>
+                      <Button className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md">
+                        <Icon icon="solar:eye-linear" className="text-lg" />
+                        <span>View</span>
+                      </Button>
+                    </Link>{" "}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </CardBody>
