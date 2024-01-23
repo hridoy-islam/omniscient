@@ -61,7 +61,7 @@ const ProductEdit: React.FC<ProductEditProps> = ({ product }) => {
   };
 
   return (
-    <Card className="mx-20">
+    <Card className="md:mx-20">
       <CardHeader className="tableHeader">
         <h3>Edit Product</h3>
       </CardHeader>

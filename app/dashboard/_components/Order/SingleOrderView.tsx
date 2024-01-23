@@ -57,9 +57,9 @@ const SingleOrderView = ({ order }: SingleOrderViewProps) => {
   };
 
   return (
-    <div className="flex gap-8">
-      <div className="w-9/12">
-        <div>
+    <div className="flex flex-col md:flex-row md:gap-8">
+      <div className="w-full md:w-9/12">
+        <div className="mb-8 md:mb-0">
           <h2 className="my-4 font-bold text-2xl">Order Details</h2>
           <Card>
             <CardBody>
@@ -80,7 +80,9 @@ const SingleOrderView = ({ order }: SingleOrderViewProps) => {
                     <td>:</td>
                     <td>
                       {" "}
-                      <Chip color="primary" className="text-white">{status.toLocaleUpperCase()}</Chip>
+                      <Chip color="primary" className="text-white">
+                        {status.toLocaleUpperCase()}
+                      </Chip>
                     </td>
                   </tr>
                 </tbody>
@@ -176,8 +178,8 @@ const SingleOrderView = ({ order }: SingleOrderViewProps) => {
           </Card>
         </div>
       </div>
-      <div className="w-3/12">
-        <Card className="mt-16 p-3">
+      <div className="w-full md:w-3/12">
+        <Card className="mt-8 md:mt-16 p-3">
           <CardHeader>
             <p>Order Summery</p>
           </CardHeader>
