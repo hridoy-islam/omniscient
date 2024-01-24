@@ -6,82 +6,82 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
 } from "@nextui-org/react";
 import React from "react";
 import robofxicon from "../../public/logo.png";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export default function Header() {
-  const pathname = usePathname();
+  const menuItems = ["About", "Support", "Faq", "Contact"];
+
   return (
     <Navbar>
-      <NavbarBrand>
-        <div>
-          <Link href={'/'}>
-          <Image src={robofxicon} alt="Robofx" /></Link>
-        </div>
-      </NavbarBrand>
-      <NavbarContent justify="end">
-        <NavbarItem>
-          <Link className="text-darkText text-base font-bold px-2" href={"/"}>
-            Home
+      <NavbarContent>
+        <NavbarMenuToggle
+          classNames={{
+            NavbarMenuToggle: "text-primary bg-primary",
+          }}
+        />
+
+        <NavbarBrand>
+          <Link href={"/"}>
+            <Image src={robofxicon} alt="robofx" />
           </Link>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent justify="end" className="space-x-6">
+        <NavbarItem className="hidden lg:flex">
+          <Link href="/">Home</Link>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link
-            className="text-lightText text-base font-medium px-2"
-            href={"/about"}
-          >
-            About Us
-          </Link>
+        <NavbarItem className="hidden lg:flex">
+          <Link href="/about">About Us</Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link
-            className="text-lightText text-base font-medium px-2"
-            href={"/support"}
-          >
-            Support
-          </Link>
+        <NavbarItem className="hidden lg:flex">
+          <Link href="/support">Support</Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link
-            className="text-lightText text-base font-medium px-2"
-            href={"/faq"}
-          >
-            FAQ
-          </Link>
+        <NavbarItem className="hidden lg:flex">
+          <Link href="/faq">FAQ</Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link
-            className="text-lightText text-base font-medium px-2"
-            href={"/contact"}
-          >
-            Contact Us
-          </Link>
+        <NavbarItem className="hidden lg:flex">
+          <Link href="/contact">Contact Us</Link>
         </NavbarItem>
         <NavbarItem>
           <Button
             as={Link}
-            className="text-white bg-primary rounded-full text-base font-medium"
-            href={"/login"}
+            color="primary"
+            href="/login"
             variant="flat"
+            className="btn-basic rounded-3xl"
           >
             Mining
           </Button>
         </NavbarItem>
       </NavbarContent>
-      {/* <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} className="text-red" href="#" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent> */}
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2
+                  ? "primary"
+                  : index === menuItems.length - 1
+                  ? "danger"
+                  : "foreground"
+              }
+              className="w-full"
+              href={`/${item.toLowerCase()}`}
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
     </Navbar>
   );
 }

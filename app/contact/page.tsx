@@ -10,7 +10,6 @@ export default function page() {
       <Header />
       <ContactHeader />
       <Contact />
-
       <Footer />
     </div>
   );
