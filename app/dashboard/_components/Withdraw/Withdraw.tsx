@@ -90,7 +90,10 @@ const Withdraw = ({ allWithdraws }: WithdrawProps) => {
             <tbody>
               {withdraws?.map((withdraw, index) => (
                 <tr key={index}>
-                  <td>{withdraw?._id}</td>
+                  <td>
+                    {withdraw?.userid?.personal_information?.firstName}{" "}
+                    {withdraw?.userid?.personal_information?.lastName}
+                  </td>
                   <td>
                     <Chip color="primary" className="text-white uppercase">
                       {withdraw?.status}
@@ -100,7 +103,7 @@ const Withdraw = ({ allWithdraws }: WithdrawProps) => {
                   <td>${withdraw?.amount}</td>
                   <td>{withdraw?.requestDate}</td>
                   <td>
-                    <Link href={`/dashboard/admin/withdraw/1`}>
+                    <Link href={`/dashboard/admin/withdraw/${withdraw?._id}`}>
                       <Button className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md">
                         <Icon icon="solar:eye-linear" className="text-lg" />
                         <span>View</span>

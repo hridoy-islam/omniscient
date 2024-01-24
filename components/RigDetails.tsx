@@ -2,8 +2,24 @@
 import { Icon } from "@iconify/react";
 import { Button, Card, CardBody, Progress } from "@nextui-org/react";
 
-export const RigDetails = () => {
-  return (
+interface rig {
+  _id: string;
+  userid: string;
+  rigName: string;
+  gpu: string;
+  temp: string;
+  fan: string;
+  load: string;
+  power: string;
+  efficiency: number;
+}
+
+interface RigsDetailsProps {
+  rigs: rig[];
+}
+
+export const RigDetails = ({ rigs }: RigsDetailsProps) => {
+  return rigs?.map((rig, index) => (
     <>
       <Card className="p-6 space-y-3">
         <CardBody>
@@ -12,7 +28,7 @@ export const RigDetails = () => {
               <h2>
                 Rig 00001 <span className="text-green">Mining</span>
               </h2>
-              <p>Nvidia GeForce RTX 3090</p>
+              <p>{rig?.rigName}</p>
             </div>
             <Button className="bg-[#DFF9E8] text-secondary">
               <Icon icon="solar:pause-bold" /> <span>Pause Mining</span>
@@ -25,7 +41,7 @@ export const RigDetails = () => {
               </div>
               <p className="text-lg">Efficiency</p>
               <h4 className="text-3xl font-semibold">
-                1.944 <span className="text-xl">MH/J</span>
+                {rig?.efficiency} <span className="text-xl">MH/J</span>
               </h4>
             </Card>
             <Card className="p-4 border border-stroke">
@@ -56,7 +72,7 @@ export const RigDetails = () => {
               </div>
               <p className="text-lg">Fan</p>
               <p className="flex justify-between my-1">
-                <span>90%</span>
+                <span>{rig?.fan}%</span>
                 <span>100%</span>
               </p>
               <Progress
@@ -87,7 +103,7 @@ export const RigDetails = () => {
               </div>
               <p className="text-lg">Power</p>
               <p className="flex justify-between my-1">
-                <span>199 W</span>
+                <span>{rig?.power} W</span>
                 <span>100%</span>
               </p>
               <Progress
@@ -135,7 +151,7 @@ export const RigDetails = () => {
               <h2>
                 Rig 00001 <span className="text-red">Stopped</span>
               </h2>
-              <p>Nvidia GeForce RTX 3090</p>
+              <p>{rig?.rigName}</p>
             </div>
             <Button className="bg-[#D8F0FD] text-secondary">
               <Icon icon="solar:play-bold" /> <span>Start Mining</span>
@@ -144,5 +160,5 @@ export const RigDetails = () => {
         </CardBody>
       </Card>
     </>
-  );
+  ));
 };

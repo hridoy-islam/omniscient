@@ -4,7 +4,6 @@ import getAllWithdraws from "@/app/actions/getAllWithdraws";
 
 const page = async () => {
   const allWithdraws = await getAllWithdraws();
-  // console.log("all withdraws", allWithdraws);
   return <Withdraw allWithdraws={allWithdraws} />;
 };
 

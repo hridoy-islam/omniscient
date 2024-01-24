@@ -33,7 +33,11 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
         <UserSidebar currentUser={currentUser?.data} />
       )}
       <div className="w-full md:w-4/5 h-screen">
-        {role === "admin" ? <AdminNavbar /> : <UserNavbar />}
+        {role === "admin" ? (
+          <AdminNavbar currentUser={currentUser?.data} />
+        ) : (
+          <UserNavbar currentUser={currentUser?.data} />
+        )}
 
         <div className="p-6">{children}</div>
       </div>

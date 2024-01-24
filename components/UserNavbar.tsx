@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useEffect } from "react";
 import {
   Button,
   Navbar,
@@ -14,8 +15,13 @@ import LogoutButton from "./LogoutButton";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
+import { UserData } from "@/utils/interfaces";
 
-export default function UserNavbar() {
+interface UserSidebarProps {
+  currentUser: UserData;
+}
+
+export default function UserNavbar({ currentUser }: UserSidebarProps) {
   const sidebarmenu = [
     {
       path: "/dashboard/user",
@@ -57,50 +63,48 @@ export default function UserNavbar() {
   const pathname = usePathname();
 
   return (
-    <div className="">
+    <div>
       <Navbar disableAnimation className="bg-white border border-stroke">
-        <NavbarContent className="sm:hidden " justify="start">
-          <NavbarMenuToggle />
+        {/* Toggle button for small screens */}
+        <NavbarContent className="sm:hidden" justify="start">
+          <NavbarMenuToggle className="navbar-menu-toggle-bar" />
         </NavbarContent>
 
-        <NavbarContent className="sm:hidden pr-3" justify="center">
+        {/* User info for all screens */}
+        <NavbarContent className="sm:flex sm:items-center sm:justify-between">
           <NavbarBrand>
-            <p className="font-bold text-inherit">User Email</p>
+            <p className="font-bold text-inherit">{currentUser?.email}</p>
           </NavbarBrand>
+
+          {/* Buttons and Logout for all screens */}
+          <NavbarContent className="hidden sm:flex gap-4" justify="end">
+            <NavbarItem>
+              <div className="hidden sm:flex gap-2">
+                <Button className="text-white bg-yellow rounded-e-none">
+                  0.581285 BTC
+                </Button>
+                <Button className="text-white bg-yellow rounded-l-none">
+                  Gross <Icon icon="solar:dollar-linear" width={18} />
+                </Button>
+              </div>
+            </NavbarItem>
+            <NavbarItem>
+              <div className="hidden sm:flex gap-2">
+                <Button className="text-white bg-green rounded-e-none">
+                  0.581285 BTC
+                </Button>
+                <Button className="text-white bg-green rounded-l-none">
+                  Live <Icon icon="solar:dollar-linear" width={18} />
+                </Button>
+              </div>
+            </NavbarItem>
+            <NavbarItem>
+              <LogoutButton />
+            </NavbarItem>
+          </NavbarContent>
         </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex gap-4" justify="end">
-          <NavbarBrand>
-            <p className="font-bold text-inherit">User Email</p>
-          </NavbarBrand>
-        </NavbarContent>
-
-        <NavbarContent justify="end">
-          <NavbarItem>
-            <div>
-              <Button className="text-white bg-yellow rounded-e-none mr-1">
-                0.581285 BTC
-              </Button>
-              <Button className="text-white bg-yellow rounded-l-none">
-                Gross <Icon icon="solar:dollar-linear" width={18} />
-              </Button>
-            </div>
-          </NavbarItem>
-          <NavbarItem>
-            <div>
-              <Button className="text-white bg-green rounded-e-none mr-1">
-                0.581285 BTC
-              </Button>
-              <Button className="text-white bg-green rounded-l-none">
-                Live <Icon icon="solar:dollar-linear" width={18} />
-              </Button>
-            </div>
-          </NavbarItem>
-          <NavbarItem>
-            <LogoutButton />
-          </NavbarItem>
-        </NavbarContent>
-
+        {/* Sidebar menu for small screens */}
         <NavbarMenu>
           <ul>
             {sidebarmenu.map((item) => (
@@ -108,11 +112,11 @@ export default function UserNavbar() {
                 <Link
                   href={item.path}
                   className={`py-2 px-3 flex justify-start rounded-lg my-3 text-xl 
-              ${
-                pathname.toString().includes(item.path.toString())
-                  ? "bg-primary text-white"
-                  : ""
-              }`}
+                    ${
+                      pathname.toString().includes(item.path.toString())
+                        ? "bg-primary text-white"
+                        : ""
+                    }`}
                 >
                   <span className="text-2xl mr-3">{item.icon}</span>
                   {item.name}
@@ -120,23 +124,6 @@ export default function UserNavbar() {
               </li>
             ))}
           </ul>
-          {/* {menuItems?.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                className="w-full"
-                color={
-                  index === 2
-                    ? "warning"
-                    : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                href="#"
-              >
-                {item}
-              </Link>
-            </NavbarMenuItem>
-          ))} */}
         </NavbarMenu>
       </Navbar>
     </div>

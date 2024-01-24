@@ -9,13 +9,10 @@ import {
   Avatar,
   Button,
 } from "@nextui-org/react";
-import ViewButton from "@/components/ViewButton";
-import EditButton from "@/components/EditButton";
-import Pagination from "@/components/Pagination";
-import Link from "next/link";
 import { Icon } from "@iconify/react";
 import DownloadInvoiceButton from "@/components/DownloadInvoiceButton";
 import moment from "moment";
+import html2pdf from "html2pdf.js";
 import {
   Modal,
   ModalContent,
@@ -27,6 +24,16 @@ import {
 import Image from "next/image";
 import Logo from "/public/logo.png";
 import { UserData } from "@/utils/interfaces";
+
+const generatePDF = () => {
+  const element = document.getElementById("invoice");
+
+  // Specify the filename option
+  const options = {
+    filename: "invoice.pdf",
+  };
+  html2pdf(element, options);
+};
 
 interface Invoice {
   _id: string;
@@ -83,9 +90,6 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
   const rigsInvoices = invoices?.data?.result?.filter(
     (invoice) => invoice.category === "rigs"
   );
-  // console.log("bill invoices", billInvoices);
-  // console.log("addon invoices", addonInvoices);
-  // console.log("rigs invoices", rigsInvoices);
 
   // State variables for the selected invoice
   const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
@@ -160,7 +164,16 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                               />
                               <span>View</span>
                             </Button>{" "}
-                            <DownloadInvoiceButton />
+                            <Button
+                              onPress={() => openModal(invoice)}
+                              className="flex items-center text-purple border border-purple bg-transparent text-lg"
+                            >
+                              <Icon
+                                icon="material-symbols-light:download"
+                                width={27}
+                              />{" "}
+                              Download
+                            </Button>{" "}
                           </div>
                         </td>
                       </tr>
@@ -220,7 +233,16 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                               />
                               <span>View</span>
                             </Button>{" "}
-                            <DownloadInvoiceButton />
+                            <Button
+                              onPress={() => openModal(invoice)}
+                              className="flex items-center text-purple border border-purple bg-transparent text-lg"
+                            >
+                              <Icon
+                                icon="material-symbols-light:download"
+                                width={27}
+                              />{" "}
+                              Download
+                            </Button>{" "}
                           </div>
                         </td>
                       </tr>
@@ -280,7 +302,16 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                               />
                               <span>View</span>
                             </Button>{" "}
-                            <DownloadInvoiceButton />
+                            <Button
+                              onPress={() => openModal(invoice)}
+                              className="flex items-center text-purple border border-purple bg-transparent text-lg"
+                            >
+                              <Icon
+                                icon="material-symbols-light:download"
+                                width={27}
+                              />{" "}
+                              Download
+                            </Button>{" "}
                           </div>
                         </td>
                       </tr>
@@ -302,7 +333,7 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1 "></ModalHeader>
+                <ModalHeader className="flex flex-col gap-1 "> </ModalHeader>
                 <ModalBody>
                   <div
                     className="p-6 bg-white rounded shadow-sm my-6 "
@@ -470,42 +501,6 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                             </td>
                           </tr>
 
-                          {/* <tr>
-                          <th
-                            scope="row"
-                            colSpan={4}
-                            className="hidden pl-4 pr-3 pt-4 text-right text-sm font-normal text-gray-500 sm:table-cell sm:pl-0"
-                          >
-                            Discount
-                          </th>
-                          <th
-                            scope="row"
-                            className="pl-6 pr-3 pt-4 text-left text-sm font-normal text-gray-500 sm:hidden"
-                          >
-                            Discount
-                          </th>
-                          <td className="pl-3 pr-6 pt-4 text-right text-sm text-gray-500 sm:pr-0">
-                            - 10%
-                          </td>
-                        </tr>
-                        <tr>
-                          <th
-                            scope="row"
-                            colSpan={4}
-                            className="hidden pl-4 pr-3 pt-4 text-right text-sm font-semibold text-gray-900 sm:table-cell sm:pl-0"
-                          >
-                            Total
-                          </th>
-                          <th
-                            scope="row"
-                            className="pl-6 pr-3 pt-4 text-left text-sm font-semibold text-gray-900 sm:hidden"
-                          >
-                            Total
-                          </th>
-                          <td className="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 sm:pr-0">
-                            $11,550.00
-                          </td>
-                        </tr> */}
                           <tr>
                             <th
                               scope="row"
@@ -570,16 +565,16 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                       </div>
                     </div>
                   </div>
-
-                  {/* <!-- <button type="button" id="btn" className="">Print</button> --> */}
                 </ModalBody>
                 <ModalFooter>
-                  {/* <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button> */}
+                  {" "}
+                  <Button
+                    onClick={generatePDF}
+                    className="flex items-center text-purple border border-purple bg-transparent text-lg"
+                  >
+                    <Icon icon="material-symbols-light:download" width={27} />{" "}
+                    Download
+                  </Button>
                 </ModalFooter>
               </>
             )}
