@@ -21,11 +21,7 @@ export default function Header() {
   return (
     <Navbar>
       <NavbarContent>
-        <NavbarMenuToggle
-          classNames={{
-            NavbarMenuToggle: "text-primary bg-primary",
-          }}
-        />
+        <NavbarMenuToggle />
 
         <NavbarBrand>
           <Link href={"/"}>
@@ -75,7 +71,6 @@ export default function Header() {
               }
               className="w-full"
               href={`/${item.toLowerCase()}`}
-              size="lg"
             >
               {item}
             </Link>

@@ -2,7 +2,7 @@
 
 // OrdersDisplay.tsx
 
-import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
+import { Button, Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
 import ViewButton from "@/components/ViewButton";
 import DeleteButton from "@/components/DeleteButton";
 import { Order } from "@/utils/interfaces";
@@ -24,7 +24,6 @@ const OrdersDisplay: React.FC<OrdersDisplayProps> = ({ allOrders }) => {
         <table className="table-fixed">
           <thead>
             <tr>
-              <th>Product ID</th>
               <th>Product Name</th>
               <th>User</th>
               {/* <th>Payment</th> */}
@@ -36,13 +35,24 @@ const OrdersDisplay: React.FC<OrdersDisplayProps> = ({ allOrders }) => {
           <tbody>
             {allOrders?.map((order) => (
               <tr key={order._id}>
-                <td>{order?.productid?._id}</td>
                 <td>{order?.productid?.title}</td>
                 <td>{order?.userid?.email}</td>
                 {/* Add more fields based on your order structure */}
                 {/* <td>{order.createdAt}</td> */}
                 {/* <td>Render payment info</td> */}
-                <td>{order?.status}</td>
+                <td>
+                  <Chip
+                    color={
+                      order?.status === "approved"
+                        ? "success"
+                        : order?.status === "pending"
+                        ? "warning"
+                        : "danger"
+                    }
+                  >
+                    {order?.status}
+                  </Chip>
+                </td>
                 <td className="flex">
                   <Link href={`/dashboard/admin/order/${order?._id}`}>
                     <Button className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md">

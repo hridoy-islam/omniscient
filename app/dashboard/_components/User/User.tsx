@@ -5,6 +5,7 @@ import {
   Card,
   CardBody,
   CardHeader,
+  Chip,
   Link,
 } from "@nextui-org/react";
 import EditButton from "@/components/EditButton";
@@ -50,8 +51,7 @@ export default function User({ allUsers }: UserProps) {
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Email Address</th>
-                <th>City</th>
-                <th>Country</th>
+                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -72,14 +72,28 @@ export default function User({ allUsers }: UserProps) {
                   </td>
                   <td>+987438438</td>
                   <td>{user?.email}</td>
-                  <td>{user?.contact_information?.city}</td>
-                  <td>{user?.contact_information?.country}</td>
+                  <td>
+                    <Chip
+                      color={
+                        user?.status === "pending"
+                          ? "warning"
+                          : user?.status === "approved"
+                          ? "success"
+                          : "danger"
+                      }
+                    >
+                      {user?.status}
+                    </Chip>
+                  </td>
                   <td className="flex">
                     <EditButton userId={user?._id} />
                     <ViewButton userId={user?._id} />
                     <DeleteButton label="users" id={user?._id} />
                     <Button className="bg-secondary border border-black text-white mx-2">
-                      View Rigs
+                      Rigs
+                    </Button>
+                    <Button className="border border-purple text-purple bg-transparent">
+                      Send Message
                     </Button>
                   </td>
                 </tr>

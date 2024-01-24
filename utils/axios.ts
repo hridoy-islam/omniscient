@@ -3,7 +3,7 @@ import Cookies from "universal-cookie";
 // import { cookies } from "next/headers";
 // const API_URL = process.env.NEXT_PUBLIC_API;
 // const API_URL = "https://api.robofxtrader.com/api";
-const API_URL = "http://localhost:3001/api";
+const API_URL = "http://localhost:5001/api";
 // const cookie = new Cookies();
 // const token = cookie.get("jwt");
 // console.log("here is the token", token);
