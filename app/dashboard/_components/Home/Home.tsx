@@ -15,6 +15,7 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
+import LogoutButton from "@/components/LogoutButton";
 
 interface HomeProps {
   currentUser: UserData;
@@ -48,6 +49,9 @@ const Home = ({ currentUser }: HomeProps) => {
                 <p className="font-bold text-2xl text-center">
                   {currentUser?.message}{" "}
                 </p>
+                <div className="flex justify-center">
+                  <LogoutButton />
+                </div>
               </ModalBody>
               <ModalFooter></ModalFooter>
             </>
