@@ -14,8 +14,13 @@ import LogoutButton from "./LogoutButton";
 import Link from "next/link";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { usePathname } from "next/navigation";
+import { UserData } from "@/utils/interfaces";
 
-export default function AdminNavbar() {
+interface UserSidebarProps {
+  currentUser: UserData;
+}
+
+export default function AdminNavbar({ currentUser }: UserSidebarProps) {
   const sidebarmenu = [
     {
       path: "/dashboard/admin",
@@ -69,13 +74,13 @@ export default function AdminNavbar() {
 
         <NavbarContent className="sm:hidden pr-3" justify="center">
           <NavbarBrand>
-            <p className="font-bold text-inherit">Admin Email</p>
+            <p className="font-bold text-inherit">{currentUser?.email}</p>
           </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent className="hidden sm:flex gap-4" justify="end">
           <NavbarBrand>
-            <p className="font-bold text-inherit">Admin Email</p>
+            <p className="font-bold text-inherit">{currentUser?.email}</p>
           </NavbarBrand>
         </NavbarContent>
 

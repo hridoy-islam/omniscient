@@ -73,7 +73,7 @@ tr {
   box-shadow: none;
 }
 .swiper-pagination {
-  position:initial !important;
+  position: initial !important;
   margin-top: 20px;
 }
 .swiper-container {

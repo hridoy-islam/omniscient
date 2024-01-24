@@ -9,21 +9,21 @@ export default function LogoutButton() {
   const router = useRouter();
 
   const handleLogout = () => {
-    // Remove the JWT token cookie
     cookies.remove("jwt");
 
-    // Redirect to the login page or another destination
-    router.push("/");
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1000 / 5);
   };
 
   return (
-    <Button
+    <button
       onClick={handleLogout}
-      variant="bordered"
-      className="border-2 border-red text-red text-md font-medium py-1 px-2 cursor-pointer"
+      // variant="bordered"
+      className="flex items-center gap-2 rounded-md border-2 border-red text-red text-md font-medium py-2 px-4 cursor-pointer"
     >
       <Icon icon="tabler:logout" className="text-xl" />
       Logout
-    </Button>
+    </button>
   );
 }

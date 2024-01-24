@@ -108,7 +108,7 @@ const Withdraw = ({ withdrawsData }: WithdrawProps) => {
           <table className="table-auto">
             <thead>
               <tr>
-                <th>Withdraw ID</th>
+                <th>Requested By</th>
                 <th>Status</th>
                 <th>BTC</th>
                 <th>Amount</th>
@@ -119,7 +119,10 @@ const Withdraw = ({ withdrawsData }: WithdrawProps) => {
             <tbody>
               {withdrawData?.map((withdraw, index) => (
                 <tr key={index}>
-                  <td>{withdraw?._id}</td>
+                  <td>
+                    {withdraw?.userid?.personal_information?.firstName}{" "}
+                    {withdraw?.userid?.personal_information?.lastName}
+                  </td>{" "}
                   <td>
                     <Chip color="primary" className="text-white uppercase">
                       {withdraw?.status}
@@ -129,7 +132,7 @@ const Withdraw = ({ withdrawsData }: WithdrawProps) => {
                   <td>${withdraw?.amount}</td>
                   <td>{withdraw?.requestDate}</td>
                   <td>
-                    <Link href={`/dashboard/admin/withdraw/1`}>
+                    <Link href={`/dashboard/user/withdraw/${withdraw?._id}`}>
                       <Button className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md">
                         <Icon icon="solar:eye-linear" className="text-lg" />
                         <span>View</span>
