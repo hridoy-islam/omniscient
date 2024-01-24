@@ -6,6 +6,7 @@ import { WelcomeBanner } from "@/components/WelcomeBanner";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { DecodedToken } from "../layout";
+import Home from "../_components/Home/Home";
 
 const Page = async () => {
   const nextCookies = cookies();
@@ -24,16 +25,7 @@ const Page = async () => {
     currentUser = await getUser(id);
   }
 
-  // console.log("current User", currentUser?.data);
-
-  return (
-    <div>
-      <WelcomeBanner currentUser={currentUser?.data} />
-      <UserDashBalance />
-      <UserRigsTable />
-      <UserPayoutsTable />
-    </div>
-  );
+  return <Home currentUser={currentUser?.data} />;
 };
 
 export default Page;
