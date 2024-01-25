@@ -12,7 +12,6 @@ interface UserSidebarProps {
 }
 export default function Sidebar({ currentUser }: UserSidebarProps) {
   const pathname = usePathname();
-  console.log(pathname);
   const sidebarmenu = [
     {
       path: "/dashboard/admin",

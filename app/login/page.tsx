@@ -51,7 +51,10 @@ export default function Home() {
         const role = decodedToken?.role;
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + 90);
-        cookies.set("jwt", accessToken, { expires: expirationDate });
+        cookies.set("jwt", accessToken, {
+          expires: expirationDate,
+          // httpOnly: true,
+        });
 
         // Set the redirecting state to trigger a re-render
         setRedirecting(true);
