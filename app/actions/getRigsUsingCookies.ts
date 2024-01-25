@@ -1,7 +1,10 @@
 import Axios from "@/utils/axios";
-import { DecodedToken } from "@/utils/interfaces";
-import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
+
+const nextCookie = cookies();
+const tokenObject = nextCookie.get("jwt");
+const token = tokenObject?.value;import { DecodedToken } from "@/utils/interfaces";
+import { jwtDecode } from "jwt-decode";
 
 export default async function getRigsUsingCookies() {
   const nextCookies = cookies();
@@ -15,7 +18,11 @@ export default async function getRigsUsingCookies() {
 
   try {
     // const res = await Axios.get(`/rigs?userid=${decoded?.id}`);
-    const res = await Axios.get(`/rigs?userid=65a951103ad7c0a00a21ae25`);
+    const res = await Axios.get(`/rigs?userid=65a951103ad7c0a00a21ae25`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data;
   } catch (error) {
     console.error("");

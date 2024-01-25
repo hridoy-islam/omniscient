@@ -1,13 +1,21 @@
 import Axios from "@/utils/axios";
-import { DecodedToken } from "@/utils/interfaces";
-import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
+
+const nextCookie = cookies();
+const tokenObject = nextCookie.get("jwt");
+const token = tokenObject?.value;
 
 export default async function getAllInvoices() {
   try {
-    const res = await Axios.get(`/invoices`);
+    const res = await Axios.get(`/invoices`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data;
   } catch (error) {
     console.error("");
   }
 }
+
+

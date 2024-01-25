@@ -1,23 +1,25 @@
+
 import axios, { AxiosInstance } from "axios";
-import Cookies from "universal-cookie";
-// import { cookies } from "next/headers";
-// const API_URL = process.env.NEXT_PUBLIC_API;
-const API_URL = "https://api.robofxtrader.com/api";
-//const API_URL = "http://localhost:5001/api";
-// const cookie = new Cookies();
-// const token = cookie.get("jwt");
-// console.log("here is the token", token);
+
+const API_URL = "http://localhost:3001/api";
 
 const Axios: AxiosInstance = axios.create({
   baseURL: API_URL,
+  withCredentials: true, // Enable sending cookies
 });
 
 // Axios.interceptors.request.use(
 //   (config) => {
-//     config.headers["Authorization"] = `Bearer ${token}`;
+//     const accessToken = getCookie("jwt");
+//     console.log("Access Token from interceptor", accessToken);
+
+//     if (accessToken) {
+//       config.headers.Authorization = `Bearer ${accessToken}`;
+//     }
 //     return config;
 //   },
 //   (error) => {
+//     console.error("Interceptor error", error);
 //     return Promise.reject(error);
 //   }
 // );

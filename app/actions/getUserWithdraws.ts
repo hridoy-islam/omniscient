@@ -17,7 +17,11 @@ export default async function getUserWithdraws() {
   // console.log(decoded);
 
   try {
-    const res = await Axios.get(`/withdraws?userid=${decoded?.id}`);
+    const res = await Axios.get(`/withdraws?userid=${decoded?.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data;
   } catch (error) {
     console.error("");

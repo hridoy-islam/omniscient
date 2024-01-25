@@ -25,6 +25,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
+import Cookies from "universal-cookie";
 
 interface ApiResponse {
   meta: {
@@ -46,8 +47,9 @@ export default function User({ allUsers }: UserProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState("");
   // console.log(selectedUserId);
-  const router = useRouter();
 
+  const router = useRouter();
+  const cookies = new Cookies();
   const usersList = allUsers?.result;
 
   const handleOpen = (user: UserData) => {
@@ -80,11 +82,21 @@ export default function User({ allUsers }: UserProps) {
 
     setIsLoading(true);
 
+    const token = cookies.get("jwt");
+
     const url = `/users/${user?._id}`;
 
     const newStatus = user.status === "approved" ? "pending" : "approved";
 
-    Axios.patch(url, { status: newStatus })
+    Axios.patch(
+      url,
+      { status: newStatus },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((response) => {
         toast.success(response?.data?.message);
         router.refresh();

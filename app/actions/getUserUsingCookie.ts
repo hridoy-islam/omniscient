@@ -14,7 +14,11 @@ export default async function getUserUsingCookie() {
   }
 
   try {
-    const res = await Axios.get(`/users/${decoded?.id}`);
+    const res = await Axios.get(`/users/${decoded?.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data;
   } catch (error) {
     console.error("");

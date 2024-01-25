@@ -15,6 +15,8 @@ import { Product, UserData } from "@/utils/interfaces";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
 import moment from "moment";
+import { useRouter } from "next/navigation";
+import Cookies from "universal-cookie";
 
 interface SingleOrderViewProps {
   order: {
@@ -27,6 +29,8 @@ interface SingleOrderViewProps {
 }
 
 const SingleOrderView = ({ order }: SingleOrderViewProps) => {
+  const router = useRouter();
+  const cookies = new Cookies();
   const DecisionStatus = ["pending", "approve", "decline"];
   const { _id, createdAt, productid, status } = order;
   const {
@@ -42,14 +46,26 @@ const SingleOrderView = ({ order }: SingleOrderViewProps) => {
   } = productid;
 
   const [selectedStatus, setSelectedStatus] = useState(status);
-
+  // console.log(status);
+  // console.log("local", selectedStatus);
   const handleStatusChange = async () => {
     // console.log(selectedStatus);
     try {
-      const response = await Axios.patch(`/orders/${_id}`, {
-        status: selectedStatus,
-      });
+      const token = cookies.get("jwt");
+
+      const response = await Axios.patch(
+        `/orders/${_id}`,
+        {
+          status: selectedStatus,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       toast.success(response?.data?.message);
+      router.refresh();
     } catch (error) {
       toast.error("Failed to update status");
       console.error("Error updating status:", error);
@@ -207,9 +223,9 @@ const SingleOrderView = ({ order }: SingleOrderViewProps) => {
               onChange={(event) => setSelectedStatus(event.target.value)}
               aria-label="Select Order Status"
             >
-              {DecisionStatus.map((status) => (
-                <SelectItem key={status} value={status}>
-                  {status}
+              {DecisionStatus.map((statusOption) => (
+                <SelectItem key={statusOption} value={statusOption}>
+                  {statusOption}
                 </SelectItem>
               ))}
             </Select>

@@ -1,8 +1,4 @@
 import getUser from "@/app/actions/getUser";
-import { UserDashBalance } from "@/components/UserDashBalance";
-import { UserPayoutsTable } from "@/components/UserPayoutsTable";
-import UserRigsTable from "@/components/UserRigsTable";
-import { WelcomeBanner } from "@/components/WelcomeBanner";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { DecodedToken } from "../layout";
@@ -15,8 +11,8 @@ const Page = async () => {
   let id;
   if (JWT) {
     const decoded: DecodedToken = jwtDecode(JWT) as DecodedToken;
-    console.log("JWT decode", decoded);
-    id = decoded?.id;
+    // console.log("JWT decode", decoded);
+    id = decoded?._id;
   }
 
   let currentUser;
@@ -24,6 +20,8 @@ const Page = async () => {
   if (id) {
     currentUser = await getUser(id);
   }
+
+  // console.log("current user", currentUser);
 
   return <Home currentUser={currentUser?.data} />;
 };

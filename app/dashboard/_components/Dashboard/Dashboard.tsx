@@ -148,7 +148,7 @@ const Dashboard = ({ allUsers, allOrders }: DashboardProps) => {
             <div className="">
               <div className="">
                 <p className="text-textLight">Total Users</p>
-                <h2 className="text-4xl">{allUsers.length}</h2>
+                <h2 className="text-4xl">{allUsers?.length}</h2>
               </div>
 
               <ResponsiveContainer width={400} height={100}>
@@ -178,7 +178,7 @@ const Dashboard = ({ allUsers, allOrders }: DashboardProps) => {
             <div className="">
               <div>
                 <p className="text-textLight">New Users</p>
-                <h2 className="text-4xl">{allUsers.length}</h2>
+                <h2 className="text-4xl">{allUsers?.length}</h2>
               </div>
               <ResponsiveContainer width={400} height={100}>
                 <AreaChart

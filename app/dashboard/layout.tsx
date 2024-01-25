@@ -11,6 +11,7 @@ export interface DecodedToken {
   iat: number;
   exp: number;
   role: string;
+  _id: string
 }
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
