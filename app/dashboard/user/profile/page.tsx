@@ -4,7 +4,7 @@ import getUserUsingCookie from "@/app/actions/getUserUsingCookie";
 
 const page = async () => {
   const currentUser = await getUserUsingCookie();
-  console.log("user", currentUser);
+  console.log("current user", currentUser);
   return (
     <div>
       <UserProfile user={currentUser?.data} />

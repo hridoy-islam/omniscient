@@ -5,6 +5,8 @@ import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import Axios from "@/utils/axios";
 import { Product } from "@/utils/interfaces";
 import toast from "react-hot-toast";
+import ImageUpload from "@/components/ImageUpload";
+import Cookies from "universal-cookie";
 
 interface ProductEditProps {
   product: Product;
@@ -25,6 +27,12 @@ const ProductEdit: React.FC<ProductEditProps> = ({ product }) => {
     photo: product.photo,
   });
 
+  const [photo, setPhoto] = useState("");
+  console.log(photo);
+
+  const cookies = new Cookies();
+  const token = cookies.get("jwt");
+
   // Handle input changes for all fields
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -44,12 +52,17 @@ const ProductEdit: React.FC<ProductEditProps> = ({ product }) => {
     setFormData({
       ...formData,
       price: numericPrice,
+      photo,
     });
 
     try {
       // Perform submission logic here using the formData state
       // For example, using Axios to make a PUT request
-      const response = await Axios.patch(`/products/${product._id}`, formData);
+      const response = await Axios.patch(`/products/${product._id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       toast.success(response?.data?.message);
 
       // Optionally, reset the form or perform any other necessary actions
@@ -100,7 +113,7 @@ const ProductEdit: React.FC<ProductEditProps> = ({ product }) => {
               onChange={(e) => handleInputChange(e, "price")}
             />
           </div>
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <label htmlFor="photo">Photo</label>
             <input
               type="text"
@@ -109,6 +122,13 @@ const ProductEdit: React.FC<ProductEditProps> = ({ product }) => {
               className="roboinput"
               value={formData.photo}
               onChange={(e) => handleInputChange(e, "photo")}
+            />
+          </div> */}
+          <div className="flex flex-col">
+            <label htmlFor="photo">Upload Photo</label>
+            <ImageUpload
+              value={formData.photo}
+              onChange={(value) => setPhoto(value)}
             />
           </div>
           <h2 className="tex-xl font-semibold my-2">Configurations</h2>

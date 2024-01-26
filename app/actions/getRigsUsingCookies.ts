@@ -20,7 +20,7 @@ export default async function getRigsUsingCookies() {
     // const res = await Axios.get(`/rigs?userid=${decoded?.id}`);
     const res = await Axios.get(`/rigs?userid=65a951103ad7c0a00a21ae25`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${jwt}`,
       },
     });
     return res.data;

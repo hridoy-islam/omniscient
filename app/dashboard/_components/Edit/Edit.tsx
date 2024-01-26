@@ -7,6 +7,7 @@ import ContactInfo from "./ContactInfo";
 import BillingInfo from "./BillingInfo";
 import Agreement from "./Agreement";
 import Rigs from "./Rigs";
+import Profit from "./Profit";
 
 interface EditProps {
   id: string;
@@ -39,6 +40,9 @@ const Edit = ({ id }: EditProps) => {
       </Tab>
       <Tab key="rigs" title="Rigs">
         <Rigs id={id} />
+      </Tab>
+      <Tab key="profit" title="Profit">
+        <Profit id={id} />
       </Tab>
     </Tabs>
   );

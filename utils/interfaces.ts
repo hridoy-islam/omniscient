@@ -4,6 +4,7 @@ export interface DecodedToken {
   exp: number;
   email: string;
   role: string;
+  _id: string;
 }
 
 export interface UserData {
@@ -38,6 +39,7 @@ export interface UserData {
   ];
   _id: string;
   message: string;
+  agreement: string;
   currency: string;
   primary_account: string;
   email: string;

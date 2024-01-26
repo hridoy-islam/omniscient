@@ -13,7 +13,7 @@ const page = async ({ params }: pageProps) => {
     product = await getSingleProduct(params?.id);
   }
 
-  console.log("product", product);
+  // console.log("product", product);
 
   return <ProductEdit product={product?.data} />;
 };
