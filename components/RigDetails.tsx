@@ -27,12 +27,14 @@ interface RigsDetailsProps {
 export const RigDetails = ({ rigs }: RigsDetailsProps) => {
   const cookie = new Cookies();
   const token = cookie.get("jwt");
+
+  console.log(token);
   // const decoded = jwtDecode(token) as DecodedToken;
 
   const handleStartMining = (rig: RigData) => {
     const url = `/history/start/${rig?._id}`;
 
-    Axios.patch(url, {
+    Axios.post(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -50,7 +52,7 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
   const handlePauseMining = (rig: RigData) => {
     const url = `/history/pause/${rig?._id}`;
 
-    Axios.patch(url, {
+    Axios.post(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

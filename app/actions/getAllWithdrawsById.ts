@@ -1,16 +1,6 @@
-"use server";
 
 import Axios from "@/utils/axios";
-// import { cookies } from "next/headers";
 
-// const nextCookie = cookies();
-// const tokenObject = nextCookie.get("jwt");
-// const token = tokenObject?.value;
-
-// import Cookies from "universal-cookie";
-
-// const cookie = new Cookies();
-// const token = cookie.get("jwt");
 
 import { cookies } from "next/headers";
 

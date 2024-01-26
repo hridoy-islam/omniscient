@@ -11,7 +11,7 @@ import {
 import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Order, UserData } from "@/utils/interfaces";
+import { OrderInterface, UserData } from "@/utils/interfaces";
 import moment from "moment";
 import Link from "next/link";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -26,7 +26,7 @@ import {
 
 interface DashboardProps {
   allUsers: UserData[];
-  allOrders: Order[];
+  allOrders: OrderInterface[];
 }
 
 const Dashboard = ({ allUsers, allOrders }: DashboardProps) => {

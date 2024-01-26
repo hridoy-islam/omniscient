@@ -70,34 +70,38 @@ export default function Mining() {
   const token = cookie.get("jwt");
   const decode = jwtDecode(token) as DecodedToken;
 
-  const handleStartAllRigs = (rig: RigData) => {
+  const handleStartAllRigs = () => {
     const url = `/history/startall/${decode?._id}`;
 
-    Axios.patch(url, {
+    Axios.post(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
+        console.log("here is the response", response);
         toast.success(response?.data?.message);
       })
       .catch((error) => {
+        console.log("here is the error", error);
         toast.error("Something went wrong!");
       });
   };
 
-  const handlePauseAllRigs = (rig: RigData) => {
+  const handlePauseAllRigs = () => {
     const url = `/history/pauseall/${decode?._id}`;
 
-    Axios.patch(url, {
+    Axios.post(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
+        console.log("here is the response", response);
         toast.success(response?.data?.message);
       })
       .catch((error) => {
+        console.log("here is the error", error);
         toast.error("Something went wrong!");
       });
   };
@@ -145,13 +149,10 @@ export default function Mining() {
           <h2>Current Mining Balance</h2>
           <h3 className="text-4xl font-bold">0.000434 BTC</h3>
           <div className="flex gap-2 justify-between">
-            <Button
-              onClick={() => handleStartAllRigs}
-              className="bg-primaryLight"
-            >
+            <Button onClick={handleStartAllRigs} className="bg-primaryLight">
               <Icon icon="ph:play-fill" /> Start All Rigs
             </Button>
-            <Button onClick={() => handlePauseAllRigs} className="bg-[#f9e5e5]">
+            <Button onClick={handlePauseAllRigs} className="bg-[#f9e5e5]">
               {" "}
               <Icon icon="solar:pause-bold" />
               Stop All Rigs

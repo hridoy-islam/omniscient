@@ -1,9 +1,6 @@
 import Axios from "@/utils/axios";
 import { cookies } from "next/headers";
 
-const nextCookie = cookies();
-const tokenObject = nextCookie.get("jwt");
-const token = tokenObject?.value;
 import { DecodedToken } from "@/utils/interfaces";
 import { jwtDecode } from "jwt-decode";
 
