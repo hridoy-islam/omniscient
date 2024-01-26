@@ -28,7 +28,7 @@ interface SingleOrderViewProps {
   };
 }
 
-const SingleOrderView = ({ order }: SingleOrderViewProps) => {
+const UserSingleOrderView = ({ order }: SingleOrderViewProps) => {
   const router = useRouter();
   const cookies = new Cookies();
   const DecisionStatus = ["pending", "approve", "decline"];
@@ -209,7 +209,7 @@ const SingleOrderView = ({ order }: SingleOrderViewProps) => {
           </CardBody>
         </Card>
 
-        <Card className="mt-6 p-3">
+        {/* <Card className="mt-6 p-3">
           <CardHeader>
             <p>Change Order Status</p>
           </CardHeader>
@@ -234,10 +234,10 @@ const SingleOrderView = ({ order }: SingleOrderViewProps) => {
               Update
             </Button>
           </CardBody>
-        </Card>
+        </Card> */}
       </div>
     </div>
   );
 };
 
-export default SingleOrderView;
+export default UserSingleOrderView;

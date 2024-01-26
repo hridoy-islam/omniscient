@@ -16,12 +16,10 @@ export default function Page() {
   const onSubmit = async (data: Inputs) => {
     const response = await Axios.post("/auth/create-user", data)
       .then((res) => {
-        // console.log("API response:", res.data);
         toast.success(res?.data?.message);
         reset();
       })
       .catch((err) => {
-        // console.log("the err", err);
         toast.error(err?.response?.data?.message);
       });
   };

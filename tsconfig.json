@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/dashboard/_components/UserPanel/UserInvoice/PdfDownload.tsx", "app/login/layout.text"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/dashboard/_components/UserPanel/UserInvoice/PDFTable.tsx", "app/login/layout.text"],
   "exclude": ["node_modules"]
 }

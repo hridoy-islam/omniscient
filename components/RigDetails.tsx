@@ -1,6 +1,11 @@
 "use client";
+import Axios from "@/utils/axios";
+import { DecodedToken, RigData } from "@/utils/interfaces";
 import { Icon } from "@iconify/react";
 import { Button, Card, CardBody, Progress } from "@nextui-org/react";
+import { jwtDecode } from "jwt-decode";
+import toast from "react-hot-toast";
+import Cookies from "universal-cookie";
 
 interface rig {
   _id: string;
@@ -12,6 +17,7 @@ interface rig {
   load: string;
   power: string;
   efficiency: number;
+  status: string;
 }
 
 interface RigsDetailsProps {
@@ -19,6 +25,48 @@ interface RigsDetailsProps {
 }
 
 export const RigDetails = ({ rigs }: RigsDetailsProps) => {
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
+
+  console.log(token);
+  // const decoded = jwtDecode(token) as DecodedToken;
+
+  const handleStartMining = (rig: RigData) => {
+    const url = `/history/start/${rig?._id}`;
+
+    Axios.post(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        toast.success(response?.data?.message);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Something went wrong!");
+      });
+  };
+
+  const handlePauseMining = (rig: RigData) => {
+    const url = `/history/pause/${rig?._id}`;
+
+    Axios.post(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        toast.success(response?.data?.message);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Something went wrong!");
+      });
+  };
+
   return rigs?.map((rig, index) => (
     <>
       <Card className="p-6 space-y-3">
@@ -26,11 +74,17 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
           <div className="flex justify-between">
             <div>
               <h2>
-                Rig 00001 <span className="text-green">Mining</span>
+                Rig 00001{" "}
+                <span className="text-green">
+                  {rig?.status.toLocaleUpperCase()}
+                </span>
               </h2>
               <p>{rig?.rigName}</p>
             </div>
-            <Button className="bg-[#DFF9E8] text-secondary">
+            <Button
+              onClick={() => handlePauseMining(rig)}
+              className="bg-[#DFF9E8] text-secondary"
+            >
               <Icon icon="solar:pause-bold" /> <span>Pause Mining</span>
             </Button>
           </div>
@@ -153,7 +207,10 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
               </h2>
               <p>{rig?.rigName}</p>
             </div>
-            <Button className="bg-[#D8F0FD] text-secondary">
+            <Button
+              onClick={() => handleStartMining(rig)}
+              className="bg-[#D8F0FD] text-secondary"
+            >
               <Icon icon="solar:play-bold" /> <span>Start Mining</span>
             </Button>
           </div>

@@ -1,6 +1,11 @@
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
+import { RigData } from "@/utils/interfaces";
+import { Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
 
-export default function UserRigsTable() {
+interface UserRigsTableProps {
+  rigs: RigData[];
+}
+
+const UserRigsTable = ({ rigs }: UserRigsTableProps) => {
   return (
     <Card>
       <CardHeader className="tableHeader">
@@ -10,28 +15,36 @@ export default function UserRigsTable() {
         <table className="table-fixed">
           <thead>
             <tr>
-              <th>Rig ID</th>
-              <th>Graphics</th>
-              <th>Speed</th>
-              <th>Load</th>
+              <th>Rig Name</th>
               <th>Efficiency</th>
-              <th>Actual Rig</th>
+              <th>GPU</th>
+              <th>Temp</th>
+              <th>Fan</th>
+              <th>Load</th>
+              <th>Power</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Invoice-0019</td>
-              <td>Something</td>
-              <td>$292</td>
-              <td>Something</td>
-              <td>Something</td>
-              <td>Something</td>
-              <td>Something</td>
-            </tr>
+            {rigs?.map((rig, index) => (
+              <tr key={index}>
+                <td>{rig?.rigName}</td>
+                <td>{rig?.efficiency}</td>
+                <td>{rig?.gpu}</td>
+                <td>{rig?.temp}</td>
+                <td>{rig?.fan}</td>
+                <td>{rig?.load}</td>
+                <td>{rig?.power}</td>
+                <td>
+                  <Chip>{rig?.status}</Chip>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </CardBody>
     </Card>
   );
-}
+};
+
+export default UserRigsTable;

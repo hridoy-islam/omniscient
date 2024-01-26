@@ -6,7 +6,6 @@ import getAllOrders from "@/app/actions/getAllOrders";
 const page = async () => {
   const allUsers = await getAllUsers();
   const allOrders = await getAllOrders();
-  // console.log("all orders", allOrders?.data?.result);
   return (
     <Dashboard
       allUsers={allUsers?.data?.result}

@@ -46,7 +46,6 @@ export default function User({ allUsers }: UserProps) {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState("");
-  // console.log(selectedUserId);
 
   const router = useRouter();
   const cookies = new Cookies();
@@ -79,7 +78,6 @@ export default function User({ allUsers }: UserProps) {
     )
       .then((response) => {
         toast.success(response?.data?.message);
-        // console.log("Data saved successfully", response.data);
       })
       .catch((error) => {
         toast.error("Something went wrong!");
@@ -110,7 +108,6 @@ export default function User({ allUsers }: UserProps) {
         toast.success(response?.data?.message);
         router.refresh();
         setIsLoading(false);
-        // console.log("Data saved successfully", response.data);
       })
       .catch((error) => {
         toast.error("Something went wrong!");
@@ -118,7 +115,6 @@ export default function User({ allUsers }: UserProps) {
       });
   };
 
-  // console.log("user id", allUsers?.result);
   return (
     <div>
       <Card>

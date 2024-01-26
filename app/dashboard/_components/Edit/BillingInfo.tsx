@@ -43,7 +43,6 @@ const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
     axios
       .get(`/users/${id}`)
       .then((response) => {
-        // console.log("response", response?.data?.data);
         if (response?.data?.data?.billing_information) {
           setBillingInfo(response?.data?.data?.billing_information);
         }

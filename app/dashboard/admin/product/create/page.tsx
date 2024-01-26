@@ -73,7 +73,6 @@ export default function Page() {
     // Ensure that the price is a number
     const numericPrice = parseFloat(product.price as any);
 
-    // console.log("numeric value", numericPrice, typeof numericPrice);
 
     // Update the product state with the numeric price and photo
     setProduct({
@@ -82,13 +81,10 @@ export default function Page() {
       photo: photoFile || "",
     });
 
-    // console.log("product", product);
 
     // Perform submission logic here using the product state
-    // console.log("Product Data:", product);
     Axios.post("/products", product)
       .then((res) => {
-        console.log(res);
         toast.success(res?.data?.message);
         resetForm();
       })
@@ -98,7 +94,6 @@ export default function Page() {
         } else {
           toast.error("Something went wrong!");
         }
-        // console.log("error", err);
       });
 
     // Reset the form after submission if needed

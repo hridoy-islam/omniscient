@@ -40,7 +40,6 @@ const UpdateWithdraw = ({
   admin = "false",
   id,
 }: UpdateWithdrawProps) => {
-  // console.log(currentUser);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const localStatus = ["pending", "approve", "decline"];
   const [selectedStatus, setSelectedStatus] = useState("");
@@ -73,14 +72,11 @@ const UpdateWithdraw = ({
       .then((response) => {
         toast.success(response?.data?.message);
         router.refresh();
-        // console.log("Data saved successfully", response.data);
       })
       .catch((error) => {
         toast.error("Something went wrong!");
-        // console.error("Error saving data", error);
       });
   };
-  console.log(selectedStatus);
 
   const handleStatus = () => {
     // if (isLoading) return;
@@ -102,7 +98,6 @@ const UpdateWithdraw = ({
         toast.success(response?.data?.message);
         router.refresh();
         // setIsLoading(false);
-        // console.log("Data saved successfully", response.data);
       })
       .catch((error) => {
         toast.error("Something went wrong!");

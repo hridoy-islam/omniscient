@@ -22,9 +22,8 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   let currentUser;
   if (JWT) {
     const decoded: DecodedToken = jwtDecode(JWT) as DecodedToken;
-    // console.log("JWT decode", decoded);
     role = decoded?.role;
-    currentUser = await getUser(decoded?.id);
+    currentUser = await getUser(decoded?._id);
   }
   return (
     <section className="flex">

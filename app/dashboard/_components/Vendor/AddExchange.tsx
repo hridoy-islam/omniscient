@@ -14,7 +14,6 @@ const AddExchange = () => {
     axios
       .post(apiUrl, { name: exchangeName })
       .then((response) => {
-        // console.log("Exchange saved successfully", response.data);
         toast.success(response?.data?.message);
         router.refresh();
         setExchangeName("");

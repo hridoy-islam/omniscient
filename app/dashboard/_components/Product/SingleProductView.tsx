@@ -10,7 +10,6 @@ interface SingleProductViewProps {
 }
 
 const SingleProductView = ({ product }: SingleProductViewProps) => {
-  //   console.log(product);
   const {
     motherboard,
     graphicscard,

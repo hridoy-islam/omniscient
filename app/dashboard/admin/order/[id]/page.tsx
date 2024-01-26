@@ -9,14 +9,11 @@ interface PageProps {
 
 const Page = async ({ params }: PageProps) => {
   const id = params?.id;
-  console.log(id);
 
   let order;
   if (id) {
     order = await getOrderById(id);
   }
-  // console.log("order", order);
-
   return <SingleOrderView order={order?.data} />;
 };
 

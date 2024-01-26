@@ -51,8 +51,7 @@ export interface UserData {
   __v: number;
 }
 
-export // Define the Product type
-interface Product {
+export interface Product {
   _id: string;
   title: string;
   powerdby: string;
@@ -67,7 +66,7 @@ interface Product {
 
 // interfaces.ts
 
-export interface Order {
+export interface OrderInterface {
   _id: string;
   productid: {
     _id: string;
@@ -94,4 +93,26 @@ export interface Order {
 export interface Wallet {
   _id: string;
   name: string;
+}
+
+export interface RigData {
+  _id: string;
+  userid: string;
+  rigName: string;
+  gpu: string;
+  temp: string;
+  fan: string;
+  load: string;
+  power: string;
+  efficiency: number;
+  status: string;
+}
+
+export interface WithdrawData {
+  _id: String;
+  userid: UserData;
+  btc: String;
+  amount: Number;
+  requestDate: String;
+  status: String;
 }

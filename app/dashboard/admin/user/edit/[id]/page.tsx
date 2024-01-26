@@ -10,7 +10,6 @@ interface PageProps {
 
 const page = async ({ params }: PageProps) => {
   const userRigs = await getRigs(params?.id);
-  console.log(userRigs)
   return (
     <div>
       <Edit id={params?.id} />

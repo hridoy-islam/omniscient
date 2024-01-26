@@ -41,11 +41,9 @@ const SingleProductView = ({ product }: SingleProductViewProps) => {
         productid: _id,
       });
 
-      // console.log("Product added to cart:", response.data);
       toast.success(response?.data?.message);
     } catch (error) {
       toast.error("Something went wrong!");
-      // console.error("Error adding to cart:", error);
     }
   };
 
