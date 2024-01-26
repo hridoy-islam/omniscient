@@ -38,7 +38,6 @@ const Rigs = ({ id }: RigsProps) => {
       };
       // Make a POST request to the API
       const response = await Axios.post(apiUrl, formattedData);
-      // console.log("API Response:", response.data);
       toast.success(response?.data?.message);
       setRigData({
         rigName: "",

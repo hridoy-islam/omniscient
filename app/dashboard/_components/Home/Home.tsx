@@ -4,7 +4,7 @@ import { UserDashBalance } from "@/components/UserDashBalance";
 import { UserPayoutsTable } from "@/components/UserPayoutsTable";
 import UserRigsTable from "@/components/UserRigsTable";
 import { WelcomeBanner } from "@/components/WelcomeBanner";
-import { UserData } from "@/utils/interfaces";
+import { RigData, UserData, WithdrawData } from "@/utils/interfaces";
 import React, { useEffect, useState } from "react";
 import {
   Modal,
@@ -19,9 +19,11 @@ import LogoutButton from "@/components/LogoutButton";
 
 interface HomeProps {
   currentUser: UserData;
+  rigs: RigData[];
+  withdraws: WithdrawData[];
 }
 
-const Home = ({ currentUser }: HomeProps) => {
+const Home = ({ currentUser, rigs, withdraws }: HomeProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
@@ -33,8 +35,8 @@ const Home = ({ currentUser }: HomeProps) => {
     <div>
       <WelcomeBanner currentUser={currentUser} />
       <UserDashBalance />
-      <UserRigsTable />
-      <UserPayoutsTable />
+      <UserRigsTable rigs={rigs} />
+      <UserPayoutsTable withdraws={withdraws} />
       <Modal
         backdrop="blur"
         isDismissable={false}
@@ -66,7 +68,9 @@ const Home = ({ currentUser }: HomeProps) => {
                       {currentUser?.message}
                     </h3>
                     <div className="flex gap-4">
-                      <Button variant="bordered" size="lg" className="bg-white">Contact Support</Button>
+                      <Button variant="bordered" size="lg" className="bg-white">
+                        Contact Support
+                      </Button>
                       <LogoutButton />
                     </div>
                   </div>

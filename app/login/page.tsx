@@ -60,7 +60,6 @@ export default function Home() {
         setRedirecting(true);
       })
       .catch((err) => {
-        // console.log("the error", err);
         toast.error(err?.response?.data?.message);
       });
   };

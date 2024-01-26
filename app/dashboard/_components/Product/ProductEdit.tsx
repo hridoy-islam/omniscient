@@ -28,7 +28,6 @@ const ProductEdit: React.FC<ProductEditProps> = ({ product }) => {
   });
 
   const [photo, setPhoto] = useState("");
-  console.log(photo);
 
   const cookies = new Cookies();
   const token = cookies.get("jwt");

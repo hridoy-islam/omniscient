@@ -5,16 +5,16 @@
 import { Button, Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
 import ViewButton from "@/components/ViewButton";
 import DeleteButton from "@/components/DeleteButton";
-import { Order } from "@/utils/interfaces";
+import { OrderInterface } from "@/utils/interfaces";
 import Link from "next/link";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import moment from "moment";
 
 interface OrdersDisplayProps {
-  allOrders: Order[];
+  allOrders: OrderInterface[];
 }
 
 const OrdersDisplay: React.FC<OrdersDisplayProps> = ({ allOrders }) => {
-  // console.log("all orders", allOrders);
   return (
     <Card>
       <CardHeader className="tableHeader">
@@ -27,8 +27,8 @@ const OrdersDisplay: React.FC<OrdersDisplayProps> = ({ allOrders }) => {
               <th>Product Name</th>
               <th>User</th>
               {/* <th>Payment</th> */}
+              <th>Date</th>
               <th>Status</th>
-              {/* <th>Date</th> */}
               <th>Actions</th>
             </tr>
           </thead>
@@ -37,9 +37,8 @@ const OrdersDisplay: React.FC<OrdersDisplayProps> = ({ allOrders }) => {
               <tr key={order._id}>
                 <td>{order?.productid?.title}</td>
                 <td>{order?.userid?.email}</td>
-                {/* Add more fields based on your order structure */}
-                {/* <td>{order.createdAt}</td> */}
-                {/* <td>Render payment info</td> */}
+                <td>{moment(order?.createdAt).format("ll")}</td>
+
                 <td>
                   <Chip
                     color={

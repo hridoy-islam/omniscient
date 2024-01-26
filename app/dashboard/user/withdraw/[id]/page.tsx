@@ -9,7 +9,6 @@ interface pageProps {
 
 const page = async ({ params }: pageProps) => {
   const withdraw = await getAllWithdrawsById(params?.id);
-  // console.log("withdraw data", withdraw);
   return <UpdateWithdraw withdraw={withdraw?.data} id={params?.id} />;
 };
 

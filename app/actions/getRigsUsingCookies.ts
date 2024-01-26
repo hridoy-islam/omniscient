@@ -3,7 +3,8 @@ import { cookies } from "next/headers";
 
 const nextCookie = cookies();
 const tokenObject = nextCookie.get("jwt");
-const token = tokenObject?.value;import { DecodedToken } from "@/utils/interfaces";
+const token = tokenObject?.value;
+import { DecodedToken } from "@/utils/interfaces";
 import { jwtDecode } from "jwt-decode";
 
 export default async function getRigsUsingCookies() {
@@ -13,12 +14,10 @@ export default async function getRigsUsingCookies() {
   let decoded;
   if (jwt) {
     decoded = jwtDecode(jwt) as DecodedToken;
-    // console.log("here is the token", decoded);
   }
 
   try {
-    // const res = await Axios.get(`/rigs?userid=${decoded?.id}`);
-    const res = await Axios.get(`/rigs?userid=65a951103ad7c0a00a21ae25`, {
+    const res = await Axios.get(`/rigs?userid=${decoded?._id}`, {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },

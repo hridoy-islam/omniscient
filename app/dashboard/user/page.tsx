@@ -3,6 +3,9 @@ import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { DecodedToken } from "../layout";
 import Home from "../_components/Home/Home";
+import getRigsUsingCookies from "@/app/actions/getRigsUsingCookies";
+import { getAllWithdrawsById } from "@/app/actions/getAllWithdrawsById";
+import getWithdrawsUsingCookies from "@/app/actions/getWithdrawsUsingCookies";
 
 const Page = async () => {
   const nextCookies = cookies();
@@ -11,7 +14,6 @@ const Page = async () => {
   let id;
   if (JWT) {
     const decoded: DecodedToken = jwtDecode(JWT) as DecodedToken;
-    // console.log("JWT decode", decoded);
     id = decoded?._id;
   }
 
@@ -21,9 +23,17 @@ const Page = async () => {
     currentUser = await getUser(id);
   }
 
-  // console.log("current user", currentUser);
+  const rigs = await getRigsUsingCookies();
+  const withdraws = await getWithdrawsUsingCookies();
 
-  return <Home currentUser={currentUser?.data} />;
+
+  return (
+    <Home
+      currentUser={currentUser?.data}
+      rigs={rigs?.data?.result}
+      withdraws={withdraws?.data?.result}
+    />
+  );
 };
 
 export default Page;

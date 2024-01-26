@@ -10,7 +10,6 @@ interface EditButonPorps {
 }
 
 export default function ViewButton({ userId }: EditButonPorps) {
-  // console.log("consoling from edit button", userId);
   const router = useRouter();
 
   // const handleClick = () => {

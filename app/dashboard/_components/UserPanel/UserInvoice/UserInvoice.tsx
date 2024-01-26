@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import {
   Tabs,
@@ -24,16 +25,8 @@ import {
 import Image from "next/image";
 import Logo from "/public/logo.png";
 import { UserData } from "@/utils/interfaces";
-
-const generatePDF = () => {
-  const element = document.getElementById("invoice");
-
-  // Specify the filename option
-  const options = {
-    filename: "invoice.pdf",
-  };
-  html2pdf(element, options);
-};
+import ReactDOMServer from "react-dom/server";
+import { PDFViewer } from "@react-pdf/renderer";
 
 interface Invoice {
   _id: string;
@@ -100,8 +93,61 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
     onOpen();
   };
 
+  // const downloadPDF = () => {
+  //   // Render DummyInvoice to string
+  //   const invoiceString = ReactDOMServer.renderToString(<DummyInvoice />);
+
+  //   // Convert string to Blob
+  //   const blob = new Blob([invoiceString], { type: "application/pdf" });
+
+  //   // Create URL and trigger download
+  //   const url = URL.createObjectURL(blob);
+  //   const a = document.createElement("a");
+  //   a.href = url;
+  //   a.download = "invoice.pdf"; // Set the filename for download
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   document.body.removeChild(a);
+  // };
+
+  const generatePDF = () => {
+    const element = document.getElementById("invoice");
+
+    // Introduce a delay (e.g., 1 second) to allow the image to load
+    // Specify the filename option
+    // const options = {
+    //   filename: "invoice.pdf",
+    //   image: { type: "jpeg", quality: 1 },
+    // };
+
+    var options = {
+      margin: 0,
+      filename: "invoice.pdf",
+      image: { type: "jpeg", quality: 0.2 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: "in", format: "a4", orientation: "p" },
+    };
+
+    html2pdf(element, options);
+  };
+
+  // const generatePDF = () => {
+  //   const element = document.getElementById("invoice");
+
+  //   // Specify the filename option
+  //   const options = {
+  //     filename: "invoice.pdf",
+  //   };
+  //   html2pdf(element, options);
+  // };
+
   return (
     <div>
+      {/* <PDFViewer width="100%" height="600px">
+        <DummyInvoice />
+      </PDFViewer>
+
+      <button onClick={downloadPDF}>Download PDF</button> */}
       <div className="flex w-full flex-col">
         <Tabs
           aria-label="Options"
@@ -552,7 +598,7 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                         <Image
                           src={Logo}
                           alt="company-logo"
-                          className="h-auto w-24 object-cover"
+                          className="h-auto w-full object-cover"
                           width={100}
                           height={100}
                         />

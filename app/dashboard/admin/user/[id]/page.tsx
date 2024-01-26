@@ -7,10 +7,8 @@ interface pageProps {
 }
 
 const page = async ({ params }: pageProps) => {
-  // console.log("here is the params", params?.id);
   const currentUser = await getUser(params?.id);
 
-  //   console.log('current user', currentUser?.data)
   return (
     <div>
       <UserProfile user={currentUser?.data} />

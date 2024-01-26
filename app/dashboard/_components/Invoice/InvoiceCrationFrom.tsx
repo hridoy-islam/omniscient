@@ -34,9 +34,7 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [selectedUser, setSelectedUser] = useState("");
   const [invoiceType, setInvoiceType] = useState("");
-  // console.log("selected user", selectedUser);
-  // console.log("selected invoice type", invoiceType);
-  // console.log("discounted type", discountType);
+
   const addClick = () => {
     const newInfo = {
       item: "",
@@ -95,7 +93,6 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
 
     // Update the amount field in the current information object
     info[index] = { ...info[index], amount: amount };
-    // console.log("info", info);
 
     // Update the state with the modified information
     setInformations(info);
@@ -115,7 +112,6 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
   // Calculate discounted amount based on discountType and discountAmount
   const calculateDiscountedAmount = (totalAmount: number) => {
     let discountedAmount = totalAmount;
-    // console.log('type of discounted amount', typeof discountAmount)
 
     if (discountType === "percentage") {
       discountedAmount = totalAmount - totalAmount * (discountAmount / 100);
@@ -129,8 +125,6 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
   useEffect(() => {
     const totalAmount = calculateTotalAmount();
     const newDiscountedAmount = calculateDiscountedAmount(Number(totalAmount));
-    // console.log("total amount", totalAmount);
-    // console.log("new discountedAmount", newDiscountedAmount);
     setTotalAmount(Number(totalAmount));
     setDiscountedAmount(newDiscountedAmount);
   }, [discountType, discountAmount, informations]);
@@ -145,7 +139,6 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
       information: informations,
     };
 
-    // console.log(formattedData);
 
     try {
       const response = await Axios.post("/invoices", formattedData);
@@ -153,10 +146,8 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
       setTimeout(() => {
         window.location.reload();
       }, 100);
-      // console.log("here is the response", response);
     } catch (error) {
       toast.error("Something went wrong!");
-      // console.log("here is the error", error);
     }
   };
 

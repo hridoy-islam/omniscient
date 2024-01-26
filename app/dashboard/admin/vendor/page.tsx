@@ -8,7 +8,6 @@ import getAllWallets from "@/app/actions/getAllWallets";
 const page = async () => {
   const allExchanges = await getAllExchanges();
   const allWallet = await getAllWallets();
-  // console.log("all allWallet", allWallet?.data);
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

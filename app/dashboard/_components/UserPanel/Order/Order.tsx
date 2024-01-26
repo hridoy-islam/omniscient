@@ -4,7 +4,15 @@ import React from "react";
 import { Card, CardBody, CardHeader, Chip, Button } from "@nextui-org/react";
 import Link from "next/link";
 import ViewButton from "@/components/ViewButton";
-const Order = () => {
+import { OrderInterface } from "@/utils/interfaces";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import moment from "moment";
+
+interface OrderProps {
+  orders: OrderInterface[];
+}
+
+const Order = ({ orders }: OrderProps) => {
   return (
     <Card>
       <CardHeader className="tableHeader">
@@ -16,27 +24,43 @@ const Order = () => {
         <table className="table-fixed">
           <thead>
             <tr>
-              <th>Order ID</th>
-              <th>Product</th>
-              <th>Payment</th>
+              <th>Product Name</th>
+              <th>User</th>
+              {/* <th>Payment</th> */}
               <th>Date</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Invoice-0019</td>
-              <td>$292</td>
-              <td>$292</td>
-              <td>1961</td>
-              <td>$292</td>
-              <td>
-                <Link href="/dashboard/user/order/1">
-                  <ViewButton />
-                </Link>
-              </td>
-            </tr>
+            {orders?.map((order, index) => (
+              <tr key={order._id}>
+                <td>{order?.productid?.title}</td>
+                <td>{order?.userid?.email}</td>
+                <td>{moment(order?.createdAt).format("ll")}</td>
+                <td>
+                  <Chip
+                    color={
+                      order?.status === "approved"
+                        ? "success"
+                        : order?.status === "pending"
+                        ? "warning"
+                        : "danger"
+                    }
+                  >
+                    {order?.status}
+                  </Chip>
+                </td>
+                <td className="flex">
+                  <Link href={`/dashboard/user/order/${order?._id}`}>
+                    <Button className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md">
+                      <Icon icon="solar:eye-linear" className="text-lg" />
+                      <span>View</span>
+                    </Button>
+                  </Link>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </CardBody>

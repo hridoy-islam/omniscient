@@ -37,7 +37,6 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
     axios
       .get(`/users/${id}`)
       .then((response) => {
-        // console.log("response", response?.data?.data);
         if (response?.data?.data?.contact_information) {
           setContactData(response?.data?.data?.contact_information);
         }

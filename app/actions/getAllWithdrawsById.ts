@@ -19,7 +19,6 @@ export const getAllWithdrawsById = async (id: string) => {
 
   const tokenObject = cookieStore.get("jwt");
   const token = tokenObject?.value;
-  console.log("here is the token", token);
 
   try {
     const res = await Axios.get(`/withdraws/${id}`, {

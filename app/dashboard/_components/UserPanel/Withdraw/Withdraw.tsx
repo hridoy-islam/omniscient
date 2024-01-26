@@ -55,7 +55,6 @@ interface WithdrawProps {
 
 const Withdraw = ({ withdrawsData }: WithdrawProps) => {
   const withdrawData = withdrawsData?.data?.result;
-  // console.log(withdrawData);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [btc, setBtc] = useState("");
@@ -89,7 +88,6 @@ const Withdraw = ({ withdrawsData }: WithdrawProps) => {
           },
         }
       );
-      // console.log("here is the response", response);
       toast.success(response?.data?.message);
     } catch (error) {
       toast.error("Something went wrong!");

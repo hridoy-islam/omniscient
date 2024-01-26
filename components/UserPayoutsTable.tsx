@@ -1,8 +1,16 @@
 import React from "react";
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
+import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import ViewButton from "./ViewButton";
+import { WithdrawData } from "@/utils/interfaces";
+import moment from "moment";
+import Link from "next/link";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
-export const UserPayoutsTable = () => {
+interface UserPayoutsTableProps {
+  withdraws: WithdrawData[];
+}
+
+export const UserPayoutsTable = ({ withdraws }: UserPayoutsTableProps) => {
   return (
     <Card className="my-6">
       <CardHeader className="tableHeader">
@@ -12,29 +20,34 @@ export const UserPayoutsTable = () => {
         <table className="table-fixed">
           <thead>
             <tr>
-              <th>Withdraw ID</th>
-              <th>Ammount</th>
+              <th>Requested By</th>
+              <th>Amount</th>
               <th>BTC</th>
-              <th>Wallet</th>
-              <th>Status</th>
-              <th>Efficiency</th>
               <th>Requested On</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Invoice-0019</td>
-              <td>Something</td>
-              <td>$292</td>
-              <td>Something</td>
-              <td>Something</td>
-              <td>Something</td>
-              <td>Something</td>
-              <td>
-                <ViewButton />
-              </td>
-            </tr>
+            {withdraws?.map((withdraw, index) => (
+              <tr key={index}>
+                <td>
+                  {withdraw?.userid?.personal_information?.firstName}{" "}
+                  {withdraw?.userid?.personal_information?.lastName}
+                </td>
+                <td>{String(withdraw?.amount)}</td>
+                <td>{withdraw?.btc}</td>
+                <td>{withdraw?.requestDate}</td>
+
+                <td>
+                  <Link href={`/dashboard/user/withdraw/${withdraw?._id}`}>
+                    <Button className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md">
+                      <Icon icon="solar:eye-linear" className="text-lg" />
+                      <span>View</span>
+                    </Button>
+                  </Link>{" "}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </CardBody>

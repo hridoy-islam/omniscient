@@ -44,8 +44,6 @@ const Withdraw = ({ allWithdraws }: WithdrawProps) => {
     (withdraw) =>
       withdraw?.status === "approved" && (approvedRequestLength += 1)
   );
-  //   console.log(pendingRequests);
-  //   console.log(approvedRequests);
   return (
     <div>
       <div className="grid grid-cols-2 gap-4 mb-6">

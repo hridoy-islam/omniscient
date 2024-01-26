@@ -18,7 +18,6 @@ export default async function getInvoiceById() {
     decoded = jwtDecode(token) as DecodedToken;
   }
 
-  // console.log(decoded)
 
   try {
     const res = await Axios.get(`/invoices?userid=${decoded?._id}`, {

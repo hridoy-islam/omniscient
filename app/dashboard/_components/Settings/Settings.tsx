@@ -42,7 +42,6 @@ const Settings: React.FC<SettingsProps> = ({ settingsData }) => {
       const apiUrl = `/settings/6593eb10d44ad1c5f006ce48`;
       const response = await axios.patch(apiUrl, updatedSettings);
 
-      // console.log("Data saved successfully", response.data);
       toast.success(response?.data?.message);
 
       // Update the local state with the changes made

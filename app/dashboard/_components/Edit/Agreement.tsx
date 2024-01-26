@@ -18,7 +18,6 @@ interface AgreementProps {
 
 const Agreement = ({ id }: AgreementProps) => {
   const [agreementFile, setAgreementFile] = useState("");
-  // console.log("here is the agreement", agreementFile);
 
   const cookies = new Cookies();
   const token = cookies.get("jwt");
@@ -30,7 +29,6 @@ const Agreement = ({ id }: AgreementProps) => {
       },
     })
       .then((response) => {
-        // console.log("response", response?.data?.data);
         if (response?.data?.data?.agreement) {
           setAgreementFile(response?.data?.data?.agreement);
         }
@@ -60,11 +58,9 @@ const Agreement = ({ id }: AgreementProps) => {
     )
       .then((response) => {
         toast.success(response?.data?.message);
-        // console.log("Data saved successfully", response.data);
       })
       .catch((error) => {
         toast.error("Something went wrong!");
-        // console.error("Error saving data", error);
       });
   };
 

@@ -26,6 +26,36 @@ import Image from "next/image";
 import Logo from "/public/logo.png";
 import moment from "moment";
 import { UserData } from "@/utils/interfaces";
+import PDFInvoice from "./PDFInvoice";
+import ReactDOMServer from "react-dom/server";
+import { PDFViewer } from "@react-pdf/renderer";
+
+// const DummyInvoice = () => {
+//   return (
+//     <table>
+//       <thead>
+//         <tr>
+//           <th>Item</th>
+//           <th>Quantity</th>
+//           <th>Price</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         <tr>
+//           <td>Item 1</td>
+//           <td>2</td>
+//           <td>$10</td>
+//         </tr>
+//         <tr>
+//           <td>Item 2</td>
+//           <td>1</td>
+//           <td>$15</td>
+//         </tr>
+//         {/* Add more rows as needed */}
+//       </tbody>
+//     </table>
+//   );
+// };
 
 interface Invoice {
   _id: string;
@@ -83,9 +113,6 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
   const rigsInvoices = invoices?.filter(
     (invoice) => invoice.category === "rigs"
   );
-  console.log("bill", billInvoices);
-  // console.log("addon", addonInvoices);
-  // console.log("rigs", rigsInvoices);
 
   // State variables for the selected invoice
   const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
@@ -96,8 +123,31 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
     onOpen();
   };
 
+  // const downloadPDF = () => {
+  //   // Render DummyInvoice to string
+  //   const invoiceString = ReactDOMServer.renderToString(<DummyInvoice />);
+
+  //   // Convert string to Blob
+  //   const blob = new Blob([invoiceString], { type: "application/pdf" });
+
+  //   // Create URL and trigger download
+  //   const url = URL.createObjectURL(blob);
+  //   const a = document.createElement("a");
+  //   a.href = url;
+  //   a.download = "invoice.pdf"; // Set the filename for download
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   document.body.removeChild(a);
+  // };
+
   return (
     <div className="flex w-full flex-col">
+      {/* <PDFViewer width="100%" height="600px">
+        <DummyInvoice />
+      </PDFViewer>
+
+      <button onClick={downloadPDF}>Download PDF</button> */}
+
       <Tabs
         aria-label="Options"
         color="primary"

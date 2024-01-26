@@ -4,7 +4,6 @@ import { UserRigBalance } from "@/components/UserRigBalance";
 
 const Page = async () => {
   const rigs = await getRigsUsingCookies();
-  console.log("rigs", rigs?.data?.result);
   return (
     <>
       <UserRigBalance />

@@ -8,14 +8,11 @@ interface pageProps {
 }
 
 const page = async ({ params }: pageProps) => {
-  // console.log("params", params?.id);
 
   let product;
   if (params?.id) {
     product = await getSingleProduct(params?.id);
   }
-
-  // console.log(product);
 
   return <SingleProductView product={product?.data} />;
 };

@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-const API_URL = "http://localhost:5001/api";
+const API_URL = "http://localhost:3001/api";
 //const API_URL = "https://api.robofxtrader.com/api";
 
 const Axios: AxiosInstance = axios.create({
@@ -11,7 +11,6 @@ const Axios: AxiosInstance = axios.create({
 // Axios.interceptors.request.use(
 //   (config) => {
 //     const accessToken = getCookie("jwt");
-//     console.log("Access Token from interceptor", accessToken);
 
 //     if (accessToken) {
 //       config.headers.Authorization = `Bearer ${accessToken}`;

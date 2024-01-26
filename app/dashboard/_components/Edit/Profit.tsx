@@ -24,7 +24,6 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
   const cookie = new Cookies();
   const token = cookie.get("jwt");
   const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
-  // console.log("token", decoded, token);
 
   useEffect(() => {
     axios
@@ -34,7 +33,6 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
         },
       })
       .then((response) => {
-        console.log("response", response?.data?.data);
         if (response?.data?.data?.personal_information) {
           // setUserData(response?.data?.data?.personal_information);
         }
@@ -59,7 +57,6 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
       })
       .then((response) => {
         toast.success(response?.data?.message);
-        console.log("Data saved successfully", response.data);
       })
       .catch((error) => {
         toast.error("Something went wrong!");

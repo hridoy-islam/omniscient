@@ -2,15 +2,16 @@
 
 import React from "react";
 import { Tabs, Tab } from "@nextui-org/react";
-import Order from "../Order/Order";
 import SingleProductView from "@/app/dashboard/_components/UserPanel/Product/SingleProductView";
-import { Product } from "@/utils/interfaces";
+import { OrderInterface, Product } from "@/utils/interfaces";
+import Order from "../Order/Order";
 
 interface ProductInterface {
   products: Product[];
+  orders: OrderInterface[];
 }
 
-const Product = ({ products }: ProductInterface) => {
+const Product = ({ products, orders }: ProductInterface) => {
   return (
     <div>
       {/* <SingleProductView /> */}
@@ -34,7 +35,7 @@ const Product = ({ products }: ProductInterface) => {
             </div>
           </Tab>
           <Tab key="orders" title="Orders">
-            <Order />
+            <Order orders={orders} />
           </Tab>
         </Tabs>
       </div>

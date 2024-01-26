@@ -7,7 +7,6 @@ interface pageProps {
 }
 
 const page = async ({ params }: pageProps) => {
-  // console.log(params)
   const withdraw = await getAllWithdrawsById(params?.id);
   return (
     <UpdateWithdraw withdraw={withdraw?.data} id={params?.id} admin="true" />
