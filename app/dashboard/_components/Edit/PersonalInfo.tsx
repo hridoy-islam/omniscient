@@ -36,14 +36,18 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ id }) => {
     phone: "",
   });
 
-  // const cookie = new Cookies();
-  // const token = cookie.get("jwt");
-  // const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
-  //   console.log("token", decoded);
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
+  const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
+  // console.log("token", decoded);
 
   useEffect(() => {
     axios
-      .get(`/users/${id}`)
+      .get(`/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         // console.log("response", response?.data?.data);
         if (response?.data?.data?.personal_information) {
@@ -74,7 +78,11 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ id }) => {
     console.log(userData);
 
     axios
-      .patch(url, formattedData)
+      .patch(url, formattedData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         toast.success(response?.data?.message);
         // console.log("Data saved successfully", response.data);

@@ -1,16 +1,7 @@
 "use client";
-import Pagination from "@/components/Pagination";
-import ViewButton from "@/components/ViewButton";
 import { UserData } from "@/utils/interfaces";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import {
-  Avatar,
-  CardBody,
-  CardHeader,
-  Card,
-  Button,
-  Chip,
-} from "@nextui-org/react";
+import { CardBody, CardHeader, Card, Button, Chip } from "@nextui-org/react";
 import Link from "next/link";
 
 interface WithdrawObject {

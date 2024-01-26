@@ -10,7 +10,23 @@ interface UserProfileProps {
 }
 
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
-  // console.log("User data:", user);
+  const agreement = user?.agreement;
+
+  const downloadAgreement = () => {
+    // Assuming agreement is a PDF link, you can change the type accordingly
+    fetch(agreement)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "agreement.pdf"; // Change the filename as per your requirement
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      })
+      .catch((error) => console.error("Error downloading agreement:", error));
+  };
 
   // const { firstName, lastName, email, phone } = user?.personal_information;
   // const { address, city, country, state, zipcode } = user?.contact_information;
@@ -49,7 +65,10 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
               {user?.contact_information?.country}
             </p>
           </div>
-          <Button className="border border-primary bg-transparent text-primary w-64 flex items-center mt-3">
+          <Button
+            onClick={downloadAgreement}
+            className="border border-primary bg-transparent text-primary w-64 flex items-center mt-3"
+          >
             <Icon icon="material-symbols-light:download" width={26} />
             Download Agreenment
           </Button>

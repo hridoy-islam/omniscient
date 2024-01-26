@@ -75,12 +75,20 @@ const Withdraw = ({ withdrawsData }: WithdrawProps) => {
     }
 
     try {
-      const response = await Axios.post("/withdraws", {
-        userid: decoded?.id,
-        btc,
-        amount,
-        requestDate: moment().format("LL"),
-      });
+      const response = await Axios.post(
+        "/withdraws",
+        {
+          userid: decoded?._id,
+          btc,
+          amount,
+          requestDate: moment().format("LL"),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       // console.log("here is the response", response);
       toast.success(response?.data?.message);
     } catch (error) {

@@ -8,7 +8,6 @@ import {
   Chip,
   Link,
 } from "@nextui-org/react";
-import { Input } from "@nextui-org/react";
 import EditButton from "@/components/EditButton";
 import DeleteButton from "@/components/DeleteButton";
 import ViewButton from "@/components/ViewButton";
@@ -26,7 +25,8 @@ import { useState } from "react";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import Quill styles
 interface ApiResponse {
   meta: {
     page: number;
@@ -50,6 +50,7 @@ export default function User({ allUsers }: UserProps) {
 
   const router = useRouter();
   const cookies = new Cookies();
+  const token = cookies.get("jwt");
   const usersList = allUsers?.result;
 
   const handleOpen = (user: UserData) => {
@@ -67,7 +68,15 @@ export default function User({ allUsers }: UserProps) {
 
     const url = `/users/${selectedUserId}`;
 
-    Axios.patch(url, { message })
+    Axios.patch(
+      url,
+      { message },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((response) => {
         toast.success(response?.data?.message);
         // console.log("Data saved successfully", response.data);
@@ -193,19 +202,26 @@ export default function User({ allUsers }: UserProps) {
           </table>
         </CardBody>
       </Card>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} size="2xl" onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">Message</ModalHeader>
               <ModalBody>
-                <input
+                {/* <input
                   required
                   type="text"
                   onChange={(e) => setMessage(e.target.value)}
                   value={message}
                   placeholder="Write message"
                   className="p-2 border rounded-md focus:border-none"
+                /> */}
+                <ReactQuill
+                  value={message}
+                  onChange={setMessage}
+                  placeholder="Write message"
+                  modules={User.modules}
+                  formats={User.formats}
                 />
               </ModalBody>
               <ModalFooter>
@@ -229,3 +245,40 @@ export default function User({ allUsers }: UserProps) {
     </div>
   );
 }
+
+// Define Quill modules and formats
+User.modules = {
+  toolbar: [
+    [{ header: "1" }, { header: "2" }, { font: [] }],
+    [{ size: [] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["link", "image", "video"],
+    ["clean"],
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  },
+};
+User.formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "image",
+  "video",
+];

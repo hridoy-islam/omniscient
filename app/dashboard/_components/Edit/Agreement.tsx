@@ -10,6 +10,7 @@ import {
 import ImageUpload from "@/components/ImageUpload";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
+import Cookies from "universal-cookie";
 
 interface AgreementProps {
   id: string;
@@ -19,8 +20,15 @@ const Agreement = ({ id }: AgreementProps) => {
   const [agreementFile, setAgreementFile] = useState("");
   // console.log("here is the agreement", agreementFile);
 
+  const cookies = new Cookies();
+  const token = cookies.get("jwt");
+
   useEffect(() => {
-    Axios.get(`/users/${id}`)
+    Axios.get(`/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         // console.log("response", response?.data?.data);
         if (response?.data?.data?.agreement) {
@@ -39,9 +47,17 @@ const Agreement = ({ id }: AgreementProps) => {
 
     const url = `/users/${id}`;
 
-    Axios.patch(url, {
-      agreement: agreementFile,
-    })
+    Axios.patch(
+      url,
+      {
+        agreement: agreementFile,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((response) => {
         toast.success(response?.data?.message);
         // console.log("Data saved successfully", response.data);
