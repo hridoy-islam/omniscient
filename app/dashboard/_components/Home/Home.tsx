@@ -16,6 +16,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import LogoutButton from "@/components/LogoutButton";
+import Link from "next/link";
 
 interface HomeProps {
   currentUser: UserData;
@@ -67,8 +68,14 @@ const Home = ({ currentUser, rigs, withdraws }: HomeProps) => {
                     <h3 className="text-xl font-normal text-gray-500 mt-5 mb-6">
                       {currentUser?.message}
                     </h3>
-                    <div className="flex gap-4">
-                      <Button variant="bordered" size="lg" className="bg-white">
+                    <div className="flex gap-4 justify-center">
+                      <Button
+                        variant="bordered"
+                        size="lg"
+                        className="bg-white"
+                        as={Link}
+                        href="mailto:support@robofxtrader.com"
+                      >
                         Contact Support
                       </Button>
                       <LogoutButton />

@@ -34,7 +34,7 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
       })
       .then((response) => {
         if (response?.data?.data?.personal_information) {
-          // setUserData(response?.data?.data?.personal_information);
+          setProfit(response?.data?.data?.profit);
         }
       })
       .catch((err) => console.log("error", err));
@@ -50,11 +50,15 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
     const url = `/users/${id}`;
 
     axios
-      .patch(url, profit, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .patch(
+        url,
+        { profit },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         toast.success(response?.data?.message);
       })

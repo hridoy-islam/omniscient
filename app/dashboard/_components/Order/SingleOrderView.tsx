@@ -93,7 +93,16 @@ const SingleOrderView = ({ order }: SingleOrderViewProps) => {
                     <td>:</td>
                     <td>
                       {" "}
-                      <Chip color="primary" className="text-white">
+                      <Chip
+                        color={
+                          order?.status === "approve"
+                            ? "success"
+                            : order?.status === "pending"
+                            ? "warning"
+                            : "danger"
+                        }
+                        className="text-white"
+                      >
                         {status.toLocaleUpperCase()}
                       </Chip>
                     </td>

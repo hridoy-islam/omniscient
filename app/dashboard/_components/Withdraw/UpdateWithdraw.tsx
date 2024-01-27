@@ -137,7 +137,7 @@ const UpdateWithdraw = ({
       <Card className="bg-stroke">
         <CardBody className="space-y-4 p-6">
           <Icon icon="ri:bank-fill" width={36} className="text-primary" />
-          <h2 className="text-xl">Receiving Bank Details</h2>
+          <h2 className="text-xl">Receiving Wallet Details</h2>
           <p className="text-md">Payment Method: {wallet?.wallet}</p>
           <p className="text-md">
             Wallet: {currentUser?.currency.toUpperCase()}
@@ -176,22 +176,15 @@ const UpdateWithdraw = ({
             <p className="text-md">Status: </p>
             <Chip
               color={
-                withdraw?.status === "pending"
-                  ? "warning"
-                  : withdraw?.status === "approved"
+                withdraw?.status === "approve"
                   ? "success"
+                  : withdraw?.status === "pending"
+                  ? "warning"
                   : "danger"
               }
+              className="text-white uppercase"
             >
-              <button
-                // disabled={isLoading}
-                // onClick={() => {
-                //   handleStatus(user);
-                // }}
-                className="cursor-pointer"
-              >
-                {withdraw?.status}
-              </button>
+              {withdraw?.status}
             </Chip>
           </div>
         </CardBody>

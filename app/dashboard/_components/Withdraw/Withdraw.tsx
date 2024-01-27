@@ -41,8 +41,7 @@ const Withdraw = ({ allWithdraws }: WithdrawProps) => {
     (withdraw) => withdraw?.status === "pending" && (pendingRequestLength += 1)
   );
   const approvedRequests = withdraws?.map(
-    (withdraw) =>
-      withdraw?.status === "approved" && (approvedRequestLength += 1)
+    (withdraw) => withdraw?.status === "approve" && (approvedRequestLength += 1)
   );
   return (
     <div>
@@ -84,7 +83,16 @@ const Withdraw = ({ allWithdraws }: WithdrawProps) => {
                     {withdraw?.userid?.personal_information?.lastName}
                   </td>
                   <td>
-                    <Chip color="primary" className="text-white uppercase">
+                    <Chip
+                      color={
+                        withdraw?.status === "approve"
+                          ? "success"
+                          : withdraw?.status === "pending"
+                          ? "warning"
+                          : "danger"
+                      }
+                      className="text-white uppercase"
+                    >
                       {withdraw?.status}
                     </Chip>
                   </td>
