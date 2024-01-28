@@ -40,7 +40,11 @@ const Settings: React.FC<SettingsProps> = ({ settingsData }) => {
   const handleSave = async () => {
     try {
       const apiUrl = `/settings/6593eb10d44ad1c5f006ce48`;
-      const response = await axios.patch(apiUrl, updatedSettings);
+      const response = await axios.patch(apiUrl, updatedSettings, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       toast.success(response?.data?.message);
 

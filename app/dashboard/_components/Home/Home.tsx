@@ -16,14 +16,28 @@ import {
 } from "@nextui-org/react";
 import LogoutButton from "@/components/LogoutButton";
 import Link from "next/link";
+import UserPayoutTable from "@/components/UserPayoutTable";
+
+interface payout {
+  _id: string;
+  rigid: {
+    _id: string;
+    rigName: string;
+  };
+  amount: Number;
+  userid: UserData;
+  createdAt: string;
+}
 
 interface HomeProps {
   currentUser: UserData;
   rigs: RigData[];
   withdraws: WithdrawData[];
+  payouts: payout[];
 }
 
-const Home = ({ currentUser, rigs, withdraws }: HomeProps) => {
+const Home = ({ currentUser, rigs, payouts }: HomeProps) => {
+  // console.log("here is payouts", payouts);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
@@ -36,6 +50,8 @@ const Home = ({ currentUser, rigs, withdraws }: HomeProps) => {
       <WelcomeBanner currentUser={currentUser} />
       <UserDashBalance />
       <UserRigsTable rigs={rigs} />
+
+      <UserPayoutTable payouts={payouts} />
 
       <Modal
         backdrop="blur"

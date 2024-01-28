@@ -5,7 +5,6 @@ import getUserWithdraws from "@/app/actions/getUserWithdraws";
 const page = async () => {
   const withdraw = await getUserWithdraws();
 
-
   return <Withdraw withdrawsData={withdraw} />;
 };
 

@@ -4,6 +4,8 @@ import { DecodedToken, RigData } from "@/utils/interfaces";
 import { Icon } from "@iconify/react";
 import { Button, Card, CardBody, Progress } from "@nextui-org/react";
 import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
 
@@ -25,26 +27,26 @@ interface RigsDetailsProps {
 }
 
 export const RigDetails = ({ rigs }: RigsDetailsProps) => {
+  const router = useRouter();
+
   const cookie = new Cookies();
   const token = cookie.get("jwt");
 
-  console.log(token);
-  // const decoded = jwtDecode(token) as DecodedToken;
-
   const handleStartMining = (rig: RigData) => {
+    console.log(rig);
     const url = `/history/start/${rig?._id}`;
 
-    Axios.post(url, {
+    Axios.post(url, null, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
-        console.log(response);
         toast.success(response?.data?.message);
+        router.refresh();
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error("Something went wrong!");
       });
   };
@@ -52,17 +54,18 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
   const handlePauseMining = (rig: RigData) => {
     const url = `/history/pause/${rig?._id}`;
 
-    Axios.post(url, {
+    Axios.post(url, null, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+        router.refresh();
         toast.success(response?.data?.message);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error("Something went wrong!");
       });
   };
@@ -75,18 +78,31 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
             <div>
               <h2>
                 Rig 00001{" "}
-                <span className="text-green">
-                  {rig?.status.toLocaleUpperCase()}
+                <span
+                  className={`${
+                    rig?.status === "mining" ? "text-green" : "text-red"
+                  } uppercase`}
+                >
+                  {rig?.status === "mining" ? "mining" : "stopped"}
                 </span>
               </h2>
               <p>{rig?.rigName}</p>
             </div>
-            <Button
-              onClick={() => handlePauseMining(rig)}
-              className="bg-[#DFF9E8] text-secondary"
-            >
-              <Icon icon="solar:pause-bold" /> <span>Pause Mining</span>
-            </Button>
+            {rig?.status === "mining" ? (
+              <Button
+                onClick={() => handlePauseMining(rig)}
+                className="bg-[#DFF9E8] text-secondary"
+              >
+                <Icon icon="solar:pause-bold" /> <span>Pause Mining</span>
+              </Button>
+            ) : (
+              <Button
+                onClick={() => handleStartMining(rig)}
+                className="bg-primaryLight"
+              >
+                <Icon icon="ph:play-fill" /> Start Mining
+              </Button>
+            )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-2">
             <Card className="p-4 border border-stroke">
@@ -198,7 +214,7 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
           </div>
         </CardBody>
       </Card>
-      <Card className="p-6 space-y-2 my-6">
+      {/* <Card className="p-6 space-y-2 my-6">
         <CardBody>
           <div className="flex justify-between">
             <div>
@@ -213,9 +229,18 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
             >
               <Icon icon="solar:play-bold" /> <span>Start Mining</span>
             </Button>
+
+            {showStartButton && (
+              <Button
+                onClick={() => handleStartMining(rig)}
+                className="bg-primaryLight"
+              >
+                <Icon icon="ph:play-fill" /> Start Mining
+              </Button>
+            )}
           </div>
         </CardBody>
-      </Card>
+      </Card> */}
     </>
   ));
 };

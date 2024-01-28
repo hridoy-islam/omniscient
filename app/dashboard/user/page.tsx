@@ -6,6 +6,7 @@ import Home from "../_components/Home/Home";
 import getRigsUsingCookies from "@/app/actions/getRigsUsingCookies";
 import { getAllWithdrawsById } from "@/app/actions/getAllWithdrawsById";
 import getWithdrawsUsingCookies from "@/app/actions/getWithdrawsUsingCookies";
+import getPayouts from "@/app/actions/getPayouts";
 
 const Page = async () => {
   const nextCookies = cookies();
@@ -25,13 +26,15 @@ const Page = async () => {
 
   const rigs = await getRigsUsingCookies();
   const withdraws = await getWithdrawsUsingCookies();
-
+  const payouts = await getPayouts();
+  console.log(payouts?.data?.result);
 
   return (
     <Home
       currentUser={currentUser?.data}
       rigs={rigs?.data?.result}
       withdraws={withdraws?.data?.result}
+      payouts={payouts?.data?.result}
     />
   );
 };

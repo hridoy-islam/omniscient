@@ -6,7 +6,12 @@ import getOrdersForSpecificUser from "@/app/actions/getOrdersForSpecificUser";
 const Page = async () => {
   const allProducts = await getAllProducts();
   const allOrders = await getOrdersForSpecificUser();
-  return <Product products={allProducts?.data?.result} orders={allOrders?.data?.result} />;
+  return (
+    <Product
+      products={allProducts?.data?.result}
+      orders={allOrders?.data?.result}
+    />
+  );
 };
 
 export default Page;

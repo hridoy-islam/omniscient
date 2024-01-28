@@ -5,14 +5,26 @@ import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import toast from "react-hot-toast";
 import axios from "@/utils/axios";
 import { useRouter } from "next/navigation";
+import Cookies from "universal-cookie";
 const AddExchange = () => {
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
+
   const [exchangeName, setExchangeName] = useState("");
   const router = useRouter();
   const handleSave = () => {
     const apiUrl = "/exchange";
 
     axios
-      .post(apiUrl, { name: exchangeName })
+      .post(
+        apiUrl,
+        { name: exchangeName },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         toast.success(response?.data?.message);
         router.refresh();

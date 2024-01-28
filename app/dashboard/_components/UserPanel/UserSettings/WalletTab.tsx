@@ -82,18 +82,34 @@ const WalletTab: React.FC<WalletTabProps> = ({
 
       if (modalMode === "add") {
         // Add new wallet
-        const response = await Axios.patch(`/users/${decode?.id}`, {
-          wallets: addFormattedValue,
-        });
+        const response = await Axios.patch(
+          `/users/${decode?._id}`,
+          {
+            wallets: addFormattedValue,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         toast.success(response?.data?.message);
         router.refresh();
       } else if (modalMode === "edit" && editedWalletIndex !== null) {
         // Edit existing wallet
         const updatedUserWallets = [...userWallets];
         updatedUserWallets[editedWalletIndex] = formattedValue;
-        const response = await Axios.patch(`/users/${decode?.id}`, {
-          wallets: updatedUserWallets,
-        });
+        const response = await Axios.patch(
+          `/users/${decode?._id}`,
+          {
+            wallets: updatedUserWallets,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         toast.success(response?.data?.message);
         router.refresh();
         setEditedWalletIndex(null);

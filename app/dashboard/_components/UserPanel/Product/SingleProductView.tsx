@@ -32,14 +32,22 @@ const SingleProductView = ({ product }: SingleProductViewProps) => {
   const cookies = new Cookies();
   const token = cookies.get("jwt");
   const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
-  const userId = decoded?.id;
+  const userId = decoded?._id;
 
   const handleAddToCart = async () => {
     try {
-      const response = await Axios.post("/orders", {
-        userid: userId,
-        productid: _id,
-      });
+      const response = await Axios.post(
+        "/orders",
+        {
+          userid: userId,
+          productid: _id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       toast.success(response?.data?.message);
     } catch (error) {
