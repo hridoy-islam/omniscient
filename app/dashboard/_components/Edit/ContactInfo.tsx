@@ -21,8 +21,8 @@ interface ContactInfoProps {
 }
 
 const ContactInfo = ({ id }: ContactInfoProps) => {
-  // const cookie = new Cookies();
-  // const token = cookie.get("jwt");
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
   // const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
 
   const [contactData, setContactData] = useState({
@@ -34,8 +34,14 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
   });
 
   useEffect(() => {
+    // Assuming `id` is defined somewhere in your component
+
     axios
-      .get(`/users/${id}`)
+      .get(`/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         if (response?.data?.data?.contact_information) {
           setContactData(response?.data?.data?.contact_information);
@@ -64,7 +70,11 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
     const url = `/users/${id}`;
 
     axios
-      .patch(url, formattedData)
+      .patch(url, formattedData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         toast.success(response?.data?.message);
       })
@@ -121,8 +131,6 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
                 value={contactData.state}
                 onChange={(e) => handleChange("state", e.target.value)}
               />
-                
-              
             </div>
             <div className="">
               {/* <label htmlFor="country">Country</label>
@@ -136,9 +144,7 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
                 <option>Country 1</option>
                 <option>Country 2</option>
               </select> */}
-              <label htmlFor="country">
-                Country
-              </label>
+              <label htmlFor="country">Country</label>
               <Autocomplete
                 defaultItems={countries}
                 label=""

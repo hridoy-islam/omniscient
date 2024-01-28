@@ -20,6 +20,7 @@ import toast from "react-hot-toast";
 import { DecodedToken, RigData } from "@/utils/interfaces";
 import Cookies from "universal-cookie";
 import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
 
 const chartData = [
   {
@@ -65,44 +66,75 @@ const chartData = [
     amt: 2100,
   },
 ];
+
 export default function Mining() {
   const cookie = new Cookies();
   const token = cookie.get("jwt");
   const decode = jwtDecode(token) as DecodedToken;
+  const [showStartAllButton, setShowStartAllButton] = useState(true);
+  const [showPauseAllButton, setShowPauseAllButton] = useState(false);
 
-  const handleStartAllRigs = () => {
+  // console.log("showStartAllButton", showStartAllButton);
+  // console.log("showPauseAllButton", showPauseAllButton);
+  useEffect(() => {
+    const storedShowStartAllButton = localStorage.getItem("showStartAllButton");
+    const storedShowPauseAllButton = localStorage.getItem("showPauseAllButton");
+
+    if (
+      storedShowStartAllButton !== null &&
+      storedShowPauseAllButton !== null
+    ) {
+      setShowStartAllButton(storedShowStartAllButton === "true");
+      setShowPauseAllButton(storedShowPauseAllButton === "true");
+    }
+  }, []);
+
+  // console.log(token, decode)
+
+  const handleStartAllRigs = async () => {
     const url = `/history/startall/${decode?._id}`;
 
-    Axios.post(url, {
+    await Axios.post(url, null, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
-        console.log("here is the response", response);
-        toast.success(response?.data?.message);
+        if (response.data.success) {
+          setShowStartAllButton(false);
+          setShowPauseAllButton(true);
+          localStorage.setItem("showStartAllButton", "false");
+          localStorage.setItem("showPauseAllButton", "true");
+          toast.success(response?.data?.message);
+        }
       })
       .catch((error) => {
-        console.log("here is the error", error);
         toast.error("Something went wrong!");
+        console.error("Error starting rigs:", error);
       });
   };
 
-  const handlePauseAllRigs = () => {
+  const handlePauseAllRigs = async () => {
     const url = `/history/pauseall/${decode?._id}`;
 
-    Axios.post(url, {
+    await Axios.post(url, null, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
-        console.log("here is the response", response);
-        toast.success(response?.data?.message);
+        if (response.data.success) {
+          setShowStartAllButton(true);
+          setShowPauseAllButton(false);
+          localStorage.setItem("showStartAllButton", "true");
+          localStorage.setItem("showPauseAllButton", "false");
+          toast.success(response?.data?.message);
+          console.log(response);
+        }
       })
       .catch((error) => {
-        console.log("here is the error", error);
         toast.error("Something went wrong!");
+        console.error("Error pausing rigs:", error);
       });
   };
 
@@ -149,14 +181,16 @@ export default function Mining() {
           <h2>Current Mining Balance</h2>
           <h3 className="text-4xl font-bold">0.000434 BTC</h3>
           <div className="flex gap-2 justify-between">
-            <Button onClick={handleStartAllRigs} className="bg-primaryLight">
-              <Icon icon="ph:play-fill" /> Start All Rigs
-            </Button>
-            <Button onClick={handlePauseAllRigs} className="bg-[#f9e5e5]">
-              {" "}
-              <Icon icon="solar:pause-bold" />
-              Stop All Rigs
-            </Button>
+            {showStartAllButton && (
+              <Button onClick={handleStartAllRigs} className="bg-primaryLight">
+                <Icon icon="ph:play-fill" /> Start All Rigs
+              </Button>
+            )}
+            {showPauseAllButton && (
+              <Button onClick={handlePauseAllRigs} className="bg-[#f9e5e5]">
+                <Icon icon="solar:pause-bold" /> Stop All Rigs
+              </Button>
+            )}
           </div>
         </Card>
         <Card className="p-6 grid grid-cols-2 gap-1">

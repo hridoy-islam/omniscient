@@ -12,6 +12,7 @@ import { UserData } from "@/utils/interfaces";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Cookies from "universal-cookie";
 interface InvoiceCrationFromProps {
   allUsers: UserData[];
 }
@@ -27,6 +28,9 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
     },
   ]);
   const router = useRouter();
+
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
 
   const [discountAmount, setDiscountAmount] = useState(0);
   const [discountType, setDiscountType] = useState("");
@@ -139,9 +143,12 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
       information: informations,
     };
 
-
     try {
-      const response = await Axios.post("/invoices", formattedData);
+      const response = await Axios.post("/invoices", formattedData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       toast.success(response?.data?.message);
       setTimeout(() => {
         window.location.reload();

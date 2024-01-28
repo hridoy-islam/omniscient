@@ -6,7 +6,6 @@ export default async function getAllUsers() {
   const tokenObject = nextCookie.get("jwt");
   const token = tokenObject?.value;
 
-
   try {
     const res = await Axios.get("/users?role=user&isDeleted=false", {
       headers: {

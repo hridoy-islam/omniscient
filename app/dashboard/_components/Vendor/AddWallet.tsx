@@ -5,13 +5,24 @@ import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import toast from "react-hot-toast";
 import axios from "@/utils/axios";
 import { useRouter } from "next/navigation";
+import Cookies from "universal-cookie";
 const AddWallet = () => {
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
   const [walletName, setWalletName] = useState("");
   const router = useRouter();
   const handleSave = async () => {
     try {
       const apiUrl = "/wallet";
-      const response = await axios.post(apiUrl, { name: walletName });
+      const response = await axios.post(
+        apiUrl,
+        { name: walletName },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       toast.success(response?.data?.message);
       router.refresh();

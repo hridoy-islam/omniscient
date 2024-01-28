@@ -27,8 +27,8 @@ interface BillingInfoProps {
 }
 
 const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
-  // const cookie = new Cookies();
-  // const token = cookie.get("jwt");
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
   // const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
 
   const [billingInfo, setBillingInfo] = useState<BillingInfoData>({
@@ -41,7 +41,11 @@ const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
 
   useEffect(() => {
     axios
-      .get(`/users/${id}`)
+      .get(`/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         if (response?.data?.data?.billing_information) {
           setBillingInfo(response?.data?.data?.billing_information);
@@ -70,7 +74,11 @@ const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
     const url = `/users/${id}`;
 
     axios
-      .patch(url, formattedData)
+      .patch(url, formattedData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         toast.success(response?.data?.message);
       })

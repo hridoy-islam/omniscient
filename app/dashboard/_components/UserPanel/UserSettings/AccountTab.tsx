@@ -15,6 +15,7 @@ import { UserData } from "@/utils/interfaces";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Axios from "@/utils/axios";
+import Cookies from "universal-cookie";
 
 interface AccountTabProps {
   // allWallets: { _id: string; name: string; __v: number }[];
@@ -23,6 +24,8 @@ interface AccountTabProps {
 }
 
 const AccountTab = ({ currentUser }: AccountTabProps) => {
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
   const [selectedCurrency, setSelectedCurrency] = useState(
     currentUser?.currency || ""
   );
@@ -34,10 +37,18 @@ const AccountTab = ({ currentUser }: AccountTabProps) => {
 
   const submitForm = async () => {
     try {
-      const response = await Axios.patch(`/users/${currentUser?._id}`, {
-        currency: selectedCurrency,
-        // primary_account: selectedPrimaryAccount,
-      });
+      const response = await Axios.patch(
+        `/users/${currentUser?._id}`,
+        {
+          currency: selectedCurrency,
+          // primary_account: selectedPrimaryAccount,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       toast.success(response?.data?.message);
       router.refresh();
 

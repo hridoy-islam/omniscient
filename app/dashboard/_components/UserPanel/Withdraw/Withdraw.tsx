@@ -130,7 +130,16 @@ const Withdraw = ({ withdrawsData }: WithdrawProps) => {
                     {withdraw?.userid?.personal_information?.lastName}
                   </td>{" "}
                   <td>
-                    <Chip color="primary" className="text-white uppercase">
+                    <Chip
+                      color={
+                        withdraw?.status === "pending"
+                          ? "warning"
+                          : withdraw?.status === "approve"
+                          ? "success"
+                          : "danger"
+                      }
+                      className="text-white uppercase"
+                    >
                       {withdraw?.status}
                     </Chip>
                   </td>

@@ -15,6 +15,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import axios from "@/utils/axios";
+import Cookies from "universal-cookie";
 // Define the type for a single wallet item
 interface Wallet {
   _id: string;
@@ -28,6 +29,9 @@ interface WalletDisplayProps {
 }
 
 const WalletDisplay: React.FC<WalletDisplayProps> = ({ wallets }) => {
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
+
   const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [updatedName, setUpdatedName] = useState("");
@@ -47,9 +51,17 @@ const WalletDisplay: React.FC<WalletDisplayProps> = ({ wallets }) => {
       }
 
       const apiUrl = `/wallet/${selectedWallet._id}`;
-      const response = await axios.patch(apiUrl, {
-        name: updatedName,
-      });
+      const response = await axios.patch(
+        apiUrl,
+        {
+          name: updatedName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       toast.success(response?.data?.message);
       router.refresh();

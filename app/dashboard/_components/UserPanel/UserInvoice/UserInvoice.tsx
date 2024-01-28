@@ -113,13 +113,6 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
   const generatePDF = () => {
     const element = document.getElementById("invoice");
 
-    // Introduce a delay (e.g., 1 second) to allow the image to load
-    // Specify the filename option
-    // const options = {
-    //   filename: "invoice.pdf",
-    //   image: { type: "jpeg", quality: 1 },
-    // };
-
     var options = {
       margin: 0,
       filename: "invoice.pdf",

@@ -13,12 +13,16 @@ import DeleteButton from "@/components/DeleteButton";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Cookies from "universal-cookie";
 
 interface RigsProps {
   id: string;
 }
 
 const Rigs = ({ id }: RigsProps) => {
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
+
   const [rigData, setRigData] = useState({
     rigName: "",
     efficiency: 0,
@@ -37,7 +41,11 @@ const Rigs = ({ id }: RigsProps) => {
         ...rigData,
       };
       // Make a POST request to the API
-      const response = await Axios.post(apiUrl, formattedData);
+      const response = await Axios.post(apiUrl, formattedData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       toast.success(response?.data?.message);
       setRigData({
         rigName: "",

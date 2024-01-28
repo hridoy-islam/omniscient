@@ -15,6 +15,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import axios from "@/utils/axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Cookies from "universal-cookie";
 
 interface Exchange {
   _id: string;
@@ -27,6 +28,9 @@ interface ExchangesDisplayProps {
 }
 
 const ExchangesDisplay: React.FC<ExchangesDisplayProps> = ({ exchanges }) => {
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
+
   const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [updatedName, setUpdatedName] = useState("");
@@ -48,9 +52,17 @@ const ExchangesDisplay: React.FC<ExchangesDisplayProps> = ({ exchanges }) => {
       }
 
       const apiUrl = `/exchange/${selectedExchange._id}`;
-      const response = await axios.patch(apiUrl, {
-        name: updatedName,
-      });
+      const response = await axios.patch(
+        apiUrl,
+        {
+          name: updatedName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       toast.success(response?.data?.message);
       router.refresh();
@@ -117,7 +129,11 @@ const ExchangesDisplay: React.FC<ExchangesDisplayProps> = ({ exchanges }) => {
                     <Button color="danger" variant="light" onPress={onClose}>
                       Close
                     </Button>
-                    <Button color="primary" className="text-white" onPress={handleUpdate}>
+                    <Button
+                      color="primary"
+                      className="text-white"
+                      onPress={handleUpdate}
+                    >
                       Update
                     </Button>
                   </ModalFooter>

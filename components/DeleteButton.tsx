@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import toast from "react-hot-toast";
 import axios from "@/utils/axios";
+import Cookies from "universal-cookie";
 
 interface DeleteButtonProps {
   id?: string;
@@ -22,6 +23,9 @@ interface DeleteButtonProps {
 }
 
 const DeleteButton: React.FC<DeleteButtonProps> = ({ id, label }) => {
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
   const handleDelete = async () => {
@@ -29,15 +33,35 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ id, label }) => {
       const apiUrl = `/${label}/${id}`;
       let response;
       if (label === "users") {
-        response = await axios.patch(apiUrl, {
-          isDeleted: true,
-        });
+        response = await axios.patch(
+          apiUrl,
+          {
+            isDeleted: true,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
       } else if (label === "products") {
-        response = await axios.patch(apiUrl, {
-          isDeleted: true,
-        });
+        response = await axios.patch(
+          apiUrl,
+          {
+            isDeleted: true,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
       } else {
-        response = await axios.delete(apiUrl);
+        response = await axios.delete(apiUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
       }
       toast.success(response?.data?.message);
       router.refresh();

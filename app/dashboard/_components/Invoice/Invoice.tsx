@@ -26,36 +26,8 @@ import Image from "next/image";
 import Logo from "/public/logo.png";
 import moment from "moment";
 import { UserData } from "@/utils/interfaces";
-import PDFInvoice from "./PDFInvoice";
-import ReactDOMServer from "react-dom/server";
-import { PDFViewer } from "@react-pdf/renderer";
 
-// const DummyInvoice = () => {
-//   return (
-//     <table>
-//       <thead>
-//         <tr>
-//           <th>Item</th>
-//           <th>Quantity</th>
-//           <th>Price</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         <tr>
-//           <td>Item 1</td>
-//           <td>2</td>
-//           <td>$10</td>
-//         </tr>
-//         <tr>
-//           <td>Item 2</td>
-//           <td>1</td>
-//           <td>$15</td>
-//         </tr>
-//         {/* Add more rows as needed */}
-//       </tbody>
-//     </table>
-//   );
-// };
+import html2pdf from "html2pdf.js";
 
 interface Invoice {
   _id: string;
@@ -99,6 +71,20 @@ const calculateTotalAmount = (information: Information[]) => {
     .toFixed(2);
 };
 
+const generatePDF = () => {
+  const element = document.getElementById("invoice");
+
+  var options = {
+    margin: 0,
+    filename: "invoice.pdf",
+    image: { type: "jpeg", quality: 0.2 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: "in", format: "a4", orientation: "p" },
+  };
+
+  html2pdf(element, options);
+};
+
 const Invoice = ({ allInvoices }: InvoiceProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const invoices = allInvoices?.data?.result;
@@ -123,31 +109,8 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
     onOpen();
   };
 
-  // const downloadPDF = () => {
-  //   // Render DummyInvoice to string
-  //   const invoiceString = ReactDOMServer.renderToString(<DummyInvoice />);
-
-  //   // Convert string to Blob
-  //   const blob = new Blob([invoiceString], { type: "application/pdf" });
-
-  //   // Create URL and trigger download
-  //   const url = URL.createObjectURL(blob);
-  //   const a = document.createElement("a");
-  //   a.href = url;
-  //   a.download = "invoice.pdf"; // Set the filename for download
-  //   document.body.appendChild(a);
-  //   a.click();
-  //   document.body.removeChild(a);
-  // };
-
   return (
     <div className="flex w-full flex-col">
-      {/* <PDFViewer width="100%" height="600px">
-        <DummyInvoice />
-      </PDFViewer>
-
-      <button onClick={downloadPDF}>Download PDF</button> */}
-
       <Tabs
         aria-label="Options"
         color="primary"
@@ -205,7 +168,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                       </td>
                       <td>{moment(invoice?.createdAt).format("LL")}</td>
 
-                      <td>
+                      <td className="flex gap-2">
                         <Button
                           onPress={() => openModal(invoice)}
                           className="text-primary border-primary border-1 bg-white ml-2 px-3 text-md"
@@ -215,13 +178,13 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                         </Button>{" "}
                         <Button
                           onPress={() => openModal(invoice)}
-                          className="text-purple border-purple border-1 bg-white ml-2 px-3 text-md"
+                          className="flex items-center text-purple border border-purple bg-transparent text-lg"
                         >
                           <Icon
-                            icon="eva:download-outline"
-                            className="text-lg"
-                          />
-                          <span>Download</span>
+                            icon="material-symbols-light:download"
+                            width={27}
+                          />{" "}
+                          Download
                         </Button>{" "}
                       </td>
                     </tr>
@@ -287,13 +250,13 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                         </Button>{" "}
                         <Button
                           onPress={() => openModal(invoice)}
-                          className="text-purple border-purple border-1 bg-white ml-2 px-3 text-md"
+                          className="flex items-center text-purple border border-purple bg-transparent text-lg"
                         >
                           <Icon
-                            icon="eva:download-outline"
-                            className="text-lg"
-                          />
-                          <span>Download</span>
+                            icon="material-symbols-light:download"
+                            width={27}
+                          />{" "}
+                          Download
                         </Button>{" "}
                       </td>
                     </tr>
@@ -359,13 +322,13 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                         </Button>{" "}
                         <Button
                           onPress={() => openModal(invoice)}
-                          className="text-purple border-purple border-1 bg-white ml-2 px-3 text-md"
+                          className="flex items-center text-purple border border-purple bg-transparent text-lg"
                         >
                           <Icon
-                            icon="eva:download-outline"
-                            className="text-lg"
-                          />
-                          <span>Download</span>
+                            icon="material-symbols-light:download"
+                            width={27}
+                          />{" "}
+                          Download
                         </Button>{" "}
                       </td>
                     </tr>
@@ -651,12 +614,13 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                 {/* <!-- <button type="button" id="btn" className="">Print</button> --> */}
               </ModalBody>
               <ModalFooter>
-                {/* <Button color="danger" variant="light" onPress={onClose}>
-                  Close
+                <Button
+                  onClick={generatePDF}
+                  className="flex items-center text-purple border border-purple bg-transparent text-lg"
+                >
+                  <Icon icon="material-symbols-light:download" width={27} />{" "}
+                  Download
                 </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button> */}
               </ModalFooter>
             </>
           )}
