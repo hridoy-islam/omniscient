@@ -55,7 +55,7 @@ export default function Sidebar({ currentUser }: UserSidebarProps) {
     },
   ];
   return (
-    <div className="hidden w-1/5 md:flex flex-col justify-between h-screen bg-white border border-stroke p-4">
+    <div className="absolute left-0 top-0 z-9999 flex h-screen justify-between w-1/5 flex-col overflow-y-hidden bg-white border-stroke p-4 duration-300 ease-linear lg:static lg:translate-x-0 translate-x-0">
       <div>
         <Image src={logo} alt="robofx" className="mb-6" />
         <ul>
@@ -63,7 +63,7 @@ export default function Sidebar({ currentUser }: UserSidebarProps) {
             <li key={item.path}>
               <Link
                 href={item.path}
-                className={`py-2 px-3 flex justify-start rounded-lg my-3 text-xl 
+                className={`py-2 px-3 flex justify-start rounded-lg my-3 text-xl
               ${
                 item.path.toString() === pathname.toString()
                   ? "bg-primary text-white"

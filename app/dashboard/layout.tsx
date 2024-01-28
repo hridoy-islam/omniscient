@@ -11,7 +11,7 @@ export interface DecodedToken {
   iat: number;
   exp: number;
   role: string;
-  _id: string
+  _id: string;
 }
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
@@ -25,23 +25,23 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
     role = decoded?.role;
     currentUser = await getUser(decoded?._id);
   }
+
   return (
-    <section className="flex">
+    <div className="flex h-screen overflow-hidden">
       {role === "admin" ? (
         <Sidebar currentUser={currentUser?.data} />
       ) : (
         <UserSidebar currentUser={currentUser?.data} />
       )}
-      <div className="w-full md:w-4/5 h-screen">
+      <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
         {role === "admin" ? (
           <AdminNavbar currentUser={currentUser?.data} />
         ) : (
           <UserNavbar currentUser={currentUser?.data} />
         )}
-
-        <div className="p-6">{children}</div>
+        <main className="p-4 md:p-6">{children}</main>
       </div>
-    </section>
+    </div>
   );
 };
 

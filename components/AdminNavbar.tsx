@@ -66,7 +66,7 @@ export default function AdminNavbar({ currentUser }: UserSidebarProps) {
   const pathname = usePathname();
 
   return (
-    <div className="">
+    <div className="sticky top-0 flex w-full bg-white drop-shadow-1">
       <Navbar disableAnimation className="bg-white border border-stroke">
         <NavbarContent className="sm:hidden " justify="start">
           <NavbarMenuToggle />

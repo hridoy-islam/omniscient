@@ -256,6 +256,12 @@ User.modules = {
     ],
     ["link", "image", "video"],
     ["clean"],
+    [
+      { align: "" },
+      { align: "center" },
+      { align: "right" },
+      { align: "justify" },
+    ],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
@@ -277,4 +283,5 @@ User.formats = [
   "link",
   "image",
   "video",
+  "align",
 ];

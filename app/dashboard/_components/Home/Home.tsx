@@ -1,7 +1,6 @@
 "use client";
 
 import { UserDashBalance } from "@/components/UserDashBalance";
-import { UserPayoutsTable } from "@/components/UserPayoutsTable";
 import UserRigsTable from "@/components/UserRigsTable";
 import { WelcomeBanner } from "@/components/WelcomeBanner";
 import { RigData, UserData, WithdrawData } from "@/utils/interfaces";
@@ -37,7 +36,7 @@ const Home = ({ currentUser, rigs, withdraws }: HomeProps) => {
       <WelcomeBanner currentUser={currentUser} />
       <UserDashBalance />
       <UserRigsTable rigs={rigs} />
-      <UserPayoutsTable withdraws={withdraws} />
+
       <Modal
         backdrop="blur"
         isDismissable={false}
