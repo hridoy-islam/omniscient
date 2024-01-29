@@ -151,7 +151,7 @@ const Dashboard = ({ allUsers, allOrders }: DashboardProps) => {
                 <h2 className="text-4xl">{allUsers?.length}</h2>
               </div>
 
-              <ResponsiveContainer width={400} height={100}>
+              <ResponsiveContainer width={350} height={100}>
                 <AreaChart
                   data={data}
                   syncId="anyId"
@@ -180,7 +180,7 @@ const Dashboard = ({ allUsers, allOrders }: DashboardProps) => {
                 <p className="text-textLight">New Users</p>
                 <h2 className="text-4xl">{allUsers?.length}</h2>
               </div>
-              <ResponsiveContainer width={400} height={100}>
+              <ResponsiveContainer width={350} height={100}>
                 <AreaChart
                   data={user}
                   syncId="anyId"
@@ -204,7 +204,7 @@ const Dashboard = ({ allUsers, allOrders }: DashboardProps) => {
                 <p className="text-textLight">Total Rigs</p>
                 <h2 className="text-4xl">38</h2>
               </div>
-              <ResponsiveContainer width={400} height={100}>
+              <ResponsiveContainer width={350} height={100}>
                 <AreaChart
                   data={rigs}
                   syncId="anyId"

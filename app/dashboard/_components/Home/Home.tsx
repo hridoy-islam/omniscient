@@ -48,7 +48,7 @@ const Home = ({ currentUser, rigs, payouts }: HomeProps) => {
   return (
     <div>
       <WelcomeBanner currentUser={currentUser} />
-      <UserDashBalance />
+      <UserDashBalance currentUser={currentUser} />
       <UserRigsTable rigs={rigs} />
 
       <UserPayoutTable payouts={payouts} />

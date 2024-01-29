@@ -3,7 +3,7 @@ import { Card } from "@nextui-org/react";
 export default function SupportGrid() {
   return (
     <div className="bg-white py-10">
-      <Card className="bg-primary container mx-auto p-10 grid grid-cols-3 gap-4 text-center">
+      <Card className="bg-primary container mx-auto p-10 grid md:grid-cols-3 sm:grid-cols-1 gap-4 text-center">
         <Card className="px-5 py-10 space-y-4">
           <h2 className="font-semibold text-xl">Connection Issues?</h2>
           <p>

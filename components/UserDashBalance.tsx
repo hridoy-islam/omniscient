@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import btc from "../public/btc.png";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
+import { UserData } from "@/utils/interfaces";
 
 const colors = ["#C4EAF5", "#2C929C"];
 const data = [
@@ -16,13 +17,18 @@ const data = [
     value: 29078,
   },
 ];
+interface UserDashBalanceProps {
+  currentUser: UserData;
+}
 
-export const UserDashBalance = () => {
+export const UserDashBalance = ({ currentUser }: UserDashBalanceProps) => {
+  console.log("ridoy", currentUser);
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-6">
       <Card className="p-6">
         <h2>Live Balance</h2>
         <h2>BTC - 1012919291</h2>
+        <h3>{currentUser?.balance || 0}</h3>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart width={230} height={150}>
             <Pie
@@ -42,6 +48,7 @@ export const UserDashBalance = () => {
       </Card>
       <Card className="p-6">
         <h2>Gross Balance</h2>
+        <h3>{currentUser?.grossBalance || 0}</h3>
       </Card>
       <Card className="p-6">
         <h2>Payouts</h2>

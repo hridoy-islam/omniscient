@@ -14,11 +14,15 @@ export default function Pricing() {
           Welcome to a new era of mining, where pricing meets perfection.
         </p>
       </div>
-      <div className="grid grid-cols-4 gap-4">
-        <Card className="border border-primary p-6 space-y-4">
+      <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4">
+        <Card className="border border-primary p-6 space-y-4 justify-between">
           <Chip className="bg-primaryLight rounded-md align-center p-4 mb-3 mx-auto">
-            Basic Mining
+            Mining Plan
           </Chip>
+          <p>
+            Embark on your crypto journey with a plan that turns beginners into
+            heroes of hashing!
+          </p>
           <div className="space-y-2">
             <h3 className="font-bold">Motherboard</h3>
             <p>TUF GAMING Z590-PLUS</p>
@@ -37,14 +41,18 @@ export default function Pricing() {
           </div>
           <div className="space-y-2">
             <h3 className="font-bold">Graphics Card</h3>
-            <p>NVIDIA GeForce RTX 2060</p>
+            <p>NVIDIA GeForce RTX 3060 Ti </p>
           </div>
           <Button className="btn-basic rounded-md">Get Started</Button>
         </Card>
-        <Card className="border border-primary p-6 space-y-4">
+        <Card className="border border-primary p-6 space-y-4 justify-between">
           <Chip className="bg-primaryLight rounded-md align-center p-4 mb-3 mx-auto">
-            Basic Mining
+            Gold Rush Pro-Pack
           </Chip>
+          <p>
+            Designed for the gold-seekers in the digital age, this plan is for
+            serious miners ready to stake their claim.
+          </p>
           <div className="space-y-2">
             <h3 className="font-bold">Motherboard</h3>
             <p>TUF GAMING Z590-PLUS</p>
@@ -63,14 +71,18 @@ export default function Pricing() {
           </div>
           <div className="space-y-2">
             <h3 className="font-bold">Graphics Card</h3>
-            <p>NVIDIA GeForce RTX 2060</p>
+            <p>NVIDIA GeForce RTX 3070 Ti</p>
           </div>
           <Button className="btn-basic rounded-md">Get Started</Button>
         </Card>
-        <Card className="border border-primary p-6 space-y-4">
+        <Card className="border border-primary p-6 space-y-4 justify-between">
           <Chip className="bg-primaryLight rounded-md align-center p-4 mb-3 mx-auto">
-            Basic Mining
+            Crypto Tycoon Elite
           </Chip>
+          <p>
+            For those who dream big and mine bigger, this plan is the gateway to
+            becoming a crypto empire builder.
+          </p>
           <div className="space-y-2">
             <h3 className="font-bold">Motherboard</h3>
             <p>TUF GAMING Z590-PLUS</p>
@@ -89,14 +101,18 @@ export default function Pricing() {
           </div>
           <div className="space-y-2">
             <h3 className="font-bold">Graphics Card</h3>
-            <p>NVIDIA GeForce RTX 2060</p>
+            <p>NVIDIA GeForce RTX 3080 Ti </p>
           </div>
           <Button className="btn-basic rounded-md">Get Started</Button>
         </Card>
-        <Card className="border border-primary p-6 space-y-4">
+        <Card className="border border-primary p-6 space-y-4 justify-between">
           <Chip className="bg-primaryLight rounded-md align-center p-4 mb-3 mx-auto">
-            Basic Mining
+            Blockchain Baron Bundle
           </Chip>
+          <p>
+            Rule the world of blockchain with this comprehensive package,
+            tailor-made for the industry's barons and magnates
+          </p>
           <div className="space-y-2">
             <h3 className="font-bold">Motherboard</h3>
             <p>TUF GAMING Z590-PLUS</p>
@@ -115,7 +131,7 @@ export default function Pricing() {
           </div>
           <div className="space-y-2">
             <h3 className="font-bold">Graphics Card</h3>
-            <p>NVIDIA GeForce RTX 2060</p>
+            <p>NVIDIA GeForce RTX 3090 Ti </p>
           </div>
           <Button className="btn-basic rounded-md">Get Started</Button>
         </Card>

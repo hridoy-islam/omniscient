@@ -22,6 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${nunito.variable} light`}>
+      <head>
+        <title>RoboFx Trader</title>
+      </head>
       <body>
         <Providers>{children}</Providers>
         <Toaster />

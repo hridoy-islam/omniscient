@@ -5,10 +5,10 @@ export default function ContactHeader() {
         <h3 className="text-textLight">Contact</h3>
         <h2 className="text-4xl text-primary">Have Questions? Get in Touch!</h2>
         <p>
-          Have questions on your mind? We're here to unravel the answers. Don't
-          hesitate—get in touch, and let's embark on a conversation that brings
-          clarity to your queries. Your curiosity drives us, so reach out today!
-          🌐🤔
+          For assistance, questions, or feedback, please don't hesitate to
+          contact our support team. We are committed to providing you with
+          exceptional support and ensuring that your trading experience with
+          RoboFX is nothing short of excellent.
         </p>
       </div>
     </div>

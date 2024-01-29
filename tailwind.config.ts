@@ -19,6 +19,16 @@ const config: any = {
         // 👇 Add CSS variables
         nunito: ["var(--font-nunito)"],
       },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1rem",
+          sm: "2rem",
+          lg: "4rem",
+          xl: "5rem",
+          "2xl": "6rem",
+        },
+      },
     },
     colors: {
       primary: "#2C929C",

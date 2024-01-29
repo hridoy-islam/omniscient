@@ -17,17 +17,17 @@ export default function Contact() {
           <div className="space-y-4">
             <div className="flex gap-2 items-center">
               <Icon icon="carbon:map" className="text-primary text-lg" />
-              <p>Dummy address, New York, NY, United States, New York</p>
+              <p>13thStreet, 47 W 13th St, New York, NY 10011, USA</p>
             </div>
 
             <div className="flex gap-2 items-center">
               <Icon icon="ic:baseline-email" className="text-primary text-lg" />
-              <p>hridoy5y@gmail.com</p>
+              <p>mining@robofxtrader.com</p>
             </div>
 
             <div className="flex gap-2 items-center">
               <Icon icon="ep:phone" className="text-primary text-lg" />
-              <p>+1 300-500-0000</p>
+              <p>+19292301920</p>
             </div>
           </div>
         </div>

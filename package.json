@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/navbar": "^2.0.27",
     "@nextui-org/react": "^2.2.9",
     "@react-pdf/renderer": "^3.3.4",
     "@types/jsonwebtoken": "^9.0.5",

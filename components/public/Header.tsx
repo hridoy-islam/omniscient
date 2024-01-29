@@ -14,14 +14,17 @@ import React from "react";
 import robofxicon from "../../public/logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function Header() {
   const menuItems = ["About", "Support", "Faq", "Contact"];
-
   return (
     <Navbar>
       <NavbarContent>
-        <NavbarMenuToggle />
+        <NavbarMenuToggle
+          icon={<Icon icon="material-symbols:menu" width={24} />}
+          className="sm:hidden"
+        />
 
         <NavbarBrand>
           <Link href={"/"}>

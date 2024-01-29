@@ -2,7 +2,10 @@ export default function SupportHeader() {
   return (
     <div className="bg-white">
       <div className="py-20 container mx-auto text-center space-y-4">
-        <h3 className="text-textLight">Support</h3>
+        <h3 className="text-textLight">
+          Welcome to the RoboFX Support Center: Your Comprehensive Assistance
+          Hub
+        </h3>
         <h2 className="text-4xl text-primary">
           Need Help? We’ve got your back!
         </h2>

@@ -4,13 +4,16 @@ import EditButton from "@/components/EditButton";
 import ViewButton from "@/components/ViewButton";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button, Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
+import { useParams } from "next/navigation";
 
 export default function page() {
+  const params = useParams();
+
   return (
     <>
       <Card className="my-6">
         <CardHeader className="tableHeader">
-          <h2>Assigned Rigs to username@example.com </h2>
+          <h2>Assigned Rigs to </h2>
           <div className="flex justify-between">
             <Button className="bg-primaryLight mr-3">
               <Icon icon="ph:play-fill" /> Start All Rigs

@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button } from "@nextui-org/react";
+import { Button, Chip } from "@nextui-org/react";
 import Link from "next/link";
 
 export default function AboutHeader() {
@@ -15,25 +15,21 @@ export default function AboutHeader() {
         </p>
         <div className="grid grid-cols-3 gap-3">
           <div></div>
-          <div className="flex flex-row items-center mx-14">
-            <Button
+          <div className="flex justify-center">
+            <Chip
               as={Link}
               className="text-white bg-primary rounded-full text-[16px] font-semibold py-[14px] px-[22px]"
               href="#"
               variant="flat"
             >
-              Start Mining{" "}
-              <Icon
-                icon="material-symbols-light:arrow-circle-right-outline-rounded"
-                width={26}
-              />
-            </Button>
-            <Link
+              Start Mining
+            </Chip>
+            <Chip
+              variant="light"
               className="text-lightText bg-none text-[16px] font-semibold py-[12px] px-[24px]"
-              href="#"
             >
-              Contact Us
-            </Link>
+              <Link href={"/contact"}>Contact Us</Link>
+            </Chip>
           </div>
           <div></div>
         </div>

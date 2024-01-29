@@ -7,7 +7,6 @@ import {
   NavbarContent,
   NavbarItem,
   NavbarMenu,
-  NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
 import LogoutButton from "./LogoutButton";
@@ -66,10 +65,12 @@ export default function AdminNavbar({ currentUser }: UserSidebarProps) {
   const pathname = usePathname();
 
   return (
-    <div className="sticky top-0 flex w-full bg-white drop-shadow-1">
+    <div className="flex w-full bg-white drop-shadow-1">
       <Navbar disableAnimation className="bg-white border border-stroke">
         <NavbarContent className="sm:hidden " justify="start">
-          <NavbarMenuToggle />
+          <NavbarMenuToggle
+            icon={<Icon icon="material-symbols:menu" width={24} />}
+          />
         </NavbarContent>
 
         <NavbarContent className="sm:hidden pr-3" justify="center">

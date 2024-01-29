@@ -8,12 +8,12 @@ import arrow from "../../public/arrow-ai.png";
 
 export default function Banner() {
   return (
-    <div className="flex justify-between container mx-auto pb-28">
-      <div>
-        <h2 className="pt-[68px] pb-[24px] text-[68px] font-bold text-primary leading-[76px]">
+    <div className="md:flex justify-between container mx-auto pb-28">
+      <div className="mt-6">
+        <h2 className="md:pt-16 md:pb-6 text-6xl font-bold text-primary md:leading-[76px]">
           Your Crypto <br /> Mining <br /> Starts Here
         </h2>
-        <h3 className="text-[20px] font-medium text-darkText pb-[24px]">
+        <h3 className="text-lg font-medium text-darkText pb-6">
           It’s super simple - Your mining rigs are already set up and running.
         </h3>
         <div className="flex flex-row items-center">
@@ -38,7 +38,7 @@ export default function Banner() {
           <Image src={arrow} alt="arrow" />
         </div>
 
-        <ul className="flex justify-between my-5">
+        <ul className="flex justify-between md:my-5 sm:my-2">
           <li className="flex gap-2">
             <Icon
               icon="lets-icons:check-fill"
@@ -66,7 +66,11 @@ export default function Banner() {
         </ul>
       </div>
       <div>
-        <Image className="pt-[16px]" src={banner} alt="banner" />
+        <Image
+          className="pt-4 w-full object-center"
+          src={banner}
+          alt="banner"
+        />
       </div>
     </div>
   );

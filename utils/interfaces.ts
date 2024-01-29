@@ -48,6 +48,10 @@ export interface UserData {
   isDeleted: boolean;
   createdAt: string;
   updatedAt: string;
+  balance: number;
+  grossBalance: number;
+  btc: number;
+  profit: number;
   __v: number;
 }
 

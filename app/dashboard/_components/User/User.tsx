@@ -181,7 +181,11 @@ export default function User({ allUsers }: UserProps) {
                     <EditButton userId={user?._id} />
                     <ViewButton userId={user?._id} />
                     <DeleteButton label="users" id={user?._id} />
-                    <Button className="bg-secondary border border-black text-white mx-2">
+                    <Button
+                      as={Link}
+                      href={`/dashboard/admin/user/${user?._id}/rigs`}
+                      className="bg-secondary border border-black text-white mx-2"
+                    >
                       Rigs
                     </Button>
                     <Button

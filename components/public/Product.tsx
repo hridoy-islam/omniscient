@@ -12,29 +12,39 @@ export default function Product() {
     <div className="container mx-auto py-20">
       <Card className="bg-primary text-white p-10">
         <div className="text-center space-y-4 px-10">
-          <h3>MEET THE PRODUCT</h3>
+          <h3>MEET THE INNOVATION</h3>
           <h2 className="font-bold text-3xl">
-            Beautiful, functional and Nearly Ready to Launch
+            A Game-Changer in Cryptocurrency Mining
           </h2>
           <p>
-            A perfect blend of aesthetics and practicality. Stay tuned for an
-            experience that transcends expectations. Beauty meets purpose,
-            launching soon! 🌟
+            In the dynamic and ever-shifting landscape of cryptocurrency, our
+            latest offering emerges as a true game-changer. This isn't just a
+            crypto mining rig; it's a testament to innovation and
+            forward-thinking design. Tailored to meet the needs of both seasoned
+            miners and novices, it bridges the gap between complex technology
+            and user accessibility. Prepare to be amazed by a product that not
+            only promises high performance but also reshapes your mining
+            experience with its revolutionary features. Welcome to the future of
+            cryptocurrency mining, where efficiency, reliability, and elegance
+            converge.
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-8 mt-5">
+        <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-8 mt-5">
           <Card className="p-8 text-center space-y-3">
             <Image
               src={exchangeservice}
               alt="Exchange Services"
               className="mx-auto"
             />
-            <h2 className="font-bold text-lg">Exchange Services</h2>
+            <h2 className="font-bold text-lg">
+              Next-Gen Hash Rate Performance
+            </h2>
             <p>
-              A exchange literally is a digital marketplace where you can for
-              all intents and purposes convert currency, our platform really
-              supports convert to currencies into any wallet!
+              🚀 Unparalleled Power: Experience the pinnacle of mining
+              efficiency with our rig's exceptional hash rate. It's engineered
+              to maximize your mining potential, ensuring you stay ahead in the
+              competitive world of cryptocurrency.
             </p>
           </Card>
           <Card className="p-8 text-center space-y-3">
@@ -43,20 +53,22 @@ export default function Product() {
               alt="Exchange Services"
               className="mx-auto"
             />
-            <h2 className="font-bold text-lg">Technical Support</h2>
+            <h2 className="font-bold text-lg">Energy-Efficient Operation</h2>
             <p>
-              Customer service and support is our number one priority! The
-              dedicated support staff will support your mining configuration
-              requirements from start to finish.
+              💡 Eco-Friendly Mining: Our rig is designed with sustainability in
+              mind. It consumes less power without compromising on performance,
+              reducing your carbon footprint while maximizing your mining
+              rewards.
             </p>
           </Card>
           <Card className="p-8 text-center space-y-3">
             <Image src={mining} alt="Exchange Services" className="mx-auto" />
-            <h2 className="font-bold text-lg">Mining Hardware & Software</h2>
+            <h2 className="font-bold text-lg">User-Friendly Interface</h2>
             <p>
-              We use The kind of the absolute Latest software and hardware You
-              get the most generally advanced technologies from mining
-              factories!
+              🖥️ Ease of Use: Whether you're a beginner or a pro, our intuitive
+              interface makes mining simple and straightforward. Enjoy
+              hassle-free setup and operation, allowing you to focus on what
+              matters most - your mining success.
             </p>
           </Card>
           <Card className="p-8 text-center space-y-3">
@@ -65,12 +77,12 @@ export default function Product() {
               alt="Exchange Services"
               className="mx-auto"
             />
-            <h2 className="font-bold text-lg">Automation Mining</h2>
+            <h2 className="font-bold text-lg">Robust Security Features</h2>
             <p>
-              The digital trend is introducing a new concept called 'automated
-              mining’ to streamline the mining process without human
-              intervention. Our platform can effectively maximize the mining
-              profit.
+              🔒 Safe and Secure: With top-tier security protocols, our mining
+              rig ensures your operations are protected against threats. Your
+              digital assets and mining process are safeguarded, giving you
+              peace of mind.
             </p>
           </Card>
           <Card className="p-8 text-center space-y-3">
@@ -79,21 +91,22 @@ export default function Product() {
               alt="Exchange Services"
               className="mx-auto"
             />
-            <h2 className="font-bold text-lg">Electricity & Internet</h2>
+            <h2 className="font-bold text-lg">Compact and Sleek Design</h2>
             <p>
-              We specifically got the sort of the lowest price on electricity
-              and pretty much kind of Less internet consumption costs by Solar
-              Power with multi backup facilities for both power supply and
-              internet.
+              🎨 Aesthetic Meets Practicality: Not only is our rig powerful, but
+              it's also a visual treat. Its sleek, compact design fits
+              seamlessly into any space, marrying form and function in a
+              stylish, modern package.
             </p>
           </Card>
           <Card className="p-8 text-center space-y-3">
             <Image src={secure} alt="Exchange Services" className="mx-auto" />
-            <h2 className="font-bold text-lg">Secure Data Center</h2>
+            <h2 className="font-bold text-lg">24/7 Customer Support</h2>
             <p>
-              The particular kind of overwhelming majority of funds actually is
-              stored in mining, very kind of really cold wallets! Our platform
-              is enhanced with a sort of high-level protection.
+              🌐 Dedicated Assistance: Our team of experts is available around
+              the clock to provide support and answer any questions. From
+              technical issues to general inquiries, we're here to ensure your
+              mining journey is smooth and profitable.
             </p>
           </Card>
         </div>
