@@ -14,13 +14,20 @@ import LogoutButton from "./LogoutButton";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
-import { UserData } from "@/utils/interfaces";
+import { UserData, settingsData } from "@/utils/interfaces";
+import { currencyConvert } from "@/utils/currencyConvert";
+
+
 
 interface UserSidebarProps {
   currentUser: UserData;
+  settings: settingsData[];
 }
 
-export default function UserNavbar({ currentUser }: UserSidebarProps) {
+export default function UserNavbar({
+  currentUser,
+  settings,
+}: UserSidebarProps) {
   const sidebarmenu = [
     {
       path: "/dashboard/user",
@@ -61,6 +68,7 @@ export default function UserNavbar({ currentUser }: UserSidebarProps) {
   ];
   const pathname = usePathname();
 
+
   return (
     <div>
       <Navbar className="bg-white border border-stroke">
@@ -83,7 +91,8 @@ export default function UserNavbar({ currentUser }: UserSidebarProps) {
             <NavbarItem>
               <div className="hidden sm:flex gap-2">
                 <Button className="text-white bg-yellow rounded-e-none">
-                  0.581285 BTC
+                  {currencyConvert(currentUser?.grossBalance, settings[0]?.btc)}{" "}
+                  BTC
                 </Button>
                 <Button className="text-white bg-yellow rounded-l-none">
                   Gross <Icon icon="solar:dollar-linear" width={18} />
@@ -93,7 +102,7 @@ export default function UserNavbar({ currentUser }: UserSidebarProps) {
             <NavbarItem>
               <div className="hidden sm:flex gap-2">
                 <Button className="text-white bg-green rounded-e-none">
-                  0.581285 BTC
+                  {currencyConvert(currentUser?.balance, settings[0]?.btc)} BTC
                 </Button>
                 <Button className="text-white bg-green rounded-l-none">
                   Live <Icon icon="solar:dollar-linear" width={18} />

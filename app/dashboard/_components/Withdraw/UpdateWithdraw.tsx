@@ -25,6 +25,7 @@ import Cookies from "universal-cookie";
 
 interface UpdateWithdrawProps {
   withdraw: {
+    _id: string;
     userid: UserData;
     btc: string;
     amount: number;
@@ -41,6 +42,7 @@ const UpdateWithdraw = ({
   id,
 }: UpdateWithdrawProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const localStatus = ["pending", "approve", "decline"];
   const [selectedStatus, setSelectedStatus] = useState("");
   const currentUser = withdraw?.userid;
@@ -83,9 +85,9 @@ const UpdateWithdraw = ({
 
     const token = cookies.get("jwt");
 
-    const url = `/withdraws/${id}`;
+    const url = `/withdraws/${withdraw?._id}/${withdraw?.userid?._id}`;
 
-    Axios.patch(
+    Axios.post(
       url,
       { status: selectedStatus },
       {
@@ -191,7 +193,11 @@ const UpdateWithdraw = ({
       </Card>
 
       {admin === "true" && (
-        <Card className="bg-stroke space-y-4 p-6">
+        <Card
+          className={`bg-stroke space-y-4 p-6 ${
+            withdraw?.status === "approved" ? "hidden" : ""
+          }`}
+        >
           <label>Change Withdraw Status</label>
           <select
             onChange={(e) => {

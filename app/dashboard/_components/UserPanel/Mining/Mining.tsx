@@ -74,8 +74,6 @@ export default function Mining() {
   const [showStartAllButton, setShowStartAllButton] = useState(true);
   const [showPauseAllButton, setShowPauseAllButton] = useState(false);
 
-  // console.log("showStartAllButton", showStartAllButton);
-  // console.log("showPauseAllButton", showPauseAllButton);
   useEffect(() => {
     const storedShowStartAllButton = localStorage.getItem("showStartAllButton");
     const storedShowPauseAllButton = localStorage.getItem("showPauseAllButton");
@@ -88,8 +86,6 @@ export default function Mining() {
       setShowPauseAllButton(storedShowPauseAllButton === "true");
     }
   }, []);
-
-  // console.log(token, decode)
 
   const handleStartAllRigs = async () => {
     const url = `/history/startall/${decode?._id}`;
@@ -129,7 +125,6 @@ export default function Mining() {
           localStorage.setItem("showStartAllButton", "true");
           localStorage.setItem("showPauseAllButton", "false");
           toast.success(response?.data?.message);
-          console.log(response);
         }
       })
       .catch((error) => {

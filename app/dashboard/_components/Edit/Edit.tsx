@@ -8,12 +8,14 @@ import BillingInfo from "./BillingInfo";
 import Agreement from "./Agreement";
 import Rigs from "./Rigs";
 import Profit from "./Profit";
+import { RigData } from "@/utils/interfaces";
 
 interface EditProps {
   id: string;
+  rigs: RigData[];
 }
 
-const Edit = ({ id }: EditProps) => {
+const Edit = ({ id, rigs }: EditProps) => {
   return (
     <Tabs
       aria-label="Options"
@@ -39,7 +41,7 @@ const Edit = ({ id }: EditProps) => {
         <Agreement id={id} />
       </Tab>
       <Tab key="rigs" title="Rigs">
-        <Rigs id={id} />
+        <Rigs id={id} rigs={rigs} />
       </Tab>
       <Tab key="profit" title="Profit">
         <Profit id={id} />

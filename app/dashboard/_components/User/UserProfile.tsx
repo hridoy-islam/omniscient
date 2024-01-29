@@ -12,9 +12,14 @@ interface UserProfileProps {
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const agreement = user?.agreement;
 
+  console.log(process.env.API_URL);
+
+  const API_URL = "http://217.196.50.52:5000/api";
+
+  const downloadLink = `${API_URL + "/" + agreement}`;
+
   const downloadAgreement = () => {
-    // Assuming agreement is a PDF link, you can change the type accordingly
-    fetch(agreement)
+    fetch(downloadLink)
       .then((response) => response.blob())
       .then((blob) => {
         const url = window.URL.createObjectURL(new Blob([blob]));
@@ -27,10 +32,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
       })
       .catch((error) => console.error("Error downloading agreement:", error));
   };
-
-  // const { firstName, lastName, email, phone } = user?.personal_information;
-  // const { address, city, country, state, zipcode } = user?.contact_information;
-  //   const { address, city, country, state, zipcode } = user?.billing_information;
 
   return (
     <div>

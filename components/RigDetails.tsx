@@ -33,7 +33,6 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
   const token = cookie.get("jwt");
 
   const handleStartMining = (rig: RigData) => {
-    console.log(rig);
     const url = `/history/start/${rig?._id}`;
 
     Axios.post(url, null, {
@@ -46,7 +45,6 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
         router.refresh();
       })
       .catch((error) => {
-        // console.log(error);
         toast.error("Something went wrong!");
       });
   };
@@ -60,12 +58,10 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
       },
     })
       .then((response) => {
-        // console.log(response);
         router.refresh();
         toast.success(response?.data?.message);
       })
       .catch((error) => {
-        // console.log(error);
         toast.error("Something went wrong!");
       });
   };

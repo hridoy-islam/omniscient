@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import getUser from "../actions/getUser";
 import AdminNavbar from "@/components/AdminNavbar";
 import UserNavbar from "@/components/UserNavbar";
+import getSettings from "../actions/getSettings";
 
 export interface DecodedToken {
   id: string;
@@ -26,6 +27,8 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
     currentUser = await getUser(decoded?._id);
   }
 
+  const settings = await getSettings();
+
   return (
     <div className="flex h-screen overflow-hidden">
       {role === "admin" ? (
@@ -37,7 +40,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
         {role === "admin" ? (
           <AdminNavbar currentUser={currentUser?.data} />
         ) : (
-          <UserNavbar currentUser={currentUser?.data} />
+          <UserNavbar settings={settings?.data} currentUser={currentUser?.data} />
         )}
         <main className="p-4 md:p-6">{children}</main>
       </div>

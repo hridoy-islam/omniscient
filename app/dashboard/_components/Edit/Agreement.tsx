@@ -17,7 +17,7 @@ interface AgreementProps {
 }
 
 const Agreement = ({ id }: AgreementProps) => {
-  const [agreementFile, setAgreementFile] = useState("");
+  const [agreementFile, setAgreementFile] = useState<File | null>(null);
 
   const cookies = new Cookies();
   const token = cookies.get("jwt");
@@ -36,32 +36,31 @@ const Agreement = ({ id }: AgreementProps) => {
       .catch((err) => console.log("error", err));
   }, []);
 
-  const handleSave = () => {
-    // const userId = decoded?.id;
+  const handleSave = async () => {
     if (!id) {
       console.error("User ID not available");
       return;
     }
 
-    const url = `/users/${id}`;
+    if (!agreementFile) {
+      console.error("No file selected");
+      return;
+    }
 
-    Axios.patch(
-      url,
-      {
-        agreement: agreementFile,
-      },
-      {
+    const formData = new FormData();
+    formData.append("file", agreementFile);
+
+    try {
+      const response = await Axios.post(`/users/upload/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
-      }
-    )
-      .then((response) => {
-        toast.success(response?.data?.message);
-      })
-      .catch((error) => {
-        toast.error("Something went wrong!");
       });
+      toast.success(response?.data?.message);
+    } catch (error) {
+      toast.error("Failed to upload the file");
+    }
   };
 
   return (
@@ -71,10 +70,14 @@ const Agreement = ({ id }: AgreementProps) => {
       </CardHeader>
       <CardBody>
         <div className="flex flex-col">
-          <label htmlFor="photo">Upload Photo</label>
-          <ImageUpload
-            value={agreementFile}
-            onChange={(value) => setAgreementFile(value)}
+          <label htmlFor="agreement">Upload Agreement (PDF)</label>
+          <input
+            type="file"
+            accept="application/pdf"
+            className="border p-2 rounded-md"
+            onChange={(e) =>
+              setAgreementFile(e.target.files ? e.target.files[0] : null)
+            }
           />
         </div>
       </CardBody>

@@ -12,9 +12,6 @@ export default async function getPayouts() {
     decoded = jwtDecode(jwt) as DecodedToken;
   }
 
-  // console.log(jwt);
-  // console.log(decoded);
-
   try {
     const res = await Axios.get(`/payout?userid=${decoded?._id}&limit=10`, {
       headers: {

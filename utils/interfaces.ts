@@ -120,3 +120,11 @@ export interface WithdrawData {
   requestDate: String;
   status: String;
 }
+
+export interface settingsData {
+  usd: number;
+  inr: number;
+  btc: number;
+  euro: number;
+  usdt: number;
+}

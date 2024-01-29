@@ -7,6 +7,7 @@ import getRigsUsingCookies from "@/app/actions/getRigsUsingCookies";
 import { getAllWithdrawsById } from "@/app/actions/getAllWithdrawsById";
 import getWithdrawsUsingCookies from "@/app/actions/getWithdrawsUsingCookies";
 import getPayouts from "@/app/actions/getPayouts";
+import getSettings from "@/app/actions/getSettings";
 
 const Page = async () => {
   const nextCookies = cookies();
@@ -27,10 +28,11 @@ const Page = async () => {
   const rigs = await getRigsUsingCookies();
   const withdraws = await getWithdrawsUsingCookies();
   const payouts = await getPayouts();
-  console.log(payouts?.data?.result);
+  const settings = await getSettings();
 
   return (
     <Home
+      settings={settings?.data}
       currentUser={currentUser?.data}
       rigs={rigs?.data?.result}
       withdraws={withdraws?.data?.result}
