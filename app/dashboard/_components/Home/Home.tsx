@@ -3,7 +3,12 @@
 import { UserDashBalance } from "@/components/UserDashBalance";
 import UserRigsTable from "@/components/UserRigsTable";
 import { WelcomeBanner } from "@/components/WelcomeBanner";
-import { RigData, UserData, WithdrawData } from "@/utils/interfaces";
+import {
+  RigData,
+  UserData,
+  WithdrawData,
+  settingsData,
+} from "@/utils/interfaces";
 import React, { useEffect, useState } from "react";
 import {
   Modal,
@@ -34,10 +39,10 @@ interface HomeProps {
   rigs: RigData[];
   withdraws: WithdrawData[];
   payouts: payout[];
+  settings: settingsData[];
 }
 
-const Home = ({ currentUser, rigs, payouts }: HomeProps) => {
-  // console.log("here is payouts", payouts);
+const Home = ({ currentUser, rigs, payouts, settings }: HomeProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
@@ -48,7 +53,7 @@ const Home = ({ currentUser, rigs, payouts }: HomeProps) => {
   return (
     <div>
       <WelcomeBanner currentUser={currentUser} />
-      <UserDashBalance currentUser={currentUser} />
+      <UserDashBalance settings={settings} currentUser={currentUser} />
       <UserRigsTable rigs={rigs} />
 
       <UserPayoutTable payouts={payouts} />

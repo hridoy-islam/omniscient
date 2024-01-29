@@ -1,5 +1,5 @@
 // Utility function to convert any currency to BTC
-export const currencyConvert = async (amount: number, exchangeRate: number) => {
+export const currencyConvert = (amount: number, exchangeRate: number) => {
   try {
     // Perform the conversion
     const btcAmount = amount / exchangeRate;
