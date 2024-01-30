@@ -29,41 +29,21 @@ export const UserDashBalance = ({
 }: UserDashBalanceProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-6">
-      <Card className="p-6">
+      <Card className="p-6 space-y-3">
         <h2>Live Balance</h2>
-        <h2>BTC - {currencyConvert(currentUser?.balance, settings[0]?.btc)}</h2>
-        <h2>
-          USDT - {currencyConvert(currentUser?.balance, settings[0]?.usdt)}
+        <h2 className="text-2xl">
+          BTC - {currencyConvert(currentUser?.balance, settings[0]?.btc)}
         </h2>
-        <h2>User Balance - {currentUser?.balance || 0}</h2>
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart width={230} height={150}>
-            <Pie
-              data={data}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              fill="#8884d8"
-            >
-              {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={colors[index]} />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
+        <h2 className="text-2xl">Balance - ${currentUser?.balance || 0}</h2>
       </Card>
-      <Card className="p-6">
+      <Card className="p-6 space-y-3">
         <h2>Gross Balance</h2>
-        <h2>
+        <h2 className="text-2xl">
           BTC - {currencyConvert(currentUser?.grossBalance, settings[0]?.btc)}
         </h2>
-        <h2>
-          USDT - {currencyConvert(currentUser?.grossBalance, settings[0]?.usdt)}
-        </h2>{" "}
       </Card>
       <Card className="p-6">
-        <h2>Payouts</h2>
+        <h2>Profit</h2>
 
         <h2 className="text-primary font-bold text-center my-3 text-xl">
           Current Actual Profitability

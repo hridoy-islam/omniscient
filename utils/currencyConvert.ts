@@ -2,7 +2,7 @@
 export const currencyConvert = (amount: number, exchangeRate: number) => {
   try {
     // Perform the conversion
-    const btcAmount = amount / exchangeRate;
+    const btcAmount = amount * exchangeRate;
 
     // Round to 8 decimal places
     const roundedBTC = Number(btcAmount.toFixed(8));

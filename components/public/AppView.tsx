@@ -32,7 +32,7 @@ export default function AppView() {
             </li>
             <li>
               <p>
-                The Radeon RX 470 at the heart of the TI-Miner Top GPU delivers
+                The NVIDIA RTX at the heart of the TI-Miner Top GPU delivers
                 exceptional processing power, ensuring efficient and effective
                 mining operations. Its architecture is optimized for the complex
                 calculations involved in cryptocurrency mining, allowing for

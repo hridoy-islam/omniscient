@@ -67,21 +67,27 @@ export default function AdminNavbar({ currentUser }: UserSidebarProps) {
   return (
     <div className="flex w-full bg-white drop-shadow-1">
       <Navbar disableAnimation className="bg-white border border-stroke">
-        <NavbarContent className="lg:hidden " justify="start">
+        <NavbarContent className="lg:hidden">
           <NavbarMenuToggle
             icon={<Icon icon="material-symbols:menu" width={24} />}
           />
         </NavbarContent>
 
-        <NavbarContent className="sm:hidden pr-3" justify="center">
+        <NavbarContent className="sm:hidden pr-3" justify="start">
           <NavbarBrand>
-            <p className="font-bold text-inherit">{currentUser?.email}</p>
+            <p className="font-bold text-inherit">
+              {currentUser?.personal_information?.firstName}{" "}
+              {currentUser?.personal_information?.lastName}
+            </p>
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex gap-4" justify="end">
+        <NavbarContent className="hidden sm:flex" justify="start">
           <NavbarBrand>
-            <p className="font-bold text-inherit">{currentUser?.email}</p>
+            <p className="font-bold text-inherit">
+              {currentUser?.personal_information?.firstName}{" "}
+              {currentUser?.personal_information?.lastName}
+            </p>
           </NavbarBrand>
         </NavbarContent>
 

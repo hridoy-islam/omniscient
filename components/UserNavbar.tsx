@@ -17,8 +17,6 @@ import { usePathname } from "next/navigation";
 import { UserData, settingsData } from "@/utils/interfaces";
 import { currencyConvert } from "@/utils/currencyConvert";
 
-
-
 interface UserSidebarProps {
   currentUser: UserData;
   settings: settingsData[];
@@ -68,7 +66,6 @@ export default function UserNavbar({
   ];
   const pathname = usePathname();
 
-
   return (
     <div>
       <Navbar className="bg-white border border-stroke">
@@ -78,14 +75,16 @@ export default function UserNavbar({
             icon={<Icon icon="material-symbols:menu" width={24} />}
             className="lg:hidden"
           />
+          <NavbarBrand>
+            <p className="font-bold text-inherit">
+              {currentUser?.personal_information?.firstName}{" "}
+              {currentUser?.personal_information?.lastName}
+            </p>
+          </NavbarBrand>
         </NavbarContent>
 
         {/* User info for all screens */}
         <NavbarContent className="sm:flex sm:items-center sm:justify-between">
-          <NavbarBrand>
-            <p className="font-bold text-inherit">{currentUser?.email}</p>
-          </NavbarBrand>
-
           {/* Buttons and Logout for all screens */}
           <NavbarContent className="hidden sm:flex gap-4" justify="end">
             <NavbarItem>

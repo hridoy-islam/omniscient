@@ -66,11 +66,7 @@ export default function Banner() {
         </ul>
       </div>
       <div>
-        <Image
-          className="pt-4 w-full object-center"
-          src={banner}
-          alt="banner"
-        />
+        <Image className="pt-4" src={banner} alt="banner" />
       </div>
     </div>
   );

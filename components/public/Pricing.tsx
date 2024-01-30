@@ -17,7 +17,7 @@ export default function Pricing() {
       <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4">
         <Card className="border border-primary p-6 space-y-4 justify-between">
           <Chip className="bg-primaryLight rounded-md align-center p-4 mb-3 mx-auto">
-            Mining Plan
+            Hash Hero Starter Kit
           </Chip>
           <p>
             Embark on your crypto journey with a plan that turns beginners into
@@ -41,7 +41,7 @@ export default function Pricing() {
           </div>
           <div className="space-y-2">
             <h3 className="font-bold">Graphics Card</h3>
-            <p>NVIDIA GeForce RTX 3060 Ti </p>
+            <p>NVIDIA GeForce RTX 3060 Ti - "Hero Edition" </p>
           </div>
           <Button className="btn-basic rounded-md">Get Started</Button>
         </Card>
@@ -71,7 +71,7 @@ export default function Pricing() {
           </div>
           <div className="space-y-2">
             <h3 className="font-bold">Graphics Card</h3>
-            <p>NVIDIA GeForce RTX 3070 Ti</p>
+            <p>NVIDIA GeForce RTX 3070 Ti - "Prospector's Choice"</p>
           </div>
           <Button className="btn-basic rounded-md">Get Started</Button>
         </Card>
@@ -101,7 +101,7 @@ export default function Pricing() {
           </div>
           <div className="space-y-2">
             <h3 className="font-bold">Graphics Card</h3>
-            <p>NVIDIA GeForce RTX 3080 Ti </p>
+            <p>NVIDIA GeForce RTX 3080 Ti - "Elite Powerhouse"</p>
           </div>
           <Button className="btn-basic rounded-md">Get Started</Button>
         </Card>
@@ -131,7 +131,7 @@ export default function Pricing() {
           </div>
           <div className="space-y-2">
             <h3 className="font-bold">Graphics Card</h3>
-            <p>NVIDIA GeForce RTX 3090 Ti </p>
+            <p>NVIDIA GeForce RTX 3090 Ti - "Baron's Beast" </p>
           </div>
           <Button className="btn-basic rounded-md">Get Started</Button>
         </Card>
