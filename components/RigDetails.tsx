@@ -1,11 +1,8 @@
 "use client";
 import Axios from "@/utils/axios";
-import { DecodedToken, RigData } from "@/utils/interfaces";
 import { Icon } from "@iconify/react";
-import { Button, Card, CardBody, Progress } from "@nextui-org/react";
-import { jwtDecode } from "jwt-decode";
+import { Button, Card, CardBody, Chip, Progress } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
 
@@ -19,6 +16,7 @@ interface rig {
   load: string;
   power: string;
   efficiency: number;
+  proficiency: number;
   status: string;
 }
 
@@ -32,7 +30,7 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
   const cookie = new Cookies();
   const token = cookie.get("jwt");
 
-  const handleStartMining = (rig: RigData) => {
+  const handleStartMining = (rig: rig) => {
     const url = `/history/start/${rig?._id}`;
 
     Axios.post(url, null, {
@@ -49,7 +47,7 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
       });
   };
 
-  const handlePauseMining = (rig: RigData) => {
+  const handlePauseMining = (rig: rig) => {
     const url = `/history/pause/${rig?._id}`;
 
     Axios.post(url, null, {
@@ -68,19 +66,18 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
 
   return rigs?.map((rig, index) => (
     <>
-      <Card className="p-6 space-y-3">
+      <Card className="p-6 space-y-3 mb-5">
         <CardBody>
           <div className="flex justify-between">
             <div>
               <h2>
                 Rig 00001{" "}
-                <span
-                  className={`${
-                    rig?.status === "mining" ? "text-green" : "text-red"
-                  } uppercase`}
+                <Chip
+                  className="text-white uppercase"
+                  color={rig?.status === "mining" ? "success" : "warning"}
                 >
                   {rig?.status === "mining" ? "mining" : "stopped"}
-                </span>
+                </Chip>
               </h2>
               <p>{rig?.rigName}</p>
             </div>
@@ -160,7 +157,7 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
               </div>
               <p className="text-lg">Actual RIG Profeciency</p>
               <h4 className="text-3xl font-semibold">
-                0.00016473 <span className="text-xl">BTC/24h</span>
+                {rig?.proficiency} <span className="text-xl">BTC/24h</span>
               </h4>
             </Card>
             <Card className="p-4 border border-stroke">

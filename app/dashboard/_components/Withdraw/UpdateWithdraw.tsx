@@ -1,5 +1,5 @@
 "use client";
-import { UserData } from "@/utils/interfaces";
+import { UserData, settingsData } from "@/utils/interfaces";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import {
   Button,
@@ -9,7 +9,7 @@ import {
   Select,
   SelectItem,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -22,6 +22,7 @@ import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Cookies from "universal-cookie";
+import { currencyConvert } from "@/utils/currencyConvert";
 
 interface UpdateWithdrawProps {
   withdraw: {
@@ -34,12 +35,14 @@ interface UpdateWithdrawProps {
   };
   admin?: string;
   id: string;
+  settings: settingsData[];
 }
 
 const UpdateWithdraw = ({
   withdraw,
   admin = "false",
   id,
+  settings,
 }: UpdateWithdrawProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -49,6 +52,7 @@ const UpdateWithdraw = ({
   const [updatedAmount, setUpdatedAmount] = useState(withdraw?.amount);
   const router = useRouter();
   const cookies = new Cookies();
+  const [btc, setBtc] = useState(0);
 
   const wallet = currentUser?.wallets?.find(
     (wallet) => wallet?.wallet === currentUser?.primary_account
@@ -107,6 +111,13 @@ const UpdateWithdraw = ({
       });
   };
 
+  useEffect(() => {
+    const calculateBTC = currencyConvert(withdraw?.amount, settings[0]?.btc);
+    setBtc(calculateBTC);
+  }, [withdraw?.amount]);
+
+  // const calculateBTC = currencyConvert(amount, settings[0]?.btc);
+
   return (
     <Card className="grid grid-cols-1 md:grid-cols-2 gap-5 p-6">
       <Card className="bg-stroke">
@@ -127,15 +138,6 @@ const UpdateWithdraw = ({
           </p>
         </CardBody>
       </Card>
-      {/* <Card className="bg-stroke">
-        <CardBody className="space-y-4 p-6">
-          <Icon icon="tdesign:money" width={36} className="text-primary" />
-          <h2 className="text-xl">Credit Bank Details</h2>
-          <p className="text-md">Transaction ID: 65389746598</p>
-          <p className="text-md">Payment Date: April 23, 2024</p>
-          <p className="text-md">Payment Method: Bank</p>
-        </CardBody>
-      </Card> */}
       <Card className="bg-stroke">
         <CardBody className="space-y-4 p-6">
           <Icon icon="ri:bank-fill" width={36} className="text-primary" />
@@ -169,12 +171,9 @@ const UpdateWithdraw = ({
           <div className="flex gap-2">
             {" "}
             <p className="text-md">Bitcoin: </p>
-            <Chip className="rounded-md bg-orange text-white p-3">
-              {withdraw?.btc}
-            </Chip>
+            <Chip className="rounded-md bg-orange text-white p-3">{btc}</Chip>
           </div>
           <div className="flex gap-2">
-            {" "}
             <p className="text-md">Status: </p>
             <Chip
               color={

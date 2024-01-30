@@ -52,7 +52,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ id }) => {
           setUserData(response?.data?.data?.personal_information);
         }
       })
-      .catch((err) => console.log("error", err));
+      .catch((err) => console.log(""));
   }, []);
 
   const handleSave = () => {

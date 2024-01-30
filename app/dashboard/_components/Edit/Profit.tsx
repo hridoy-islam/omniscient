@@ -37,7 +37,7 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
           setProfit(response?.data?.data?.profit);
         }
       })
-      .catch((err) => console.log("error", err));
+      .catch((err) => console.log(""));
   }, []);
 
   const handleSave = () => {
