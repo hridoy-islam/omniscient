@@ -40,7 +40,10 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
         {role === "admin" ? (
           <AdminNavbar currentUser={currentUser?.data} />
         ) : (
-          <UserNavbar settings={settings?.data} currentUser={currentUser?.data} />
+          <UserNavbar
+            settings={settings?.data}
+            currentUser={currentUser?.data}
+          />
         )}
         <main className="p-4 md:p-6">{children}</main>
       </div>

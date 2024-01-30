@@ -67,7 +67,7 @@ export default function AdminNavbar({ currentUser }: UserSidebarProps) {
   return (
     <div className="flex w-full bg-white drop-shadow-1">
       <Navbar disableAnimation className="bg-white border border-stroke">
-        <NavbarContent className="sm:hidden " justify="start">
+        <NavbarContent className="lg:hidden " justify="start">
           <NavbarMenuToggle
             icon={<Icon icon="material-symbols:menu" width={24} />}
           />
