@@ -52,7 +52,7 @@ export default function UserSidebar({ currentUser }: UserSidebarProps) {
     },
   ];
   return (
-    <div className="hidden w-1/5 md:flex flex-col justify-between h-screen bg-white border border-stroke p-4">
+    <div className="hidden w-1/5 lg:flex flex-col justify-between h-screen bg-white border border-stroke p-4">
       <div>
         <Image src={logo} alt="robofx" className="mb-6" />
         <ul>

@@ -76,7 +76,7 @@ export default function UserNavbar({
         <NavbarContent>
           <NavbarMenuToggle
             icon={<Icon icon="material-symbols:menu" width={24} />}
-            className="sm:hidden"
+            className="lg:hidden"
           />
         </NavbarContent>
 

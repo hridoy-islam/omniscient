@@ -9,7 +9,6 @@ interface PageProps {
 }
 
 const page = async ({ params }: PageProps) => {
-  console.log(params);
   const userRigs = await getRigs(params?.id);
   return (
     <div>

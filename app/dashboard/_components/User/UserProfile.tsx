@@ -12,8 +12,6 @@ interface UserProfileProps {
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const agreement = user?.agreement;
 
-  console.log(process.env.API_URL);
-
   const API_URL = "http://217.196.50.52:5000/api";
 
   const downloadLink = `${API_URL + "/" + agreement}`;
