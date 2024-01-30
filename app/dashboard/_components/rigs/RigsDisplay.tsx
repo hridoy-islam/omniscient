@@ -141,7 +141,10 @@ const RigsDisplay = ({ rigs, userid }: RigsDisplayProps) => {
   return (
     <Card className="my-6">
       <CardHeader className="tableHeader">
-        <h2>Assigned Rigs to </h2>
+        <h2>
+          Rigs assinged to {rigs[0]?.userid?.personal_information?.firstName}{" "}
+          {rigs[0]?.userid?.personal_information?.lastName}{" "}
+        </h2>{" "}
         <div className="flex justify-between">
           {showStartAllButton && (
             <Button onClick={handleStartAllRigs} className="bg-primaryLight">

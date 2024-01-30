@@ -51,7 +51,7 @@ const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
           setBillingInfo(response?.data?.data?.billing_information);
         }
       })
-      .catch((err) => console.log("error", err));
+      .catch((err) => console.log(""));
   }, []);
 
   const handleSave = () => {

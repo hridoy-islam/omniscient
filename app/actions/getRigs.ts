@@ -13,6 +13,6 @@ export default async function getRigs(id: string) {
     });
     return res.data;
   } catch (error) {
-    console.log("errors", error);
+    console.log("");
   }
 }

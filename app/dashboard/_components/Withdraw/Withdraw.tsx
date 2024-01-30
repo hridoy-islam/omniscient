@@ -35,14 +35,18 @@ interface WithdrawProps {
 
 const Withdraw = ({ allWithdraws }: WithdrawProps) => {
   const withdraws = allWithdraws?.data?.result;
-  let pendingRequestLength = 0;
-  let approvedRequestLength = 0;
-  const pendingRequests = withdraws?.map(
-    (withdraw) => withdraw?.status === "pending" && (pendingRequestLength += 1)
+  // Filter withdraws based on status
+  const pendingRequests = withdraws?.filter(
+    (withdraw) => withdraw?.status === "pending"
   );
-  const approvedRequests = withdraws?.map(
-    (withdraw) => withdraw?.status === "approve" && (approvedRequestLength += 1)
+  const approvedRequests = withdraws?.filter(
+    (withdraw) => withdraw?.status === "approved"
   );
+
+  // Get the lengths of filtered arrays
+  const pendingRequestLength = pendingRequests?.length || 0;
+  const approvedRequestLength = approvedRequests?.length || 0;
+
   return (
     <div>
       <div className="grid grid-cols-2 gap-4 mb-6">

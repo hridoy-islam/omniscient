@@ -2,7 +2,8 @@
 import Pagination from "@/components/Pagination";
 import ViewButton from "@/components/ViewButton";
 import Axios from "@/utils/axios";
-import { DecodedToken, UserData } from "@/utils/interfaces";
+import { currencyConvert } from "@/utils/currencyConvert";
+import { DecodedToken, UserData, settingsData } from "@/utils/interfaces";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import {
   Button,
@@ -20,7 +21,8 @@ import {
 import { jwtDecode } from "jwt-decode";
 import moment from "moment";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
 
@@ -51,13 +53,15 @@ interface WithdrawDataDetails {
 
 interface WithdrawProps {
   withdrawsData: WithdrawData;
+  currentUser: UserData;
+  settings: settingsData[];
 }
 
-const Withdraw = ({ withdrawsData }: WithdrawProps) => {
+const Withdraw = ({ withdrawsData, currentUser, settings }: WithdrawProps) => {
   const withdrawData = withdrawsData?.data?.result;
-
+  const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [btc, setBtc] = useState("");
+  const [btc, setBtc] = useState(0);
   const [amount, setAmount] = useState(0);
   const cookie = new Cookies();
   const token = cookie.get("jwt");
@@ -69,6 +73,10 @@ const Withdraw = ({ withdrawsData }: WithdrawProps) => {
       return toast.error("Please fill all the fields!");
     }
 
+    if (btc > currentUser?.balance) {
+      return toast.error("Insufficient balance!");
+    }
+
     if (token) {
       decoded = jwtDecode(token) as DecodedToken;
     }
@@ -78,7 +86,7 @@ const Withdraw = ({ withdrawsData }: WithdrawProps) => {
         "/withdraws",
         {
           userid: decoded?._id,
-          btc,
+          btc: String(btc),
           amount,
           requestDate: moment().format("LL"),
         },
@@ -89,10 +97,16 @@ const Withdraw = ({ withdrawsData }: WithdrawProps) => {
         }
       );
       toast.success(response?.data?.message);
+      router.refresh();
     } catch (error) {
       toast.error("Something went wrong!");
     }
   };
+
+  useEffect(() => {
+    const calculateBTC = currencyConvert(amount, settings[0]?.btc);
+    setBtc(calculateBTC);
+  }, [amount]);
 
   return (
     <>
@@ -173,14 +187,15 @@ const Withdraw = ({ withdrawsData }: WithdrawProps) => {
                     BTC*
                   </label>
                   <input
-                    required
-                    type="text"
+                    readOnly
+                    type="number"
                     name="btc"
                     className="roboinput"
                     id="btc"
-                    onChange={(e) => {
-                      setBtc(e.target.value);
-                    }}
+                    value={btc}
+                    // onChange={(e) => {
+                    //   setBtc(e.target.value);
+                    // }}
                   />
                 </div>
                 <div className="flex flex-col">

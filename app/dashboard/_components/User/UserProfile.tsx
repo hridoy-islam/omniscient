@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, Button, Card } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
@@ -11,6 +11,13 @@ interface UserProfileProps {
 
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const agreement = user?.agreement;
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
+    if (user?.agreement) {
+      setIsDisabled(false);
+    }
+  }, []);
 
   const API_URL = "http://217.196.50.52:5000/api";
 
@@ -65,8 +72,11 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
             </p>
           </div>
           <Button
+            disabled={isDisabled}
             onClick={downloadAgreement}
-            className="border border-primary bg-transparent text-primary w-64 flex items-center mt-3"
+            className={`border border-primary bg-transparent text-primary w-64 flex items-center mt-3 ${
+              !user?.agreement ? "cursor-not-allowed opacity-80" : ""
+            }`}
           >
             <Icon icon="material-symbols-light:download" width={26} />
             Download Agreenment

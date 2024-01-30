@@ -6,6 +6,7 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Chip,
 } from "@nextui-org/react";
 import ImageUpload from "@/components/ImageUpload";
 import Axios from "@/utils/axios";
@@ -33,7 +34,7 @@ const Agreement = ({ id }: AgreementProps) => {
           setAgreementFile(response?.data?.data?.agreement);
         }
       })
-      .catch((err) => console.log("error", err));
+      .catch((err) => console.log(""));
   }, []);
 
   const handleSave = async () => {
@@ -70,24 +71,35 @@ const Agreement = ({ id }: AgreementProps) => {
       </CardHeader>
       <CardBody>
         <div className="flex flex-col">
-          <label htmlFor="agreement">Upload Agreement (PDF)</label>
-          <input
-            type="file"
-            accept="application/pdf"
-            className="border p-2 rounded-md"
-            onChange={(e) =>
-              setAgreementFile(e.target.files ? e.target.files[0] : null)
-            }
-          />
+          {agreementFile ? (
+            <Chip className="text-white" color="success">Agreement Uploaded</Chip>
+          ) : (
+            <>
+              <label htmlFor="agreement">Upload Agreement (PDF)</label>
+
+              <input
+                type="file"
+                accept="application/pdf"
+                className="border p-2 rounded-md"
+                onChange={(e) =>
+                  setAgreementFile(e.target.files ? e.target.files[0] : null)
+                }
+              />
+            </>
+          )}
         </div>
       </CardBody>
       <CardFooter className="w-full flex flex-row-reverse gap-3">
-        <Button onClick={handleSave} className="btn-basic rounded-md">
-          Save
-        </Button>
-        <Button className="bg-white border border-stroke rounded-md shadow-sm">
-          Clear
-        </Button>
+        {!agreementFile && (
+          <>
+            <Button onClick={handleSave} className="btn-basic rounded-md">
+              Save
+            </Button>
+            <Button className="bg-white border border-stroke rounded-md shadow-sm">
+              Clear
+            </Button>
+          </>
+        )}
       </CardFooter>
     </Card>
   );

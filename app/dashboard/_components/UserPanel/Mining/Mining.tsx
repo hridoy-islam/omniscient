@@ -17,10 +17,16 @@ import {
 import RigHashChart from "@/components/RigHashChart";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
-import { DecodedToken, RigData } from "@/utils/interfaces";
+import {
+  DecodedToken,
+  RigData,
+  UserData,
+  settingsData,
+} from "@/utils/interfaces";
 import Cookies from "universal-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
+import { currencyConvert } from "@/utils/currencyConvert";
 
 const chartData = [
   {
@@ -67,7 +73,13 @@ const chartData = [
   },
 ];
 
-export default function Mining() {
+interface MiningProps {
+  settings: settingsData[];
+  currentUser: UserData;
+  rigs: RigData[];
+}
+
+export default function Mining({ settings, currentUser, rigs }: MiningProps) {
   const cookie = new Cookies();
   const token = cookie.get("jwt");
   const decode = jwtDecode(token) as DecodedToken;
@@ -102,6 +114,7 @@ export default function Mining() {
           localStorage.setItem("showStartAllButton", "false");
           localStorage.setItem("showPauseAllButton", "true");
           toast.success(response?.data?.message);
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -125,6 +138,7 @@ export default function Mining() {
           localStorage.setItem("showStartAllButton", "true");
           localStorage.setItem("showPauseAllButton", "false");
           toast.success(response?.data?.message);
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -139,7 +153,7 @@ export default function Mining() {
         <Card className="p-6 space-y-3">
           <h2>Active</h2>
           <p className="text-3xl font-bold">
-            13 <span className="font-normal text-md">Rigs</span>
+            {rigs?.length} <span className="font-normal text-md">Rigs</span>
           </p>
           <div className="flex justify-between my-1">
             <div className="flex items-center justify-start">
@@ -148,7 +162,7 @@ export default function Mining() {
                 color="#2385BA"
                 className="text-xl"
               />
-              <span>Active 13</span>
+              <span>Active {rigs?.length}</span>
             </div>
             <div className="flex items-center">
               <Icon
@@ -156,7 +170,7 @@ export default function Mining() {
                 color="#B8DEE9"
                 className="text-xl"
               />
-              <span> Inactive 0</span>
+              <span>Inactive 0</span>
             </div>
           </div>
           <Progress
@@ -174,7 +188,9 @@ export default function Mining() {
         </Card>
         <Card className="p-6 space-y-3">
           <h2>Current Mining Balance</h2>
-          <h3 className="text-4xl font-bold">0.000434 BTC</h3>
+          <h3 className="text-4xl font-bold">
+            {currencyConvert(currentUser?.balance, settings[0]?.btc)} BTC
+          </h3>
           <div className="flex gap-2 justify-between">
             {showStartAllButton && (
               <Button onClick={handleStartAllRigs} className="bg-primaryLight">

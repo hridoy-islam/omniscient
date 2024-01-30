@@ -101,7 +101,7 @@ export interface Wallet {
 
 export interface RigData {
   _id: string;
-  userid: string;
+  userid: UserData;
   rigName: string;
   gpu: string;
   temp: string;
@@ -110,6 +110,7 @@ export interface RigData {
   power: string;
   efficiency: number;
   status: string;
+  proficiency: number;
 }
 
 export interface WithdrawData {

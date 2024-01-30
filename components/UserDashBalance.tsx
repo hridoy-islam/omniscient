@@ -34,7 +34,7 @@ export const UserDashBalance = ({
         <h2 className="text-2xl">
           BTC - {currencyConvert(currentUser?.balance, settings[0]?.btc)}
         </h2>
-        <h2 className="text-2xl">Balance - ${currentUser?.balance || 0}</h2>
+        <h2 className="text-2xl">USD - ${currentUser?.balance || 0}</h2>
       </Card>
       <Card className="p-6 space-y-3">
         <h2>Gross Balance</h2>
