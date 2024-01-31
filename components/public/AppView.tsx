@@ -90,7 +90,7 @@ export default function AppView() {
           </ul>
         </div>
         <div className="flex justify-end">
-          <Image src={group34} alt="hardware" />
+          <Image src={group3} alt="hardware" />
         </div>
       </div>
 
@@ -190,7 +190,7 @@ export default function AppView() {
           </p>
         </div>
         <div>
-          <Image src={group3} alt="hardware" />
+          <Image src={group34} alt="hardware" />
         </div>
       </div>
     </div>

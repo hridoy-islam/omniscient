@@ -13,7 +13,7 @@ export default function WhyChooseUs() {
         <h3 className="text-primary text-4xl font-semibold">
           Elevate Your Earnings: The Mining Farm Advantage!
         </h3>
-        <p className="px-20">
+        <p className="md:px-20">
           Dive into a realm where every choice propels you towards maximum
           profits and efficiency. Why settle for less? Choose excellence with
           Mining Farm and let your investments thrive! 💎🚀
