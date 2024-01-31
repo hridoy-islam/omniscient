@@ -4,6 +4,7 @@ import Axios from "@/utils/axios";
 import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Cookies from "universal-cookie";
 
 type Inputs = {
   email: string;
@@ -12,9 +13,14 @@ type Inputs = {
 
 export default function Page() {
   const { register, handleSubmit, reset } = useForm<Inputs>();
-
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
   const onSubmit = async (data: Inputs) => {
-    const response = await Axios.post("/auth/create-user", data)
+    const response = await Axios.post("/auth/create-user", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => {
         toast.success(res?.data?.message);
         reset();
