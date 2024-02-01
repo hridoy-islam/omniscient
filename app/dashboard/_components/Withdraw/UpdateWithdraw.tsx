@@ -142,7 +142,7 @@ const UpdateWithdraw = ({
         <CardBody className="space-y-4 p-6">
           <Icon icon="ri:bank-fill" width={36} className="text-primary" />
           <h2 className="text-xl">Receiving Wallet Details</h2>
-          <p className="text-md">Payment Method: {wallet?.wallet}</p>
+          <p className="text-md">Payment Method: Bank</p>
           <p className="text-md">
             Wallet: {currentUser?.currency.toUpperCase()}
           </p>
@@ -160,13 +160,17 @@ const UpdateWithdraw = ({
             <Chip className="rounded-md bg-primary text-white p-5">
               ${withdraw?.amount}
             </Chip>
-            <Button
-              size="md"
-              onPress={onOpen}
-              className="rounded-md bg-primary text-white p-3 cursor-pointer"
-            >
-              Update
-            </Button>
+            {withdraw?.status === "approved" ? (
+              ""
+            ) : (
+              <Button
+                size="md"
+                onPress={onOpen}
+                className="rounded-md bg-primary text-white p-3 cursor-pointer"
+              >
+                Update
+              </Button>
+            )}
           </div>
           <div className="flex gap-2">
             {" "}
