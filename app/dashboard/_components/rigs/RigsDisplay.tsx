@@ -185,7 +185,9 @@ const RigsDisplay = ({ rigs, userid }: RigsDisplayProps) => {
               <th>Power</th>
               <td>Fan</td>
               <th>Temp</th>
+              <th>fan</th>
               <th>Load</th>
+              <th>Power</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -197,10 +199,10 @@ const RigsDisplay = ({ rigs, userid }: RigsDisplayProps) => {
                 <td>{rig?.gpu}</td>
                 <td>{rig?.efficiency}</td>
                 <td>{rig?.proficiency}</td>
-                <td>{rig?.power}</td>
-                <td>{rig?.fan}</td>
                 <td>{rig?.temp}</td>
+                <td>{rig?.fan}</td>
                 <td>{rig?.load}</td>
+                <td>{rig?.power}</td>
                 <td>
                   <Chip
                     className="text-white uppercase"

@@ -6,11 +6,14 @@ export default async function getRigs(id: string) {
   const tokenObject = nextCookie.get("jwt");
   const token = tokenObject?.value;
   try {
-    const res = await Axios.get(`/rigs?userid=${id}&isDeleted=${false}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await Axios.get(
+      `/rigs?userid=${id}&isDeleted=${false}&limit=50`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return res.data;
   } catch (error) {
     console.log("");
