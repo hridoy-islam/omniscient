@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import {
   Button,
@@ -55,6 +57,7 @@ const Rigs = ({ id, rigs }: RigsProps) => {
         efficiency: Number(rigData?.efficiency),
         proficiency: Number(rigData?.proficiency),
       };
+
       // Make a POST request to the API
       const response = await Axios.post(apiUrl, formattedData, {
         headers: {
@@ -167,7 +170,16 @@ const Rigs = ({ id, rigs }: RigsProps) => {
   const handleOpen = (rig: RigData) => {
     onOpen();
     setSelectedRig(rig);
-    setModalFormData(rig); // Populate modal form data with selected rig data
+    setModalFormData({
+      rigName: rig?.rigName,
+      efficiency: rig?.efficiency,
+      gpu: rig?.gpu,
+      power: rig?.power,
+      temp: rig?.temp,
+      load: rig?.load,
+      fan: rig?.fan,
+      proficiency: rig?.proficiency,
+    });
   };
 
   const handleChangeModal = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -179,15 +191,23 @@ const Rigs = ({ id, rigs }: RigsProps) => {
   };
 
   const handleUpdate = async () => {
+    const modalFormattedData = {
+      ...modalFormData,
+      efficiency: Number(modalFormData?.efficiency),
+      proficiency: Number(modalFormData?.proficiency),
+    };
+
     try {
       const apiUrl = `/rigs/${selectedRig?._id}`; // Adjust the API endpoint accordingly
       // Make a PUT request to update the rig data
-      const response = await Axios.patch(apiUrl, modalFormData, {
+      const response = await Axios.patch(apiUrl, modalFormattedData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       toast.success(response?.data?.message);
+      router.refresh();
+
       onOpenChange();
     } catch (error) {
       toast.error("Something went wrong!");
@@ -349,7 +369,12 @@ const Rigs = ({ id, rigs }: RigsProps) => {
                     <td>{rig?.power}</td>
                     <td>{rig?.load}</td>
                     <td>
-                      <Chip color="warning">{rig?.status}</Chip>
+                      <Chip
+                        className="text-white uppercase"
+                        color={rig?.status === "mining" ? "success" : "warning"}
+                      >
+                        {rig?.status === "mining" ? "mining" : "stopped"}
+                      </Chip>{" "}
                     </td>
                     <td>
                       <Button
@@ -372,7 +397,7 @@ const Rigs = ({ id, rigs }: RigsProps) => {
               {(onClose) => (
                 <>
                   <ModalHeader className="flex flex-col gap-1">
-                    Modal Title
+                    Update Rig
                   </ModalHeader>
                   <ModalBody>
                     <Card>
@@ -450,6 +475,16 @@ const Rigs = ({ id, rigs }: RigsProps) => {
                               name="load"
                               className="roboinput"
                               value={modalFormData?.load}
+                              onChange={handleChangeModal}
+                            />
+                          </div>
+                          <div className="flex flex-col">
+                            <label htmlFor="proficiency">Proficiency</label>
+                            <input
+                              type="number"
+                              name="proficiency"
+                              className="roboinput"
+                              value={modalFormData.proficiency}
                               onChange={handleChangeModal}
                             />
                           </div>

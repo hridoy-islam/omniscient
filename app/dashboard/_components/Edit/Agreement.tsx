@@ -12,6 +12,8 @@ import ImageUpload from "@/components/ImageUpload";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
+import Link from "next/link";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 interface AgreementProps {
   id: string;
@@ -64,6 +66,10 @@ const Agreement = ({ id }: AgreementProps) => {
     }
   };
 
+  const API_URL = "https://api.robofxtrader.com";
+
+  const downloadLink = `${API_URL + "/" + agreementFile}`;
+
   return (
     <Card>
       <CardHeader>
@@ -71,35 +77,40 @@ const Agreement = ({ id }: AgreementProps) => {
       </CardHeader>
       <CardBody>
         <div className="flex flex-col">
-          {agreementFile ? (
-            <Chip className="text-white" color="success">Agreement Uploaded</Chip>
-          ) : (
-            <>
-              <label htmlFor="agreement">Upload Agreement (PDF)</label>
+          <label htmlFor="agreement">Upload Agreement (PDF)</label>
+          <input
+            type="file"
+            accept="application/pdf"
+            className="border p-2 rounded-md"
+            onChange={(e) =>
+              setAgreementFile(e.target.files ? e.target.files[0] : null)
+            }
+          />
 
-              <input
-                type="file"
-                accept="application/pdf"
-                className="border p-2 rounded-md"
-                onChange={(e) =>
-                  setAgreementFile(e.target.files ? e.target.files[0] : null)
-                }
-              />
-            </>
+          {agreementFile ? (
+            <Button
+              as={Link}
+              href={downloadLink}
+              target="_blank"
+              className={`border border-primary bg-transparent text-primary w-64 flex items-center mt-3 `}
+            >
+              <Icon icon="material-symbols-light:download" width={26} />
+              Download Agreenment
+            </Button>
+          ) : (
+            ""
           )}
         </div>
       </CardBody>
       <CardFooter className="w-full flex flex-row-reverse gap-3">
-        {!agreementFile && (
-          <>
-            <Button onClick={handleSave} className="btn-basic rounded-md">
-              Save
-            </Button>
-            <Button className="bg-white border border-stroke rounded-md shadow-sm">
-              Clear
-            </Button>
-          </>
-        )}
+        <>
+          <Button onClick={handleSave} className="btn-basic rounded-md">
+            Save
+          </Button>
+          <Button className="bg-white border border-stroke rounded-md shadow-sm">
+            Clear
+          </Button>
+        </>
       </CardFooter>
     </Card>
   );

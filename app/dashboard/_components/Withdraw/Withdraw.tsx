@@ -89,7 +89,7 @@ const Withdraw = ({ allWithdraws }: WithdrawProps) => {
                   <td>
                     <Chip
                       color={
-                        withdraw?.status === "approve"
+                        withdraw?.status === "approved"
                           ? "success"
                           : withdraw?.status === "pending"
                           ? "warning"

@@ -134,7 +134,14 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
   }, [discountType, discountAmount, informations]);
 
   const handleCreate = async () => {
-    if (!invoiceType || !selectedUser || !informations)
+
+    if (
+      invoiceType === "" ||
+      invoiceType === "Select Invoice Type" ||
+      selectedUser === "" ||
+      selectedUser === "Select User" ||
+      !informations
+    )
       return toast.error("Provide all the informations!");
 
     const formattedData = {
@@ -150,9 +157,7 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
         },
       });
       toast.success(response?.data?.message);
-      setTimeout(() => {
-        window.location.reload();
-      }, 100);
+      router.push("/dashboard/admin/invoice");
     } catch (error) {
       toast.error("Something went wrong!");
     }
@@ -169,6 +174,7 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
           <div className="flex flex-col">
             <label htmlFor="">User Name</label>
             <select
+              required={true}
               onChange={(e) => setSelectedUser(e.target.value)}
               name=""
               className="roboinput"
@@ -187,6 +193,7 @@ const InvoiceCrationFrom = ({ allUsers }: InvoiceCrationFromProps) => {
           <div className="flex flex-col">
             <label htmlFor="">Invoice Type</label>
             <select
+              required={true}
               onChange={(e) => setInvoiceType(e.target.value)}
               name=""
               className="roboinput"

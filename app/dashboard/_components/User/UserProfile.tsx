@@ -19,24 +19,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
     }
   }, []);
 
-  const API_URL = "http://217.196.50.52:5000/api";
+  const API_URL = "https://api.robofxtrader.com";
 
   const downloadLink = `${API_URL + "/" + agreement}`;
-
-  const downloadAgreement = () => {
-    fetch(downloadLink)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = window.URL.createObjectURL(new Blob([blob]));
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "agreement.pdf"; // Change the filename as per your requirement
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      })
-      .catch((error) => console.error("Error downloading agreement:", error));
-  };
 
   return (
     <div>
@@ -71,16 +56,19 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
               {user?.contact_information?.country}
             </p>
           </div>
-          <Button
-            disabled={isDisabled}
-            onClick={downloadAgreement}
-            className={`border border-primary bg-transparent text-primary w-64 flex items-center mt-3 ${
-              !user?.agreement ? "cursor-not-allowed opacity-80" : ""
-            }`}
-          >
-            <Icon icon="material-symbols-light:download" width={26} />
-            Download Agreenment
-          </Button>
+          {user?.agreement ? (
+            <Button
+              as={Link}
+              href={downloadLink}
+              target="_blank"
+              className={`border border-primary bg-transparent text-primary w-64 flex items-center mt-3 `}
+            >
+              <Icon icon="material-symbols-light:download" width={26} />
+              Download Agreenment
+            </Button>
+          ) : (
+            ""
+          )}
         </div>
       </Card>
       <Card className="p-6 my-6">
@@ -102,9 +90,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
               {user?.personal_information?.lastName}
             </p>
           </div>
-          <div className="flex flex-row justify-between items-center my-2">
-            <h2 className="text-primary">Profession</h2> <p></p>
-          </div>
+
           <div className="flex flex-row justify-between items-center my-2">
             <h2 className="text-primary">Location</h2>{" "}
             <p>{user?.contact_information?.address}</p>

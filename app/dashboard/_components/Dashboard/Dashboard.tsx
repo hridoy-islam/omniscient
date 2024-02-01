@@ -11,7 +11,7 @@ import {
 import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { OrderInterface, UserData } from "@/utils/interfaces";
+import { OrderInterface, RigData, UserData } from "@/utils/interfaces";
 import moment from "moment";
 import Link from "next/link";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -27,9 +27,10 @@ import {
 interface DashboardProps {
   allUsers: UserData[];
   allOrders: OrderInterface[];
+  allRigs: RigData[];
 }
 
-const Dashboard = ({ allUsers, allOrders }: DashboardProps) => {
+const Dashboard = ({ allUsers, allOrders, allRigs }: DashboardProps) => {
   const router = useRouter();
   const data = [
     {
@@ -202,7 +203,7 @@ const Dashboard = ({ allUsers, allOrders }: DashboardProps) => {
             <div className="">
               <div>
                 <p className="text-textLight">Total Rigs</p>
-                <h2 className="text-4xl">38</h2>
+                <h2 className="text-4xl">{allRigs?.length}</h2>
               </div>
               <ResponsiveContainer width={350} height={100}>
                 <AreaChart

@@ -19,7 +19,10 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 export default function Header() {
   const menuItems = ["About", "Support", "Faq", "Contact"];
   return (
-    <Navbar>
+    <Navbar
+      className="py-2 container mx-auto static bg-transparent"
+      maxWidth="full"
+    >
       <NavbarContent>
         <NavbarMenuToggle
           icon={<Icon icon="material-symbols:menu" width={24} />}

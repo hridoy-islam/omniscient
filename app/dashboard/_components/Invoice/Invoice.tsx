@@ -176,7 +176,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                           <Icon icon="solar:eye-linear" className="text-lg" />
                           <span>View</span>
                         </Button>{" "}
-                        <Button
+                        {/* <Button
                           onPress={() => openModal(invoice)}
                           className="flex items-center text-purple border border-purple bg-transparent text-lg"
                         >
@@ -185,7 +185,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                             width={27}
                           />{" "}
                           Download
-                        </Button>{" "}
+                        </Button>{" "} */}
                       </td>
                     </tr>
                   ))}
@@ -248,7 +248,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                           <Icon icon="solar:eye-linear" className="text-lg" />
                           <span>View</span>
                         </Button>{" "}
-                        <Button
+                        {/* <Button
                           onPress={() => openModal(invoice)}
                           className="flex items-center text-purple border border-purple bg-transparent text-lg"
                         >
@@ -257,7 +257,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                             width={27}
                           />{" "}
                           Download
-                        </Button>{" "}
+                        </Button>{" "} */}
                       </td>
                     </tr>
                   ))}
@@ -320,7 +320,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                           <Icon icon="solar:eye-linear" className="text-lg" />
                           <span>View</span>
                         </Button>{" "}
-                        <Button
+                        {/* <Button
                           onPress={() => openModal(invoice)}
                           className="flex items-center text-purple border border-purple bg-transparent text-lg"
                         >
@@ -329,7 +329,7 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                             width={27}
                           />{" "}
                           Download
-                        </Button>{" "}
+                        </Button>{" "} */}
                       </td>
                     </tr>
                   ))}
@@ -358,12 +358,10 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 items-center">
                     <div>
-                      <Image
-                        src={Logo}
+                      <img
+                        src="/logo.png"
                         alt="company-logo"
                         className="h-auto w-40 object-cover"
-                        width={100}
-                        height={100}
                       />
                     </div>
 
@@ -385,11 +383,10 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                   {/* <!-- Client info --> */}
                   <div className="grid grid-cols-1 md:grid-cols-2 items-center mt-8">
                     <div>
-                      <p className="font-bold text-gray-800">Street Name</p>
                       <p className="text-gray-500">
-                        Laravel LLC.
+                        Robofx Trader
                         <br />
-                        102, San-Fransico, CA, USA
+                        13thStreet, 47 W 13th St, New York, NY 10011, USA
                       </p>
                     </div>
 
@@ -596,17 +593,25 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
                   <div className="border-t pt-4 flex justify-between items-center mt-16">
                     <div>
                       {" "}
-                      <Image
+                      <img
+                        src="/logo.png"
+                        alt="company-logo"
+                        className="h-auto w-20 object-cover"
+                      />
+                      {/* <Image
                         src={Logo}
                         alt="company-logo"
                         className="h-auto w-24 object-cover"
                         width={100}
                         height={100}
-                      />
+                      /> */}
                     </div>
                     <div className="flex flex-col md:flex-row gap-4">
-                      <div className="md:border-r md:pr-4">mail@robofx.com</div>
-                      <div>+1 000 0000000000</div>
+                      <div className="md:border-r md:pr-4">
+                        {" "}
+                        mining@robofxtrader.com
+                      </div>
+                      <div>+19292301920</div>
                     </div>
                   </div>
                 </div>

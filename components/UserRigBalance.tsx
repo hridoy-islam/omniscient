@@ -16,7 +16,6 @@ export const UserRigBalance = ({
   currentUser,
   settings,
 }: UserRigBalanceProps) => {
-  console.log(currentUser);
   const miningRigs = rigs?.filter((rig) => rig?.status === "mining");
 
   return (

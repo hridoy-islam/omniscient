@@ -6,6 +6,8 @@ import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import InputField from "@/app/dashboard/_components/Product/InputField";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
+import Cookies from "universal-cookie";
+import ImageUpload from "@/components/ImageUpload";
 
 // Define an interface for your product data
 interface Product {
@@ -21,6 +23,9 @@ interface Product {
 }
 
 export default function Page() {
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
+
   // Use the Product interface for the state
   const [product, setProduct] = useState<Product>({
     title: "",
@@ -47,7 +52,7 @@ export default function Page() {
       smps: "",
       graphicscard: "",
     });
-    setPhotoFile("");
+    setPhoto("");
   };
 
   // Handle input changes for all fields
@@ -58,32 +63,33 @@ export default function Page() {
     setProduct({ ...product, [field]: e.target.value });
   };
 
-  const [photoFile, setPhotoFile] = useState<string>("");
-
-  // Handle file input change for photo
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.value?.[0];
-    setPhotoFile(file);
-  };
+  const [photo, setPhoto] = useState("");
 
   // Handle form submission
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Ensure that the price is a number
-    const numericPrice = parseFloat(product.price as any);
-
+    // const numericPrice = parseFloat(product.price as any);
 
     // Update the product state with the numeric price and photo
     setProduct({
       ...product,
-      price: numericPrice,
-      photo: photoFile || "",
     });
+
+    const formattedData = {
+      ...product,
+      price: Number(product.price),
+      photo,
+    };
 
 
     // Perform submission logic here using the product state
-    Axios.post("/products", product)
+    Axios.post("/products", formattedData, {
+      headers: {
+        Authorization: `Bearrer ${token}`,
+      },
+    })
       .then((res) => {
         toast.success(res?.data?.message);
         resetForm();
@@ -127,12 +133,19 @@ export default function Page() {
               value={product.price.toString()} // Convert number to string for input value
               onChange={(e) => handleInputChange(e, "price")}
             />
-            <InputField
+            {/* <InputField
               label="Upload Powerd By Image"
               id="photo"
               type="file"
               onChange={handleImageChange}
-            />
+            /> */}
+            <div className="flex flex-col">
+              <label htmlFor="photo">Upload Photo</label>
+              <ImageUpload
+                value={photo}
+                onChange={(value) => setPhoto(value)}
+              />
+            </div>
             <h2 className="text-xl font-semibold my-2">Configurations</h2>
             <div className="grid grid-cols-2 gap-3">
               <InputField
