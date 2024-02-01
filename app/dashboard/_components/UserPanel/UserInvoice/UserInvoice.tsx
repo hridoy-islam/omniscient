@@ -93,23 +93,6 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
     onOpen();
   };
 
-  // const downloadPDF = () => {
-  //   // Render DummyInvoice to string
-  //   const invoiceString = ReactDOMServer.renderToString(<DummyInvoice />);
-
-  //   // Convert string to Blob
-  //   const blob = new Blob([invoiceString], { type: "application/pdf" });
-
-  //   // Create URL and trigger download
-  //   const url = URL.createObjectURL(blob);
-  //   const a = document.createElement("a");
-  //   a.href = url;
-  //   a.download = "invoice.pdf"; // Set the filename for download
-  //   document.body.appendChild(a);
-  //   a.click();
-  //   document.body.removeChild(a);
-  // };
-
   const generatePDF = () => {
     const element = document.getElementById("invoice");
 
@@ -124,23 +107,8 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
     html2pdf(element, options);
   };
 
-  // const generatePDF = () => {
-  //   const element = document.getElementById("invoice");
-
-  //   // Specify the filename option
-  //   const options = {
-  //     filename: "invoice.pdf",
-  //   };
-  //   html2pdf(element, options);
-  // };
-
   return (
     <div>
-      {/* <PDFViewer width="100%" height="600px">
-        <DummyInvoice />
-      </PDFViewer>
-
-      <button onClick={downloadPDF}>Download PDF</button> */}
       <div className="flex w-full flex-col">
         <Tabs
           aria-label="Options"
@@ -150,7 +118,6 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
             tabList: "bg-white p-0 rounded-0 text-white",
             cursor: "w-full bg-primary",
             tab: "max-w-fit px-8 h-10",
-            // tabContent: "group-data-[selected=true]:text-[#06b6d4]"
           }}
         >
           <Tab key="bill" title="Bill Invoices">
@@ -380,12 +347,10 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 items-center">
                       <div>
-                        <Image
-                          src={Logo}
+                        <img
+                          src="/logo.png"
                           alt="company-logo"
                           className="h-auto w-40 object-cover"
-                          width={100}
-                          height={100}
                         />
                       </div>
 
@@ -407,11 +372,10 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                     {/* <!-- Client info --> */}
                     <div className="grid grid-cols-1 md:grid-cols-2 items-center mt-8">
                       <div>
-                        <p className="font-bold text-gray-800">Street Name</p>
                         <p className="text-gray-500">
-                          Laravel LLC.
+                          Robofx Trader
                           <br />
-                          102, San-Fransico, CA, USA
+                          13thStreet, 47 W 13th St, New York, NY 10011, USA
                         </p>
                       </div>
 
@@ -588,19 +552,18 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                     <div className="border-t pt-4 flex justify-between items-center mt-16">
                       <div>
                         {" "}
-                        <Image
-                          src={Logo}
+                        <img
+                          src="/logo.png"
                           alt="company-logo"
-                          className="h-auto w-full object-cover"
-                          width={100}
-                          height={100}
+                          className="h-auto w-20 object-cover"
                         />
                       </div>
                       <div className="flex flex-col md:flex-row gap-4">
                         <div className="md:border-r md:pr-4">
-                          mail@robofx.com
+                          {" "}
+                          mining@robofxtrader.com
                         </div>
-                        <div>+1 000 0000000000</div>
+                        <div>+19292301920</div>
                       </div>
                     </div>
                   </div>

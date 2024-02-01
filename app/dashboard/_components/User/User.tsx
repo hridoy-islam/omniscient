@@ -12,6 +12,7 @@ import EditButton from "@/components/EditButton";
 import DeleteButton from "@/components/DeleteButton";
 import ViewButton from "@/components/ViewButton";
 import { UserData } from "@/utils/interfaces";
+import robofxicon from "../../../../public/robofxicon.png";
 import {
   Modal,
   ModalContent,
@@ -27,6 +28,7 @@ import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
+import Image from "next/image";
 interface ApiResponse {
   meta: {
     page: number;
@@ -144,10 +146,14 @@ export default function User({ allUsers }: UserProps) {
                 <tr>
                   <td>
                     <div className="flex items-center gap-2">
-                      <Avatar
-                        className="w-6 h-6"
-                        src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                      />
+                      {user?.personal_information?.photo ? (
+                        <Avatar
+                          className="w-6 h-6"
+                          src={user?.personal_information?.photo}
+                        />
+                      ) : (
+                        <Image alt="" className="w-6 h-6" src={robofxicon} />
+                      )}
                       <span>
                         {user?.personal_information?.firstName}{" "}
                         {user?.personal_information?.lastName}

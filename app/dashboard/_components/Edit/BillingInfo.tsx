@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import {
+  Autocomplete,
+  AutocompleteItem,
   Button,
   Card,
   CardBody,
@@ -13,6 +15,7 @@ import Cookies from "universal-cookie";
 import { DecodedToken } from "@/app/login/page";
 import { jwtDecode } from "jwt-decode";
 import toast from "react-hot-toast";
+import { countries } from "@/utils/constants";
 
 interface BillingInfoData {
   address: string;
@@ -29,7 +32,7 @@ interface BillingInfoProps {
 const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
   const cookie = new Cookies();
   const token = cookie.get("jwt");
-  // const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
+  const [value, setValue] = React.useState("");
 
   const [billingInfo, setBillingInfo] = useState<BillingInfoData>({
     address: "",
@@ -49,6 +52,7 @@ const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
       .then((response) => {
         if (response?.data?.data?.billing_information) {
           setBillingInfo(response?.data?.data?.billing_information);
+          setValue(response?.data?.data?.billing_information?.country);
         }
       })
       .catch((err) => console.log(""));
@@ -67,7 +71,7 @@ const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
         state: billingInfo.state,
         city: billingInfo.city,
         zipcode: billingInfo.zipcode,
-        country: billingInfo.country,
+        country: value,
       },
     };
 
@@ -105,6 +109,13 @@ const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
     }));
   };
 
+  const handleCountryChange = (selectedCountry: string | any) => {
+    setBillingInfo((prevData) => ({
+      ...prevData,
+      country: selectedCountry, // Assuming selectedCountry is the correct value
+    }));
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -125,33 +136,33 @@ const BillingInfo: React.FC<BillingInfoProps> = ({ id }) => {
 
         <div className="grid grid-cols-2 gap-2 items-center">
           <div>
-            <div className="flex flex-col">
+            <div className="flex flex-col mb-0.5">
               <label htmlFor="state">State</label>
-              <select
+              <input
                 name="state"
                 id="state"
                 className="roboinput"
                 value={billingInfo.state}
                 onChange={(e) => handleChange("state", e.target.value)}
-              >
-                <option>Dhaka</option>
-                <option>Chittagong</option>
-                <option>Rajshahi</option>
-              </select>
+              />
             </div>
-            <div className="flex flex-col">
+            <div className="">
               <label htmlFor="country">Country</label>
-              <select
-                name="country"
-                id="country"
-                className="roboinput"
-                value={billingInfo.country}
-                onChange={(e) => handleChange("country", e.target.value)}
+              <Autocomplete
+                label=""
+                variant="bordered"
+                defaultItems={countries}
+                placeholder="Search a country"
+                className="mt-1.5 border rounded-xl border-primary focus:outline-none target:border-none h-[38px] flex items-center shadow-none"
+                selectedKey={value}
+                onSelectionChange={(newValue) => setValue(String(newValue))}
               >
-                <option>Bangladesh</option>
-                <option>India</option>
-                <option>USA</option>
-              </select>
+                {(item) => (
+                  <AutocompleteItem key={item.name}>
+                    {item.name}
+                  </AutocompleteItem>
+                )}
+              </Autocomplete>
             </div>
           </div>
           <div>

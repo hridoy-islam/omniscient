@@ -31,7 +31,7 @@ interface SingleOrderViewProps {
 const SingleOrderView = ({ order }: SingleOrderViewProps) => {
   const router = useRouter();
   const cookies = new Cookies();
-  const DecisionStatus = ["pending", "approve", "decline"];
+  const DecisionStatus = ["pending", "approved", "decline"];
   const { _id, createdAt, productid, status } = order;
   const {
     motherboard,
@@ -95,7 +95,7 @@ const SingleOrderView = ({ order }: SingleOrderViewProps) => {
                       {" "}
                       <Chip
                         color={
-                          order?.status === "approve"
+                          order?.status === "approved"
                             ? "success"
                             : order?.status === "pending"
                             ? "warning"

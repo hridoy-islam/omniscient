@@ -3,7 +3,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Grid } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { Avatar, Card } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 
@@ -27,6 +27,10 @@ export default function Testimonial() {
         <Swiper
           slidesPerView={3}
           spaceBetween={30}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
           breakpoints={{
             0: {
               slidesPerView: 1,
@@ -53,7 +57,7 @@ export default function Testimonial() {
           pagination={{
             clickable: true,
           }}
-          modules={[Pagination, Navigation]}
+          modules={[Pagination, Navigation, Autoplay]}
           className="mySwiper px-10"
         >
           <SwiperSlide>
@@ -72,7 +76,7 @@ export default function Testimonial() {
               <div className="flex gap-3">
                 <Avatar
                   className="rounded-sm"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                  src="https://randomuser.me/api/portraits/men/26.jpg"
                 />
                 <div>
                   <p className="text-primary">Rohan Desai</p>
@@ -97,7 +101,7 @@ export default function Testimonial() {
               <div className="flex gap-3">
                 <Avatar
                   className="rounded-sm"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                  src="https://randomuser.me/api/portraits/men/28.jpg"
                 />
                 <div>
                   <p className="text-primary">Mahmudul Hasan</p>
@@ -122,7 +126,7 @@ export default function Testimonial() {
               <div className="flex gap-3">
                 <Avatar
                   className="rounded-sm"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                  src="https://randomuser.me/api/portraits/men/22.jpg"
                 />
                 <div>
                   <p className="text-primary">Vikram Singh</p>
@@ -147,7 +151,7 @@ export default function Testimonial() {
               <div className="flex gap-3">
                 <Avatar
                   className="rounded-sm"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                  src="https://randomuser.me/api/portraits/women/85.jpg"
                 />
                 <div>
                   <p className="text-primary">Neha Patel</p>
@@ -172,7 +176,7 @@ export default function Testimonial() {
               <div className="flex gap-3">
                 <Avatar
                   className="rounded-sm"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                  src="https://randomuser.me/api/portraits/men/29.jpg"
                 />
                 <div>
                   <p className="text-primary">Aamir Raza</p>

@@ -68,6 +68,18 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ id, label }) => {
             },
           }
         );
+      } else if (label === "orders") {
+        response = await axios.patch(
+          apiUrl,
+          {
+            isDeleted: true,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
       } else {
         response = await axios.delete(apiUrl, {
           headers: {

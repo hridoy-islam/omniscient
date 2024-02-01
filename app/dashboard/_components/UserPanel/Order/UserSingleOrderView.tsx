@@ -31,7 +31,7 @@ interface SingleOrderViewProps {
 const UserSingleOrderView = ({ order }: SingleOrderViewProps) => {
   const router = useRouter();
   const cookies = new Cookies();
-  const DecisionStatus = ["pending", "approve", "decline"];
+  const DecisionStatus = ["pending", "approved", "decline"];
   const { _id, createdAt, productid, status } = order;
   const {
     motherboard,
@@ -199,12 +199,12 @@ const UserSingleOrderView = ({ order }: SingleOrderViewProps) => {
           <CardBody>
             <div className="flex justify-between">
               <h2>Basic Mining</h2>
-              <p>$500</p>
+              <p>${price}</p>
             </div>
 
             <div className="flex justify-between border-t border-stroke mt-4 pt-4">
               <h2>Total</h2>
-              <p>$500</p>
+              <p>${price}</p>
             </div>
           </CardBody>
         </Card>

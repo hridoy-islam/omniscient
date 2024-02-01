@@ -50,6 +50,10 @@ const SingleProductView = ({ product }: SingleProductViewProps) => {
       );
 
       toast.success(response?.data?.message);
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       toast.error("Something went wrong!");
     }
@@ -63,7 +67,23 @@ const SingleProductView = ({ product }: SingleProductViewProps) => {
         <p className="text-5xl font-bold">${price}</p>
         <div>
           <p className="text-sm">Powerd By</p>
-          <Image src={intel} alt="powerdby" />
+          {photo ? (
+            <Image
+              width={100}
+              height={100}
+              className="h-14 w-auto object-cover"
+              src={photo}
+              alt="powerdby"
+            />
+          ) : (
+            <Image
+              width={100}
+              height={100}
+              className="h-14 w-auto object-cover"
+              src={intel}
+              alt="powerdby"
+            />
+          )}
         </div>
       </div>
 

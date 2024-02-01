@@ -3,7 +3,6 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Toaster } from "react-hot-toast";
-
 const nunito = Nunito({
   subsets: ["latin"],
   display: "swap",

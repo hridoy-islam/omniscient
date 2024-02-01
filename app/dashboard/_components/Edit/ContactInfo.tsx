@@ -24,6 +24,8 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
   const cookie = new Cookies();
   const token = cookie.get("jwt");
   // const decoded: DecodedToken = jwtDecode(token) as DecodedToken;
+  const [value, setValue] = React.useState("");
+
 
   const [contactData, setContactData] = useState({
     address: "",
@@ -45,9 +47,10 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
       .then((response) => {
         if (response?.data?.data?.contact_information) {
           setContactData(response?.data?.data?.contact_information);
+          setValue(response?.data?.data?.contact_information?.country);
         }
       })
-      .catch((err) => console.log("error", err));
+      .catch((err) => console.log(""));
   }, []);
 
   const handleSave = () => {
@@ -63,7 +66,7 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
         state: contactData.state,
         city: contactData.city,
         zipcode: contactData.zipcode,
-        country: contactData.country,
+        country: value,
       },
     };
 
@@ -94,6 +97,13 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
       zipcode: "",
     });
   };
+
+  // const handleCountryChange = (selectedCountry: any) => {
+  //   setContactData((prevData) => ({
+  //     ...prevData,
+  //     country: selectedCountry?.name,
+  //   }));
+  // };
 
   const handleChange = (key: string, value: string) => {
     setContactData((prevData) => ({
@@ -133,28 +143,20 @@ const ContactInfo = ({ id }: ContactInfoProps) => {
               />
             </div>
             <div className="">
-              {/* <label htmlFor="country">Country</label>
-              <select
-                name="country"
-                id="country"
-                className="roboinput"
-                value={contactData.country}
-                onChange={(e) => handleChange("country", e.target.value)}
-              >
-                <option>Country 1</option>
-                <option>Country 2</option>
-              </select> */}
               <label htmlFor="country">Country</label>
+
               <Autocomplete
-                defaultItems={countries}
                 label=""
+                variant="bordered"
+                defaultItems={countries}
                 placeholder="Search a country"
                 className="mt-1.5 border rounded-xl border-primary focus:outline-none target:border-none h-[38px] flex items-center shadow-none"
-                variant="bordered"
+                selectedKey={value}
+                onSelectionChange={(newValue) => setValue(String(newValue))}
               >
-                {(country) => (
-                  <AutocompleteItem key={country?.code}>
-                    {country?.name}
+                {(item) => (
+                  <AutocompleteItem key={item.name}>
+                    {item.name}
                   </AutocompleteItem>
                 )}
               </Autocomplete>

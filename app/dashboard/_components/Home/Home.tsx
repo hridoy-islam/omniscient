@@ -85,9 +85,11 @@ const Home = ({ currentUser, rigs, payouts, settings }: HomeProps) => {
                         d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       ></path>
                     </svg>
-                    <h3 className="text-xl font-normal text-gray-500 mt-5 mb-6">
-                      {currentUser?.message}
-                    </h3>
+
+                    <h3
+                      className="text-xl font-normal text-gray-500 mt-5 mb-6"
+                      dangerouslySetInnerHTML={{ __html: currentUser?.message }}
+                    />
                     <div className="flex gap-4 justify-center">
                       <Button
                         variant="bordered"

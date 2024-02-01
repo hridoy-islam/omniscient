@@ -148,7 +148,7 @@ const Withdraw = ({ withdrawsData, currentUser, settings }: WithdrawProps) => {
                       color={
                         withdraw?.status === "pending"
                           ? "warning"
-                          : withdraw?.status === "approve"
+                          : withdraw?.status === "approved"
                           ? "success"
                           : "danger"
                       }

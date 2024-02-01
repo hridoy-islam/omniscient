@@ -42,7 +42,7 @@ const OrdersDisplay: React.FC<OrdersDisplayProps> = ({ allOrders }) => {
                 <td>
                   <Chip
                     color={
-                      order?.status === "approve"
+                      order?.status === "approved"
                         ? "success"
                         : order?.status === "pending"
                         ? "warning"

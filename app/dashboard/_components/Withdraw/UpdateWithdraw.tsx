@@ -46,7 +46,7 @@ const UpdateWithdraw = ({
 }: UpdateWithdrawProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const localStatus = ["pending", "approve", "decline"];
+  const localStatus = ["pending", "approved", "decline"];
   const [selectedStatus, setSelectedStatus] = useState("");
   const currentUser = withdraw?.userid;
   const [updatedAmount, setUpdatedAmount] = useState(withdraw?.amount);
@@ -177,7 +177,7 @@ const UpdateWithdraw = ({
             <p className="text-md">Status: </p>
             <Chip
               color={
-                withdraw?.status === "approve"
+                withdraw?.status === "approved"
                   ? "success"
                   : withdraw?.status === "pending"
                   ? "warning"
