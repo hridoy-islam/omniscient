@@ -70,16 +70,16 @@ const AccountTab = ({ currentUser }: AccountTabProps) => {
       </CardHeader>
       <CardBody>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b-2 border-stroke pb-6">
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <h2 className="rounded-lg rounded-r-none bg-primary p-2 w-1/3 text-white text-center">
               Exchange
             </h2>
             <h2 className="rounded-lg rounded-l-none bg-stroke p-2 w-2/3 text-textLight text-center">
               Coin Exchange
             </h2>
-          </div>
+          </div> */}
 
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <h2 className="rounded-lg rounded-r-none bg-primary p-2 w-1/3 text-white text-center">
               Wallet
             </h2>
@@ -87,15 +87,15 @@ const AccountTab = ({ currentUser }: AccountTabProps) => {
               {currentUser?.currency.charAt(0).toUpperCase() +
                 currentUser?.currency.slice(1)}
             </h2>
-          </div>
-          <div className="flex items-center">
+          </div> */}
+          {/* <div className="flex items-center">
             <h2 className="rounded-lg rounded-r-none bg-primary p-2 w-1/3 text-white text-center">
               Exchange
             </h2>
             <h2 className="rounded-lg rounded-l-none bg-stroke p-2 w-2/3 text-textLight text-center">
               Coin Exchange
             </h2>
-          </div>
+          </div> */}
 
           <div className="flex items-center">
             <h2 className="rounded-lg rounded-r-none bg-primary h-12 w-1/3 text-white text-center pt-2.5">
@@ -111,14 +111,14 @@ const AccountTab = ({ currentUser }: AccountTabProps) => {
               <option value="">Choose Primary Account</option>
               {currentUser?.wallets?.map((wallet, index) => (
                 <option key={index} value={wallet?.wallet}>
-                  {wallet?.wallet}
+                  {wallet?.wallet} - {wallet?.account} - {wallet?.exchange}
                 </option>
               ))}
             </select>
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between py-6 items-center">
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <label htmlFor="" className="text-xl font-semobold">
               Currency Type
             </label>
@@ -136,13 +136,10 @@ const AccountTab = ({ currentUser }: AccountTabProps) => {
               <option value="inr">₹ INR</option>
               <option value="euro">€ Euro</option>
             </select>
-          </div>
+          </div> */}
           <div>
             <Button onClick={submitForm} className="btn-basic mr-3">
-              Change
-            </Button>
-            <Button className="border border-red text-red bg-transparent">
-              Clear
+              Save
             </Button>
           </div>
         </div>

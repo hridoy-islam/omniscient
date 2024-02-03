@@ -1,4 +1,5 @@
-import { RigData, UserData } from "@/utils/interfaces";
+import { currencyConvert } from "@/utils/currencyConvert";
+import { RigData, UserData, settingsData } from "@/utils/interfaces";
 import { Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
 import moment from "moment";
 
@@ -8,16 +9,19 @@ interface payout {
     _id: string;
     rigName: string;
   };
-  amount: Number;
+  amount: number;
   userid: UserData;
   createdAt: string;
 }
 
+
+
 interface UserRigsTableProps {
   payouts: payout[];
+  settings: settingsData[];
 }
 
-const UserPayoutTable = ({ payouts }: UserRigsTableProps) => {
+const UserPayoutTable = ({ payouts, settings }: UserRigsTableProps) => {
   return (
     <Card className="mt-5">
       <CardHeader className="tableHeader">
@@ -37,7 +41,9 @@ const UserPayoutTable = ({ payouts }: UserRigsTableProps) => {
               <tr key={index}>
                 <td>{payout?.rigid?.rigName}</td>
                 <td>
-                  <Chip color="warning">{String(payout?.amount)}</Chip>
+                  <Chip color="warning">
+                    {currencyConvert(payout?.amount, settings[0]?.btc)} BTC
+                  </Chip>
                 </td>
                 <td>
                   {moment(payout?.createdAt).format("MMMM Do YYYY, h:mm:ss a")}

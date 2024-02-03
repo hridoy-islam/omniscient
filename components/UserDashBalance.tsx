@@ -32,30 +32,32 @@ export const UserDashBalance = ({
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-6">
       <Card className="p-6 space-y-3">
         <h2>Live Balance</h2>
-        <div className="bg-lightYellow flex items-center justify-around rounded-xl px-3 py-2 my-2">
+        <div className="bg-lightYellow flex items-center gap-3 rounded-xl px-3 py-2 my-2">
           <Image src={btc} alt="btc" className="" />
-          <span>{currencyConvert(currentUser?.balance, settings[0]?.btc)}</span>
+          <span>
+            {currencyConvert(currentUser?.balance, settings[0]?.btc)} BTC
+          </span>
         </div>
-        <div className="flex items-center justify-around bg-lightYellow rounded-xl px-3 py-2 my-2">
+        <div className="flex items-center gap-3 bg-lightYellow rounded-xl px-3 py-2 my-2">
           <Icon icon="uil:usd-circle" width={40} />
-          <span>{currentUser?.balance || 0}</span>
+          <span>{currentUser?.balance.toFixed(2) || 0} USD</span>
         </div>
       </Card>
       <Card className="p-6 space-y-3">
         <h2>Gross Balance</h2>
 
-        <div className="bg-lightYellow flex items-center justify-around rounded-xl px-3 py-2 my-2">
+        <div className="bg-lightYellow flex items-center gap-3 rounded-xl px-3 py-2 my-2">
           <Image src={btc} alt="btc" className="" />
           <span>
-            {currencyConvert(currentUser?.grossBalance, settings[0]?.btc)}
+            {currencyConvert(currentUser?.grossBalance, settings[0]?.btc)} BTC
           </span>
         </div>
       </Card>
       <Card className="p-6">
         <h2>Profit</h2>
-        <div className="bg-lightYellow flex items-center justify-around rounded-xl px-3 py-2 my-2">
+        <div className="bg-lightYellow flex items-center gap-3 rounded-xl px-3 py-2 my-2">
           <Image src={btc} alt="btc" className="" />
-          <p className="text-lg font-semibold">
+          <p className="text-lg">
             {currencyConvert(currentUser?.profit, settings[0]?.btc)} BTC
           </p>
         </div>

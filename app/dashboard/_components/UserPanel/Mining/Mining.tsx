@@ -147,11 +147,17 @@ export default function Mining({ settings, currentUser, rigs }: MiningProps) {
       });
   };
 
+  const miningRigs = rigs?.filter((rig) => rig?.status === "mining");
+  let totalConsumed = 0;
+  miningRigs?.map((rig) => (totalConsumed += Number(rig?.power)));
+
+  const inActiveRigs = rigs?.length - miningRigs?.length;
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-6">
         <Card className="p-6 space-y-3">
-          <h2>Active</h2>
+          <h2>Total</h2>
           <p className="text-3xl font-bold">
             {rigs?.length} <span className="font-normal text-md">Rigs</span>
           </p>
@@ -162,7 +168,7 @@ export default function Mining({ settings, currentUser, rigs }: MiningProps) {
                 color="#2385BA"
                 className="text-xl"
               />
-              <span>Active {rigs?.length}</span>
+              <span>Active {miningRigs?.length}</span>
             </div>
             <div className="flex items-center">
               <Icon
@@ -170,7 +176,7 @@ export default function Mining({ settings, currentUser, rigs }: MiningProps) {
                 color="#B8DEE9"
                 className="text-xl"
               />
-              <span>Inactive 0</span>
+              <span>Inactive {inActiveRigs}</span>
             </div>
           </div>
           <Progress
@@ -207,7 +213,7 @@ export default function Mining({ settings, currentUser, rigs }: MiningProps) {
         <Card className="p-6 grid grid-cols-2 gap-1">
           <div className="space-y-3">
             <h2>Power Consumed</h2>
-            <h2 className="text-3xl font-bold">218 Watts</h2>
+            <h2 className="text-3xl font-bold">{totalConsumed} KWH</h2>
             <p>Better Than Last Month</p>
           </div>
           <div>

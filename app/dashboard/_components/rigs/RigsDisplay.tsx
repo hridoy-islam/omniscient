@@ -178,11 +178,12 @@ const RigsDisplay = ({ rigs, userid }: RigsDisplayProps) => {
         <table className="table-fixed">
           <thead>
             <tr>
-              <th>Rig ID</th>
+              <th>Rig Name</th>
               <th>GPU</th>
               <th>Efficiency</th>
               <th>Proficiency</th>
               <th>Power</th>
+              <td>Fan</td>
               <th>Temp</th>
               <th>Load</th>
               <th>Status</th>
@@ -196,8 +197,9 @@ const RigsDisplay = ({ rigs, userid }: RigsDisplayProps) => {
                 <td>{rig?.gpu}</td>
                 <td>{rig?.efficiency}</td>
                 <td>{rig?.proficiency}</td>
-                <td>{rig?.temp}</td>
                 <td>{rig?.power}</td>
+                <td>{rig?.fan}</td>
+                <td>{rig?.temp}</td>
                 <td>{rig?.load}</td>
                 <td>
                   <Chip
