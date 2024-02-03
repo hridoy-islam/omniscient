@@ -29,7 +29,7 @@ interface payout {
     _id: string;
     rigName: string;
   };
-  amount: Number;
+  amount: number;
   userid: UserData;
   createdAt: string;
 }
@@ -56,7 +56,7 @@ const Home = ({ currentUser, rigs, payouts, settings }: HomeProps) => {
       <UserDashBalance settings={settings} currentUser={currentUser} />
       <UserRigsTable rigs={rigs} />
 
-      <UserPayoutTable payouts={payouts} />
+      <UserPayoutTable payouts={payouts} settings={settings} />
 
       <Modal
         backdrop="blur"

@@ -352,6 +352,7 @@ const Rigs = ({ id, rigs }: RigsProps) => {
                   <th>Efficiency</th>
                   <th>Proficiency</th>
                   <th>Temp</th>
+                  <th>Fan</th>
                   <th>Power</th>
                   <th>Load</th>
                   <th>Status</th>
@@ -366,6 +367,7 @@ const Rigs = ({ id, rigs }: RigsProps) => {
                     <td>{rig?.efficiency}</td>
                     <td>{String(rig?.proficiency)}</td>
                     <td>{rig?.temp}</td>
+                    <td>{rig?.fan}</td>
                     <td>{rig?.power}</td>
                     <td>{rig?.load}</td>
                     <td>

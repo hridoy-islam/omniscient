@@ -33,7 +33,7 @@ export const UserRigBalance = ({
       <Card className="p-6 space-y-2 border border-purple">
         <h1>Current Profitability</h1>
         <h2 className="text-3xl font-bold text-purple">
-          {currencyConvert(currentUser?.profit, settings[0]?.btc)}
+          {currencyConvert(currentUser?.profit, settings[0]?.btc)} BTC
         </h2>
         <h3>${currentUser?.profit}</h3>
       </Card>
@@ -41,9 +41,9 @@ export const UserRigBalance = ({
         <h2>Unpaid Mining Balance</h2>
         <h2 className="text-3xl font-bold text-orange">
           {" "}
-          {currencyConvert(currentUser?.balance, settings[0]?.btc)}
+          {currencyConvert(currentUser?.balance, settings[0]?.btc)} BTC
         </h2>
-        <h3>${currentUser?.balance}</h3>
+        <h3>${currentUser?.balance.toFixed(2)}</h3>
       </Card>
     </div>
   );

@@ -43,7 +43,8 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
         router.refresh();
       })
       .catch((error) => {
-        toast.error("Something went wrong!");
+        // toast.error("Something went wrong!");
+        router.refresh();
       });
   };
 
@@ -71,15 +72,14 @@ export const RigDetails = ({ rigs }: RigsDetailsProps) => {
           <div className="flex justify-between">
             <div>
               <h2>
-                Rig 00001{" "}
+                {rig?.rigName}
                 <Chip
-                  className="text-white uppercase"
+                  className="text-white uppercase ml-2"
                   color={rig?.status === "mining" ? "success" : "warning"}
                 >
                   {rig?.status === "mining" ? "mining" : "stopped"}
                 </Chip>
               </h2>
-              <p>{rig?.rigName}</p>
             </div>
             {rig?.status === "mining" ? (
               <Button

@@ -36,7 +36,12 @@ const UserRigsTable = ({ rigs }: UserRigsTableProps) => {
                 <td>{rig?.load}</td>
                 <td>{rig?.power}</td>
                 <td>
-                  <Chip>{rig?.status}</Chip>
+                  <Chip
+                    className="text-white uppercase"
+                    color={rig?.status === "mining" ? "success" : "warning"}
+                  >
+                    {rig?.status === "mining" ? "mining" : "stopped"}
+                  </Chip>{" "}
                 </td>
               </tr>
             ))}

@@ -14,11 +14,14 @@ export default async function getRigsUsingCookies() {
   }
 
   try {
-    const res = await Axios.get(`/rigs?userid=${decoded?._id}`, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
+    const res = await Axios.get(
+      `/rigs?userid=${decoded?._id}&isDeleted=false`,
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
     return res.data;
   } catch (error) {
     console.error("");
