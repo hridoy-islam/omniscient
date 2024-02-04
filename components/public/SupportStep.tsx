@@ -1,6 +1,6 @@
 export default function SupportStep() {
   return (
-    <div className="container mx-auto py-14 space-y-6 ">
+    <div className="container mx-auto py-14 space-y-6">
       <h2 className="text-primary text-2xl">
         Dedicated to Your Success in Trading At RoboFX
       </h2>
