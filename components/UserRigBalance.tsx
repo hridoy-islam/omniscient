@@ -19,6 +19,7 @@ interface RigResponse {
 
 interface UserRigBalanceProps {
   rigs: RigResponse;
+  wholeRigs: RigResponse;
   currentUser: UserData;
   settings: settingsData[];
 }
@@ -27,8 +28,9 @@ export const UserRigBalance = ({
   rigs,
   currentUser,
   settings,
+  wholeRigs
 }: UserRigBalanceProps) => {
-  const miningRigs = rigs?.result?.filter((rig) => rig?.status === "mining");
+  const miningRigs = wholeRigs?.result?.filter((rig) => rig?.status === "mining");
 
   const searchParams = useSearchParams();
 
@@ -83,7 +85,6 @@ export const UserRigBalance = ({
         </h2>
         <h3>${currentUser?.balance.toFixed(2)}</h3>
       </Card>
-
     </div>
   );
 };

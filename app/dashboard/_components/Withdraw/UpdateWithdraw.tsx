@@ -55,7 +55,7 @@ const UpdateWithdraw = ({
   const [btc, setBtc] = useState(0);
 
   const wallet = currentUser?.wallets?.find(
-    (wallet) => wallet?.wallet === currentUser?.primary_account
+    (wallet) => wallet?._id === currentUser?.primary_account
   );
 
   const handleUpdate = async () => {
@@ -115,8 +115,6 @@ const UpdateWithdraw = ({
     const calculateBTC = currencyConvert(withdraw?.amount, settings[0]?.btc);
     setBtc(calculateBTC);
   }, [withdraw?.amount]);
-
-  // const calculateBTC = currencyConvert(amount, settings[0]?.btc);
 
   return (
     <Card className="grid grid-cols-1 md:grid-cols-2 gap-5 p-6">

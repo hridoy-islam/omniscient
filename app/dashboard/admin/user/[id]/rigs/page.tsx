@@ -7,10 +7,13 @@ interface pageProps {
   };
 }
 
-const page = async ({ params }: pageProps) => {
-  const rigs = await getRigs(params?.id);
-  
-  return <RigsDisplay rigs={rigs?.data?.result} userid={params?.id} />;
+const page = async (context: any) => {
+  const pageNumber = Number(context?.searchParams?.page) || 1;
+
+  const rigs = await getRigs(context?.params?.id, pageNumber);
+
+
+  return <RigsDisplay response={rigs?.data} userid={context?.params?.id} />;
 };
 
 export default page;

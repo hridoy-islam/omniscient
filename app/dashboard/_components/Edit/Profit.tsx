@@ -11,7 +11,7 @@ import {
 import axios from "@/utils/axios";
 import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
-import { DecodedToken } from "@/utils/interfaces";
+import { DecodedToken, UserData } from "@/utils/interfaces";
 import { jwtDecode } from "jwt-decode";
 
 interface PersonalInfoProps {
@@ -20,6 +20,8 @@ interface PersonalInfoProps {
 
 const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
   const [profit, setProfit] = useState(0);
+  const [balance, setBalance] = useState(0);
+  const [grossBalance, setGrossBalance] = useState(0);
 
   const cookie = new Cookies();
   const token = cookie.get("jwt");
@@ -33,8 +35,10 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
         },
       })
       .then((response) => {
-        if (response?.data?.data?.personal_information) {
+        if (response) {
           setProfit(response?.data?.data?.profit);
+          setBalance(response?.data?.data?.balance);
+          setGrossBalance(response?.data?.data?.grossBalance);
         }
       })
       .catch((err) => console.log(""));
@@ -52,7 +56,7 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
     axios
       .patch(
         url,
-        { profit },
+        { profit, balance, grossBalance },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,10 +72,6 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
       });
   };
 
-  const handleClear = () => {
-    setProfit(0);
-  };
-
   return (
     <Card>
       <CardHeader>
@@ -80,7 +80,7 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
       <CardBody>
         <div className="grid grid-cols-2 gap-2 items-center">
           <div>
-            <div className="flex flex-row gap-2">
+            <div className="flex gap-2">
               <div className="flex flex-col w-full">
                 <label htmlFor="profit">Profit</label>
                 <input
@@ -93,18 +93,38 @@ const Profit: React.FC<PersonalInfoProps> = ({ id }) => {
                 />
               </div>
             </div>
+            <div className="flex gap-2">
+              <div className="flex flex-col w-full">
+                <label htmlFor="balance">Balance</label>
+                <input
+                  type="number"
+                  name="balance"
+                  className="roboinput"
+                  id="balance"
+                  value={balance}
+                  onChange={(e) => setBalance(Number(e.target.value))}
+                />
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <div className="flex flex-col w-full">
+                <label htmlFor="grossBalance">Gross Balance</label>
+                <input
+                  type="number"
+                  name="grossBalance"
+                  className="roboinput"
+                  id="grossBalance"
+                  value={grossBalance}
+                  onChange={(e) => setGrossBalance(Number(e.target.value))}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </CardBody>
       <CardFooter className="w-full flex flex-row-reverse gap-3">
         <Button className="btn-basic rounded-md" onClick={handleSave}>
           Save
-        </Button>
-        <Button
-          className="bg-white border border-stroke rounded-md shadow-sm"
-          onClick={handleClear}
-        >
-          Clear
         </Button>
       </CardFooter>
     </Card>

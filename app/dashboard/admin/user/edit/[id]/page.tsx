@@ -2,17 +2,13 @@ import getRigs from "@/app/actions/getRigs";
 import Edit from "@/app/dashboard/_components/Edit/Edit";
 import React from "react";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
+const page = async (context: any) => {
+  const pageNumber = Number(context?.searchParams?.page) || 1;
 
-const page = async ({ params }: PageProps) => {
-  const userRigs = await getRigs(params?.id);
+  const userRigs = await getRigs(context?.params?.id, pageNumber);
   return (
     <div>
-      <Edit id={params?.id} rigs={userRigs?.data?.result} />
+      <Edit id={context?.params?.id} rigs={userRigs?.data?.result} />
     </div>
   );
 };

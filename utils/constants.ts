@@ -243,3 +243,459 @@ export const countries = [
   { name: "Zambia", code: "ZM" },
   { name: "Zimbabwe", code: "ZW" },
 ];
+
+export const miningData1 = [
+  {
+    name: "Page A",
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Page B",
+    uv: 3000,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: "Page C",
+    uv: 2000,
+    pv: 9800,
+    amt: 2290,
+  },
+  {
+    name: "Page D",
+    uv: 2780,
+    pv: 3908,
+    amt: 2000,
+  },
+  {
+    name: "Page E",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    name: "Page F",
+    uv: 2390,
+    pv: 3800,
+    amt: 2500,
+  },
+  {
+    name: "Page G",
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+];
+
+export const miningData2 = [
+  {
+    name: "Page M",
+    uv: 4500,
+    pv: 2800,
+    amt: 2800,
+  },
+  {
+    name: "Page N",
+    uv: 3500,
+    pv: 1798,
+    amt: 2510,
+  },
+  {
+    name: "Page O",
+    uv: 2700,
+    pv: 11200,
+    amt: 2590,
+  },
+  {
+    name: "Page M",
+    uv: 4500,
+    pv: 2800,
+    amt: 2800,
+  },
+  {
+    name: "Page N",
+    uv: 3500,
+    pv: 1798,
+    amt: 2510,
+  },
+  {
+    name: "Page O",
+    uv: 2700,
+    pv: 11200,
+    amt: 2590,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+];
+
+export const miningData3 = [
+  {
+    name: "Page R",
+    uv: 4800,
+    pv: 3200,
+    amt: 3200,
+  },
+  {
+    name: "Page S",
+    uv: 3700,
+    pv: 1898,
+    amt: 2710,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page T",
+    uv: 2900,
+    pv: 12200,
+    amt: 2790,
+  },
+  {
+    name: "Page U",
+    uv: 3580,
+    pv: 4808,
+    amt: 2500,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page V",
+    uv: 2690,
+    pv: 6900,
+    amt: 2581,
+  },
+];
+
+export const miningData4 = [
+  {
+    name: "Page W",
+    uv: 5100,
+    pv: 3600,
+    amt: 3600,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page X",
+    uv: 4000,
+    pv: 1998,
+    amt: 2810,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page Y",
+    uv: 3200,
+    pv: 13200,
+    amt: 2890,
+  },
+  {
+    name: "Page Z",
+    uv: 3980,
+    pv: 5108,
+    amt: 2600,
+  },
+  {
+    name: "Page AA",
+    uv: 3090,
+    pv: 7900,
+    amt: 2681,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+];
+
+export const miningData5 = [
+  {
+    name: "Page AB",
+    uv: 5400,
+    pv: 4000,
+    amt: 4000,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page AC",
+    uv: 4200,
+    pv: 2098,
+    amt: 2910,
+  },
+  {
+    name: "Page AD",
+    uv: 3400,
+    pv: 14200,
+    amt: 2990,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page AE",
+    uv: 4380,
+    pv: 5408,
+    amt: 2700,
+  },
+  {
+    name: "Page AF",
+    uv: 3490,
+    pv: 8900,
+    amt: 2781,
+  },
+];
+
+export const miningData6 = [
+  {
+    name: "Page AG",
+    uv: 5700,
+    pv: 4400,
+    amt: 4400,
+  },
+  {
+    name: "Page AH",
+    uv: 4500,
+    pv: 2198,
+    amt: 3010,
+  },
+  {
+    name: "Page AI",
+    uv: 3600,
+    pv: 15200,
+    amt: 3090,
+  },
+  {
+    name: "Page AJ",
+    uv: 4780,
+    pv: 5708,
+    amt: 2800,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page P",
+    uv: 3180,
+    pv: 4508,
+    amt: 2300,
+  },
+  {
+    name: "Page Q",
+    uv: 2290,
+    pv: 5900,
+    amt: 2381,
+  },
+  {
+    name: "Page AK",
+    uv: 3890,
+    pv: 9900,
+    amt: 2881,
+  },
+];

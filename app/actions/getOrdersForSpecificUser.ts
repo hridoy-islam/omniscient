@@ -16,7 +16,7 @@ export default async function getOrdersForSpecificUser(pageNumber: Number) {
 
   try {
     const res = await Axios.get(`/orders`, {
-      params: { userid: decoded?._id, page: pageNumber },
+      params: { userid: decoded?._id, page: pageNumber, limit: 50 },
       headers: {
         Authorization: `Bearer ${token}`,
       },

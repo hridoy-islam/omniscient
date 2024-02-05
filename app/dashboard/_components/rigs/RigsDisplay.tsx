@@ -10,7 +10,7 @@ import { DecodedToken, RigData } from "@/utils/interfaces";
 import Cookies from "universal-cookie";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Modal,
   ModalContent,
@@ -19,16 +19,56 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
+import Pagination from "@/components/Pagination";
+
+interface AllRigsData {
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPage: number;
+  };
+  result: RigData[];
+}
+
 interface RigsDisplayProps {
-  rigs: RigData[];
+  response: AllRigsData;
   userid: string;
 }
 
-const RigsDisplay = ({ rigs, userid }: RigsDisplayProps) => {
+const RigsDisplay = ({ response, userid }: RigsDisplayProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const cookie = new Cookies();
   const token = cookie.get("jwt");
   const router = useRouter();
+
+  const rigs = response?.result;
+
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page");
+
+  const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+
+  const totalPages = response?.meta?.totalPage;
+
+  const getNextPageHref = () => {
+    const nextPage = currentPage + 1;
+    if (nextPage > totalPages) {
+      return null;
+    } else {
+      return `/dashboard/admin/user/${userid}/rigs?page=${nextPage}`;
+    }
+  };
+
+  const getPreviousPageHref = () => {
+    if (currentPage <= 1) {
+      return null;
+    } else {
+      const previousPage = currentPage - 1;
+      return `/dashboard/admin/user/${userid}/rigs?page=${previousPage}`;
+    }
+  };
 
   const [showStartAllButton, setShowStartAllButton] = useState(true);
   const [showPauseAllButton, setShowPauseAllButton] = useState(false);
@@ -155,197 +195,206 @@ const RigsDisplay = ({ rigs, userid }: RigsDisplayProps) => {
   };
 
   return (
-    <Card className="my-6">
-      <CardHeader className="tableHeader">
-        <h2>
-          Rigs assinged to {rigs[0]?.userid?.personal_information?.firstName}{" "}
-          {rigs[0]?.userid?.personal_information?.lastName}{" "}
-        </h2>{" "}
-        <div className="flex justify-between">
-          {showStartAllButton && (
-            <Button onClick={handleStartAllRigs} className="bg-primaryLight">
-              <Icon icon="ph:play-fill" /> Start All Rigs
-            </Button>
-          )}
-          {showPauseAllButton && (
-            <Button onClick={handlePauseAllRigs} className="bg-[#f9e5e5]">
-              <Icon icon="solar:pause-bold" /> Stop All Rigs
-            </Button>
-          )}
-        </div>
-      </CardHeader>
-      <CardBody>
-        <table className="table-fixed">
-          <thead>
-            <tr>
-              <th>Rig Name</th>
-              <th>GPU</th>
-              <th>Efficiency</th>
-              <th>Proficiency</th>
-              <th>Power</th>
-              <td>Fan</td>
-              <th>Temp</th>
-              <th>fan</th>
-              <th>Load</th>
-              <th>Power</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rigs?.map((rig, index) => (
-              <tr key={index}>
-                <td>{rig?.rigName}</td>
-                <td>{rig?.gpu}</td>
-                <td>{rig?.efficiency}</td>
-                <td>{rig?.proficiency}</td>
-                <td>{rig?.temp}</td>
-                <td>{rig?.fan}</td>
-                <td>{rig?.load}</td>
-                <td>{rig?.power}</td>
-                <td>
-                  <Chip
-                    className="text-white uppercase"
-                    color={rig?.status === "mining" ? "success" : "warning"}
-                  >
-                    {rig?.status === "mining" ? "mining" : "stopped"}
-                  </Chip>{" "}
-                </td>
-
-                <td>
-                  <Button
-                    onClick={() => handleOpen(rig)}
-                    className="bg-primary text-white text-md"
-                  >
-                    <Icon icon="uil:edit" className="text-lg" />
-                    <span>Edit</span>
-                  </Button>{" "}
-                  {/* <ViewButton /> */}
-                  <DeleteButton id={rig?._id} label="rigs" />
-                </td>
+    <>
+      <Card className="my-6">
+        <CardHeader className="tableHeader">
+          <h2>
+            Rigs assinged to {rigs[0]?.userid?.personal_information?.firstName}{" "}
+            {rigs[0]?.userid?.personal_information?.lastName ||
+              rigs[0]?.userid?.email}
+          </h2>{" "}
+          <div className="flex justify-between">
+            {showStartAllButton && (
+              <Button onClick={handleStartAllRigs} className="bg-primaryLight">
+                <Icon icon="ph:play-fill" /> Start All Rigs
+              </Button>
+            )}
+            {showPauseAllButton && (
+              <Button onClick={handlePauseAllRigs} className="bg-[#f9e5e5]">
+                <Icon icon="solar:pause-bold" /> Stop All Rigs
+              </Button>
+            )}
+          </div>
+        </CardHeader>
+        <CardBody>
+          <table className="table-fixed">
+            <thead>
+              <tr>
+                <th>Rig Name</th>
+                <th>GPU</th>
+                <th>Efficiency</th>
+                <th>Proficiency</th>
+                <th>Temp</th>
+                <th>fan</th>
+                <th>Load</th>
+                <th>Power</th>
+                <th>Status</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </CardBody>
-      <Modal size="xl" isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Modal Title
-              </ModalHeader>
-              <ModalBody>
-                <Card>
-                  <CardHeader></CardHeader>
-                  <CardBody>
-                    <div className="grid grid-cols-2 gap-2 items-center">
-                      <div>
+            </thead>
+            <tbody>
+              {rigs?.map((rig, index) => (
+                <tr key={index}>
+                  <td>{rig?.rigName}</td>
+                  <td>{rig?.gpu}</td>
+                  <td>{rig?.efficiency}</td>
+                  <td>{rig?.proficiency}</td>
+                  <td>{rig?.temp}</td>
+                  <td>{rig?.fan}</td>
+                  <td>{rig?.load}</td>
+                  <td>{rig?.power}</td>
+                  <td>
+                    <Chip
+                      className="text-white uppercase"
+                      color={rig?.status === "mining" ? "success" : "warning"}
+                    >
+                      {rig?.status === "mining" ? "mining" : "stopped"}
+                    </Chip>{" "}
+                  </td>
+
+                  <td>
+                    <Button
+                      onClick={() => handleOpen(rig)}
+                      className="bg-primary text-white text-md"
+                    >
+                      <Icon icon="uil:edit" className="text-lg" />
+                      <span>Edit</span>
+                    </Button>{" "}
+                    {/* <ViewButton /> */}
+                    <DeleteButton id={rig?._id} label="rigs" />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </CardBody>
+
+        <Modal size="xl" isOpen={isOpen} onOpenChange={onOpenChange}>
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">
+                  Modal Title
+                </ModalHeader>
+                <ModalBody>
+                  <Card>
+                    <CardHeader></CardHeader>
+                    <CardBody>
+                      <div className="grid grid-cols-2 gap-2 items-center">
+                        <div>
+                          <div className="flex flex-col">
+                            <label htmlFor="rigName">Rig Name</label>
+                            <input
+                              type="text"
+                              name="rigName"
+                              className="roboinput"
+                              value={modalFormData?.rigName}
+                              onChange={handleChangeModal}
+                            />
+                          </div>
+                          <div className="flex flex-col">
+                            <label htmlFor="gpu">GPU</label>
+                            <input
+                              type="text"
+                              name="gpu"
+                              className="roboinput"
+                              value={modalFormData?.gpu}
+                              onChange={handleChangeModal}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="flex flex-col">
+                            <label htmlFor="efficiency">Efficiency</label>
+                            <input
+                              type="number"
+                              name="efficiency"
+                              className="roboinput"
+                              value={modalFormData?.efficiency}
+                              onChange={handleChangeModal}
+                            />
+                          </div>
+                          <div className="flex flex-col">
+                            <label htmlFor="power">Power</label>
+                            <input
+                              type="text"
+                              name="power"
+                              className="roboinput"
+                              value={modalFormData?.power}
+                              onChange={handleChangeModal}
+                            />
+                          </div>
+                        </div>
                         <div className="flex flex-col">
-                          <label htmlFor="rigName">Rig Name</label>
+                          <label htmlFor="temp">Temp</label>
                           <input
                             type="text"
-                            name="rigName"
+                            name="temp"
                             className="roboinput"
-                            value={modalFormData?.rigName}
+                            value={modalFormData?.temp}
                             onChange={handleChangeModal}
                           />
                         </div>
                         <div className="flex flex-col">
-                          <label htmlFor="gpu">GPU</label>
+                          <label htmlFor="load">Fan</label>
                           <input
                             type="text"
-                            name="gpu"
+                            name="fan"
                             className="roboinput"
-                            value={modalFormData?.gpu}
+                            value={modalFormData?.fan}
                             onChange={handleChangeModal}
                           />
                         </div>
-                      </div>
-                      <div>
                         <div className="flex flex-col">
-                          <label htmlFor="efficiency">Efficiency</label>
+                          <label htmlFor="load">Load</label>
+                          <input
+                            type="text"
+                            name="load"
+                            className="roboinput"
+                            value={modalFormData?.load}
+                            onChange={handleChangeModal}
+                          />
+                        </div>
+                        <div className="flex flex-col">
+                          <label htmlFor="proficiency">Proficiency</label>
                           <input
                             type="number"
-                            name="efficiency"
+                            name="proficiency"
                             className="roboinput"
-                            value={modalFormData?.efficiency}
-                            onChange={handleChangeModal}
-                          />
-                        </div>
-                        <div className="flex flex-col">
-                          <label htmlFor="power">Power</label>
-                          <input
-                            type="text"
-                            name="power"
-                            className="roboinput"
-                            value={modalFormData?.power}
+                            value={modalFormData.proficiency}
                             onChange={handleChangeModal}
                           />
                         </div>
                       </div>
-                      <div className="flex flex-col">
-                        <label htmlFor="temp">Temp</label>
-                        <input
-                          type="text"
-                          name="temp"
-                          className="roboinput"
-                          value={modalFormData?.temp}
-                          onChange={handleChangeModal}
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <label htmlFor="load">Fan</label>
-                        <input
-                          type="text"
-                          name="fan"
-                          className="roboinput"
-                          value={modalFormData?.fan}
-                          onChange={handleChangeModal}
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <label htmlFor="load">Load</label>
-                        <input
-                          type="text"
-                          name="load"
-                          className="roboinput"
-                          value={modalFormData?.load}
-                          onChange={handleChangeModal}
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <label htmlFor="proficiency">Proficiency</label>
-                        <input
-                          type="number"
-                          name="proficiency"
-                          className="roboinput"
-                          value={modalFormData.proficiency}
-                          onChange={handleChangeModal}
-                        />
-                      </div>
-                    </div>
-                  </CardBody>
-                </Card>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button
-                  onClick={handleUpdate}
-                  color="primary"
-                  onPress={onClose}
-                  className="text-white"
-                >
-                  Update
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-    </Card>
+                    </CardBody>
+                  </Card>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="light" onPress={onClose}>
+                    Close
+                  </Button>
+                  <Button
+                    onClick={handleUpdate}
+                    color="primary"
+                    onPress={onClose}
+                    className="text-white"
+                  >
+                    Update
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+      </Card>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        previousPageHref={getPreviousPageHref()}
+        nextPageHref={getNextPageHref()}
+      />
+    </>
   );
 };
 

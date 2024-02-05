@@ -4,7 +4,6 @@ import { cookies } from "next/headers";
 import { DecodedToken } from "../layout";
 import Home from "../_components/Home/Home";
 import getRigsUsingCookies from "@/app/actions/getRigsUsingCookies";
-import { getAllWithdrawsById } from "@/app/actions/getAllWithdrawsById";
 import getWithdrawsUsingCookies from "@/app/actions/getWithdrawsUsingCookies";
 import getPayouts from "@/app/actions/getPayouts";
 import getSettings from "@/app/actions/getSettings";

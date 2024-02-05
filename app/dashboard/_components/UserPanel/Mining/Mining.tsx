@@ -1,19 +1,24 @@
 "use client";
 import { Button, Card, Progress, Tabs, CardBody, Tab } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
+
 import {
-  BarChart,
-  Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
-  Tooltip,
-  ResponsiveContainer,
   CartesianGrid,
+  Tooltip,
   Legend,
+  Brush,
+  AreaChart,
+  Area,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
   Rectangle,
-  Line,
-  LineChart,
 } from "recharts";
+
 import RigHashChart from "@/components/RigHashChart";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
@@ -27,6 +32,14 @@ import Cookies from "universal-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { currencyConvert } from "@/utils/currencyConvert";
+import {
+  miningData1,
+  miningData2,
+  miningData3,
+  miningData4,
+  miningData5,
+  miningData6,
+} from "@/utils/constants";
 
 const chartData = [
   {
@@ -77,12 +90,46 @@ interface MiningProps {
   settings: settingsData[];
   currentUser: UserData;
   rigs: RigData[];
+  wholeRigs: RigData[];
 }
 
-export default function Mining({ settings, currentUser, rigs }: MiningProps) {
+interface MiningDataItem {
+  name: string;
+  uv: number;
+  pv: number;
+  amt: number;
+}
+
+export default function Mining({
+  settings,
+  currentUser,
+  rigs,
+  wholeRigs,
+}: MiningProps) {
   const cookie = new Cookies();
   const token = cookie.get("jwt");
   const decode = jwtDecode(token) as DecodedToken;
+  const [selectedMiningData, setSelectedMiningData] =
+    useState<MiningDataItem[]>(miningData1); // Initialize with miningData1
+
+  const graphArr: MiningDataItem[][] = [
+    miningData1,
+    miningData2,
+    miningData3,
+    miningData4,
+    miningData5,
+    miningData6,
+  ];
+
+  const handleGraph = (id: string) => {
+    setIsActive(id);
+
+    const randomIndex = Math.floor(Math.random() * graphArr.length);
+    setSelectedMiningData(graphArr[randomIndex]);
+  };
+
+  const [isActive, setIsActive] = useState("");
+
   const [showStartAllButton, setShowStartAllButton] = useState(true);
   const [showPauseAllButton, setShowPauseAllButton] = useState(false);
 
@@ -147,11 +194,11 @@ export default function Mining({ settings, currentUser, rigs }: MiningProps) {
       });
   };
 
-  const miningRigs = rigs?.filter((rig) => rig?.status === "mining");
+  const miningRigs = wholeRigs?.filter((rig) => rig?.status === "mining");
   let totalConsumed = 0;
   miningRigs?.map((rig) => (totalConsumed += Number(rig?.power)));
 
-  const inActiveRigs = rigs?.length - miningRigs?.length;
+  const inActiveRigs = wholeRigs?.length - miningRigs?.length;
 
   return (
     <div>
@@ -159,7 +206,8 @@ export default function Mining({ settings, currentUser, rigs }: MiningProps) {
         <Card className="p-6 space-y-3">
           <h2>Total</h2>
           <p className="text-3xl font-bold">
-            {rigs?.length} <span className="font-normal text-md">Rigs</span>
+            {wholeRigs?.length}{" "}
+            <span className="font-normal text-md">Rigs</span>
           </p>
           <div className="flex justify-between my-1">
             <div className="flex items-center justify-start">
@@ -242,6 +290,54 @@ export default function Mining({ settings, currentUser, rigs }: MiningProps) {
               </BarChart>
             </ResponsiveContainer>
           </div>
+        </Card>
+      </div>
+      <div className="mb-5">
+        <Card className="p-6 space-y-3">
+          <h3>Rig Hash Generated</h3>
+
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-10 gap-4">
+            {" "}
+            {wholeRigs?.map((rig, index) => (
+              <Button
+                onClick={() => handleGraph(rig?._id)}
+                className={`${isActive === rig?._id ? "btn-basic" : ""} px-1 `}
+                variant="bordered"
+                key={index}
+              >
+                {rig?.rigName}
+              </Button>
+            ))}
+          </div>
+
+          <p>
+            Rig Hash Generated is the amount of data that transferred between in
+            a hour.
+          </p>
+
+          <ResponsiveContainer width="100%" height={200}>
+            <AreaChart
+              width={500}
+              height={200}
+              data={selectedMiningData}
+              syncId="anyId"
+              margin={{
+                top: 10,
+                right: 30,
+                left: 0,
+                bottom: 0,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+
+              <Area
+                type="monotone"
+                dataKey="pv"
+                stroke="#82ca9d"
+                fill="#82ca9d"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
         </Card>
       </div>
       <div>

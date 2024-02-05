@@ -7,11 +7,14 @@ export default async function getAllWithdraws(pageNumber: Number) {
   const token = tokenObject?.value;
 
   try {
-    const res = await Axios.get(`/withdraws?page=${pageNumber}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await Axios.get(
+      `/withdraws?page=${pageNumber}&sort=-requestDate`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return res.data;
   } catch (error) {
     console.error("");

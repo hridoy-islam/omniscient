@@ -11,6 +11,7 @@ export default async function getAllProducts(pageNumber: Number) {
       params: {
         isDeleted: false,
         page: pageNumber,
+        limit: 50
       },
       headers: {
         Authorization: `Bearer ${token}`,

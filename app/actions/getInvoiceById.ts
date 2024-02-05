@@ -20,6 +20,7 @@ export default async function getInvoiceById(pageNumber: Number) {
       params: {
         userid: decoded?._id,
         page: pageNumber,
+        limit: 50,
       },
       headers: {
         Authorization: `Bearer ${token}`,

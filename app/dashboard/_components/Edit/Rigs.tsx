@@ -46,6 +46,7 @@ const Rigs = ({ id, rigs }: RigsProps) => {
     load: "",
     fan: "",
     proficiency: 0,
+    quantity: 1,
   });
 
   const saveData = async () => {
@@ -56,6 +57,7 @@ const Rigs = ({ id, rigs }: RigsProps) => {
         ...rigData,
         efficiency: Number(rigData?.efficiency),
         proficiency: Number(rigData?.proficiency),
+        quantity: Number(rigData?.quantity),
       };
 
       // Make a POST request to the API
@@ -75,6 +77,7 @@ const Rigs = ({ id, rigs }: RigsProps) => {
         load: "",
         fan: "",
         proficiency: 0,
+        quantity: 1,
       });
     } catch (error) {
       // console.error("Error saving data:", error);
@@ -307,6 +310,16 @@ const Rigs = ({ id, rigs }: RigsProps) => {
                 onChange={handleChange}
               />
             </div>
+            <div className="flex flex-col">
+              <label htmlFor="quantity">Quantity</label>
+              <input
+                type="number"
+                name="quantity"
+                className="roboinput"
+                value={rigData.quantity}
+                onChange={handleChange}
+              />
+            </div>
           </div>
         </CardBody>
         <CardFooter className="w-full flex flex-row-reverse gap-3">
@@ -327,7 +340,15 @@ const Rigs = ({ id, rigs }: RigsProps) => {
               {rigs[0]?.userid?.personal_information?.firstName}{" "}
               {rigs[0]?.userid?.personal_information?.lastName}{" "}
             </h2>
-            <div className="flex justify-between">
+            <Button
+              onClick={() => {
+                router.push(`/dashboard/admin/user/${id}/rigs`);
+              }}
+              className="bg-primaryLight"
+            >
+              View All
+            </Button>
+            {/* <div className="flex justify-between">
               {showStartAllButton && (
                 <Button
                   onClick={handleStartAllRigs}
@@ -341,7 +362,7 @@ const Rigs = ({ id, rigs }: RigsProps) => {
                   <Icon icon="solar:pause-bold" /> Stop All Rigs
                 </Button>
               )}
-            </div>
+            </div> */}
           </CardHeader>
           <CardBody>
             <table className="table-fixed">
