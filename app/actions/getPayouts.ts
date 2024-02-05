@@ -3,7 +3,7 @@ import { DecodedToken } from "@/utils/interfaces";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 
-export default async function getPayouts() {
+export default async function getPayouts(pageNumber: Number) {
   const nextCookies = cookies();
   const token = nextCookies.get("jwt");
   const jwt = token?.value;
@@ -13,7 +13,11 @@ export default async function getPayouts() {
   }
 
   try {
-    const res = await Axios.get(`/payout?userid=${decoded?._id}&limit=10`, {
+    const res = await Axios.get(`/payout`, {
+      params: {
+        userid: decoded?._id,
+        page: pageNumber,
+      },
       headers: {
         Authorization: `Bearer ${jwt}`,
       },

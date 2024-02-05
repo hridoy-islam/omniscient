@@ -27,6 +27,8 @@ import Logo from "/public/logo.png";
 import { UserData } from "@/utils/interfaces";
 import ReactDOMServer from "react-dom/server";
 import { PDFViewer } from "@react-pdf/renderer";
+import { useSearchParams } from "next/navigation";
+import Pagination from "@/components/Pagination";
 
 interface Invoice {
   _id: string;
@@ -72,6 +74,32 @@ const calculateTotalAmount = (information: Information[]) => {
 
 const UserInvoice = ({ invoices }: UserInvoiceProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page");
+
+  const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+
+  const totalPages = invoices?.data?.meta?.totalPage;
+
+  const getNextPageHref = () => {
+    const nextPage = currentPage + 1;
+    if (nextPage > totalPages) {
+      return null;
+    } else {
+      return `/dashboard/user/invoice?page=${nextPage}`;
+    }
+  };
+
+  const getPreviousPageHref = () => {
+    if (currentPage <= 1) {
+      return null;
+    } else {
+      const previousPage = currentPage - 1;
+      return `/dashboard/user/invoice?page=${previousPage}`;
+    }
+  };
 
   // Separate invoices based on categories
   const billInvoices = invoices?.data?.result?.filter(
@@ -329,7 +357,6 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
           </Tab>
         </Tabs>
 
-        {/* <Pagination /> */}
         <Modal
           size="3xl"
           className="mt-[300px]"
@@ -583,6 +610,12 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
           </ModalContent>
         </Modal>
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        previousPageHref={getPreviousPageHref()}
+        nextPageHref={getNextPageHref()}
+      />{" "}
     </div>
   );
 };

@@ -4,12 +4,13 @@ import { cookies } from "next/headers";
 import { DecodedToken } from "../layout";
 import Home from "../_components/Home/Home";
 import getRigsUsingCookies from "@/app/actions/getRigsUsingCookies";
-import { getAllWithdrawsById } from "@/app/actions/getAllWithdrawsById";
 import getWithdrawsUsingCookies from "@/app/actions/getWithdrawsUsingCookies";
 import getPayouts from "@/app/actions/getPayouts";
 import getSettings from "@/app/actions/getSettings";
 
-const Page = async () => {
+const Page = async (context: any) => {
+  const pageNumber = Number(context?.searchParams?.page) || 1;
+
   const nextCookies = cookies();
   const token = nextCookies.get("jwt");
   const JWT = token?.value;
@@ -25,9 +26,9 @@ const Page = async () => {
     currentUser = await getUser(id);
   }
 
-  const rigs = await getRigsUsingCookies();
+  const rigs = await getRigsUsingCookies(pageNumber);
   const withdraws = await getWithdrawsUsingCookies();
-  const payouts = await getPayouts();
+  const payouts = await getPayouts(pageNumber);
   const settings = await getSettings();
 
   return (

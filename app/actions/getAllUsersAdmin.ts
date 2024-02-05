@@ -1,7 +1,7 @@
 import Axios from "@/utils/axios";
 import { cookies } from "next/headers";
 
-export default async function getAllUsers(pageNumber: number) {
+export default async function getAllUsersAdmin() {
   const nextCookie = cookies();
   const tokenObject = nextCookie.get("jwt");
   const token = tokenObject?.value;
@@ -11,7 +11,7 @@ export default async function getAllUsers(pageNumber: number) {
       params: {
         role: "user",
         isDeleted: false,
-        page: pageNumber,
+        limit: 10000,
       },
       headers: {
         Authorization: `Bearer ${token}`,

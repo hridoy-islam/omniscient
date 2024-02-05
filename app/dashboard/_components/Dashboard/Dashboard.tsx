@@ -28,11 +28,19 @@ import Image from "next/image";
 
 interface DashboardProps {
   allUsers: UserData[];
+  wholeUsers: UserData[];
   allOrders: OrderInterface[];
   allRigs: RigData[];
+  wholeRigsAdmin: RigData[];
 }
 
-const Dashboard = ({ allUsers, allOrders, allRigs }: DashboardProps) => {
+const Dashboard = ({
+  allUsers,
+  allOrders,
+  allRigs,
+  wholeRigsAdmin,
+  wholeUsers,
+}: DashboardProps) => {
   const router = useRouter();
   const data = [
     {
@@ -151,7 +159,7 @@ const Dashboard = ({ allUsers, allOrders, allRigs }: DashboardProps) => {
             <div className="">
               <div className="">
                 <p className="text-textLight">Total Users</p>
-                <h2 className="text-4xl">{allUsers?.length}</h2>
+                <h2 className="text-4xl">{wholeUsers?.length}</h2>
               </div>
 
               <ResponsiveContainer width={350} height={100}>
@@ -181,7 +189,7 @@ const Dashboard = ({ allUsers, allOrders, allRigs }: DashboardProps) => {
             <div className="">
               <div>
                 <p className="text-textLight">New Users</p>
-                <h2 className="text-4xl">{allUsers?.length}</h2>
+                <h2 className="text-4xl">{wholeUsers?.length}</h2>
               </div>
               <ResponsiveContainer width={350} height={100}>
                 <AreaChart
@@ -205,7 +213,7 @@ const Dashboard = ({ allUsers, allOrders, allRigs }: DashboardProps) => {
             <div className="">
               <div>
                 <p className="text-textLight">Total Rigs</p>
-                <h2 className="text-4xl">{allRigs?.length}</h2>
+                <h2 className="text-4xl">{wholeRigsAdmin?.length}</h2>
               </div>
               <ResponsiveContainer width={350} height={100}>
                 <AreaChart

@@ -4,8 +4,11 @@ import getUserWithdraws from "@/app/actions/getUserWithdraws";
 import getUserUsingCookie from "@/app/actions/getUserUsingCookie";
 import getSettings from "@/app/actions/getSettings";
 
-const page = async () => {
-  const withdraw = await getUserWithdraws();
+const page = async (context: any) => {
+  const pageNumber = Number(context?.searchParams?.page) || 1;
+
+  const withdraw = await getUserWithdraws(pageNumber);
+  
   const currentUser = await getUserUsingCookie();
   const settings = await getSettings();
 

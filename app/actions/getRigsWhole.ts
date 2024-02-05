@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { DecodedToken } from "@/utils/interfaces";
 import { jwtDecode } from "jwt-decode";
 
-export default async function getRigsUsingCookies(pageNumber: Number) {
+export default async function getRigsWhole() {
   const nextCookies = cookies();
   const token = nextCookies.get("jwt");
   const jwt = token?.value;
@@ -18,7 +18,7 @@ export default async function getRigsUsingCookies(pageNumber: Number) {
       params: {
         userid: decoded?._id,
         isDeleted: false,
-        page: pageNumber,
+        limit: 1000,
       },
       headers: {
         Authorization: `Bearer ${jwt}`,

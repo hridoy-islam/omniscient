@@ -1,17 +1,68 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Tabs, Tab } from "@nextui-org/react";
 import SingleProductView from "@/app/dashboard/_components/UserPanel/Product/SingleProductView";
 import { OrderInterface, Product } from "@/utils/interfaces";
 import Order from "../Order/Order";
+import { useSearchParams } from "next/navigation";
+import Pagination from "@/components/Pagination";
 
-interface ProductInterface {
-  products: Product[];
-  orders: OrderInterface[];
+interface ProductResponsePros {
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPage: number;
+  };
+  result: Product[];
 }
 
-const Product = ({ products, orders }: ProductInterface) => {
+interface OrderResponseProps {
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPage: number;
+  };
+  result: OrderInterface[];
+}
+
+interface ProductInterface {
+  productResponse: ProductResponsePros;
+  orderResponse: OrderResponseProps;
+}
+
+const Product = ({ productResponse, orderResponse }: ProductInterface) => {
+  const products = productResponse?.result;
+  const orders = orderResponse?.result;
+
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page");
+
+  const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+
+  const totalPages = productResponse?.meta?.totalPage;
+
+  const getNextPageHref = () => {
+    const nextPage = currentPage + 1;
+    if (nextPage > totalPages) {
+      return null;
+    } else {
+      return `/dashboard/user/product?page=${nextPage}`;
+    }
+  };
+
+  const getPreviousPageHref = () => {
+    if (currentPage <= 1) {
+      return null;
+    } else {
+      const previousPage = currentPage - 1;
+      return `/dashboard/user/product?page=${previousPage}`;
+    }
+  };
+
   return (
     <div>
       {/* <SingleProductView /> */}
@@ -35,10 +86,16 @@ const Product = ({ products, orders }: ProductInterface) => {
             </div>
           </Tab>
           <Tab key="orders" title="Orders">
-            <Order orders={orders} />
+            <Order orders={orders} totalPage={orderResponse?.meta?.totalPage} />
           </Tab>
         </Tabs>
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        previousPageHref={getPreviousPageHref()}
+        nextPageHref={getNextPageHref()}
+      />{" "}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import Axios from "@/utils/axios";
 
 import { cookies } from "next/headers";
 
-export const getAllWithdrawsById = async (id: string) => {
+export const getSingleWithdraw = async (id: string) => {
   const cookieStore = cookies();
 
   const tokenObject = cookieStore.get("jwt");

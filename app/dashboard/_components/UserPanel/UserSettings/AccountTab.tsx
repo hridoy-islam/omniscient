@@ -26,13 +26,14 @@ interface AccountTabProps {
 const AccountTab = ({ currentUser }: AccountTabProps) => {
   const cookie = new Cookies();
   const token = cookie.get("jwt");
-  const [selectedCurrency, setSelectedCurrency] = useState(
-    currentUser?.currency || ""
-  );
+  // const [selectedCurrency, setSelectedCurrency] = useState(
+  //   currentUser?.currency || ""
+  // );
 
   const [selectedPrimaryAccount, setSelectedPrimaryAccount] = useState(
     currentUser?.primary_account || ""
   );
+
   const router = useRouter();
 
   const submitForm = async () => {
@@ -40,8 +41,7 @@ const AccountTab = ({ currentUser }: AccountTabProps) => {
       const response = await Axios.patch(
         `/users/${currentUser?._id}`,
         {
-          currency: selectedCurrency,
-          // primary_account: selectedPrimaryAccount,
+          primary_account: selectedPrimaryAccount,
         },
         {
           headers: {
@@ -110,7 +110,7 @@ const AccountTab = ({ currentUser }: AccountTabProps) => {
             >
               <option value="">Choose Primary Account</option>
               {currentUser?.wallets?.map((wallet, index) => (
-                <option key={index} value={wallet?.wallet}>
+                <option key={index} value={wallet?._id}>
                   {wallet?.wallet} - {wallet?.account} - {wallet?.exchange}
                 </option>
               ))}

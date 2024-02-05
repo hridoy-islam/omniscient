@@ -1,12 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 import { RigData, UserData, settingsData } from "@/utils/interfaces";
 import { currencyConvert } from "@/utils/currencyConvert";
+import { useSearchParams } from "next/navigation";
+import Pagination from "./Pagination";
+
+interface RigResponse {
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPage: number;
+  };
+  result: RigData[];
+}
 
 interface UserRigBalanceProps {
-  rigs: RigData[];
+  rigs: RigResponse;
+  wholeRigs: RigResponse;
   currentUser: UserData;
   settings: settingsData[];
 }
@@ -15,8 +28,35 @@ export const UserRigBalance = ({
   rigs,
   currentUser,
   settings,
+  wholeRigs
 }: UserRigBalanceProps) => {
-  const miningRigs = rigs?.filter((rig) => rig?.status === "mining");
+  const miningRigs = wholeRigs?.result?.filter((rig) => rig?.status === "mining");
+
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page");
+
+  const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+
+  const totalPages = rigs?.meta?.totalPage;
+
+  const getNextPageHref = () => {
+    const nextPage = currentPage + 1;
+    if (nextPage > totalPages) {
+      return null;
+    } else {
+      return `/dashboard/user/rigs?page=${nextPage}`;
+    }
+  };
+
+  const getPreviousPageHref = () => {
+    if (currentPage <= 1) {
+      return null;
+    } else {
+      const previousPage = currentPage - 1;
+      return `/dashboard/user/rigs?page=${previousPage}`;
+    }
+  };
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">

@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { DecodedToken } from "@/utils/interfaces";
 import { jwtDecode } from "jwt-decode";
 
-export default async function getRigsUsingCookies(pageNumber: Number) {
+export default async function getRigsWholeAdmin() {
   const nextCookies = cookies();
   const token = nextCookies.get("jwt");
   const jwt = token?.value;
@@ -16,9 +16,8 @@ export default async function getRigsUsingCookies(pageNumber: Number) {
   try {
     const res = await Axios.get(`/rigs`, {
       params: {
-        userid: decoded?._id,
         isDeleted: false,
-        page: pageNumber,
+        limit: 10000,
       },
       headers: {
         Authorization: `Bearer ${jwt}`,
