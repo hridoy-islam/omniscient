@@ -1,15 +1,30 @@
+"use client";
+
 import { RigData } from "@/utils/interfaces";
-import { Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
+import { Button, Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 interface UserRigsTableProps {
   rigs: RigData[];
 }
 
 const UserRigsTable = ({ rigs }: UserRigsTableProps) => {
+  const router = useRouter();
   return (
     <Card>
       <CardHeader className="tableHeader">
-        <h2>Rigs</h2>
+        <div className="flex w-full justify-between">
+          <h2>Rigs</h2>
+          <Button
+            onClick={() => {
+              router.push("/dashboard/user/rigs");
+            }}
+            className="text-white"
+            color="primary"
+          >
+            View All
+          </Button>
+        </div>
       </CardHeader>
       <CardBody>
         <table className="table-fixed">

@@ -28,6 +28,7 @@ import moment from "moment";
 import { UserData } from "@/utils/interfaces";
 
 import html2pdf from "html2pdf.js";
+import { useSearchParams } from "next/navigation";
 
 interface Invoice {
   _id: string;
@@ -88,6 +89,32 @@ const generatePDF = () => {
 const Invoice = ({ allInvoices }: InvoiceProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const invoices = allInvoices?.data?.result;
+
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page");
+
+  const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+
+  const totalPages = allInvoices?.data?.meta?.totalPage;
+
+  const getNextPageHref = () => {
+    const nextPage = currentPage + 1;
+    if (nextPage > totalPages) {
+      return null;
+    } else {
+      return `/dashboard/admin/invoice?page=${nextPage}`;
+    }
+  };
+
+  const getPreviousPageHref = () => {
+    if (currentPage <= 1) {
+      return null;
+    } else {
+      const previousPage = currentPage - 1;
+      return `/dashboard/admin/invoice?page=${previousPage}`;
+    }
+  };
 
   // Separate invoices based on categories
   const billInvoices = invoices?.filter(
@@ -340,7 +367,6 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
         </Tab>
       </Tabs>
 
-      {/* <Pagination /> */}
       <Modal
         size="3xl"
         className="mt-[300px]"
@@ -631,6 +657,13 @@ const Invoice = ({ allInvoices }: InvoiceProps) => {
           )}
         </ModalContent>
       </Modal>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        previousPageHref={getPreviousPageHref()}
+        nextPageHref={getNextPageHref()}
+      />
     </div>
   );
 };

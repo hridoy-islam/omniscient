@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { DecodedToken } from "@/utils/interfaces";
 import { jwtDecode } from "jwt-decode";
 
-export default async function getRigsUsingCookies() {
+export default async function getRigsUsingCookies(pageNumber: Number) {
   const nextCookies = cookies();
   const token = nextCookies.get("jwt");
   const jwt = token?.value;
@@ -14,14 +14,16 @@ export default async function getRigsUsingCookies() {
   }
 
   try {
-    const res = await Axios.get(
-      `/rigs?userid=${decoded?._id}&isDeleted=false`,
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
+    const res = await Axios.get(`/rigs`, {
+      params: {
+        userid: decoded?._id,
+        isDeleted: false,
+        page: pageNumber,
+      },
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
     return res.data;
   } catch (error) {
     console.error("");

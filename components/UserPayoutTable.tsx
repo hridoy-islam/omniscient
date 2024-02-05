@@ -1,7 +1,8 @@
 import { currencyConvert } from "@/utils/currencyConvert";
 import { RigData, UserData, settingsData } from "@/utils/interfaces";
-import { Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
+import { Button, Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
 import moment from "moment";
+import { useRouter } from "next/navigation";
 
 interface payout {
   _id: string;
@@ -14,18 +15,28 @@ interface payout {
   createdAt: string;
 }
 
-
-
 interface UserRigsTableProps {
   payouts: payout[];
   settings: settingsData[];
 }
 
 const UserPayoutTable = ({ payouts, settings }: UserRigsTableProps) => {
+  const router = useRouter();
   return (
     <Card className="mt-5">
       <CardHeader className="tableHeader">
-        <h2>Payouts</h2>
+        <div className="flex w-full justify-between">
+          <h2>Payouts</h2>
+          <Button
+            onClick={() => {
+              router.push("/dashboard/user/payouts");
+            }}
+            className="text-white"
+            color="primary"
+          >
+            View All
+          </Button>
+        </div>{" "}
       </CardHeader>
       <CardBody>
         <table className="table-fixed">

@@ -4,19 +4,23 @@ import getUserUsingCookie from "@/app/actions/getUserUsingCookie";
 import { RigDetails } from "@/components/RigDetails";
 import { UserRigBalance } from "@/components/UserRigBalance";
 
-const Page = async () => {
-  const rigs = await getRigsUsingCookies();
+const Page = async (context:any) => {
+  const pageNumber = Number(context?.searchParams?.page) || 1;
+
+  const rigs = await getRigsUsingCookies(pageNumber);
   const currentUser = await getUserUsingCookie();
   const settings = await getSettings();
+
+  console.log(rigs?.data)
 
   return (
     <>
       <UserRigBalance
-        rigs={rigs?.data?.result}
+        rigs={rigs?.data}
         currentUser={currentUser?.data}
         settings={settings?.data}
       />
-      <RigDetails rigs={rigs?.data?.result} />
+      <RigDetails response={rigs?.data} />
     </>
   );
 };

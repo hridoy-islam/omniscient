@@ -21,7 +21,7 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Axios from "@/utils/axios";
 import toast from "react-hot-toast";
@@ -29,6 +29,7 @@ import Cookies from "universal-cookie";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import Image from "next/image";
+import Pagination from "@/components/Pagination";
 interface ApiResponse {
   meta: {
     page: number;
@@ -44,6 +45,34 @@ interface UserProps {
 }
 
 export default function User({ allUsers }: UserProps) {
+  const usersList = allUsers?.result;
+
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page");
+
+  const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+
+  const totalPages = allUsers?.meta?.totalPage;
+
+  const getNextPageHref = () => {
+    const nextPage = currentPage + 1;
+    if (nextPage > totalPages) {
+      return null;
+    } else {
+      return `/dashboard/admin/user?page=${nextPage}`;
+    }
+  };
+
+  const getPreviousPageHref = () => {
+    if (currentPage <= 1) {
+      return null;
+    } else {
+      const previousPage = currentPage - 1;
+      return `/dashboard/admin/user?page=${previousPage}`;
+    }
+  };
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +81,6 @@ export default function User({ allUsers }: UserProps) {
   const router = useRouter();
   const cookies = new Cookies();
   const token = cookies.get("jwt");
-  const usersList = allUsers?.result;
 
   const handleOpen = (user: UserData) => {
     setSelectedUserId(user?._id);
@@ -248,6 +276,13 @@ export default function User({ allUsers }: UserProps) {
           )}
         </ModalContent>
       </Modal>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        previousPageHref={getPreviousPageHref()}
+        nextPageHref={getNextPageHref()}
+      />
     </div>
   );
 }

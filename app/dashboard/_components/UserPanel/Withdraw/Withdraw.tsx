@@ -21,7 +21,7 @@ import {
 import { jwtDecode } from "jwt-decode";
 import moment from "moment";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
@@ -59,6 +59,33 @@ interface WithdrawProps {
 
 const Withdraw = ({ withdrawsData, currentUser, settings }: WithdrawProps) => {
   const withdrawData = withdrawsData?.data?.result;
+
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page");
+
+  const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+
+  const totalPages = withdrawsData?.data?.meta?.totalPage;
+
+  const getNextPageHref = () => {
+    const nextPage = currentPage + 1;
+    if (nextPage > totalPages) {
+      return null;
+    } else {
+      return `/dashboard/user/withdraw?page=${nextPage}`;
+    }
+  };
+
+  const getPreviousPageHref = () => {
+    if (currentPage <= 1) {
+      return null;
+    } else {
+      const previousPage = currentPage - 1;
+      return `/dashboard/user/withdraw?page=${previousPage}`;
+    }
+  };
+
   const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [btc, setBtc] = useState(0);
@@ -230,7 +257,12 @@ const Withdraw = ({ withdrawsData, currentUser, settings }: WithdrawProps) => {
           )}
         </ModalContent>
       </Modal>
-      {/* <Pagination /> */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        previousPageHref={getPreviousPageHref()}
+        nextPageHref={getNextPageHref()}
+      />
     </>
   );
 };

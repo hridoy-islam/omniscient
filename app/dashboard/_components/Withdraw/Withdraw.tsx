@@ -1,8 +1,13 @@
 "use client";
+import Pagination from "@/components/Pagination";
 import { UserData } from "@/utils/interfaces";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { CardBody, CardHeader, Card, Button, Chip } from "@nextui-org/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { DateRangePicker } from "react-date-range";
+import { useSearchParams } from "next/navigation";
 
 interface WithdrawObject {
   _id: string;
@@ -34,6 +39,32 @@ interface WithdrawProps {
 }
 
 const Withdraw = ({ allWithdraws }: WithdrawProps) => {
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page");
+
+  const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+
+  const totalPages = Math.ceil(allWithdraws?.data?.meta?.total / 10);
+
+  const getNextPageHref = () => {
+    const nextPage = currentPage + 1;
+    if (nextPage > totalPages) {
+      return null;
+    } else {
+      return `/dashboard/admin/withdraw?page=${nextPage}`;
+    }
+  };
+
+  const getPreviousPageHref = () => {
+    if (currentPage <= 1) {
+      return null;
+    } else {
+      const previousPage = currentPage - 1;
+      return `/dashboard/admin/withdraw?page=${previousPage}`;
+    }
+  };
+
   const withdraws = allWithdraws?.data?.result;
   // Filter withdraws based on status
   const pendingRequests = withdraws?.filter(
@@ -47,8 +78,15 @@ const Withdraw = ({ allWithdraws }: WithdrawProps) => {
   const pendingRequestLength = pendingRequests?.length || 0;
   const approvedRequestLength = approvedRequests?.length || 0;
 
+  const selectionRange = {
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "selection",
+  };
+
   return (
     <div>
+      {/* <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} /> */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <Card className="p-5">
           <p>Total Requests</p>
@@ -117,7 +155,13 @@ const Withdraw = ({ allWithdraws }: WithdrawProps) => {
           </table>
         </CardBody>
       </Card>
-      {/* <Pagination /> */}
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        previousPageHref={getPreviousPageHref()}
+        nextPageHref={getNextPageHref()}
+      />
     </div>
   );
 };
