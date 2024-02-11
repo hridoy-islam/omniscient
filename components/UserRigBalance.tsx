@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 import { RigData, UserData, settingsData } from "@/utils/interfaces";
 import { currencyConvert } from "@/utils/currencyConvert";
@@ -28,17 +28,46 @@ export const UserRigBalance = ({
   rigs,
   currentUser,
   settings,
-  wholeRigs
+  wholeRigs,
 }: UserRigBalanceProps) => {
-  const miningRigs = wholeRigs?.result?.filter((rig) => rig?.status === "mining");
-
+  const miningRigs = wholeRigs?.result?.filter(
+    (rig) => rig?.status === "mining"
+  );
   const searchParams = useSearchParams();
-
   const page = searchParams.get("page");
-
   const [currentPage, setCurrentPage] = useState(Number(page) || 1);
-
   const totalPages = rigs?.meta?.totalPage;
+
+  const calculateTimeRemaining = () => {
+    const now = new Date();
+    const newYorkTime = new Date(
+      now.toLocaleString("en-US", { timeZone: "America/New_York" })
+    );
+    const endOfDay = new Date(newYorkTime);
+    endOfDay.setHours(24, 0, 0, 0); // Set to end of day (24:00:00)
+
+    const difference = endOfDay.getTime() - now.getTime();
+    return difference;
+  };
+
+  const [timeRemaining, setTimeRemaining] = useState<number>(
+    calculateTimeRemaining()
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeRemaining(calculateTimeRemaining());
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [timeRemaining]);
+
+  // Convert milliseconds to HH:MM:SS format
+  const hours = Math.floor(
+    (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
   const getNextPageHref = () => {
     const nextPage = currentPage + 1;
@@ -67,7 +96,11 @@ export const UserRigBalance = ({
       </Card>
       <Card className="p-6 space-y-2 border border-blue">
         <h1>Next Payout</h1>
-        <h2 className="text-3xl font-bold text-blue">24 Hours</h2>
+        <div className="flex items-center space-x-1 text-3xl font-bold text-blue">
+          <span>{hours < 10 ? `0${hours}` : hours}</span>:
+          <span>{minutes < 10 ? `0${minutes}` : minutes}</span>:
+          <span>{seconds < 10 ? `0${seconds}` : seconds}</span>
+        </div>{" "}
         <h3>Remaining</h3>
       </Card>
       <Card className="p-6 space-y-2 border border-purple">

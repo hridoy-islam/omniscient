@@ -11,6 +11,18 @@ export function middleware(request: NextRequest) {
     decoded = jwtDecode(token) as DecodedToken;
   }
 
+  // Restrict access to "/" and "/login" routes if user is logged in
+  if (
+    cookie &&
+    (request.nextUrl.pathname === "/" || request.nextUrl.pathname === "/login")
+  ) {
+    if (decoded?.role === "user") {
+      return NextResponse.redirect(new URL("/dashboard/user", request.url));
+    } else if (decoded?.role === "admin") {
+      return NextResponse.redirect(new URL("/dashboard/admin", request.url));
+    }
+  }
+
   // Check if the path is "/dashboard/admin"
   if (request.nextUrl.pathname.startsWith("/dashboard/admin")) {
     if (cookie) {
@@ -26,23 +38,6 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   }
-  // if (
-  //   request.nextUrl.pathname.startsWith("/dashboard/admin") ||
-  //   request.nextUrl.pathname.startsWith("/dashboard")
-  // ) {
-  //   if (cookie) {
-  //     // If the role is "user", redirect to "/dashboard/user"
-  //     if (decoded?.role === "user") {
-  //       return NextResponse.redirect(new URL("/dashboard/user", request.url));
-  //     }
-  //     // If the role is "admin", continue processing
-  //     if (decoded?.role === "admin") {
-  //       return NextResponse.next();
-  //     }
-  //   } else {
-  //     return NextResponse.redirect(new URL("/", request.url));
-  //   }
-  // }
 
   // Check if the path is "/dashboard/user"
   if (request.nextUrl.pathname.startsWith("/dashboard/user")) {
