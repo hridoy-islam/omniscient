@@ -11,15 +11,17 @@ export function middleware(request: NextRequest) {
     decoded = jwtDecode(token) as DecodedToken;
   }
 
-  // Restrict access to "/" and "/login" routes if user is logged in
-  if (
-    cookie &&
-    (request.nextUrl.pathname === "/" || request.nextUrl.pathname === "/login")
-  ) {
-    if (decoded?.role === "user") {
-      return NextResponse.redirect(new URL("/dashboard/user", request.url));
-    } else if (decoded?.role === "admin") {
-      return NextResponse.redirect(new URL("/dashboard/admin", request.url));
+  // Check if the user is logged in
+  if (cookie) {
+    if (
+      // request.nextUrl.pathname === "/" ||
+      request.nextUrl.pathname === "/login"
+    ) {
+      if (decoded?.role === "admin") {
+        return NextResponse.redirect(new URL("/dashboard/admin", request.url));
+      } else if (decoded?.role === "user") {
+        return NextResponse.redirect(new URL("/dashboard/user", request.url));
+      }
     }
   }
 

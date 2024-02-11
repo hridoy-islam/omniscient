@@ -9,11 +9,12 @@ export default function LogoutButton() {
   const router = useRouter();
 
   const handleLogout = () => {
+
     cookies.remove("jwt");
 
     setTimeout(() => {
       window.location.href = "/";
-    }, 1000 / 5);
+    }, 500);
   };
 
   return (
