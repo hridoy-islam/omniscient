@@ -26,7 +26,6 @@ interface ProductDisplayProps {
 
 const ProductDisplay: React.FC<ProductDisplayProps> = ({ response }) => {
   const allProducts = response?.result;
-  console.log(response)
 
   const router = useRouter();
   const searchParams = useSearchParams();

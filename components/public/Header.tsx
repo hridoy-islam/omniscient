@@ -16,7 +16,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
+import { jwtDecode } from "jwt-decode";
+import Cookies from "universal-cookie";
+import { DecodedToken } from "@/utils/interfaces";
+import { useRouter } from "next/navigation";
+
 export default function Header() {
+  const router = useRouter();
+  const cookie = new Cookies();
+  const token = cookie.get("jwt");
+  let decoded: DecodedToken;
+  if (token) {
+    decoded = jwtDecode(token) as DecodedToken;
+  }
+
   const menuItems = ["About", "Support", "Faq", "Contact"];
   return (
     <Navbar
@@ -53,15 +66,27 @@ export default function Header() {
           <Link href="/contact">Contact Us</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button
-            as={Link}
-            color="primary"
-            href="/login"
-            variant="flat"
-            className="btn-basic rounded-3xl"
-          >
-            Mining
-          </Button>
+          {token ? (
+            <Button
+              as={Link}
+              color="primary"
+              href="/login"
+              variant="flat"
+              className="btn-basic rounded-3xl"
+            >
+              Dashboard
+            </Button>
+          ) : (
+            <Button
+              as={Link}
+              color="primary"
+              href="/login"
+              variant="flat"
+              className="btn-basic rounded-3xl"
+            >
+              Mining
+            </Button>
+          )}
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
