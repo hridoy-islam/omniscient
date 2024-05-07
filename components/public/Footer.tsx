@@ -17,7 +17,7 @@ export default function Footer() {
             the world of cryptocurrency mining. Stay connected with us for the
             latest updates, insights, and support. For queries, assistance, or
             sharing your own mining success stories, reach out to us at
-            mining@robofxtrader.com. Together, let's embark on a path of
+            support@robofxtrader.com. Together, let's embark on a path of
             innovation, efficiency, and unparalleled success in the exciting
             realm of crypto mining. Follow us on social media to be a part of
             our ever-growing family. Happy Mining!
