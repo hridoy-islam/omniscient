@@ -1,73 +1,85 @@
 "use client";
-import { Button } from "@nextui-org/react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import banner from "../../public/banner.png";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import arrow from "../../public/arrow-ai.png";
 
 export default function Banner() {
   return (
-    <div className="md:flex justify-between container mx-auto pb-28">
-      <div className="mt-6">
-        <h2 className="md:pt-16 md:pb-6 text-6xl font-bold text-primary md:leading-[76px]">
-          Your Crypto <br /> Mining <br /> Starts Here
-        </h2>
-        <h3 className="text-lg font-medium text-darkText pb-6">
-          It’s super simple - Your mining rigs are already set up and running.
-        </h3>
-        <div className="flex flex-row items-center">
-          <Button
-            as={Link}
-            className="text-white bg-primary rounded-full text-[16px] font-semibold py-[14px] px-[22px]"
-            href="#"
-            variant="flat"
-          >
-            Start Mining{" "}
-            <Icon
-              icon="material-symbols-light:arrow-circle-right-outline-rounded"
-              width={26}
-            />
-          </Button>
-          <Link
-            className="text-lightText bg-none text-[16px] font-semibold py-[12px] px-[24px]"
-            href="#"
-          >
-            Contact Us
-          </Link>
-          <Image src={arrow} alt="arrow" />
-        </div>
+    <section
+      id="home"
+      className="pt-20 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden"
+    >
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="space-y-8 animate-fade-in-up">
+            <div className="space-y-4">
+              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                Your Crypto
+                <span className="block text-gradient">Mining</span>
+                <span className="block">Starts Here</span>
+              </h1>
+              <p className="text-xl text-gray-600 max-w-lg">
+                It's super simple - Your mining rigs are already set up and
+                running.
+              </p>
+            </div>
 
-        <ul className="flex justify-between md:my-5 sm:my-2">
-          <li className="flex gap-2">
-            <Icon
-              icon="lets-icons:check-fill"
-              className="text-primary"
-              width={20}
-            />
-            <p>Global Mining Leader</p>
-          </li>
-          <li className="flex gap-2">
-            <Icon
-              icon="lets-icons:check-fill"
-              className="text-primary"
-              width={20}
-            />
-            <p>Turnkey Solutions</p>
-          </li>
-          <li className="flex gap-2">
-            <Icon
-              icon="lets-icons:check-fill"
-              className="text-primary"
-              width={20}
-            />
-            <p>Global Mining Leader</p>
-          </li>
-        </ul>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                Start Mining
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                className="px-8 py-3 rounded-full text-lg font-semibold border-2 hover:bg-gray-50 bg-transparent"
+              >
+                Contact Us
+              </Button>
+            </div>
+
+            {/* Features */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8">
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span className="text-sm font-medium text-gray-700">
+                  Global Mining Leader
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span className="text-sm font-medium text-gray-700">
+                  Turnkey Solutions
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span className="text-sm font-medium text-gray-700">
+                  Global Mining Leader
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Content - Hero Image */}
+          <div className="relative animate-fade-in-right">
+            <div className="relative z-10">
+              <img
+                src="/banner.png"
+                alt="Crypto Mining Setup"
+                className="w-full h-auto rounded-2xl "
+              />
+            </div>
+            {/* Floating Elements */}
+            <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-float opacity-80"></div>
+            <div
+              className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full animate-float opacity-60"
+              style={{ animationDelay: "1s" }}
+            ></div>
+          </div>
+        </div>
       </div>
-      <div>
-        <Image className="pt-4" src={banner} alt="banner" />
-      </div>
-    </div>
+    </section>
   );
 }

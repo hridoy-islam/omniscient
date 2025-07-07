@@ -1,116 +1,76 @@
-import { Card } from "@nextui-org/react";
-import exchangeservice from "../../public/exchangeservice.png";
-import technical from "../../public/technicalsupport.png";
-import mining from "../../public/mininghardware.png";
-import automation from "../../public/automation.png";
-import electricity from "../../public/electricity.png";
-import secure from "../../public/securedata.png";
-import Image from "next/image";
+import { User, Settings, Headphones, Play } from "lucide-react";
 
 export default function Product() {
-  return (
-    <div className="container mx-auto py-20">
-      <Card className="bg-primary text-white p-10">
-        <div className="text-center space-y-4 px-10">
-          <h3>MEET THE INNOVATION</h3>
-          <h2 className="font-bold text-3xl">
-            A Game-Changer in Cryptocurrency Mining
-          </h2>
-          <p>
-            In the dynamic and ever-shifting landscape of cryptocurrency, our
-            latest offering emerges as a true game-changer. This isn't just a
-            crypto mining rig; it's a testament to innovation and
-            forward-thinking design. Tailored to meet the needs of both seasoned
-            miners and novices, it bridges the gap between complex technology
-            and user accessibility. Prepare to be amazed by a product that not
-            only promises high performance but also reshapes your mining
-            experience with its revolutionary features. Welcome to the future of
-            cryptocurrency mining, where efficiency, reliability, and elegance
-            converge.
-          </p>
-        </div>
+  const steps = [
+    {
+      icon: User,
+      title: "Create Your Account",
+      description:
+        "Initiate your journey by registering an account with us. This first step is your gateway to the mining world.",
+    },
+    {
+      icon: Settings,
+      title: "Select Your Ideal Mining Configuration",
+      description:
+        "Customize your mining experience by selecting the setup that aligns perfectly with your personal or professional mining goals. Whether it's a home-based rig, a dedicated office setup, or a sophisticated virtual operation, choose the option that best fits your mining strategy and environment. Your choice here lays the foundation for your mining efficiency and success.",
+    },
+    {
+      icon: Headphones,
+      title: "Enjoy 24 Months of Continuous Technical Support",
+      description:
+        "Benefit from our dedicated 24/7 technical support. We ensure your mining experience is smooth and uninterrupted.",
+    },
+    {
+      icon: Play,
+      title: "Start Receiving Cryptocurrency",
+      description:
+        "Witness the fruits of your mining venture as you begin to receive cryptocurrency, marking the start of your successful mining journey.",
+    },
+  ];
 
-        <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-8 mt-5">
-          <Card className="p-8 text-center space-y-3">
-            <Image
-              src={exchangeservice}
-              alt="Exchange Services"
-              className="mx-auto"
+  return (
+    <section className="section-padding bg-white">
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative">
+            <img
+              src="/Group3465.png"
+              alt="Mining Journey Steps"
+              className="w-full h-auto rounded-2xl "
             />
-            <h2 className="font-bold text-lg">
-              Next-Gen Hash Rate Performance
-            </h2>
-            <p>
-              🚀 Unparalleled Power: Experience the pinnacle of mining
-              efficiency with our rig's exceptional hash rate. It's engineered
-              to maximize your mining potential, ensuring you stay ahead in the
-              competitive world of cryptocurrency.
-            </p>
-          </Card>
-          <Card className="p-8 text-center space-y-3">
-            <Image
-              src={technical}
-              alt="Exchange Services"
-              className="mx-auto"
-            />
-            <h2 className="font-bold text-lg">Energy-Efficient Operation</h2>
-            <p>
-              💡 Eco-Friendly Mining: Our rig is designed with sustainability in
-              mind. It consumes less power without compromising on performance,
-              reducing your carbon footprint while maximizing your mining
-              rewards.
-            </p>
-          </Card>
-          <Card className="p-8 text-center space-y-3">
-            <Image src={mining} alt="Exchange Services" className="mx-auto" />
-            <h2 className="font-bold text-lg">User-Friendly Interface</h2>
-            <p>
-              🖥️ Ease of Use: Whether you're a beginner or a pro, our intuitive
-              interface makes mining simple and straightforward. Enjoy
-              hassle-free setup and operation, allowing you to focus on what
-              matters most - your mining success.
-            </p>
-          </Card>
-          <Card className="p-8 text-center space-y-3">
-            <Image
-              src={automation}
-              alt="Exchange Services"
-              className="mx-auto"
-            />
-            <h2 className="font-bold text-lg">Robust Security Features</h2>
-            <p>
-              🔒 Safe and Secure: With top-tier security protocols, our mining
-              rig ensures your operations are protected against threats. Your
-              digital assets and mining process are safeguarded, giving you
-              peace of mind.
-            </p>
-          </Card>
-          <Card className="p-8 text-center space-y-3">
-            <Image
-              src={electricity}
-              alt="Exchange Services"
-              className="mx-auto"
-            />
-            <h2 className="font-bold text-lg">Compact and Sleek Design</h2>
-            <p>
-              🎨 Aesthetic Meets Practicality: Not only is our rig powerful, but
-              it's also a visual treat. Its sleek, compact design fits
-              seamlessly into any space, marrying form and function in a
-              stylish, modern package.
-            </p>
-          </Card>
-          <Card className="p-8 text-center space-y-3">
-            <Image src={secure} alt="Exchange Services" className="mx-auto" />
-            <h2 className="font-bold text-lg">24/7 Customer Support</h2>
-            <p>
-              🌐 Dedicated Assistance: Our team of experts is available around
-              the clock to provide support and answer any questions. From
-              technical issues to general inquiries, we're here to ensure your
-              mining journey is smooth and profitable.
-            </p>
-          </Card>
+          </div>
+
+          <div className="space-y-8">
+            <div>
+              <p className="text-blue-600 font-semibold mb-4">Hardware</p>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Begin Your Mining Journey in Three Easy Steps
+              </h2>
+              <p className="text-xl text-gray-600">
+                Embark on a path to exceptional mining success with just three
+                straightforward steps. Dive into the world of seamless mining
+                today, where simplicity harmoniously blends with efficiency.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {steps.map((step, index) => (
+                <div key={index} className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <step.icon className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600">{step.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </Card>
-    </div>
+      </div>
+    </section>
   );
 }
