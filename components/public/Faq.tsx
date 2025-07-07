@@ -154,7 +154,7 @@ export default function Faq() {
     <section id="faq" className="section-padding bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <p className="text-blue-600 font-semibold mb-4">FAQ</p>
+          {/* <p className="text-blue-600 font-semibold mb-4">FAQ</p> */}
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Frequently Asked Questions (FAQs) for the Revolutionary Crypto
             Mining Rig

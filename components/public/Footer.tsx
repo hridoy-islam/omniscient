@@ -9,7 +9,7 @@ export default function Footer() {
     <div className="bg-black p-10 text-white">
       <div className="md:flex sm:flex-row gap-3 justify-between py-8 sm:space-y-6">
         <div className="md:w-1/2 sm:w-full space-y-2">
-          <Image src={whitelogo} alt="robofx" />
+          <Image src={"/logo.png"} alt="" width={200} height={100} />
           <p>
             As you reach the end of this page, remember that your journey with
             us is just beginning. At RoboFX, we are committed to fostering a
