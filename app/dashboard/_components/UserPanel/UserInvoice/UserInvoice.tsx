@@ -400,9 +400,9 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                     <div className="grid grid-cols-1 md:grid-cols-2 items-center mt-8">
                       <div>
                         <p className="text-gray-500">
-                          Robofx Trader
+                          Algopips
                           <br />
-                          13thStreet, 47 W 13th St, New York, NY 10011, USA
+                          Bayswater Tower Marasi Dr Business Bay - Dubai UAE
                         </p>
                       </div>
 
@@ -588,7 +588,7 @@ const UserInvoice = ({ invoices }: UserInvoiceProps) => {
                       <div className="flex flex-col md:flex-row gap-4">
                         <div className="md:border-r md:pr-4">
                           {" "}
-                          mining@robofxtrader.com
+                          mining@algopips.net
                         </div>
                         <div>+19292301920</div>
                       </div>

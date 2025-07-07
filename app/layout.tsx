@@ -27,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${nunito.variable} light`}>
       <head>
+        <link rel="icon" href="/robofxicon.png" type="image/png" />
         <title>Algo Pips</title>
       </head>
       <body>

@@ -12,12 +12,12 @@ export default function Footer() {
           <Image src={"/logo.png"} alt="" width={200} height={100} />
           <p>
             As you reach the end of this page, remember that your journey with
-            us is just beginning. At RoboFX, we are committed to fostering a
+            us is just beginning. At Algopips, we are committed to fostering a
             vibrant community of enthusiasts, professionals, and visionaries in
             the world of cryptocurrency mining. Stay connected with us for the
             latest updates, insights, and support. For queries, assistance, or
             sharing your own mining success stories, reach out to us at
-            support@robofxtrader.com. Together, let's embark on a path of
+            support@algopips.net. Together, let's embark on a path of
             innovation, efficiency, and unparalleled success in the exciting
             realm of crypto mining. Follow us on social media to be a part of
             our ever-growing family. Happy Mining!
@@ -27,13 +27,13 @@ export default function Footer() {
           <h2>Links</h2>
           <ul className="space-y-2">
             <li>
-              <Link href={"/"}>Support</Link>
+              <Link href={"support"}>Support</Link>
             </li>
             <li>
-              <Link href={"/"}>Contact Us</Link>
+              <Link href={"contact"}>Contact Us</Link>
             </li>
             <li>
-              <Link href={"/"}>Faq</Link>
+              <Link href={"faq"}>Faq</Link>
             </li>
           </ul>
         </div>
@@ -65,7 +65,7 @@ export default function Footer() {
       </div>
 
       <div className="md:flex justify-between sm:flex-row">
-        <p>© 2024 RoboFX All Rights Reserved</p>
+        <p>© 2025 Algopips All Rights Reserved</p>
         <ul className="flex gap-3">
           <li>
             <Link href="/">

@@ -10,7 +10,7 @@ export default function page() {
     <>
       <Header />
       <Breadcumb
-        tagline="Welcome to the RoboFX Support Center: Your Comprehensive Assistance Hub"
+        tagline="Welcome to the Algopips Support Center: Your Comprehensive Assistance Hub"
         title="Need Help?"
         subtitle="We've got your back!"
         description="Encountered a bump in your mining journey? No worries! Our quick solutions keep you mining without a hitch. From network checks to optimizing configurations, we've got you covered. Seamless mining is just a solution away. Mine on, stress-free! ⛏️💰`"

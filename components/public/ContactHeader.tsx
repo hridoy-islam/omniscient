@@ -8,7 +8,7 @@ export default function ContactHeader() {
           For assistance, questions, or feedback, please don't hesitate to
           contact our support team. We are committed to providing you with
           exceptional support and ensuring that your trading experience with
-          RoboFX is nothing short of excellent.
+          Algopips is nothing short of excellent.
         </p>
       </div>
     </div>

@@ -106,7 +106,7 @@ export default function Home() {
 
         {/* Right side */}
         <div className="w-full md:w-[45%] bg-white py-8 px-4 md:px-20 md:h-screen flex flex-col justify-center">
-          <Image src={roboxfxicon} alt="Robofx" className="mb-3" />
+          <Image src={roboxfxicon} alt="Algopips" className="mb-3" />
           <h1 className="font-semiBold text-3xl my-2">Hey, hello 👋</h1>
           <p className="font-bold text-sm text-textlight mb-5">
             Enter the information of your account.

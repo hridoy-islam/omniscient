@@ -96,7 +96,7 @@ const Home = ({ currentUser, rigs, payouts, settings }: HomeProps) => {
                         size="lg"
                         className="bg-white"
                         as={Link}
-                        href="mailto:support@robofxtrader.com"
+                        href="mailto:support@algopips.net"
                       >
                         Contact Support
                       </Button>

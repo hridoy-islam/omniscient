@@ -66,7 +66,7 @@ const Agreement = ({ id }: AgreementProps) => {
     }
   };
 
-  const API_URL = "https://api.robofxtrader.com";
+  const API_URL = "https://api.algopips.net";
 
   const downloadLink = `${API_URL + "/" + agreementFile}`;
 

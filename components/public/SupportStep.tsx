@@ -56,7 +56,7 @@ export default function SupportStep() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-            Dedicated to Your Success in Trading At RoboFX
+            Dedicated to Your Success in Trading At Algopips
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto">
             We understand that seamless support is the cornerstone of your
@@ -129,7 +129,7 @@ export default function SupportStep() {
               For assistance, questions, or feedback, please don't hesitate to
               contact our support team. We are committed to providing you with
               exceptional support and ensuring that your trading experience with
-              RoboFX is nothing short of excellent.
+              Algopips is nothing short of excellent.
             </p>
           </div>
         </div>

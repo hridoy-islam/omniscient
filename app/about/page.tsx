@@ -15,9 +15,9 @@ export default function page() {
       <Header />
       <Breadcumb
         tagline="About Us"
-        title="Crafting Success: Unveiling Our Story"
-        subtitle="It’s super simple — your mining rigs are already set up and running."
-        description="At RoboFX, we make crypto mining effortless. No complex setups, no technical headaches — just powerful, automated mining working for you 24/7. ⛏️💰"
+        title="Discover the Power Behind"
+        subtitle="Your Mining Success."
+        description="Learn about our mission, vision, and the cutting-edge technology that drives the future of cryptocurrency mining."
       />
       {/* <AboutHeader /> */}
       <Mining />

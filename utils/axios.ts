@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-const API_URL = "https://api.robofxtrader.com/api";
+const API_URL = "https://api.algopips.net/api";
 // const API_URL = "http://localhost:3001/api";
 
 const Axios: AxiosInstance = axios.create({

@@ -8,16 +8,16 @@ export async function POST(req: Request) {
   const { subject, name, email, department, priority, message } =
     await req.json();
   await resend.emails.send({
-    from: "mailing@robofxtrader.com",
+    from: "mailing@algopips.net",
     to: email,
-    subject: "RoboFX Trader",
+    subject: "Algopips",
     react: ContactEmail({ name }),
   });
 
   await resend.emails.send({
-    from: "mailing@robofxtrader.com",
+    from: "mailing@algopips.net",
     to: "ahasan2k@gmail.com",
-    subject: "RoboFX Trader",
+    subject: "Algopips",
     react: SupportEmail({
       subject,
       name,

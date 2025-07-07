@@ -78,10 +78,10 @@ export default function SupportForm() {
                     <Mail className="w-5 h-5 text-blue-600" />
                   </div>
                   <a
-                    href="mailto:support@robofxtrader.com"
+                    href="mailto:support@algopips.net"
                     className="text-blue-600 hover:text-blue-700 transition-colors font-medium"
                   >
-                    support@robofxtrader.com
+                    support@algopips.net
                   </a>
                 </div>
               </div>

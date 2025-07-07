@@ -5,8 +5,8 @@ export default function SupportHeader() {
         {/* Header Content */}
         <div className="text-center space-y-6 animate-fade-in-up">
           <p className="text-blue-600 font-semibold text-lg">
-            Welcome to the RoboFX Support Center: Your Comprehensive Assistance
-            Hub
+            Welcome to the Algopips Support Center: Your Comprehensive
+            Assistance Hub
           </p>
           <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
             Need Help?

@@ -19,7 +19,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
     }
   }, []);
 
-  const API_URL = "https://api.robofxtrader.com";
+  const API_URL = "https://api.algopips.net";
 
   const downloadLink = `${API_URL + "/" + agreement}`;
 

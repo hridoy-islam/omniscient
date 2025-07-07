@@ -51,7 +51,7 @@
 
 //             <div className="flex gap-2 items-center">
 //               <Icon icon="ic:baseline-email" className="text-primary text-lg" />
-//               <p>support@robofxtrader.com</p>
+//               <p>support@algopips.net</p>
 //             </div>
 
 //             {/* <div className="flex gap-2 items-center">
