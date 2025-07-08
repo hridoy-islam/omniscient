@@ -21,6 +21,7 @@ import {
   Award,
   ArrowRight,
 } from "lucide-react";
+import LiveResult from "@/components/LiveResult";
 
 export default function GetStartedPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -101,6 +102,8 @@ export default function GetStartedPage() {
         title="Get Started"
         subtitle="Launch your automated trading journey in just a few simple steps. Download your AI trading robot and start earning today."
       />
+
+      <LiveResult />
 
       {/* Success Message */}
       {isSubmitted && (

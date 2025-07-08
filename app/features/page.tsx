@@ -16,6 +16,7 @@ import {
   Sparkles,
   CheckCircle,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function FeaturesPage() {
   const features = [
@@ -293,14 +294,18 @@ export default function FeaturesPage() {
                 Algopips to automate their trading and maximize their profits.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <button className="btn-gradient text-white font-bold px-10 py-6 rounded-2xl text-lg shadow-blue-lg hover:shadow-blue group transition-all duration-200">
-                  Get Started Now
-                  <Zap className="w-6 h-6 ml-3 inline group-hover:scale-110 transition-transform" />
-                </button>
-                <button className="btn-outline-gradient text-gray-700 hover:text-blue-600 bg-white hover:bg-blue-50 font-bold px-10 py-6 rounded-2xl text-lg transition-all duration-200 group">
-                  <Shield className="w-6 h-6 mr-3 inline group-hover:scale-110 transition-transform" />
-                  View Live Results
-                </button>
+                <Link href={"getstarted"}>
+                  <button className="btn-gradient text-white font-bold px-10 py-6 rounded-2xl text-lg shadow-blue-lg hover:shadow-blue group transition-all duration-200">
+                    Get Started Now
+                    <Zap className="w-6 h-6 ml-3 inline group-hover:scale-110 transition-transform" />
+                  </button>
+                </Link>
+                <Link href={"getstarted"}>
+                  <button className="btn-outline-gradient text-gray-700 hover:text-blue-600 bg-white hover:bg-blue-50 font-bold px-10 py-6 rounded-2xl text-lg transition-all duration-200 group">
+                    <Shield className="w-6 h-6 mr-3 inline group-hover:scale-110 transition-transform" />
+                    View Live Results
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

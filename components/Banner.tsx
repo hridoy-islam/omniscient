@@ -10,6 +10,7 @@ import {
   Users,
   Award,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function Banner() {
   return (
@@ -114,17 +115,20 @@ export default function Banner() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button className="btn-gradient text-white font-bold px-10 py-6 rounded-2xl text-lg shadow-blue-lg hover:shadow-blue group relative overflow-hidden">
-                <span className="relative z-10 flex items-center">
-                  Get Started
-                  <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Button>
-
-              <Button className="btn-outline-gradient text-gray-700 hover:text-blue-600 font-bold px-10 py-6 rounded-2xl text-lg transition-all duration-200 group bg-white hover:bg-blue-50">
-                <Download className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-                Download AI Robot
-              </Button>
+              <Link href={"getstarted"}>
+                <Button className="btn-gradient text-white font-bold px-10 py-6 rounded-2xl text-lg shadow-blue-lg hover:shadow-blue group relative overflow-hidden">
+                  <span className="relative z-10 flex items-center">
+                    Get Started
+                    <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Button>
+              </Link>
+              <Link href={"getstarted"}>
+                <Button className="btn-outline-gradient text-gray-700 hover:text-blue-600 font-bold px-10 py-6 rounded-2xl text-lg transition-all duration-200 group bg-white hover:bg-blue-50">
+                  <Download className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
+                  Download AI Robot
+                </Button>
+              </Link>
             </div>
 
             {/* Stats */}

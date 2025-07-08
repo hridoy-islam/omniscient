@@ -7,6 +7,7 @@ import {
   Award,
   ExternalLink,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function LiveResult() {
   return (
@@ -34,7 +35,7 @@ export default function LiveResult() {
 
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
                 <p>
-                  Myfxbook is a automated online trading tool that enables
+                  Algopips is a automated online trading tool that enables
                   traders to evaluate, analyse, share and compare their trading
                   strategies and trading account performance.
                 </p>
@@ -108,11 +109,13 @@ export default function LiveResult() {
 
             {/* CTA Button */}
             <div className="pt-8">
-              <Button className="btn-gradient text-white font-bold px-10 py-6 rounded-2xl text-lg shadow-blue-lg hover:shadow-blue group">
-                <TrendingUp className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-                View Live Results
-                <ExternalLink className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Link href={"getstarted"}>
+                <Button className="btn-gradient text-white font-bold px-10 py-6 rounded-2xl text-lg shadow-blue-lg hover:shadow-blue group">
+                  <TrendingUp className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
+                  View Live Results
+                  <ExternalLink className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

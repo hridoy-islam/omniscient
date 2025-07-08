@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import HeaderTop from "@/components/HeaderTop";
 import HowToWork from "@/components/HowToWork";
-import LiveResult from "@/components/LiveResult";
 import OfficeLocations from "@/components/OfficeLocations";
 import Pricing from "@/components/Pricing";
 import RobotAnalyze from "@/components/RobotAnalyze";
@@ -20,7 +19,6 @@ export default function Page() {
       <Advantages />
       <HowToWork />
       <RobotAnalyze />
-      <LiveResult />
       <Faq />
       <Pricing />
       <Testimonial />

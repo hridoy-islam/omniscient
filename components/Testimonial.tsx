@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Testimonial() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -166,7 +167,7 @@ export default function Testimonial() {
                 <div
                   className={`w-12 h-12 bg-gradient-${testimonial.color} rounded-full flex items-center justify-center`}
                 >
-                  <span className="text-white font-bold">
+                  <span className={` text-white font-bold`}>
                     {testimonial.name.charAt(0)}
                   </span>
                 </div>
@@ -196,9 +197,11 @@ export default function Testimonial() {
               to become part of this thriving community and create your own
               success story!
             </p>
-            <button className="btn-gradient text-white font-bold px-8 py-4 rounded-xl shadow-blue hover:shadow-blue-lg transition-all duration-200">
-              Start Your Success Story
-            </button>
+            <Link href={"getstarted"}>
+              <button className="btn-gradient text-white font-bold px-8 py-4 rounded-xl shadow-blue hover:shadow-blue-lg transition-all duration-200">
+                Start Your Success Story
+              </button>
+            </Link>
           </div>
         </div>
       </div>

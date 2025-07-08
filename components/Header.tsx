@@ -45,7 +45,9 @@ export default function Header() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Image src="/logo.png" alt="" width={200} height={100} />
+            <Link href={"/"}>
+              <Image src="/logo.png" alt="" width={200} height={100} />
+            </Link>
             {/* <div className="flex items-center space-x-3">
               <div className="relative">
                 <div className="w-12 h-12 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-lg">
@@ -88,9 +90,11 @@ export default function Header() {
               </div>
 
               {/* CTA Button */}
-              <Button className="btn-gradient text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-blue-500/25 hidden md:block">
-                Start Trading
-              </Button>
+              <Link href={"getstarted"}>
+                <Button className="btn-gradient text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-blue-500/25 hidden md:block">
+                  Start Trading
+                </Button>
+              </Link>
 
               {/* Mobile Menu Button */}
               <button
@@ -166,14 +170,15 @@ export default function Header() {
 
           {/* Menu Footer */}
           <div className="absolute bottom-6 left-6 right-6">
-            <Link href={"contact"}>
+            <Link href={"getstarted"}>
               <Button className="w-full btn-gradient text-white font-bold py-4 rounded-xl shadow-lg">
-                Start Trading Now
+                Start Trading
               </Button>
             </Link>
+
             <div className="flex items-center justify-center space-x-2 mt-4 text-slate-400 text-sm">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span>Live Trading Active</span>
+              <span>Live Trading</span>
             </div>
           </div>
         </div>

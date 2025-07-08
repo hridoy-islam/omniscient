@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Check, TrendingUp, Star, Crown } from "lucide-react";
+import Link from "next/link";
 
 export default function Pricing() {
   const plans = [
@@ -113,15 +114,17 @@ export default function Pricing() {
               </div>
 
               {/* CTA Button */}
-              <Button
-                className={`w-full py-6 rounded-2xl font-bold text-lg transition-all duration-200 ${
-                  plan.popular
-                    ? "btn-gradient text-white shadow-blue-lg hover:shadow-blue"
-                    : "btn-outline-gradient text-gray-700 hover:text-blue-600 bg-white hover:bg-blue-50"
-                }`}
-              >
-                Get Started
-              </Button>
+              <Link href={"getstarted"}>
+                <Button
+                  className={`w-full py-6 rounded-2xl font-bold text-lg transition-all duration-200 ${
+                    plan.popular
+                      ? "btn-gradient text-white shadow-blue-lg hover:shadow-blue"
+                      : "btn-outline-gradient text-gray-700 hover:text-blue-600 bg-white hover:bg-blue-50"
+                  }`}
+                >
+                  Get Started
+                </Button>
+              </Link>
 
               {/* Background Glow */}
               {plan.popular && (

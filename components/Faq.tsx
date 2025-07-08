@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ChevronDown, HelpCircle, MessageCircle } from "lucide-react";
+import Link from "next/link";
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -116,9 +117,11 @@ export default function Faq() {
               <p className="text-gray-600 mb-6">
                 Our support team is here to help you 24/7
               </p>
-              <button className="btn-gradient text-white font-bold px-8 py-4 rounded-xl shadow-blue hover:shadow-blue-lg transition-all duration-200">
-                Contact Support
-              </button>
+              <Link href={"contact"}>
+                <button className="btn-gradient text-white font-bold px-8 py-4 rounded-xl shadow-blue hover:shadow-blue-lg transition-all duration-200">
+                  Contact Support
+                </button>
+              </Link>
             </div>
           </div>
         </div>
