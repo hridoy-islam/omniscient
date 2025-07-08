@@ -1,47 +1,31 @@
 "use client";
-import AppView from "@/components/public/AppView";
-import Banner from "@/components/public/Banner";
-import Contact from "@/components/public/Contact";
-import Faq from "@/components/public/Faq";
-import Footer from "@/components/public/Footer";
-import Mining from "@/components/public/Mining";
-import Pricing from "@/components/public/Pricing";
-import Product from "@/components/public/Product";
-import Testimonial from "@/components/public/Testimonial";
-import WhyChooseUs from "@/components/public/WhyChooseUs";
-import { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
-import Cookies from "universal-cookie";
-import { DecodedToken } from "@/utils/interfaces";
-import { useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
+import Advantages from "@/components/Advantages";
+import Banner from "@/components/Banner";
+import Faq from "@/components/Faq";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import HeaderTop from "@/components/HeaderTop";
+import HowToWork from "@/components/HowToWork";
+import LiveResult from "@/components/LiveResult";
+import OfficeLocations from "@/components/OfficeLocations";
+import Pricing from "@/components/Pricing";
+import RobotAnalyze from "@/components/RobotAnalyze";
+import Testimonial from "@/components/Testimonial";
 
-const Header = dynamic(() => import("@/components/public/Header"), {
-  ssr: false,
-});
-
-export default function page() {
-  const router = useRouter();
-  const cookie = new Cookies();
-  const token = cookie.get("jwt");
-  let decoded: DecodedToken;
-  if (token) {
-    decoded = jwtDecode(token) as DecodedToken;
-  }
-
+export default function Page() {
   return (
-    <>
+    <div className="min-h-screen bg-white">
       <Header />
       <Banner />
-      <Mining />
-      <Pricing />
-      <AppView />
-      <Product />
-      <WhyChooseUs />
+      <Advantages />
+      <HowToWork />
+      <RobotAnalyze />
+      <LiveResult />
       <Faq />
+      <Pricing />
       <Testimonial />
-      <Contact />
+      <OfficeLocations />
       <Footer />
-    </>
+    </div>
   );
 }
