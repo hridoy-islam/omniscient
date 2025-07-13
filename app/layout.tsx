@@ -5,6 +5,8 @@ import { Providers } from "./providers";
 import { Toaster } from "react-hot-toast";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
+import { ModalProvider } from "@/context/ModalContext";
+import GlobalModal from "@/components/GlobalModal";
 
 export const dynamic = "force-dynamic";
 
@@ -31,8 +33,14 @@ export default function RootLayout({
         <title>Algo Pips</title>
       </head>
       <body>
-        <Providers>{children}</Providers>
-        <Toaster />
+        <ModalProvider>
+          <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+            {children}
+          </div>
+          <GlobalModal />
+          <Toaster />
+        </ModalProvider>
+        {/* <Providers>{children}</Providers> */}
       </body>
     </html>
   );

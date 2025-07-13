@@ -13,9 +13,11 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useModal } from "@/context/ModalContext";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { openModal } = useModal();
 
   const navItems = [
     { name: "Home", href: "/", icon: <Home className="w-5 h-5" /> },
@@ -82,7 +84,18 @@ export default function Header() {
             {/* Right Section */}
             <div className="flex items-center space-x-4">
               {/* Status Indicator */}
-              <div className="hidden md:flex items-center space-x-2 glass rounded-full px-4 py-2">
+              <div
+                onClick={() =>
+                  openModal({
+                    title: "Get Started with AI Trading",
+                    subtitle:
+                      "Download your trading robot and start your automated trading journey",
+                    buttonText: "Start Trading Now",
+                    type: "download",
+                  })
+                }
+                className="hidden md:flex items-center space-x-2 glass rounded-full px-4 py-2"
+              >
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                 <span className="text-white text-sm font-medium">
                   Live Trading
@@ -90,11 +103,21 @@ export default function Header() {
               </div>
 
               {/* CTA Button */}
-              <Link href={"getstarted"}>
-                <Button className="btn-gradient text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-blue-500/25 hidden md:block">
-                  Start Trading
-                </Button>
-              </Link>
+
+              <Button
+                onClick={() =>
+                  openModal({
+                    title: "Get Started with AI Trading",
+                    subtitle:
+                      "Download your trading robot and start your automated trading journey",
+                    buttonText: "Start Trading Now",
+                    type: "download",
+                  })
+                }
+                className="btn-gradient text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-blue-500/25 hidden md:block"
+              >
+                Start Trading
+              </Button>
 
               {/* Mobile Menu Button */}
               <button
@@ -170,11 +193,20 @@ export default function Header() {
 
           {/* Menu Footer */}
           <div className="absolute bottom-6 left-6 right-6">
-            <Link href={"getstarted"}>
-              <Button className="w-full btn-gradient text-white font-bold py-4 rounded-xl shadow-lg">
-                Start Trading
-              </Button>
-            </Link>
+            <Button
+              onClick={() =>
+                openModal({
+                  title: "Get Started with AI Trading",
+                  subtitle:
+                    "Download your trading robot and start your automated trading journey",
+                  buttonText: "Start Trading Now",
+                  type: "download",
+                })
+              }
+              className="w-full btn-gradient text-white font-bold py-4 rounded-xl shadow-lg"
+            >
+              Start Trading
+            </Button>
 
             <div className="flex items-center justify-center space-x-2 mt-4 text-slate-400 text-sm">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>

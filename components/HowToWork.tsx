@@ -1,5 +1,6 @@
 "use client";
 import { Check, Cog, TrendingUp, Shield, Zap } from "lucide-react";
+import Image from "next/image";
 
 export default function HowToWork() {
   const features = [
@@ -68,70 +69,11 @@ export default function HowToWork() {
               {/* Main Card */}
               <div className="glass-white rounded-3xl p-8 shadow-blue-lg border border-gray-100">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    Trading Dashboard
-                  </h3>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-green-600 font-semibold text-sm">
-                      Live
-                    </span>
-                  </div>
-                </div>
-
-                {/* Stats Grid */}
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  <div className="bg-blue-50 rounded-2xl p-4 text-center">
-                    <TrendingUp className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                    <div className="text-2xl font-black text-blue-600">
-                      +24.5%
-                    </div>
-                    <div className="text-gray-600 text-sm font-medium">
-                      Today's Profit
-                    </div>
-                  </div>
-                  <div className="bg-purple-50 rounded-2xl p-4 text-center">
-                    <Shield className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-                    <div className="text-2xl font-black text-purple-600">
-                      99.9%
-                    </div>
-                    <div className="text-gray-600 text-sm font-medium">
-                      Success Rate
-                    </div>
-                  </div>
-                </div>
-
-                {/* Activity Feed */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-green-50 rounded-xl">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-gray-700 font-medium">
-                        EUR/USD Buy
-                      </span>
-                    </div>
-                    <span className="text-green-600 font-bold">+$245</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-blue-50 rounded-xl">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <span className="text-gray-700 font-medium">
-                        GBP/USD Sell
-                      </span>
-                    </div>
-                    <span className="text-blue-600 font-bold">+$189</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-purple-50 rounded-xl">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      <span className="text-gray-700 font-medium">
-                        USD/JPY Buy
-                      </span>
-                    </div>
-                    <span className="text-purple-600 font-bold">+$156</span>
-                  </div>
-                </div>
+                <img
+                  src={"/trending.png"}
+                  alt=""
+                  className="rounded-xl w-full h-auto"
+                />
               </div>
 
               {/* Floating Elements */}

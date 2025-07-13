@@ -1,9 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { useModal } from "@/context/ModalContext";
 import { Check, TrendingUp, Star, Crown } from "lucide-react";
 import Link from "next/link";
 
 export default function Pricing() {
+  const { openModal } = useModal();
   const plans = [
     {
       title: "Price Discussion",
@@ -114,17 +116,25 @@ export default function Pricing() {
               </div>
 
               {/* CTA Button */}
-              <Link href={"getstarted"}>
-                <Button
-                  className={`w-full py-6 rounded-2xl font-bold text-lg transition-all duration-200 ${
-                    plan.popular
-                      ? "btn-gradient text-white shadow-blue-lg hover:shadow-blue"
-                      : "btn-outline-gradient text-gray-700 hover:text-blue-600 bg-white hover:bg-blue-50"
-                  }`}
-                >
-                  Get Started
-                </Button>
-              </Link>
+
+              <Button
+                onClick={() =>
+                  openModal({
+                    title: "Get Started with AI Trading",
+                    subtitle:
+                      "Download your trading robot and start your automated trading journey",
+                    buttonText: "Start Trading Now",
+                    type: "download",
+                  })
+                }
+                className={`w-full py-6 rounded-2xl font-bold text-lg transition-all duration-200 ${
+                  plan.popular
+                    ? "btn-gradient text-white shadow-blue-lg hover:shadow-blue"
+                    : "btn-outline-gradient text-gray-700 hover:text-blue-600 bg-white hover:bg-blue-50"
+                }`}
+              >
+                Get Started
+              </Button>
 
               {/* Background Glow */}
               {plan.popular && (
@@ -132,16 +142,6 @@ export default function Pricing() {
               )}
             </div>
           ))}
-        </div>
-
-        {/* Bottom Note */}
-        <div className="text-center mt-12">
-          <div className="glass-blue rounded-2xl p-6 max-w-2xl mx-auto shadow-blue">
-            <p className="text-blue-700 font-medium">
-              💡 <strong>Note:</strong> All plans include lifetime support and
-              free updates. Contact us for custom enterprise solutions.
-            </p>
-          </div>
         </div>
       </div>
     </section>

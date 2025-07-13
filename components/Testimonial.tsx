@@ -2,43 +2,41 @@
 import { useState } from "react";
 import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useModal } from "@/context/ModalContext";
 
 export default function Testimonial() {
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const { openModal } = useModal();
   const testimonials = [
     {
-      name: "Mahmudul Hasan",
-      role: "Forex Trader",
-      location: "Bangladesh",
-      image: "/placeholder.svg?height=80&width=80",
+      name: "Omar Al-Farsi",
+      role: "Financial Consultant",
+      location: "Dubai",
       quote:
-        "Beyond Expectations!! - I was skeptical at first, but this robot has surpassed all my expectations. The energy efficiency and sleek design have made trading both cost-effective and enjoyable. A big thumbs up!",
+        "Elite Performance & Simplicity – This trading bot fits perfectly into my fast-paced lifestyle. Setup was smooth, and the ROI speaks for itself. I highly recommend it to professionals seeking a solid edge.",
       rating: 5,
-      profit: "+$12,450",
-      color: "blue",
+      profit: "+$11,670",
+      color: "gold",
     },
     {
-      name: "Vikram Singh",
-      role: "Professional Trader",
-      location: "India",
-      image: "/placeholder.svg?height=80&width=80",
+      name: "Samantha Lim",
+      role: "Algo Trading Specialist",
+      location: "Singapore",
       quote:
-        "Trading Made Simple and Rewarding! - As someone who's constantly on the move, I needed a trading solution that was compact and easy to manage. This robot delivered that and more. It's like having a reliable trading companion wherever I go.",
+        "Precision-Driven & Secure – I was impressed by how efficiently the bot adapts to market changes. The security features are top-tier, and profits have been consistent week after week.",
       rating: 5,
-      profit: "+$8,920",
-      color: "purple",
+      profit: "+$13,940",
+      color: "emerald",
     },
     {
-      name: "Neha Patel",
-      role: "Investment Analyst",
-      location: "UK",
-      image: "/placeholder.svg?height=80&width=80",
+      name: "Anan Surasak",
+      role: "Independent Trader",
+      location: "Thailand",
       quote:
-        "Security and Performance in One! - The advanced security features give me peace of mind, knowing my trading activities are safe. Coupled with its high performance, this robot is truly a stellar investment.",
+        "User-Friendly and Powerful – I didn’t expect a trading bot to be this easy to use. It’s perfect for solo traders like me who want automation without losing control.",
       rating: 5,
-      profit: "+$15,680",
-      color: "indigo",
+      profit: "+$9,230",
+      color: "cyan",
     },
   ];
 
@@ -197,11 +195,21 @@ export default function Testimonial() {
               to become part of this thriving community and create your own
               success story!
             </p>
-            <Link href={"getstarted"}>
-              <button className="btn-gradient text-white font-bold px-8 py-4 rounded-xl shadow-blue hover:shadow-blue-lg transition-all duration-200">
-                Start Your Success Story
-              </button>
-            </Link>
+
+            <button
+              onClick={() =>
+                openModal({
+                  title: "Get Started with AI Trading",
+                  subtitle:
+                    "Download your trading robot and start your automated trading journey",
+                  buttonText: "Start Trading Now",
+                  type: "download",
+                })
+              }
+              className="btn-gradient text-white font-bold px-8 py-4 rounded-xl shadow-blue hover:shadow-blue-lg transition-all duration-200"
+            >
+              Start Your Success Story
+            </button>
           </div>
         </div>
       </div>

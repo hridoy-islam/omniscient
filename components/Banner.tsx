@@ -11,8 +11,11 @@ import {
   Award,
 } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import { useModal } from "@/context/ModalContext";
 
 export default function Banner() {
+  const { openModal } = useModal();
   return (
     <section className="relative min-h-screen flex items-center bg-white overflow-hidden">
       {/* Background Pattern */}
@@ -115,20 +118,39 @@ export default function Banner() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link href={"getstarted"}>
-                <Button className="btn-gradient text-white font-bold px-10 py-6 rounded-2xl text-lg shadow-blue-lg hover:shadow-blue group relative overflow-hidden">
-                  <span className="relative z-10 flex items-center">
-                    Get Started
-                    <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Button>
-              </Link>
-              <Link href={"getstarted"}>
-                <Button className="btn-outline-gradient text-gray-700 hover:text-blue-600 font-bold px-10 py-6 rounded-2xl text-lg transition-all duration-200 group bg-white hover:bg-blue-50">
-                  <Download className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-                  Download AI Robot
-                </Button>
-              </Link>
+              <Button
+                onClick={() =>
+                  openModal({
+                    title: "Get Started with AI Trading",
+                    subtitle:
+                      "Download your trading robot and start your automated trading journey",
+                    buttonText: "Start Trading Now",
+                    type: "download",
+                  })
+                }
+                className="btn-gradient text-white font-bold px-10 py-6 rounded-2xl text-lg shadow-blue-lg hover:shadow-blue group relative overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center">
+                  Get Started
+                  <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Button>
+
+              <Button
+                onClick={() =>
+                  openModal({
+                    title: "Get Started with AI Trading",
+                    subtitle:
+                      "Download your trading robot and start your automated trading journey",
+                    buttonText: "Start Trading Now",
+                    type: "download",
+                  })
+                }
+                className="btn-outline-gradient text-gray-700 hover:text-blue-600 font-bold px-10 py-6 rounded-2xl text-lg transition-all duration-200 group bg-white hover:bg-blue-50"
+              >
+                <Download className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
+                Download AI Robot
+              </Button>
             </div>
 
             {/* Stats */}
@@ -161,7 +183,7 @@ export default function Banner() {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 rounded-full blur-3xl scale-110 opacity-60"></div>
 
               {/* Robot Container */}
-              <div className="relative z-10 glass-white rounded-3xl p-8 shadow-blue-lg">
+              <div className="relative z-10 rounded-3xl p-8 shadow-blue-lg">
                 <Image
                   src="/robo.png"
                   alt="Algopips"
