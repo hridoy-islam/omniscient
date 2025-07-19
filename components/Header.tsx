@@ -162,7 +162,7 @@ export default function Header() {
                 <span className="text-white font-bold text-lg">R</span>
               </div>
               <div>
-                <div className="text-white font-bold text-lg">RoboFX</div>
+                <div className="text-white font-bold text-lg">Algopips</div>
                 <div className="text-blue-400 text-xs">AI Trader</div>
               </div>
             </div>

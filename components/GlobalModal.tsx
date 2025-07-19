@@ -394,7 +394,7 @@
 //                     htmlFor="modal-consent"
 //                     className="text-gray-600 text-sm leading-relaxed"
 //                   >
-//                     I agree to receive communications from RoboFX Trader
+//                     I agree to receive communications from algopips
 //                     including setup instructions, trading tips, and product
 //                     updates. I understand I can unsubscribe at any time.
 //                   </label>
@@ -845,7 +845,7 @@ export default function GlobalModal() {
                       htmlFor="modal-consent"
                       className="text-gray-600 text-sm leading-relaxed"
                     >
-                      I agree to receive communications from RoboFX Trader
+                      I agree to receive communications from algopips
                       including setup instructions, trading tips, and product
                       updates. I understand I can unsubscribe at any time.
                     </label>

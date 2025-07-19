@@ -375,7 +375,7 @@ export default function GetStarted() {
                   href="tel:+1-800-ROBOFX"
                   className="text-blue-600 hover:text-blue-700 transition-colors"
                 >
-                  +1-800-ROBOFX
+                  +1-800-algopips
                 </a>
               </p>
             </div>

@@ -1,5 +1,5 @@
 "use client";
-import { Clock, Mail, MapPin } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -131,6 +131,15 @@ export default function Footer() {
                     <div>Business Bay, Dubai</div>
                     <div>UAE</div>
                   </div>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Phone className="w-4 h-4 text-emerald-400" />
+                  <a
+                    href="tel:971542819321"
+                    className="text-slate-300 hover:text-emerald-400 transition-colors text-sm"
+                  >
+                    +971542819321
+                  </a>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="w-4 h-4 text-emerald-400" />

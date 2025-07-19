@@ -1,59 +1,85 @@
 "use client";
-import {
-  MapPin,
-  ArrowRight,
-  Building2,
-  Globe,
-  Phone,
-  Mail,
-  Clock,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MapPin, Building2, Globe } from "lucide-react";
 
 export default function OfficeLocations() {
   const locations = [
     {
       name: "Dubai",
       country: "United Arab Emirates",
-      softwares: "100+",
-      clients: "500+",
-      description: "Middle East Hub",
+      address: "Bayswater Tower, Marasi Dr, Business Bay, Dubai UAE",
+      phone: "+971542819321",
+      email: "dubai@robofx.com",
       timezone: "GMT+4",
-      phone: "+971-4-XXX-XXXX",
-      email: "dubai@algopips.net",
+      description: "Middle East Hub",
       position: "top-1/4 right-1/3",
       features: ["24/7 Support", "Local Expertise", "Arabic Support"],
       gradient: "from-orange-500 to-red-500",
+      mapPosition: { top: "47%", left: "51%" },
     },
     {
       name: "Singapore",
       country: "Singapore",
-      softwares: "150+",
-      clients: "750+",
-      description: "Asia-Pacific Center",
-      timezone: "GMT+8",
+      address:
+        "Business Office Services, 61 Robinson Road #13-01A, Robinson Centre",
       phone: "+65-XXXX-XXXX",
-      email: "singapore@algopips.net",
+      email: "singapore@robofx.com",
+      timezone: "GMT+8",
+      description: "Asia-Pacific Center",
       position: "top-1/2 right-1/4",
       features: ["Multi-Currency", "Regional Markets", "Expert Analysis"],
       gradient: "from-blue-500 to-purple-500",
+      mapPosition: { top: "61%", left: "76%" },
     },
     {
-      name: "Thailand",
-      country: "Thailand",
-      softwares: "200+",
-      clients: "1000+",
+      name: "Malaysia",
+      country: "Malaysia",
+      address: "Menara HLX, KL City Centre, KLCC, Kuala Lumpur, Bukit Bintang",
+      phone: "+60-XXX-XXX-XXXX",
+      email: "malaysia@robofx.com",
+      timezone: "GMT+8",
       description: "Southeast Asia Gateway",
-      timezone: "GMT+7",
-      phone: "+1-XXX-XXX-XXXX",
-      email: "newyork@algopips.net",
       position: "top-1/3 left-1/4",
       features: [
-        "Thai Language Support",
+        "Malaysian Support",
         "Regional Integration",
         "Live Trading Workshops",
       ],
       gradient: "from-indigo-500 to-cyan-500",
+      mapPosition: { top: "58.5%", left: "68%" },
+    },
+    {
+      name: "United Kingdom",
+      country: "United Kingdom",
+      address: "34A Jewry Street, Winchester, Hampshire SO23",
+      phone: "+44-XXX-XXX-XXXX",
+      email: "uk@robofx.com",
+      timezone: "GMT+0",
+      description: "European Operations",
+      position: "top-1/4 left-1/3",
+      features: [
+        "European Markets",
+        "Regulatory Compliance",
+        "Multi-Language Support",
+      ],
+      gradient: "from-green-500 to-blue-500",
+      mapPosition: { top: "34%", left: "36.5%" },
+    },
+    {
+      name: "United States",
+      country: "United States",
+      address: "530 Fifth Ave, New York, NY 10036",
+      phone: "+1-XXX-XXX-XXXX",
+      email: "usa@robofx.com",
+      timezone: "GMT-5",
+      description: "North America Headquarters",
+      position: "top-1/3 left-1/2",
+      features: [
+        "US Market Access",
+        "Regulatory Standards",
+        "English & Spanish Support",
+      ],
+      gradient: "from-red-600 to-blue-600",
+      mapPosition: { top: "42%", left: "19%" },
     },
   ];
 
@@ -84,6 +110,53 @@ export default function OfficeLocations() {
           </p>
         </div>
 
+        {/* World Map Container */}
+        <div className="relative h-[32rem] rounded-3xl overflow-hidden border border-slate-700/50">
+          {/* 📍 Realistic World Map Background */}
+          <img
+            src="/map.png" // Use your desired map: PNG, SVG, or WebP
+            alt="World Map"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+
+          {/* 🔲 Optional Grid Overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(102,126,234,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(102,126,234,0.1)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none"></div>
+
+          {/* 📌 Location Pins */}
+          {locations.map((location, index) => (
+            <div
+              key={index}
+              className="absolute group cursor-pointer"
+              style={{
+                top: location.mapPosition.top,
+                left: location.mapPosition.left,
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              {/* Pin */}
+              <div className="relative">
+                <div className="w-6 h-6 bg-gradient-primary rounded-full border-4 border-white shadow-lg animate-pulse group-hover:scale-125 transition-transform"></div>
+                <div className="absolute top-0 left-0 w-6 h-6 bg-gradient-primary rounded-full animate-ping"></div>
+              </div>
+
+              {/* Location Name */}
+              <div className="text-white font-bold text-sm mt-1 text-center">
+                {location.name}
+              </div>
+
+              {/* Tooltip */}
+              <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                <div className="glass rounded-xl p-3 min-w-48 max-w-xs text-sm">
+                  <div className="text-white font-semibold">
+                    {location.name}
+                  </div>
+                  <div className="text-slate-300">{location.address}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         {/* Location Cards */}
         <div className="grid md:grid-cols-3 gap-8">
           {locations.map((location, index) => (
@@ -108,6 +181,11 @@ export default function OfficeLocations() {
                   <Building2 className="w-6 h-6 text-white" />
                 </div>
               </div>
+              <div className="mb-4">
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  {location.address}
+                </p>
+              </div>
 
               {/* Features */}
               <div className="space-y-2 mb-6">
@@ -122,7 +200,6 @@ export default function OfficeLocations() {
                 ))}
               </div>
 
-              {/* Hover Glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
             </div>
           ))}

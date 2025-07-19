@@ -1,65 +1,110 @@
 "use client";
 import BreadCumb from "@/components/BreadCumb";
 import Header from "@/components/Header";
-import HeaderTop from "@/components/HeaderTop";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import {
   Mail,
-  Clock,
   Phone,
   Send,
   Building2,
-  Globe,
   MessageCircle,
   Calendar,
-  Users,
   Headphones,
+  MapPin,
 } from "lucide-react";
 
 export default function ContactPage() {
   const offices = [
     {
-      name: "New York (HQ)",
-      address: "13thStreet, 47 W 13th St\nNew York, NY 10011, USA",
-      phone: "+1-800-ROBOFX",
-      email: "newyork@algopips.net",
-      timezone: "EST (GMT-5)",
-      hours: "24/7 Available",
-      color: "blue",
-      isHQ: true,
+      name: "Dubai",
+      country: "United Arab Emirates",
+      address: "Bayswater Tower, Marasi Dr, Business Bay, Dubai UAE",
+      phone: "+971542819321",
+      email: "dubai@robofx.com",
+      timezone: "GMT+4",
+      description: "Middle East Hub",
+      position: "top-1/4 right-1/3",
+      features: ["24/7 Support", "Local Expertise", "Arabic Support"],
+      gradient: "from-orange-500 to-red-500",
+      mapPosition: { top: "47%", left: "51%" },
     },
     {
-      name: "Dubai Office",
-      address: "Business Bay\nDubai, UAE",
-      phone: "+971-4-XXX-XXXX",
-      email: "dubai@algopips.net",
-      timezone: "GST (GMT+4)",
-      hours: "Sun-Thu: 9AM-6PM",
-      color: "purple",
-      isHQ: false,
-    },
-    {
-      name: "Singapore Office",
-      address: "Marina Bay\nSingapore",
+      name: "Singapore",
+      country: "Singapore",
+      address:
+        "Business Office Services, 61 Robinson Road #13-01A, Robinson Centre",
       phone: "+65-XXXX-XXXX",
-      email: "singapore@algopips.net",
-      timezone: "SGT (GMT+8)",
-      hours: "Mon-Fri: 9AM-6PM",
-      color: "indigo",
-      isHQ: false,
+      email: "singapore@robofx.com",
+      timezone: "GMT+8",
+      description: "Asia-Pacific Center",
+      position: "top-1/2 right-1/4",
+      features: ["Multi-Currency", "Regional Markets", "Expert Analysis"],
+      gradient: "from-blue-500 to-purple-500",
+      mapPosition: { top: "61%", left: "76%" },
+    },
+    {
+      name: "Malaysia",
+      country: "Malaysia",
+      address: "Menara HLX, KL City Centre, KLCC, Kuala Lumpur, Bukit Bintang",
+      phone: "+60-XXX-XXX-XXXX",
+      email: "malaysia@robofx.com",
+      timezone: "GMT+8",
+      description: "Southeast Asia Gateway",
+      position: "top-1/3 left-1/4",
+      features: [
+        "Malaysian Support",
+        "Regional Integration",
+        "Live Trading Workshops",
+      ],
+      gradient: "from-indigo-500 to-cyan-500",
+      mapPosition: { top: "58.5%", left: "68%" },
+    },
+    {
+      name: "United Kingdom",
+      country: "United Kingdom",
+      address: "34A Jewry Street, Winchester, Hampshire SO23",
+      phone: "+44-XXX-XXX-XXXX",
+      email: "uk@robofx.com",
+      timezone: "GMT+0",
+      description: "European Operations",
+      position: "top-1/4 left-1/3",
+      features: [
+        "European Markets",
+        "Regulatory Compliance",
+        "Multi-Language Support",
+      ],
+      gradient: "from-green-500 to-blue-500",
+      mapPosition: { top: "34%", left: "36.5%" },
+    },
+    {
+      name: "United States",
+      country: "United States",
+      address: "530 Fifth Ave, New York, NY 10036",
+      phone: "+1-XXX-XXX-XXXX",
+      email: "usa@robofx.com",
+      timezone: "GMT-5",
+      description: "North America Headquarters",
+      position: "top-1/3 left-1/2",
+      features: [
+        "US Market Access",
+        "Regulatory Standards",
+        "English & Spanish Support",
+      ],
+      gradient: "from-red-600 to-blue-600",
+      mapPosition: { top: "42%", left: "19%" },
     },
   ];
 
   const contactMethods = [
-    // {
-    //   icon: <Phone className="w-8 h-8 text-green-600" />,
-    //   title: "Phone Support",
-    //   description: "Speak directly with our experts",
-    //   contact: "+1-800-ROBOFX",
-    //   availability: "24/7 Available",
-    //   color: "green",
-    // },
+    {
+      icon: <Phone className="w-8 h-8 text-green-600" />,
+      title: "Phone Support",
+      description: "Speak directly with our experts",
+      contact: "+971542819321",
+      availability: "24/7 Available",
+      color: "green",
+    },
     {
       icon: <Mail className="w-8 h-8 text-blue-600" />,
       title: "Email Support",
@@ -68,14 +113,14 @@ export default function ContactPage() {
       availability: "Response within 2 hours",
       color: "blue",
     },
-    {
-      icon: <MessageCircle className="w-8 h-8 text-purple-600" />,
-      title: "Live Chat",
-      description: "Get instant help from our team",
-      contact: "Start Chat",
-      availability: "Available 24/7",
-      color: "purple",
-    },
+    // {
+    //   icon: <MessageCircle className="w-8 h-8 text-purple-600" />,
+    //   title: "Live Chat",
+    //   description: "Get instant help from our team",
+    //   contact: "Start Chat",
+    //   availability: "Available 24/7",
+    //   color: "purple",
+    // },
     {
       icon: <Calendar className="w-8 h-8 text-indigo-600" />,
       title: "Schedule Meeting",
@@ -277,7 +322,7 @@ export default function ContactPage() {
                       htmlFor="consent"
                       className="text-gray-600 text-sm leading-relaxed"
                     >
-                      I agree to receive communications from RoboFX Trader and
+                      I agree to receive communications from algopips and
                       understand that I can unsubscribe at any time.
                     </label>
                   </div>
@@ -313,64 +358,20 @@ export default function ContactPage() {
                 {offices.map((office, index) => (
                   <div
                     key={index}
-                    className="glass-white rounded-3xl p-8 shadow-blue border border-gray-100 hover:border-blue-200 transition-all duration-300 card-hover"
+                    className="glass-white rounded-3xl p-6 shadow-blue border border-gray-100 hover:border-blue-200 transition-all duration-300 card-hover"
                   >
-                    <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-start justify-between mb-2">
                       <div>
                         <div className="flex items-center space-x-3 mb-2">
                           <h3 className="text-2xl font-bold text-gray-900">
                             {office.name}
                           </h3>
-                          {office.isHQ && (
-                            <span className="bg-gradient-primary text-white px-3 py-1 rounded-full text-xs font-bold">
-                              HQ
-                            </span>
-                          )}
                         </div>
-                        {/* <p className="text-gray-600 whitespace-pre-line">
-                          {office.address}
-                        </p> */}
-                      </div>
-                      {/* <div
-                        className={`w-12 h-12 bg-${office.color}-50 rounded-2xl flex items-center justify-center`}
-                      >
-                        <Building2
-                          className={`w-6 h-6 text-${office.color}-600`}
-                        />
-                      </div> */}
-                    </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-3">
-                        {/* <div className="flex items-center space-x-3">
-                          <Phone className="w-5 h-5 text-green-600" />
-                          <span className="text-gray-700 font-medium">
-                            {office.phone}
-                          </span>
-                        </div> */}
-                        {/* <div className="flex items-center space-x-3">
-                          <Mail className="w-5 h-5 text-blue-600" />
-                          <a
-                            href={`mailto:${office.email}`}
-                            className="text-blue-600 hover:text-blue-700 transition-colors font-medium"
-                          >
-                            {office.email}
-                          </a>
-                        </div> */}
-                      </div>
-                      <div className="space-y-3">
-                        {/* <div className="flex items-center space-x-3">
-                          <Globe className="w-5 h-5 text-purple-600" />
-                          <span className="text-gray-700 font-medium">
-                            {office.timezone}
-                          </span>
-                        </div> */}
-                        {/* <div className="flex items-center space-x-3">
-                          <Clock className="w-5 h-5 text-indigo-600" />
-                          <span className="text-gray-700 font-medium">
-                            {office.hours}
-                          </span>
-                        </div> */}
+                        <p className="text-gray-600 flex items-center">
+                          <MapPin className="w-4 h-4 mr-1" />
+                          {office.address}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -394,14 +395,13 @@ export default function ContactPage() {
               support team is available 24/7 to help you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="btn-gradient text-white font-bold px-8 py-4 rounded-xl shadow-blue hover:shadow-blue-lg transition-all duration-200">
+              <a
+                href="tel:+971542819321"
+                className="btn-gradient flex justify-center items-center text-white font-bold px-8 py-4 rounded-xl shadow-blue hover:shadow-blue-lg transition-all duration-200"
+              >
                 <Phone className="w-5 h-5 mr-2" />
                 Call Emergency Line
-              </Button>
-              <Button className="btn-outline-gradient text-gray-700 hover:text-blue-600 font-bold px-8 py-4 rounded-xl bg-white hover:bg-blue-50 transition-all duration-200">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Start Live Chat
-              </Button>
+              </a>
             </div>
           </div>
         </div>
