@@ -2,6 +2,7 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { BiLogoFacebook, BiLogoInstagram } from "react-icons/bi";
 
 export default function Footer() {
   return (
@@ -38,6 +39,23 @@ export default function Footer() {
               <div className="flex items-center space-x-2 text-slate-300">
                 <Clock className="w-4 h-4 text-emerald-400" />
                 <span className="text-sm">Saturday - 09:00AM - 05:00PM</span>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <div className="flex items-center space-x-2 text-slate-300">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61578374857330"
+                  target="_blank"
+                >
+                  <BiLogoFacebook className="w-8 h-8 text-white" />
+                </a>
+                <a
+                  href="https://www.instagram.com/algopipstrading/"
+                  target="_blank"
+                >
+                  <BiLogoInstagram className="w-8 h-8 text-white" />
+                </a>
               </div>
             </div>
           </div>

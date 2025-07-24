@@ -774,62 +774,9 @@ export default function GlobalModal() {
                       required
                     />
                   </div>
-
-                  <div>
-                    <label
-                      htmlFor="modal-experience"
-                      className="block text-gray-900 font-medium mb-2"
-                    >
-                      <TrendingUp className="w-4 h-4 inline mr-2" />
-                      Trading Experience
-                    </label>
-                    <select
-                      id="modal-experience"
-                      name="experience"
-                      value={formData.experience}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    >
-                      <option value="">Select level</option>
-                      <option value="beginner">Beginner (0-1 years)</option>
-                      <option value="intermediate">
-                        Intermediate (1-3 years)
-                      </option>
-                      <option value="advanced">Advanced (3+ years)</option>
-                      <option value="expert">Expert (5+ years)</option>
-                    </select>
-                  </div>
                 </div>
 
                 {/* Row 3: Experience and Message */}
-                <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-                  <div className="md:col-span-2">
-                    <label
-                      htmlFor="modal-message"
-                      className="block text-gray-900 font-medium mb-2"
-                    >
-                      <MessageSquare className="w-4 h-4 inline mr-2" />
-                      {config.type === "contact"
-                        ? "Message"
-                        : "Trading Goals"}{" "}
-                      *
-                    </label>
-                    <textarea
-                      id="modal-message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      rows={3}
-                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-                      placeholder={
-                        config.type === "contact"
-                          ? "Tell us how we can help you..."
-                          : "Tell us about your trading goals and experience..."
-                      }
-                      required
-                    ></textarea>
-                  </div>
-                </div>
 
                 {/* Row 4: Consent and Submit */}
                 <div className="space-y-4">
@@ -845,9 +792,9 @@ export default function GlobalModal() {
                       htmlFor="modal-consent"
                       className="text-gray-600 text-sm leading-relaxed"
                     >
-                      I agree to receive communications from algopips
-                      including setup instructions, trading tips, and product
-                      updates. I understand I can unsubscribe at any time.
+                      I agree to receive communications from algopips including
+                      setup instructions, trading tips, and product updates. I
+                      understand I can unsubscribe at any time.
                     </label>
                   </div>
 
