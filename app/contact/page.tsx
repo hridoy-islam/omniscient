@@ -19,7 +19,7 @@ export default function ContactPage() {
     {
       name: "Dubai",
       country: "United Arab Emirates",
-      address: "Bayswater Tower, Marasi Dr, Business Bay, Dubai UAE",
+      address: "Park Lane Tower Business Bay, Dubai UAE",
       phone: "+971542819321",
       email: "dubai@robofx.com",
       timezone: "GMT+4",
