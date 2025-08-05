@@ -20,6 +20,7 @@ import {
   Briefcase,
   Award,
   Handshake,
+  MailCheck,
 } from "lucide-react";
 
 export default function AdmissionsPage() {
@@ -456,8 +457,8 @@ export default function AdmissionsPage() {
                 Call Us: +1-800-OMNISCIENT
               </Button>
               <Button className="border-2 border-pink-300 text-pink-600 hover:bg-pink-500 hover:text-white font-bold px-8 py-4 rounded-xl bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <MessageSquare className="w-5 h-5 mr-2" />
-                Start Live Chat
+                <MailCheck className="w-5 h-5 mr-2" />
+                Send An Email
               </Button>
             </div>
           </div>
