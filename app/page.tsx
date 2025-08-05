@@ -1,28 +1,21 @@
 "use client";
-import Advantages from "@/components/Advantages";
-import Banner from "@/components/Banner";
-import Faq from "@/components/Faq";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import HeaderTop from "@/components/HeaderTop";
-import HowToWork from "@/components/HowToWork";
-import OfficeLocations from "@/components/OfficeLocations";
-import Pricing from "@/components/Pricing";
-import RobotAnalyze from "@/components/RobotAnalyze";
-import Testimonial from "@/components/Testimonial";
+import Hero from "@/components/Hero";
+import Services from "@/components/Services";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import Testimonials from "@/components/Testimonial";
+import PartnerUniversities from "@/components/PartnerUniversities";
+import Footer from "@/components/Footer";
 
-export default function Page() {
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <Banner />
-      <Advantages />
-      <HowToWork />
-      <RobotAnalyze />
-      <Faq />
-      <Pricing />
-      <Testimonial />
-      <OfficeLocations />
+      <Hero />
+      <Services />
+      <WhyChooseUs />
+      <PartnerUniversities />
+      <Testimonials />
       <Footer />
     </div>
   );
