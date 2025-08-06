@@ -13,23 +13,23 @@ export default function WhyChooseUs() {
   const reasons = [
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Expert Academic Advisors",
+      title: "Expert Academic Advisers",
       description:
-        "Dedicated advisors for undergraduate, postgraduate, and mature students with personalized guidance.",
+        "Dedicated advisers for undergraduate, postgraduate, and mature students, providing personalised guidance.",
       color: "from-purple-500 to-pink-500",
     },
     {
       icon: <Zap className="w-6 h-6" />,
       title: "Flexible Learning Options",
       description:
-        "Courses designed to fit your lifestyle, whether you're starting fresh or returning to education.",
+        "Courses designed to fit your lifestyle, whether you’re starting fresh or returning to education.",
       color: "from-pink-500 to-purple-500",
     },
     {
       icon: <Award className="w-6 h-6" />,
       title: "Top Value Education",
       description:
-        "Competitive advantages in quality-driven tuition for both British and international students.",
+        "Competitive advantages through quality-driven tuition for both British and international students.",
       color: "from-purple-600 to-pink-600",
     },
     {
@@ -43,14 +43,14 @@ export default function WhyChooseUs() {
       icon: <Globe className="w-6 h-6" />,
       title: "London Location",
       description:
-        "Vibrant environment in the heart of London with rich cultural and social opportunities.",
+        "A vibrant environment in the heart of London, offering rich cultural and social opportunities.",
       color: "from-purple-500 to-pink-500",
     },
     {
       icon: <Shield className="w-6 h-6" />,
       title: "International Environment",
       description:
-        "Cosmopolitan character making student life challenging, rewarding, and exciting.",
+        "A cosmopolitan character that makes student life challenging, rewarding, and exciting.",
       color: "from-pink-500 to-purple-500",
     },
   ];

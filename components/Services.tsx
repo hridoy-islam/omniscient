@@ -7,7 +7,7 @@ export default function Services() {
       icon: "🎓",
       title: "Academic Excellence Programs",
       description:
-        "Comprehensive academic courses designed with international standards, featuring expert instructors and cutting-edge curriculum.",
+        "We offer extensive academic courses designed with international standards, featuring expert instructors and a cutting-edge curriculum.",
       features: [
         "Certified Programs",
         "Expert Instructors",
@@ -22,7 +22,7 @@ export default function Services() {
       icon: "🤝",
       title: "Student Success Support",
       description:
-        "Dedicated support ecosystem guiding students through their educational journey with personalized mentorship and career development.",
+        "We provide a dedicated support ecosystem that guides students through their educational journey with personalised mentorship and career development.",
       features: [
         "Career Guidance",
         "Academic Support",
@@ -37,7 +37,7 @@ export default function Services() {
       icon: "🌍",
       title: "Global Education Network",
       description:
-        "International programs connecting students with prestigious universities and institutions across 50+ countries worldwide.",
+        "We offer international programmes connecting students with prestigious universities and institutions across more than 50 countries worldwide.",
       features: [
         "Study Abroad",
         "Exchange Programs",
@@ -52,7 +52,7 @@ export default function Services() {
       icon: "🏆",
       title: "Professional Certification Hub",
       description:
-        "Industry-recognized certifications and professional development programs to enhance career prospects and skill advancement.",
+        "We offer industry organised certifications and professional development programs to enhance career prospects and support skill advancement.",
       features: [
         "Industry Standards",
         "Practical Training",
@@ -67,7 +67,7 @@ export default function Services() {
       icon: "🚀",
       title: "Skills Development Lab",
       description:
-        "Targeted skill-building programs preparing students for modern workforce demands and emerging industry requirements.",
+        "We offer targeted skill building programmes that prepare students for modern workforce demands and emerging industry requirements.",
       features: [
         "Technical Skills",
         "Soft Skills",
@@ -82,7 +82,7 @@ export default function Services() {
       icon: "💡",
       title: "Innovation & Research Center",
       description:
-        "Creative learning environment fostering innovation, entrepreneurship, and cutting-edge research in emerging technologies.",
+        "We provide a creative learning environment that fosters innovation, entrepreneurship, and cutting-edge research in emerging technologies.",
       features: [
         "Research Projects",
         "Innovation Labs",
@@ -124,9 +124,10 @@ export default function Services() {
           </h2>
 
           <p className="text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
-            Comprehensive educational services designed to empower students and
-            professionals with the knowledge, skills, and opportunities needed
-            for success in today's dynamic global marketplace.
+            We provide comprehensive educational services designed to empower
+            students and professionals with the knowledge, skills, and
+            opportunities needed for success in today's dynamic global
+            marketplace.
           </p>
         </div>
 

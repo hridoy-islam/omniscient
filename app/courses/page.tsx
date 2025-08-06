@@ -237,9 +237,9 @@ export default function CoursesPage() {
                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-purple-600">
                       {course.level}
                     </div>
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-bold text-gray-900">
+                    {/* <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-bold text-gray-900">
                       {course.price}
-                    </div>
+                    </div> */}
                   </div>
 
                   {/* Course Content */}

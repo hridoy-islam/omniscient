@@ -32,7 +32,7 @@ export default function ServicesPage() {
       icon: <Award className="w-8 h-8" />,
       title: "Top Value for Money",
       description:
-        "We deliver top value for money in education, to students from Britain and overseas, through a combination of competitive advantages in quality-driven tuition.",
+        "We deliver excellent value for money in education to students from Britain and overseas through a combination of competitive advantages and quality driven tuition.",
     },
     {
       icon: <MapPin className="w-8 h-8" />,
@@ -46,11 +46,11 @@ export default function ServicesPage() {
     {
       title: "University Admission Applications",
       description:
-        "We process university admission applications by our expert Admission consultants to top universities in the UK, USA, Canada, Australia, Sweden, and other European countries.",
+        "We process university admission applications through our expert admission consultants to top universities in the UK, USA, Canada, Australia, Sweden, and other European countries.",
       features: [
         "Expert admission consultants",
-        "Top universities in UK, USA, Canada, Australia",
-        "European countries coverage",
+        "Top universities in the UK, USA, Canada, Australia",
+        "Coverage of European countries",
         "Almost 100% success rate",
       ],
       icon: <GraduationCap className="w-8 h-8" />,
@@ -58,31 +58,31 @@ export default function ServicesPage() {
     {
       title: "Study Abroad Guidance",
       description:
-        "We provide guidelines and necessary information to International students who want to study abroad and help them to get admitted to their dream Universities/Colleges.",
+        "We provide guidelines and essential information to international students who want to study abroad and assist them in gaining admission to their dream universities or colleges.",
       features: [
         "Comprehensive study abroad guidance",
         "Dream university admission support",
         "International student consultation",
-        "Personalized education planning",
+        "Personalised education planning",
       ],
       icon: <Globe className="w-8 h-8" />,
     },
     {
       title: "Student Recruitment",
       description:
-        "We work with Universities to recruit highly talented students from all over the world.",
+        "We work with universities to recruit highly talented students from all over the world.",
       features: [
         "Global student recruitment",
         "Talent identification and selection",
         "University partnership programs",
-        "Cultural diversity promotion",
+        "Promotion of cultural diversity",
       ],
       icon: <Users className="w-8 h-8" />,
     },
     {
       title: "Visa Application Processing",
       description:
-        "We process Visa applications, by our experienced Visa consultants, on behalf of International students according to respective countries' Immigration requirements.",
+        "We process visa applications on behalf of international students, handled by our experienced visa consultants in accordance with the immigration requirements of respective countries.",
       features: [
         "Experienced visa consultants",
         "Country-specific immigration requirements",
@@ -97,7 +97,7 @@ export default function ServicesPage() {
     {
       title: "Free Admission Assessment",
       description:
-        "We conduct admission assessment and application process for your chosen courses at College/University without any charge.",
+        "We conduct admission assessments and manage the application process for your chosen college or university courses free of charge.",
       features: [
         "Completely free service",
         "Comprehensive admission assessment",
@@ -109,7 +109,7 @@ export default function ServicesPage() {
     {
       title: "CV & Personal Statement Training",
       description:
-        "We provide training sessions to build an Academic and Professional CV and write a Personal Statement that reflects your own thoughts and motives.",
+        "We provide training sessions to help you build an academic and professional CV, and write a personal statement that reflects your thoughts and motivations.",
       features: [
         "Academic CV development",
         "Professional CV building",
@@ -121,7 +121,7 @@ export default function ServicesPage() {
     {
       title: "Interview Preparation",
       description:
-        "We prepare our students for Admission interviews before facing the real Interview.",
+        "We prepare students for admission interviews through mock sessions and targeted training before the actual interview.",
       features: [
         "Mock interview sessions",
         "Interview technique training",
@@ -133,7 +133,7 @@ export default function ServicesPage() {
     {
       title: "Free English Courses",
       description:
-        "For EU/Local students we provide free English Courses in London, so students can learn and improve their language efficiency if English is not their first language.",
+        "For EU and local students, we offer free English courses in London to help improve language proficiency for those whose first language is not English.",
       features: [
         "Completely free English courses",
         "London-based classes",
@@ -211,7 +211,7 @@ export default function ServicesPage() {
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-purple-600" />
                   <span className="text-gray-700">
-                    Dedicated academic advisors for undergraduate, postgraduate,
+                    Dedicated academic advisers for undergraduate, postgraduate,
                     and mature students
                   </span>
                 </div>
@@ -224,7 +224,7 @@ export default function ServicesPage() {
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-purple-600" />
                   <span className="text-gray-700">
-                    Student finance application support
+                    Support with student finance applications
                   </span>
                 </div>
               </div>
@@ -232,7 +232,7 @@ export default function ServicesPage() {
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-pink-600" />
                   <span className="text-gray-700">
-                    International environment and cosmopolitan character
+                    International environment with a cosmopolitan character
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -244,7 +244,7 @@ export default function ServicesPage() {
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-pink-600" />
                   <span className="text-gray-700">
-                    Extremely approachable and supportive staff
+                    Approachable and highly supportive staff
                   </span>
                 </div>
               </div>
@@ -312,7 +312,7 @@ export default function ServicesPage() {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Specialized services for UK and EU students seeking higher
+              Specialised services for UK and EU students seeking higher
               education opportunities and career development.
             </p>
           </div>
