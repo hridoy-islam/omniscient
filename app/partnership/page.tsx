@@ -378,62 +378,6 @@ export default function PartnershipPage() {
         </div>
       </section>
 
-      {/* Partner Universities */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-6">
-              <span className="text-gray-900">Our Partner </span>
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Universities
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We work with prestigious universities across the UK, Europe,
-              Australia, Canada, and the USA.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
-            {partnerUniversities.map((partner, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group text-center"
-              >
-                <img
-                  src={partner.logo || "/placeholder.svg"}
-                  alt={partner.name}
-                  className="max-w-full h-16 object-contain mx-auto mb-4 opacity-70 group-hover:opacity-100 transition-opacity"
-                />
-                <h4 className="font-bold text-gray-900 text-sm mb-1">
-                  {partner.name}
-                </h4>
-                <div className="flex items-center justify-center space-x-1">
-                  <MapPin className="w-3 h-3 text-gray-400" />
-                  <span className="text-xs text-gray-500">
-                    {partner.country}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-lg text-gray-600 mb-6">
-              We work with{" "}
-              <span className="font-bold text-purple-600">
-                60+ UK universities and colleges
-              </span>{" "}
-              offering
-              <span className="font-bold text-pink-600"> 1000+ courses</span>
-            </p>
-            <Button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold px-8 py-4 rounded-xl hover:shadow-lg transition-all duration-300">
-              View All Partner Universities
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-purple-600 to-pink-600 text-white">
         <div className="container mx-auto px-4">

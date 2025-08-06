@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonial";
-import PartnerUniversities from "@/components/PartnerUniversities";
 import Footer from "@/components/Footer";
 
 export default function HomePage() {
@@ -14,7 +13,6 @@ export default function HomePage() {
       <Hero />
       <Services />
       <WhyChooseUs />
-      <PartnerUniversities />
       <Testimonials />
       <Footer />
     </div>
