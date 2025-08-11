@@ -1,5 +1,7 @@
 "use client";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams, useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -24,62 +26,50 @@ import {
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { courses } from "@/utils/data";
 
-export default function CourseDetailsPage() {
+export default function CourseDetailPage() {
   const [activeTab, setActiveTab] = useState("overview");
   const [isEnrolled, setIsEnrolled] = useState(false);
+  const router = useRouter();
+  const params = useParams();
+  const searchParams = useSearchParams();
 
-  // Sample course data - in real app, this would come from params/API
-  const course = {
-    id: 1,
-    title: "Master of Business Administration (MBA)",
-    subtitle: "Advanced Business Leadership & Management",
-    university: "University of London",
-    location: "London, UK",
-    duration: "24 Months",
-    mode: "Full-time / Part-time",
-    intake: "September 2024",
-    tuitionFee: "£18,500",
-    rating: 4.8,
-    reviews: 156,
-    students: 2847,
-    image: "https://www.tmu.ac.in/uploads/blogs/mba_Final_BPC-01.jpg",
-    description:
-      "Our MBA program is designed for ambitious professionals seeking to advance their careers in business leadership. This comprehensive program combines theoretical knowledge with practical application, preparing graduates for senior management roles across various industries.",
-    highlights: [
-      "Accredited by AACSB and EQUIS",
-      "Industry-experienced faculty",
-      "Global networking opportunities",
-      "Flexible study options",
-      "Career placement support",
-      "International study tours",
-    ],
-    modules: [
-      { name: "Strategic Management", credits: 20, duration: "12 weeks" },
-      { name: "Financial Management", credits: 20, duration: "12 weeks" },
-      { name: "Marketing Strategy", credits: 15, duration: "10 weeks" },
-      { name: "Operations Management", credits: 15, duration: "10 weeks" },
-      { name: "Leadership & Ethics", credits: 15, duration: "8 weeks" },
-      { name: "International Business", credits: 15, duration: "8 weeks" },
-      { name: "Dissertation Project", credits: 60, duration: "6 months" },
-    ],
-    requirements: [
-      "Bachelor's degree (2:1 or above)",
-      "3+ years work experience",
-      "IELTS 6.5 or equivalent",
-      "Personal statement",
-      "Two professional references",
-      "CV/Resume",
-    ],
-    careerOutcomes: [
-      "Senior Management Positions",
-      "Business Consultant",
-      "Project Manager",
-      "Entrepreneur/Business Owner",
-      "Strategy Analyst",
-      "Operations Director",
-    ],
-  };
+  const slug = params?.slug as string;
+  const [course, setCourse] = useState<(typeof courses)[0] | null>(null);
+
+  useEffect(() => {
+    if (!slug) return;
+    const found = courses.find((c) => c.slug === slug);
+    if (!found) {
+      setCourse(null);
+    } else {
+      setCourse(found);
+    }
+  }, [slug]);
+
+  if (!course) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <div className="container mx-auto px-4 py-12 text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            Course Not Found
+          </h1>
+          <p className="text-gray-600 mb-6">
+            We couldn't find the course you're looking for.
+          </p>
+          <Button
+            onClick={() => router.push("/courses")}
+            className="bg-purple-600"
+          >
+            ← Back to Courses
+          </Button>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   const tabs = [
     {
@@ -421,16 +411,25 @@ export default function CourseDetailsPage() {
                 <CardTitle>Related Courses</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="p-3 border border-purple-100 rounded-lg hover:bg-purple-50 cursor-pointer">
-                  <h4 className="font-semibold text-gray-900">
-                    MSc International Business
-                  </h4>
-                  <p className="text-sm text-gray-600">18 months • £16,500</p>
-                </div>
-                <div className="p-3 border border-purple-100 rounded-lg hover:bg-purple-50 cursor-pointer">
-                  <h4 className="font-semibold text-gray-900">Executive MBA</h4>
-                  <p className="text-sm text-gray-600">24 months • £22,000</p>
-                </div>
+                {courses
+                  .filter(
+                    (c) => c.id !== course.id && c.category === course.category
+                  )
+                  .slice(0, 2)
+                  .map((related) => (
+                    <div
+                      key={related.id}
+                      className="p-3 border border-purple-100 rounded-lg hover:bg-purple-50 cursor-pointer transition-all"
+                      onClick={() => router.push(`/courses/${related.slug}`)}
+                    >
+                      <h4 className="font-semibold text-gray-900">
+                        {related.title}
+                      </h4>
+                      <p className="text-sm text-gray-600 mt-1">
+                        {related.duration} • {related.tuitionFee}
+                      </p>
+                    </div>
+                  ))}
               </CardContent>
             </Card>
           </div>

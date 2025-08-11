@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import { courses } from "@/utils/data";
 
 export default function CoursesPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -28,128 +29,128 @@ export default function CoursesPage() {
     "Engineering",
   ];
 
-  const courses = [
-    {
-      id: 1,
-      title: "Business Management & Leadership",
-      category: "Business",
-      image:
-        "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-      duration: "12 weeks",
-      students: 1250,
-      rating: 4.9,
-      price: "£2,499",
-      level: "Intermediate",
-      description:
-        "Comprehensive program covering modern business practices and leadership skills.",
-      features: [
-        "Live Sessions",
-        "Case Studies",
-        "Certification",
-        "Career Support",
-      ],
-    },
-    {
-      id: 2,
-      title: "Data Science & Analytics",
-      category: "Technology",
-      image:
-        "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-      duration: "16 weeks",
-      students: 890,
-      rating: 4.8,
-      price: "£3,299",
-      level: "Advanced",
-      description:
-        "Master data analysis, machine learning, and statistical modeling techniques.",
-      features: [
-        "Hands-on Projects",
-        "Industry Tools",
-        "Mentorship",
-        "Job Placement",
-      ],
-    },
-    {
-      id: 3,
-      title: "Digital Marketing Mastery",
-      category: "Business",
-      image:
-        "https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-      duration: "10 weeks",
-      students: 2100,
-      rating: 4.7,
-      price: "£1,899",
-      level: "Beginner",
-      description:
-        "Learn modern digital marketing strategies and tools for business growth.",
-      features: [
-        "Real Campaigns",
-        "Analytics Tools",
-        "Social Media",
-        "SEO/SEM",
-      ],
-    },
-    {
-      id: 4,
-      title: "Healthcare Administration",
-      category: "Healthcare",
-      image:
-        "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-      duration: "14 weeks",
-      students: 650,
-      rating: 4.9,
-      price: "£2,799",
-      level: "Intermediate",
-      description:
-        "Comprehensive training in healthcare management and administration.",
-      features: [
-        "Healthcare Systems",
-        "Compliance",
-        "Leadership",
-        "Quality Management",
-      ],
-    },
-    {
-      id: 5,
-      title: "Software Engineering Bootcamp",
-      category: "Technology",
-      image:
-        "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-      duration: "20 weeks",
-      students: 1500,
-      rating: 4.8,
-      price: "£4,999",
-      level: "Beginner",
-      description:
-        "Intensive program to become a full-stack software developer.",
-      features: [
-        "Full-Stack Development",
-        "Portfolio Projects",
-        "Code Reviews",
-        "Job Guarantee",
-      ],
-    },
-    {
-      id: 6,
-      title: "Educational Leadership",
-      category: "Education",
-      image:
-        "https://images.pexels.com/photos/256401/pexels-photo-256401.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
-      duration: "12 weeks",
-      students: 420,
-      rating: 4.9,
-      price: "£2,299",
-      level: "Advanced",
-      description:
-        "Develop leadership skills for educational institutions and organizations.",
-      features: [
-        "Leadership Theory",
-        "Change Management",
-        "Policy Development",
-        "Research Methods",
-      ],
-    },
-  ];
+  // const courses = [
+  //   {
+  //     id: 1,
+  //     title: "Business Management & Leadership",
+  //     category: "Business",
+  //     image:
+  //       "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
+  //     duration: "12 weeks",
+  //     students: 1250,
+  //     rating: 4.9,
+  //     price: "£2,499",
+  //     level: "Intermediate",
+  //     description:
+  //       "Comprehensive program covering modern business practices and leadership skills.",
+  //     features: [
+  //       "Live Sessions",
+  //       "Case Studies",
+  //       "Certification",
+  //       "Career Support",
+  //     ],
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Data Science & Analytics",
+  //     category: "Technology",
+  //     image:
+  //       "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
+  //     duration: "16 weeks",
+  //     students: 890,
+  //     rating: 4.8,
+  //     price: "£3,299",
+  //     level: "Advanced",
+  //     description:
+  //       "Master data analysis, machine learning, and statistical modeling techniques.",
+  //     features: [
+  //       "Hands-on Projects",
+  //       "Industry Tools",
+  //       "Mentorship",
+  //       "Job Placement",
+  //     ],
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Digital Marketing Mastery",
+  //     category: "Business",
+  //     image:
+  //       "https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
+  //     duration: "10 weeks",
+  //     students: 2100,
+  //     rating: 4.7,
+  //     price: "£1,899",
+  //     level: "Beginner",
+  //     description:
+  //       "Learn modern digital marketing strategies and tools for business growth.",
+  //     features: [
+  //       "Real Campaigns",
+  //       "Analytics Tools",
+  //       "Social Media",
+  //       "SEO/SEM",
+  //     ],
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Healthcare Administration",
+  //     category: "Healthcare",
+  //     image:
+  //       "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
+  //     duration: "14 weeks",
+  //     students: 650,
+  //     rating: 4.9,
+  //     price: "£2,799",
+  //     level: "Intermediate",
+  //     description:
+  //       "Comprehensive training in healthcare management and administration.",
+  //     features: [
+  //       "Healthcare Systems",
+  //       "Compliance",
+  //       "Leadership",
+  //       "Quality Management",
+  //     ],
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "Software Engineering Bootcamp",
+  //     category: "Technology",
+  //     image:
+  //       "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
+  //     duration: "20 weeks",
+  //     students: 1500,
+  //     rating: 4.8,
+  //     price: "£4,999",
+  //     level: "Beginner",
+  //     description:
+  //       "Intensive program to become a full-stack software developer.",
+  //     features: [
+  //       "Full-Stack Development",
+  //       "Portfolio Projects",
+  //       "Code Reviews",
+  //       "Job Guarantee",
+  //     ],
+  //   },
+  //   {
+  //     id: 6,
+  //     title: "Educational Leadership",
+  //     category: "Education",
+  //     image:
+  //       "https://images.pexels.com/photos/256401/pexels-photo-256401.jpeg?auto=compress&cs=tinysrgb&h=400&w=600",
+  //     duration: "12 weeks",
+  //     students: 420,
+  //     rating: 4.9,
+  //     price: "£2,299",
+  //     level: "Advanced",
+  //     description:
+  //       "Develop leadership skills for educational institutions and organizations.",
+  //     features: [
+  //       "Leadership Theory",
+  //       "Change Management",
+  //       "Policy Development",
+  //       "Research Methods",
+  //     ],
+  //   },
+  // ];
 
   const filteredCourses = courses.filter((course) => {
     const matchesCategory =
@@ -226,7 +227,7 @@ export default function CoursesPage() {
                 key={course.id}
                 className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden group"
               >
-                <Link href="/courses/a">
+                <Link href={`/courses/${course.slug}`}>
                   {/* Course Image */}
                   <div className="relative overflow-hidden">
                     <img
@@ -234,9 +235,9 @@ export default function CoursesPage() {
                       alt={course.title}
                       className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-purple-600">
+                    {/* <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-purple-600">
                       {course.level}
-                    </div>
+                    </div> */}
                     {/* <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-bold text-gray-900">
                       {course.price}
                     </div> */}
@@ -277,7 +278,7 @@ export default function CoursesPage() {
                     </div>
 
                     {/* Features */}
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    {/* <div className="flex flex-wrap gap-2 mb-6">
                       {course.features.slice(0, 3).map((feature, index) => (
                         <span
                           key={index}
@@ -286,7 +287,7 @@ export default function CoursesPage() {
                           {feature}
                         </span>
                       ))}
-                    </div>
+                    </div> */}
 
                     {/* CTA Button */}
                     <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-xl transition-all duration-300 group">
