@@ -338,21 +338,23 @@ export default function CourseDetailPage() {
                   Career Outcomes
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  {course.careerOutcomes.map((career, index) => (
-                    <Card
-                      key={index}
-                      className="border-purple-100 hover:shadow-lg transition-shadow"
-                    >
-                      <CardContent className="p-6">
-                        <div className="flex items-center space-x-3">
-                          <Target className="w-6 h-6 text-purple-500" />
-                          <span className="font-semibold text-gray-900">
-                            {career}
-                          </span>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                  {course?.careerOutcomes &&
+                    course.careerOutcomes.length > 0 &&
+                    course.careerOutcomes.map((career, index) => (
+                      <Card
+                        key={index}
+                        className="border-purple-100 hover:shadow-lg transition-shadow"
+                      >
+                        <CardContent className="p-6">
+                          <div className="flex items-center space-x-3">
+                            <Target className="w-6 h-6 text-purple-500" />
+                            <span className="font-semibold text-gray-900">
+                              {career}
+                            </span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
                 </div>
 
                 <Card className="bg-gradient-to-r from-purple-50 to-pink-50 border-purple-200">
