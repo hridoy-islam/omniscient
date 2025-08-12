@@ -223,82 +223,66 @@ export default function CoursesPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCourses.map((course) => (
-              <div
-                key={course.id}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden group"
-              >
-                <Link href={`/courses/${course.slug}`}>
-                  {/* Course Image */}
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={course.image || "/placeholder.svg"}
-                      alt={course.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    {/* <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-semibold text-purple-600">
-                      {course.level}
-                    </div> */}
-                    {/* <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-bold text-gray-900">
-                      {course.price}
-                    </div> */}
-                  </div>
+            <div
+  key={course.id}
+  className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden group flex flex-col"
+>
+  <Link href={`/courses/${course.slug}`} className="flex flex-col flex-grow">
+    {/* Course Image */}
+    <div className="relative overflow-hidden">
+      <img
+        src={course.image || "/placeholder.svg"}
+        alt={course.title}
+        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+      />
+    </div>
 
-                  {/* Course Content */}
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-semibold text-purple-600 bg-purple-50 px-3 py-1 rounded-full">
-                        {course.category}
-                      </span>
-                      <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                        <span className="text-sm font-semibold text-gray-700">
-                          {course.rating}
-                        </span>
-                      </div>
-                    </div>
+    {/* Course Content */}
+    <div className="p-6 flex flex-col flex-grow">
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-sm font-semibold text-purple-600 bg-purple-50 px-3 py-1 rounded-full">
+          {course.category}
+        </span>
+        <div className="flex items-center space-x-1">
+          <Star className="w-4 h-4 text-yellow-500 fill-current" />
+          <span className="text-sm font-semibold text-gray-700">
+            {course.rating}
+          </span>
+        </div>
+      </div>
 
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
-                      {course.title}
-                    </h3>
+      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
+        {course.title}
+      </h3>
 
-                    <p className="text-gray-600 mb-4 line-clamp-2">
-                      {course.description}
-                    </p>
+      <p className="text-gray-600 mb-4 line-clamp-2 flex-grow">
+        {course.description}
+      </p>
 
-                    {/* Course Stats */}
-                    <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
-                      <div className="flex items-center space-x-1">
-                        <Clock className="w-4 h-4" />
-                        <span>{course.duration}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Users className="w-4 h-4" />
-                        <span>{course.students.toLocaleString()} students</span>
-                      </div>
-                    </div>
+      <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
+        <div className="flex items-center space-x-1">
+          <Clock className="w-4 h-4" />
+          <span>{course.duration}</span>
+        </div>
+        <div className="flex items-center space-x-1">
+          <Users className="w-4 h-4" />
+          <span>{course.students.toLocaleString()} students</span>
+        </div>
+      </div>
 
-                    {/* Features */}
-                    {/* <div className="flex flex-wrap gap-2 mb-6">
-                      {course.features.slice(0, 3).map((feature, index) => (
-                        <span
-                          key={index}
-                          className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full"
-                        >
-                          {feature}
-                        </span>
-                      ))}
-                    </div> */}
+      {/* Push button to bottom */}
+      <div className="mt-auto">
+        <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-xl transition-all duration-300 group">
+          <span className="flex items-center justify-center">
+            Enroll Now
+            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+          </span>
+        </Button>
+      </div>
+    </div>
+  </Link>
+</div>
 
-                    {/* CTA Button */}
-                    <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-xl transition-all duration-300 group">
-                      <span className="flex items-center justify-center">
-                        Enroll Now
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                    </Button>
-                  </div>
-                </Link>
-              </div>
             ))}
           </div>
 

@@ -134,10 +134,11 @@ export default function CourseDetailPage() {
                   <Clock className="w-5 h-5 mr-2 text-purple-500" />
                   {course.duration}
                 </div>
-                <div className="flex items-center">
+                {course.intake && <div className="flex items-center">
                   <Calendar className="w-5 h-5 mr-2 text-purple-500" />
                   {course.intake}
-                </div>
+                </div>}
+                
                 <div className="flex items-center">
                   <Star className="w-5 h-5 mr-2 text-yellow-500 fill-current" />
                   {course.rating} ({course.reviews} reviews)
@@ -149,9 +150,13 @@ export default function CourseDetailPage() {
             <div className="lg:col-span-1">
               <Card className="sticky top-6 shadow-xl border-purple-100">
                 <CardHeader className="text-center">
-                  <div className="text-3xl font-black text-purple-600 mb-2">
+                  <div className="text-2xl font-black text-purple-600 mb-2">
                     {course.tuitionFee}
                   </div>
+                   {course.tuitionFeeInternational &&  <div className="text-2xl font-black text-purple-600 mb-2">
+                    {course.tuitionFeeInternational}
+                  </div>}
+                 
                   <p className="text-gray-600">Total Program Fee</p>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -288,10 +293,10 @@ export default function CourseDetailPage() {
                             {module.credits} Credits
                           </span>
                         </div>
-                        <div className="flex items-center text-gray-600">
+                        {/* <div className="flex items-center text-gray-600">
                           <Clock className="w-4 h-4 mr-2" />
                           Duration: {module.duration}
-                        </div>
+                        </div> */}
                       </CardContent>
                     </Card>
                   ))}
